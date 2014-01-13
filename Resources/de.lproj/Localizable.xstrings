@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key> contact in group</key>
+	<string> Kontakt in der Gruppe</string>
+	<key> contacts in group</key>
+	<string> Kontakte in der Gruppe</string>
+	<key> has been added</key>
+	<string> wurde hinzugefügt</string>
+	<key> has been created</key>
+	<string> wurde erstellt</string>
+	<key> has been removed</key>
+	<string> wurde entfernt</string>
+	<key> is asking you subscription. Do you want to authorize it ?</key>
+	<string> fragt nach Abonnement. Wollen Sie ihn authorisieren?</string>
+	<key>About Archipel</key>
+	<string>Über Archipel</string>
+	<key>Accept</key>
+	<string>Akzeptieren</string>
+	<key>Add a contact</key>
+	<string>Einen Kontakt hinzufügen</string>
+	<key>Add a group</key>
+	<string>Eine Gruppe hinzufügen</string>
+	<key>Add a new contact or group</key>
+	<string>Add a new contact or group</string>
+	<key>Add contact</key>
+	<string>Kontakt hinzufügen</string>
+	<key>Add group</key>
+	<string>Gruppe hinzufügen</string>
+	<key>Admin rights</key>
+	<string>Admin rights</string>
+	<key>Archipel</key>
+	<string>Archipel</string>
+	<key>Archipel Help</key>
+	<string>Archipel Hilfe</string>
+	<key>Are you sure you want to delete selected items?</key>
+	<string>Are you sure you want to delete selected items?</string>
+	<key>Ask subscribtion</key>
+	<string>Ask subscribtion</string>
+	<key>Available</key>
+	<string>Verfügbar</string>
+	<key>Away</key>
+	<string>Abwesend</string>
+	<key>B</key>
+	<string>B</string>
+	<key>Busy</key>
+	<string>Beschäftigt</string>
+	<key>Cancel</key>
+	<string>Abbrechen</string>
+	<key>Cannot save your preferences to the XMPP server</key>
+	<string>Ihre Einstellungen konnten auf dem XMPP Server nicht gespeichert werden</string>
+	<key>Collapse all groups</key>
+	<string>Alle Gruppen zusammenklappen</string>
+	<key>Collapse group</key>
+	<string>Gruppe zusammenklappen</string>
+	<key>Connected as </key>
+	<string>Verbunden als </string>
+	<key>Contact</key>
+	<string>Kontakt</string>
+	<key>Contact </key>
+	<string>Kontakt </string>
+	<key>Contacts</key>
+	<string>Kontakte</string>
+	<key>Contents</key>
+	<string>Inhalt</string>
+	<key>Copy</key>
+	<string>Kopieren</string>
+	<key>Current Selection</key>
+	<string>Current Selection</string>
+	<key>Cut</key>
+	<string>Ausschneiden</string>
+	<key>Decline</key>
+	<string>Rückgängig</string>
+	<key>Delete</key>
+	<string>Entfernen</string>
+	<key>Delete contact</key>
+	<string>Kontakt entfernen</string>
+	<key>Delete group</key>
+	<string>Gruppe entfernen</string>
+	<key>Delete items</key>
+	<string>Delete items</string>
+	<key>Delete selected contacts or groups</key>
+	<string>Delete selected contacts or groups</string>
+	<key>Do not disturb</key>
+	<string>Nicht stören</string>
+	<key>Edit</key>
+	<string>Bearbeiten</string>
+	<key>Error</key>
+	<string>Fehler</string>
+	<key>Error while getting your preferences from the XMPP Server</key>
+	<string>Fehler beim Laden ihrer Einstellungen vom XMPP Server</string>
+	<key>Expand all groups</key>
+	<string>Alle Gruppen ausklappen</string>
+	<key>Expand group</key>
+	<string>Gruppe ausklappen</string>
+	<key>For some reasons, Archipel has not be able to fetch correctly your data from XMPPServer due to an error parsing the data. If this problem is reproducible, you may want to reset them</key>
+	<string>Aus unbekanntem Grund konnte Archipel ihre Daten nicht vom XMPP Server laden. Falls das Problem wiederholt auftritt können Sie ihre Daten zurücksetzen.</string>
+	<key>Full JID required</key>
+	<string>Full JID required</string>
+	<key>GB</key>
+	<string>GB</string>
+	<key>Go to website</key>
+	<string>Zur Webseite gehen</string>
+	<key>Group</key>
+	<string>Gruppe</string>
+	<key>Group </key>
+	<string>Gruppe </string>
+	<key>Group addition error</key>
+	<string>Gruppen Zusatzfehler</string>
+	<key>Group supression</key>
+	<string>Gruppe unterdrücken</string>
+	<key>Groups</key>
+	<string>Gruppen</string>
+	<key>Help</key>
+	<string>Hilfe</string>
+	<key>Hide main menu</key>
+	<string>Menü ausblenden</string>
+	<key>Hypervisor</key>
+	<string>Hypervisor</string>
+	<key>JID is not valid</key>
+	<string>JID ist nicht gültig</string>
+	<key>KB</key>
+	<string>KB</string>
+	<key>Later</key>
+	<string>Später</string>
+	<key>Locale change</key>
+	<string>Gebietsschema ändern</string>
+	<key>Log out</key>
+	<string>Abmelden</string>
+	<key>MB</key>
+	<string>MB</string>
+	<key>Make a donation</key>
+	<string>Spenden</string>
+	<key>Modules</key>
+	<string>Module</string>
+	<key>Navigation</key>
+	<string>Navigation</string>
+	<key>Nevermind</key>
+	<string>Unwichtig</string>
+	<key>Node only JID required</key>
+	<string>Node only JID required</string>
+	<key>Notifications</key>
+	<string>Benachrichtigungen</string>
+	<key>OK</key>
+	<string>OK</string>
+	<key>Password error</key>
+	<string>Passwortfehler</string>
+	<key>Paste</key>
+	<string>Einfügen</string>
+	<key>Preferences</key>
+	<string>Einstellungen</string>
+	<key>Preferences saved</key>
+	<string>Einstellungen gespeichert</string>
+	<key>Quit</key>
+	<string>Beenden</string>
+	<key>Redo</key>
+	<string>Wiederholen</string>
+	<key>Release note</key>
+	<string>Freigabevermerk</string>
+	<key>Remove subscribtion</key>
+	<string>Remove subscribtion</string>
+	<key>Report a bug</key>
+	<string>Einen Fehler melden</string>
+	<key>Reset</key>
+	<string>Reset</string>
+	<key>Resource</key>
+	<string>Ressource</string>
+	<key>Search entity</key>
+	<string>Suche Entität</string>
+	<key>Select all</key>
+	<string>Alles auswählen</string>
+	<key>Select next entity</key>
+	<string>Wähle nächste Entität</string>
+	<key>Select next module</key>
+	<string>Select next module</string>
+	<key>Select previous entity</key>
+	<string>Wähle vorhergehende Entität</string>
+	<key>Select previous module</key>
+	<string>Select previous module</string>
+	<key>Show or hide properties view</key>
+	<string>Show or hide properties view</string>
+	<key>Status</key>
+	<string>Status</string>
+	<key>Subscription request</key>
+	<string>Kontaktanfrage</string>
+	<key>TB</key>
+	<string>TB</string>
+	<key>TNPreferencesControllerSavePreferencesRequestNotificationarchipel:preferences</key>
+	<string>TNPreferencesControllerSavePreferencesRequestNotificationarchipel:preferences</string>
+	<key>Tags</key>
+	<string>Tags</string>
+	<key>The group has been removed</key>
+	<string>Die Gruppe wurde entfernt</string>
+	<key>The group must be empty</key>
+	<string>Die Gruppe muss leer sein</string>
+	<key>The passwords you entered don't match.</key>
+	<string>Die Passwörter stimmen nicht überein.</string>
+	<key>Toggle tag view</key>
+	<string>Toggle tag view</string>
+	<key>Unable to grant admin rights to users. See log</key>
+	<string>Unable to grant admin rights to users. See log</string>
+	<key>Unable to revoke admin rights to users. See log</key>
+	<string>Unable to revoke admin rights to users. See log</string>
+	<key>Unable to update your password</key>
+	<string>Ihr Passwort konnte nichtgeändert werden</string>
+	<key>Undo</key>
+	<string>Rückgängig machen</string>
+	<key>User</key>
+	<string>Benutzer</string>
+	<key>User admin rights successfully granted</key>
+	<string>User admin rights successfully granted</string>
+	<key>User admin rights successfuly revoked</key>
+	<string>User admin rights successfuly revoked</string>
+	<key>Virtual machine</key>
+	<string>Virtuelle Maschine</string>
+	<key>XMPP Account</key>
+	<string>XMPP Konto</string>
+	<key>You can't assign tags here</key>
+	<string>Sie können hier keine Tags zuweisen</string>
+	<key>You have to enter a valid group name.</key>
+	<string>Sie müssen einen gültigen Namen für die Gruppe angeben</string>
+	<key>You must enter a JID using the form user@domain.</key>
+	<string>Sie müssen eine JID angeben, welcher der Form user@domain entspricht.</string>
+	<key>You need to reload the application to complete the locale change.</key>
+	<string>Sie müssen diese Anwendung neu laden um die Gebietsschemaänderung abzuschliessen.</string>
+	<key>Your password has been successfully updated</key>
+	<string>Ihr Passwort wurde erfolgreich geändert</string>
+	<key>Your preferences have been saved to the XMPP server</key>
+	<string>Ihre Einstellungen wurden auf dem XMPP Server gespeichert</string>
+	<key>Your status is now </key>
+	<string>Ihr Status ist nun </string>
+	<key>archipel:tags</key>
+	<string>archipel:tags</string>
+	<key>authenticating</key>
+	<string>Authentifizierung</string>
+	<key>authentification-failed</key>
+	<string>Authentifizierung fehlgeschlagen</string>
+	<key>cancel</key>
+	<string>Abbrechen</string>
+	<key>connect</key>
+	<string>verbinden</string>
+	<key>connected</key>
+	<string>Verbunden</string>
+	<key>connecting</key>
+	<string>Verbinde...</string>
+	<key>connection-failed</key>
+	<string>Verbindung fehlgeschlagen</string>
+	<key>disconnected</key>
+	<string>Verbindung Getrennt</string>
+	<key>disconnecting</key>
+	<string>Trenne Verbindung</string>
+	<key>host-unreachable</key>
+	<string>nicht erreichbar</string>
+	<key>unknown-error</key>
+	<string>unbekannter Fehler</string>
+</dict>
+</plist>

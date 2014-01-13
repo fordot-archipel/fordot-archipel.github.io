@@ -1,0 +1,1 @@
+@STATIC;1.0;u;25;Resources/bg-controls.png65;mhtml:Browser.environment/MHTMLData.txt!Resources/bg-controls.png

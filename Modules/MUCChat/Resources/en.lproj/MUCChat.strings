@@ -1,0 +1,34 @@
+
+/* Class = "NSTextFieldCell"; placeholderString = "Type your message"; ObjectID = "10"; */
+"10.placeholderString" = "Type your message";
+
+/* Class = "NSTextFieldCell"; placeholderString = "conference.myserver.com"; ObjectID = "21"; */
+"21.placeholderString" = "conference.myserver.com";
+
+/* Class = "NSTextFieldCell"; title = "Server name"; ObjectID = "22"; */
+"22.title" = "Server name";
+
+/* Class = "NSTextFieldCell"; title = "You can configure preferences for the health module."; ObjectID = "23"; */
+"23.title" = "You can configure preferences for the health module.";
+
+/* Class = "NSTextFieldCell"; title = "Conference preference"; ObjectID = "24"; */
+"24.title" = "Conference preference";
+
+/* Class = "NSTextFieldCell"; placeholderString = "Name of the room"; ObjectID = "27"; */
+"27.placeholderString" = "Name of the room";
+
+/* Class = "NSTextFieldCell"; title = "Room name"; ObjectID = "28"; */
+"28.title" = "Room name";
+
+/* Class = "NSTextFieldCell"; title = "archipel-general"; ObjectID = "50"; */
+"50.title" = "archipel-general";
+
+/* Class = "NSTextFieldCell"; title = "conference.archipelproject.org"; ObjectID = "51"; */
+"51.title" = "conference.archipelproject.org";
+
+/* Class = "NSTextFieldCell"; title = "Room"; ObjectID = "52"; */
+"52.title" = "Room";
+
+/* Class = "NSTextFieldCell"; title = "Server"; ObjectID = "53"; */
+"53.title" = "Server";
+

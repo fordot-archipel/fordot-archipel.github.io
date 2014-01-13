@@ -1,0 +1,120 @@
+/* Are you sure you want to migrate this virtual machine ? */
+"Are you sure you want to migrate this virtual machine ?" = "Are you sure you want to migrate this virtual machine ?";
+
+/* Autostart has been set. */
+"Autostart has been set." = "Autostart has been set.";
+
+/* Autostart has been unset. */
+"Autostart has been unset." = "Autostart has been unset.";
+
+/* Cancel */
+"Cancel" = "Cancel";
+
+/* Crashed */
+"Crashed" = "Crashed";
+
+/* Force Off */
+"Force Off" = "Force Off";
+
+/* Force Off %@? */
+"Force Off %@?" = "Force Off %@?";
+
+/* Force Off (destroy) a virtual machine is dangerous. It is equivalent to removing the power plug of a real computer. */
+"Force Off (destroy) a virtual machine is dangerous. It is equivalent to removing the power plug of a real computer." = "Force Off (destroy) a virtual machine is dangerous. It is equivalent to removing the power plug of a real computer.";
+
+/* Kill */
+"Kill" = "Kill";
+
+/* Kill virtual machine? */
+"Kill virtual machine?" = "Kill virtual machine?";
+
+/* Migrate */
+"Migrate" = "Migrate";
+
+/* Migration has started. */
+"Migration has started." = "Migration has started.";
+
+/* No status */
+"No status" = "No status";
+
+/* Off */
+"Off" = "Off";
+
+/* OOM Killer can kill this virtual machine. */
+"OOM Killer can kill this virtual machine." = "OOM Killer can kill this virtual machine.";
+
+/* OOM Killer cannot kill this virtual machine. */
+"OOM Killer cannot kill this virtual machine." = "OOM Killer cannot kill this virtual machine.";
+
+/* Park */
+"Park" = "Park";
+
+/* Park virtual machine? */
+"Park virtual machine?" = "Park virtual machine?";
+
+/* Pause */
+"Pause" = "Pause";
+
+/* Pause / Resume */
+"Pause / Resume" = "Pause / Resume";
+
+/* Paused */
+"Paused" = "Paused";
+
+/* Play */
+"Play" = "Play";
+
+/* Prevented */
+"Prevented" = "Prevented";
+
+/* Reboot */
+"Reboot" = "Reboot";
+
+/* Resume */
+"Resume" = "Resume";
+
+/* Running */
+"Running" = "Running";
+
+/* Shut down */
+"Shut down" = "Shut down";
+
+/* Start */
+"Start" = "Start";
+
+/* Stop */
+"Stop" = "Stop";
+
+/* Virtual machine has been destroyed. */
+"Virtual machine has been destroyed." = "Virtual machine has been destroyed.";
+
+/* Virtual machine is parking. */
+"Virtual machine is parking." = "Virtual machine is parking.";
+
+/* Virtual machine is paused. */
+"Virtual machine is paused." = "Virtual machine is paused.";
+
+/* Virtual machine is rebooting. */
+"Virtual machine is rebooting." = "Virtual machine is rebooting.";
+
+/* Virtual machine is running. */
+"Virtual machine is running." = "Virtual machine is running.";
+
+/* Virtual machine is shutting down. */
+"Virtual machine is shutting down." = "Virtual machine is shutting down.";
+
+/* Virtual machine killed. */
+"Virtual machine killed." = "Virtual machine killed.";
+
+/* Virtual machine was resumed. */
+"Virtual machine was resumed." = "Virtual machine was resumed.";
+
+/* You can't migrate to the initial virtual machine's hypervisor. */
+"You can't migrate to the initial virtual machine's hypervisor." = "You can't migrate to the initial virtual machine's hypervisor.";
+
+/* You may continue to use this machine while migrating */
+"You may continue to use this machine while migrating" = "You may continue to use this machine while migrating";
+
+/* You will loose this virtual machine. It will be destroyed, send to a black hole and it will never come back again. Sure? */
+"You will loose this virtual machine. It will be destroyed, send to a black hole and it will never come back again. Sure?" = "You will loose this virtual machine. It will be destroyed, send to a black hole and it will never come back again. Sure?";
+

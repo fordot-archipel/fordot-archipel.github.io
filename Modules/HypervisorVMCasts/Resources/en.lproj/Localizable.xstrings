@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Appliance download complete</key>
+	<string>Appliance download complete</string>
+	<key>Appliance download error</key>
+	<string>Appliance download error</string>
+	<key>Appliance download started</key>
+	<string>Appliance download started</string>
+	<key>Appliance has been uninstalled</key>
+	<string>Appliance has been uninstalled</string>
+	<key>Appliance is already downloaded. If you want to instanciante it, create a new Virtual Machine and choose Packaging module.</key>
+	<string>Appliance is already downloaded. If you want to instanciante it, create a new Virtual Machine and choose Packaging module.</string>
+	<key>Are you sure you want to download this appliance?</key>
+	<string>Are you sure you want to download this appliance?</string>
+	<key>Are you sure you want to remove this appliance? This doesn't affect virtual machine that have been instanciated from this template.</key>
+	<string>Are you sure you want to remove this appliance? This doesn't affect virtual machine that have been instanciated from this template.</string>
+	<key>Are you sure you want to unregister fro this VMCast? All its appliances will be deleted.</key>
+	<string>Are you sure you want to unregister fro this VMCast? All its appliances will be deleted.</string>
+	<key>Cancel</key>
+	<string>Cancel</string>
+	<key>Comment</key>
+	<string>Comment</string>
+	<key>Delete VMCast</key>
+	<string>Delete VMCast</string>
+	<key>Delete appliance</key>
+	<string>Delete appliance</string>
+	<key>Download</key>
+	<string>Download</string>
+	<key>Download queue for </key>
+	<string>Download queue for </string>
+	<key>Download selected appliance</key>
+	<string>Download selected appliance</string>
+	<key>Open download queue</key>
+	<string>Open download queue</string>
+	<key>Register to a new VMCast feed</key>
+	<string>Register to a new VMCast feed</string>
+	<key>Register to a new VMCasts</key>
+	<string>Register to a new VMCasts</string>
+	<key>Remove selected appliance</key>
+	<string>Remove selected appliance</string>
+	<key>Show activity monitor</key>
+	<string>Show activity monitor</string>
+	<key>Size</key>
+	<string>Size</string>
+	<key>Status</key>
+	<string>Status</string>
+	<key>Unregister</key>
+	<string>Unregister</string>
+	<key>Unregister from selected VMCast</key>
+	<string>Unregister from selected VMCast</string>
+	<key>Unregister from selected VMCast feed</key>
+	<string>Unregister from selected VMCast feed</string>
+	<key>VMCasts</key>
+	<string>VMCasts</string>
+	<key>VMcast has been registred</key>
+	<string>VMcast has been registred</string>
+	<key>VMcast has been unregistred</key>
+	<string>VMcast has been unregistred</string>
+	<key>You must select a VMCast or an Appliance</key>
+	<string>You must select a VMCast or an Appliance</string>
+</dict>
+</plist>

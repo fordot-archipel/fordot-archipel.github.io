@@ -1,0 +1,226 @@
+
+/* Class = "NSTextFieldCell"; title = "Virtual Machines"; ObjectID = "3"; */
+"3.title" = "Machines Virtuelles";
+
+/* Class = "NSTextFieldCell"; title = "You can create or remove virtual machine from the hypervisor. Note this only creates the XMPP container."; ObjectID = "5"; */
+"5.title" = "Vous pouvez créer ou supprimer des machines virtuelles. Notez que cela ne crée qu'un conteneur XMPP.";
+
+/* Class = "NSBox"; title = "Box"; ObjectID = "17"; */
+"17.title" = "Box";
+
+/* Class = "NSTextFieldCell"; title = "Add subscription"; ObjectID = "21"; */
+"21.title" = "Ajouter souscription";
+
+/* Class = "NSTextFieldCell"; title = "Enter the JID you want the virtual machine to subscribe to."; ObjectID = "22"; */
+"22.title" = "Entrez le JID auprès duquel vous désirez que la machine virtuelle demande une souscription";
+
+/* Class = "NSTextFieldCell"; placeholderString = "JID of a user"; ObjectID = "23"; */
+"23.placeholderString" = "JID de l'utilisateur";
+
+/* Class = "NSButtonCell"; title = "Add"; ObjectID = "24"; */
+"24.title" = "Ajouter";
+
+/* Class = "NSBox"; title = "Box"; ObjectID = "34"; */
+"34.title" = "Box";
+
+/* Class = "NSTextFieldCell"; placeholderString = "JID of the user"; ObjectID = "35"; */
+"35.placeholderString" = "JID de l'utilisateur";
+
+/* Class = "NSTextFieldCell"; title = "Enter the JID you want the virtual machine to unsubscribe from."; ObjectID = "36"; */
+"36.title" = "Entrez le JID auprès duquel vous désirez que la machine virtuelle supprime sa souscription";
+
+/* Class = "NSTextFieldCell"; title = "Remove subscription"; ObjectID = "37"; */
+"37.title" = "Supprimer souscription";
+
+/* Class = "NSButtonCell"; title = "Remove"; ObjectID = "38"; */
+"38.title" = "Supprimer";
+
+/* Class = "NSBox"; title = "Box"; ObjectID = "43"; */
+"43.title" = "Box";
+
+/* Class = "NSButtonCell"; title = "Create"; ObjectID = "50"; */
+"50.title" = "Créer";
+
+/* Class = "NSTextFieldCell"; title = "New virtual machine"; ObjectID = "51"; */
+"51.title" = "Nouvelle machine virtuelle";
+
+/* Class = "NSTextFieldCell"; title = "If you leave name blank, the name will be generated."; ObjectID = "52"; */
+"52.title" = "Si vous laissez ce champ vide, le nom sera généré.";
+
+/* Class = "NSTextFieldCell"; placeholderString = "Archipel VM"; ObjectID = "53"; */
+"53.placeholderString" = "Archipel VM";
+
+/* Class = "NSTextFieldCell"; title = "JID"; ObjectID = "56"; */
+"56.title" = "JID :";
+
+/* Class = "NSTextFieldCell"; title = "JID"; ObjectID = "58"; */
+"58.title" = "JID :";
+
+/* Class = "NSTextFieldCell"; title = "Name"; ObjectID = "60"; */
+"60.title" = "Nom :";
+
+/* Class = "NSBox"; title = "Box"; ObjectID = "102"; */
+"102.title" = "Box";
+
+/* Class = "NSTextFieldCell"; placeholderString = "My Cloned VM"; ObjectID = "103"; */
+"103.placeholderString" = "Ma VM clone";
+
+/* Class = "NSTextFieldCell"; title = "Choose the name for the clone. Leave it blank to generate."; ObjectID = "104"; */
+"104.title" = "Si vous laissez ce champ vide, le nom sera généré.";
+
+/* Class = "NSTextFieldCell"; title = "Name"; ObjectID = "105"; */
+"105.title" = "Nom :";
+
+/* Class = "NSTextFieldCell"; title = "Clone virtual machine"; ObjectID = "106"; */
+"106.title" = "Cloner la machine virtuelle";
+
+/* Class = "NSButtonCell"; title = "Create"; ObjectID = "107"; */
+"107.title" = "Créer";
+
+/* Class = "NSTableColumn"; headerCell.title = "Virtual Machines"; ObjectID = "130"; */
+"130.headerCell.title" = "Virtual Machines";
+
+/* Class = "NSTextFieldCell"; title = "Text"; ObjectID = "267"; */
+"267.title" = "Text";
+
+/* Class = "NSTextFieldCell"; title = "Virtual Machine Name"; ObjectID = "273"; */
+"273.title" = "Virtual Machine Name";
+
+/* Class = "NSTextFieldCell"; title = "Nickname"; ObjectID = "277"; */
+"277.title" = "Nickname:";
+
+/* Class = "NSTextFieldCell"; title = "202198d4-b1ea-11e0-a2dc-0016d4e7e91f"; ObjectID = "282"; */
+"282.title" = "202198d4-b1ea-11e0-a2dc-0016d4e7e91f";
+
+/* Class = "NSTextFieldCell"; title = "..."; ObjectID = "283"; */
+"283.title" = "Nickname";
+
+/* Class = "NSTextFieldCell"; title = "..."; ObjectID = "288"; */
+"288.title" = "hypervisor";
+
+/* Class = "NSTextFieldCell"; title = "..."; ObjectID = "289"; */
+"289.title" = "mydomain.com";
+
+/* Class = "NSTextFieldCell"; title = "Hypervisor"; ObjectID = "290"; */
+"290.title" = "Hypervisor:";
+
+/* Class = "NSTextFieldCell"; title = "Domain"; ObjectID = "291"; */
+"291.title" = "Domain:";
+
+/* Class = "NSTextFieldCell"; title = "..."; ObjectID = "294"; */
+"294.title" = "company";
+
+/* Class = "NSTextFieldCell"; title = "Company"; ObjectID = "295"; */
+"295.title" = "Company:";
+
+/* Class = "NSTextFieldCell"; title = "..."; ObjectID = "327"; */
+"327.title" = "Running";
+
+/* Class = "NSTextFieldCell"; title = "Status"; ObjectID = "328"; */
+"328.title" = "Status";
+
+/* Class = "NSTextFieldCell"; title = "..."; ObjectID = "329"; */
+"329.title" = "Status";
+
+/* Class = "NSTextFieldCell"; title = "Locality"; ObjectID = "330"; */
+"330.title" = "Locality:";
+
+/* Class = "NSTableColumn"; headerCell.title = "Other Virtual Machines"; ObjectID = "358"; */
+"358.headerCell.title" = "Other Virtual Machines";
+
+/* Class = "NSTextFieldCell"; title = "Text"; ObjectID = "359"; */
+"359.title" = "Text";
+
+/* Class = "NSTextFieldCell"; title = "This is the list of virtual machines managed by Archipel."; ObjectID = "370"; */
+"370.title" = "This is the list of virtual machines managed by Archipel.";
+
+/* Class = "NSTextFieldCell"; title = "This is the list of existing virtual machines not managed by Archipel."; ObjectID = "372"; */
+"372.title" = "This is the list of existing virtual machines not managed by Archipel.";
+
+/* Class = "NSTableColumn"; headerCell.title = "Parked Virtual Machines"; ObjectID = "385"; */
+"385.headerCell.title" = "Parked Virtual Machines";
+
+/* Class = "NSTextFieldCell"; title = "Text"; ObjectID = "386"; */
+"386.title" = "Text";
+
+/* Class = "NSTextFieldCell"; title = "This is the list of parked virtual machines"; ObjectID = "388"; */
+"388.title" = "This is the list of parked virtual machines";
+
+/* Class = "NSTextFieldCell"; title = "Virtual Machine Name"; ObjectID = "415"; */
+"415.title" = "Virtual Machine Name";
+
+/* Class = "NSTextFieldCell"; title = "Virtual machine UUID"; ObjectID = "428"; */
+"428.title" = "Virtual machine UUID";
+
+/* Class = "NSTextFieldCell"; title = "parker"; ObjectID = "454"; */
+"454.title" = "parker";
+
+/* Class = "NSTextFieldCell"; title = "date"; ObjectID = "455"; */
+"455.title" = "date";
+
+/* Class = "NSTextFieldCell"; title = "Parker"; ObjectID = "456"; */
+"456.title" = "Parker:";
+
+/* Class = "NSTextFieldCell"; title = "Date"; ObjectID = "457"; */
+"457.title" = "Date:";
+
+/* Class = "NSBox"; title = "Box"; ObjectID = "470"; */
+"470.title" = "Box";
+
+/* Class = "NSTextFieldCell"; title = "Edit XML"; ObjectID = "474"; */
+"474.title" = "Edit XML";
+
+/* Class = "NSButtonCell"; title = "Update"; ObjectID = "477"; */
+"477.title" = "Update";
+
+/* Class = "NSTextFieldCell"; title = "Organization"; ObjectID = "500"; */
+"500.title" = "Organization:";
+
+/* Class = "NSTextFieldCell"; title = "Unit"; ObjectID = "505"; */
+"505.title" = "Unit:";
+
+/* Class = "NSTextFieldCell"; title = "Locality"; ObjectID = "516"; */
+"516.title" = "Locality:";
+
+/* Class = "NSTextFieldCell"; title = "Owner"; ObjectID = "521"; */
+"521.title" = "Owner:";
+
+/* Class = "NSTextFieldCell"; title = "..."; ObjectID = "528"; */
+"528.title" = "...";
+
+/* Class = "NSTextFieldCell"; title = "Unit"; ObjectID = "529"; */
+"529.title" = "Unit:";
+
+/* Class = "NSTextFieldCell"; title = "..."; ObjectID = "532"; */
+"532.title" = "...";
+
+/* Class = "NSTextFieldCell"; title = "Owner"; ObjectID = "533"; */
+"533.title" = "Owner:";
+
+/* Class = "NSTextFieldCell"; title = "..."; ObjectID = "540"; */
+"540.title" = "...";
+
+/* Class = "NSTextFieldCell"; title = "Category"; ObjectID = "541"; */
+"541.title" = "Category:";
+
+/* Class = "NSTextFieldCell"; title = "Category"; ObjectID = "546"; */
+"546.title" = "Category:";
+
+/* Class = "NSComboBoxCell"; placeholderString = "San Francisco"; ObjectID = "558"; */
+"558.placeholderString" = "San Francisco";
+
+/* Class = "NSComboBoxCell"; placeholderString = "Archipel Corp"; ObjectID = "560"; */
+"560.placeholderString" = "Archipel Corp";
+
+/* Class = "NSComboBoxCell"; placeholderString = "Engineering"; ObjectID = "562"; */
+"562.placeholderString" = "Engineering";
+
+/* Class = "NSComboBoxCell"; placeholderString = "Joe Smith"; ObjectID = "564"; */
+"564.placeholderString" = "Joe Smith";
+
+/* Class = "NSComboBoxCell"; placeholderString = "LAMP Stack"; ObjectID = "566"; */
+"566.placeholderString" = "LAMP Stack";
+
+/* Class = "NSTextFieldCell"; title = "Double click on this VM to manage it with Archipel"; ObjectID = "584"; */
+"584.title" = "Double click on this VM to manage it with Archipel";
+

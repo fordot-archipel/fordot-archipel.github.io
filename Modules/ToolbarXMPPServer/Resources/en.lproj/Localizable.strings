@@ -1,0 +1,78 @@
+/* Add a new shared group */
+"Add a new shared group" = "Add a new shared group";
+
+/* Add selected users to shared group */
+"Add selected users to shared group" = "Add selected users to shared group";
+
+/* Are you sure you want to unregister selected user(s) ? */
+"Are you sure you want to unregister selected user(s) ?" = "Are you sure you want to unregister selected user(s) ?";
+
+/* Bad JID */
+"Bad JID" = "Bad JID";
+
+/* Bad password */
+"Bad password" = "Bad password";
+
+/* Cancel */
+"Cancel" = "Cancel";
+
+/* Confirm */
+"Confirm" = "Confirm";
+
+/* Delete selected shared groups */
+"Delete selected shared groups" = "Delete selected shared groups";
+
+/* Make selected users as admins */
+"Make selected users as admins" = "Make selected users as admins";
+
+/* Password doesn't match */
+"Password doesn't match" = "Password doesn't match";
+
+/* Register a new user */
+"Register a new user" = "Register a new user";
+
+/* Remove admin rights to selected users */
+"Remove admin rights to selected users" = "Remove admin rights to selected users";
+
+/* Remove selected users from shared group */
+"Remove selected users from shared group" = "Remove selected users from shared group";
+
+/* Shared Groups */
+"Shared Groups" = "Shared Groups";
+
+/* The password is too short. it must be at least 8 characters */
+"The password is too short. it must be at least 8 characters" = "The password is too short. it must be at least 8 characters";
+
+/* Unregister */
+"Unregister" = "Unregister";
+
+/* Unregister selected users */
+"Unregister selected users" = "Unregister selected users";
+
+/* Wrong group */
+"Wrong group" = "Wrong group";
+
+/* Wrong name */
+"Wrong name" = "Wrong name";
+
+/* Wrong users */
+"Wrong users" = "Wrong users";
+
+/* XMPP Users */
+"XMPP Users" = "XMPP Users";
+
+/* You have to enter identical passwords */
+"You have to enter identical passwords" = "You have to enter identical passwords";
+
+/* You must enter a name containing at least 4 characters */
+"You must enter a name containing at least 4 characters" = "You must enter a name containing at least 4 characters";
+
+/* You must select a group */
+"You must select a group" = "You must select a group";
+
+/* You must select at least one user */
+"You must select at least one user" = "You must select at least one user";
+
+/* You must select one user */
+"You must select one user" = "You must select one user";
+

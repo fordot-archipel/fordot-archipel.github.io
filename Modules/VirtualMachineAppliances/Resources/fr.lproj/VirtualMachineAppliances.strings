@@ -1,0 +1,52 @@
+
+/* Class = "NSTextFieldCell"; title = "Available appliances"; ObjectID = "7"; */
+"7.title" = "Available appliances";
+
+/* Class = "NSTextFieldCell"; title = "Select the installed appliance into hypervisor you want to use for this virtual machine."; ObjectID = "8"; */
+"8.title" = "Select the installed appliance into hypervisor you want to use for this virtual machine.";
+
+/* Class = "NSBox"; title = "Box"; ObjectID = "18"; */
+"18.title" = "Box";
+
+/* Class = "NSButtonCell"; title = "Create"; ObjectID = "27"; */
+"27.title" = "Create";
+
+/* Class = "NSTextFieldCell"; title = "Create an appliance"; ObjectID = "28"; */
+"28.title" = "Create an appliance";
+
+/* Class = "NSTextFieldCell"; title = "You can create an appliance from this virtual machine actual configuration. It will be published to the local VMCast of the virtual machine's hypervisor."; ObjectID = "29"; */
+"29.title" = "You can create an appliance from this virtual machine actual configuration.";
+
+/* Class = "NSTextFieldCell"; placeholderString = "Name of appliance"; ObjectID = "31"; */
+"31.placeholderString" = "Name of appliance";
+
+/* Class = "NSTextFieldCell"; title = "Name"; ObjectID = "32"; */
+"32.title" = "Name:";
+
+/* Class = "NSTextFieldCell"; title = "Compress"; ObjectID = "66"; */
+"66.title" = "Compress:";
+
+/* Class = "NSButtonCell"; title = "Use GZIP compression for drives"; ObjectID = "68"; */
+"68.title" = "Use GZIP compression for drives";
+
+/* Class = "NSTextFieldCell"; title = "This parameter can eventually be ignored according to the agent configuration."; ObjectID = "72"; */
+"72.title" = "This parameter can eventually be ignored according to the agent configuration.";
+
+/* Class = "NSTableColumn"; headerCell.title = "Name"; ObjectID = "80"; */
+"80.headerCell.title" = "Name";
+
+/* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "81"; */
+"81.title" = "Text Cell";
+
+/* Class = "NSTableColumn"; headerCell.title = "Comment"; ObjectID = "83"; */
+"83.headerCell.title" = "Comment";
+
+/* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "84"; */
+"84.title" = "Text Cell";
+
+/* Class = "NSTextFieldCell"; title = "Virtual machine is running."; ObjectID = "126"; */
+"126.title" = "Virtual machine is running.";
+
+/* Class = "NSTextFieldCell"; title = "You need to stop the virtual machine to be able to manage the appliances."; ObjectID = "127"; */
+"127.title" = "You need to stop the virtual machine to be able to manage the appliances.";
+

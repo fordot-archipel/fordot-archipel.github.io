@@ -1,0 +1,24 @@
+/* Apply a role */
+"Apply a role" = "Apply a role";
+
+/* Permission for selected user has been saved. */
+"Permission for selected user has been saved." = "Permission for selected user has been saved.";
+
+/* Save current permission set */
+"Save current permission set" = "Save current permission set";
+
+/* Save current permission set as template */
+"Save current permission set as template" = "Save current permission set as template";
+
+/* Your role cannot be deleted. */
+"Your role cannot be deleted." = "Your role cannot be deleted.";
+
+/* Your role cannot be saved. */
+"Your role cannot be saved." = "Your role cannot be saved.";
+
+/* Your role has been sucessfully deleted. */
+"Your role has been sucessfully deleted." = "Your role has been sucessfully deleted.";
+
+/* Your role has been sucessfully saved. */
+"Your role has been sucessfully saved." = "Your role has been sucessfully saved.";
+

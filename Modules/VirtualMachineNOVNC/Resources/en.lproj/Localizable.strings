@@ -1,0 +1,51 @@
+/* Add Exception */
+"Add Exception" = "Add Exception";
+
+/* Ctrl Alt Del */
+"Ctrl Alt Del" = "Ctrl Alt Del";
+
+/* Error connecting to the VNC screen. Use the VNC tab for more information. */
+"Error connecting to the VNC screen. Use the VNC tab for more information." = "Error connecting to the VNC screen. Use the VNC tab for more information.";
+
+/* Fit screen to window */
+"Fit screen to window" = "Fit screen to window";
+
+/* For now, you cannot use SPICE screen in external window */
+"For now, you cannot use SPICE screen in external window" = "For now, you cannot use SPICE screen in external window";
+
+/* Full Screen */
+"Full Screen" = "Full Screen";
+
+/* Get Clipboard */
+"Get Clipboard" = "Get Clipboard";
+
+/* It seems your websocket configuration is not properly configured. If you are using Firefox, go to about:config and set 'network.websocket.override-security-block' and 'network.websocket.enabled' to 'True'. */
+"It seems your websocket configuration is not properly configured. If you are using Firefox, go to about:config and set 'network.websocket.override-security-block' and 'network.websocket.enabled' to 'True'." = "It seems your websocket configuration is not properly configured. If you are using Firefox, go to about:config and set 'network.websocket.override-security-block' and 'network.websocket.enabled' to 'True'.";
+
+/* Open external VNC program */
+"Open external VNC program" = "Open external VNC program";
+
+/* Reset zoom */
+"Reset zoom" = "Reset zoom";
+
+/* Retry */
+"Retry" = "Retry";
+
+/* Screen for  */
+"Screen for " = "Screen for ";
+
+/* Send Clipboard */
+"Send Clipboard" = "Send Clipboard";
+
+/* SPICE is not supported as external window */
+"SPICE is not supported as external window" = "SPICE is not supported as external window";
+
+/* Websocket error for VNC */
+"Websocket error for VNC" = "Websocket error for VNC";
+
+/* Your browser does not support javascript fullscreen */
+"Your browser does not support javascript fullscreen" = "Your browser does not support javascript fullscreen";
+
+/* Zoom */
+"Zoom" = "Zoom";
+

@@ -1,0 +1,99 @@
+/* Activate selected networks */
+"Activate selected networks" = "Activate selected networks";
+
+/* Activate this network */
+"Activate this network" = "Activate this network";
+
+/* Add a new DHCP reservation */
+"Add a new DHCP reservation" = "Add a new DHCP reservation";
+
+/* Add new DHCP range */
+"Add new DHCP range" = "Add new DHCP range";
+
+/* Add new host reservation */
+"Add new host reservation" = "Add new host reservation";
+
+/* Add new range */
+"Add new range" = "Add new range";
+
+/* Are you sure you want to deactivate this network ? Virtual machines that are in this network will loose connectivity. */
+"Are you sure you want to deactivate this network ? Virtual machines that are in this network will loose connectivity." = "Are you sure you want to deactivate this network ? Virtual machines that are in this network will loose connectivity.";
+
+/* Are you sure you want to destroy this network ? Virtual machines that are in this network will loose connectivity. */
+"Are you sure you want to destroy this network ? Virtual machines that are in this network will loose connectivity." = "Are you sure you want to destroy this network ? Virtual machines that are in this network will loose connectivity.";
+
+/* Cancel */
+"Cancel" = "Cancel";
+
+/* Create a new network */
+"Create a new network" = "Create a new network";
+
+/* Create new virtual network */
+"Create new virtual network" = "Create new virtual network";
+
+/* Deactivate */
+"Deactivate" = "Deactivate";
+
+/* Deactivate Network */
+"Deactivate Network" = "Deactivate Network";
+
+/* Deactivate selected networks */
+"Deactivate selected networks" = "Deactivate selected networks";
+
+/* Deactivate this network */
+"Deactivate this network" = "Deactivate this network";
+
+/* Delete */
+"Delete" = "Delete";
+
+/* Delete Network */
+"Delete Network" = "Delete Network";
+
+/* Delete selected network */
+"Delete selected network" = "Delete selected network";
+
+/* Delete selected networks */
+"Delete selected networks" = "Delete selected networks";
+
+/* DHCP Hosts */
+"DHCP Hosts" = "DHCP Hosts";
+
+/* DHCP Ranges */
+"DHCP Ranges" = "DHCP Ranges";
+
+/* domain.com */
+"domain.com" = "domain.com";
+
+/* Edit selected network */
+"Edit selected network" = "Edit selected network";
+
+/* Error */
+"Error" = "Error";
+
+/* Network has been defined */
+"Network has been defined" = "Network has been defined";
+
+/* Network has been removed */
+"Network has been removed" = "Network has been removed";
+
+/* Network status has changed */
+"Network status has changed" = "Network status has changed";
+
+/* Open manual XML editor */
+"Open manual XML editor" = "Open manual XML editor";
+
+/* Remove */
+"Remove" = "Remove";
+
+/* Remove elected DHCP reservations */
+"Remove elected DHCP reservations" = "Remove elected DHCP reservations";
+
+/* Remove selected DHCP ranges */
+"Remove selected DHCP ranges" = "Remove selected DHCP ranges";
+
+/* You can't edit a running network */
+"You can't edit a running network" = "You can't edit a running network";
+
+/* You can't update a running network */
+"You can't update a running network" = "You can't update a running network";
+

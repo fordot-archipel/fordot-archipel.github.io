@@ -1,0 +1,120 @@
+/*  has been created */
+" has been created" = " has been created";
+
+/*  has been updated */
+" has been updated" = " has been updated";
+
+/*  to your roster */
+" to your roster" = " to your roster";
+
+/* Add a new VM */
+"Add a new VM" = "Add a new VM";
+
+/* Add a user subscription */
+"Add a user subscription" = "Add a user subscription";
+
+/* Add contact */
+"Add contact" = "Add contact";
+
+/* Added new subscription to virtual machine */
+"Added new subscription to virtual machine" = "Added new subscription to virtual machine";
+
+/* Adding contact */
+"Adding contact" = "Adding contact";
+
+/* Are you sure you want to completely remove these virtual machines ? */
+"Are you sure you want to completely remove these virtual machines ?" = "Are you sure you want to completely remove these virtual machines ?";
+
+/* Are you sure you want to completely remove this virtual machine ? */
+"Are you sure you want to completely remove this virtual machine ?" = "Are you sure you want to completely remove this virtual machine ?";
+
+/* Are you sure you want to remove the subscription for this user ? */
+"Are you sure you want to remove the subscription for this user ?" = "Are you sure you want to remove the subscription for this user ?";
+
+/* Cancel */
+"Cancel" = "Cancel";
+
+/* Clone selected VM */
+"Clone selected VM" = "Clone selected VM";
+
+/* Clone this virtual machine */
+"Clone this virtual machine" = "Clone this virtual machine";
+
+/* Create new virtual machine */
+"Create new virtual machine" = "Create new virtual machine";
+
+/* Delete */
+"Delete" = "Delete";
+
+/* Delete selected parked VMs. All data will be lost */
+"Delete selected parked VMs. All data will be lost" = "Delete selected parked VMs. All data will be lost";
+
+/* Delete virtual machine */
+"Delete virtual machine" = "Delete virtual machine";
+
+/* Destroying a Virtual Machine */
+"Destroying a Virtual Machine" = "Destroying a Virtual Machine";
+
+/* Destroying some Virtual Machines */
+"Destroying some Virtual Machines" = "Destroying some Virtual Machines";
+
+/* Do not use Archipel to manage selected vms. Vms will still be there */
+"Do not use Archipel to manage selected vms. Vms will still be there" = "Do not use Archipel to manage selected vms. Vms will still be there";
+
+/* Edit parked VM's XML definition */
+"Edit parked VM's XML definition" = "Edit parked VM's XML definition";
+
+/* Error */
+"Error" = "Error";
+
+/* If vm is in roster, jump to it, otherwhise, ask subscription */
+"If vm is in roster, jump to it, otherwhise, ask subscription" = "If vm is in roster, jump to it, otherwhise, ask subscription";
+
+/* Make Archipel manage selected VMs */
+"Make Archipel manage selected VMs" = "Make Archipel manage selected VMs";
+
+/* Park selected VMs */
+"Park selected VMs" = "Park selected VMs";
+
+/* Remove */
+"Remove" = "Remove";
+
+/* Remove a user subscription */
+"Remove a user subscription" = "Remove a user subscription";
+
+/* Remove completely selected vms */
+"Remove completely selected vms" = "Remove completely selected vms";
+
+/* Removing subscription */
+"Removing subscription" = "Removing subscription";
+
+/* Subscription have been removed */
+"Subscription have been removed" = "Subscription have been removed";
+
+/* Unpark selected VMs into this hypervisor */
+"Unpark selected VMs into this hypervisor" = "Unpark selected VMs into this hypervisor";
+
+/* Virtual machine  */
+"Virtual machine " = "Virtual machine ";
+
+/* Virtual machine has been cloned */
+"Virtual machine has been cloned" = "Virtual machine has been cloned";
+
+/* Virtual machine has been removed */
+"Virtual machine has been removed" = "Virtual machine has been removed";
+
+/* VM will ask subscription to given user */
+"VM will ask subscription to given user" = "VM will ask subscription to given user";
+
+/* VM will remove subscription from given user */
+"VM will remove subscription from given user" = "VM will remove subscription from given user";
+
+/* Would you like to add  */
+"Would you like to add " = "Would you like to add ";
+
+/* You must select a virtual machine */
+"You must select a virtual machine" = "You must select a virtual machine";
+
+/* You must select one (and only one) virtual machine */
+"You must select one (and only one) virtual machine" = "You must select one (and only one) virtual machine";
+

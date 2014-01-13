@@ -1,0 +1,1 @@
+@STATIC;1.0;u;21;Resources/browser.png61;mhtml:Browser.environment/MHTMLData.txt!Resources/browser.png

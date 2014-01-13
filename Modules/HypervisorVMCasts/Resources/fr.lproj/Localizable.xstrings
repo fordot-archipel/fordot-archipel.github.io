@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Appliance download complete</key>
+	<string>Appliance download complete</string>
+	<key>Appliance download error</key>
+	<string>Appliance download error</string>
+	<key>Appliance download started</key>
+	<string>Appliance download started</string>
+	<key>Appliance has been uninstalled</key>
+	<string>L'appliance a été désinstallée</string>
+	<key>Appliance is already downloaded. If you want to instanciante it, create a new Virtual Machine and choose Packaging module.</key>
+	<string>L'appliance est déjà téléchargée. Si vous voulez l'instancier, créez une machine virtuelle et choisissez le module Appliance.</string>
+	<key>Are you sure you want to download this appliance?</key>
+	<string>Etes-vous sûr de voulour télécharger cette appliance ?</string>
+	<key>Are you sure you want to remove this appliance? This doesn't affect virtual machine that have been instanciated from this template.</key>
+	<string>Etes-vous sûr de vouloir supprimer cette appliance ? Les machines virtuelles qui l'utilisent ne seront pas affectées.</string>
+	<key>Are you sure you want to unregister fro this VMCast? All its appliances will be deleted.</key>
+	<string>Etes-vous sûr de voulour vous désabonner de ce VMCast ? Toutes les appliances téléchargées seront supprimées.</string>
+	<key>Cancel</key>
+	<string>Annuler</string>
+	<key>Comment</key>
+	<string>Commentaire</string>
+	<key>Delete VMCast</key>
+	<string>Supprimer VMCast</string>
+	<key>Delete appliance</key>
+	<string>Supprimer l'appliance</string>
+	<key>Download</key>
+	<string>Télécharger</string>
+	<key>Download queue for </key>
+	<string>Téléchargements pour </string>
+	<key>Download selected appliance</key>
+	<string>Télécharge l'appliance sélectionnée.</string>
+	<key>Open download queue</key>
+	<string>Open download queue</string>
+	<key>Register to a new VMCast feed</key>
+	<string>Register to a new VMCast feed</string>
+	<key>Register to a new VMCasts</key>
+	<string>S'abonner à un nouveau VMCasts</string>
+	<key>Remove selected appliance</key>
+	<string>Supprimer l'appliance sélectionnée.</string>
+	<key>Show activity monitor</key>
+	<string>Ouvrir le moniteur de téléchargements.</string>
+	<key>Size</key>
+	<string>Taille</string>
+	<key>Status</key>
+	<string>Statut</string>
+	<key>Unregister</key>
+	<string>Désabonnement</string>
+	<key>Unregister from selected VMCast</key>
+	<string>Se désabonner du flux VMCast sélectionné.</string>
+	<key>Unregister from selected VMCast feed</key>
+	<string>Unregister from selected VMCast feed</string>
+	<key>VMCasts</key>
+	<string>VMCasts</string>
+	<key>VMcast has been registred</key>
+	<string>Abonnement au VMcast effectué</string>
+	<key>VMcast has been unregistred</key>
+	<string>Désabonnement du VMCast effectué</string>
+	<key>You must select a VMCast or an Appliance</key>
+	<string>Vous devez sélectionner un VMCast ou une appliance.</string>
+</dict>
+</plist>

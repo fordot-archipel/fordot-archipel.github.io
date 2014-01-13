@@ -1,0 +1,1 @@
+@STATIC;1.0;u;18;Resources/jump.png58;mhtml:Browser.environment/MHTMLData.txt!Resources/jump.pngu;26;Resources/libvirt-icon.png66;mhtml:Browser.environment/MHTMLData.txt!Resources/libvirt-icon.pngu;18;Resources/park.png58;mhtml:Browser.environment/MHTMLData.txt!Resources/park.pngu;20;Resources/unpark.png60;mhtml:Browser.environment/MHTMLData.txt!Resources/unpark.png

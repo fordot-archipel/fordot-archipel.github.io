@@ -1,0 +1,93 @@
+/* Add a new drive */
+"Add a new drive" = "Add a new drive";
+
+/* Add a new graphic device */
+"Add a new graphic device" = "Add a new graphic device";
+
+/* Add new character device */
+"Add new character device" = "Add new character device";
+
+/* Add new input device */
+"Add new input device" = "Add new input device";
+
+/* Add new network interface */
+"Add new network interface" = "Add new network interface";
+
+/* All your changes will be definitly lost. */
+"All your changes will be definitly lost." = "All your changes will be definitly lost.";
+
+/* Are you sure you want to undefine this virtual machine ? */
+"Are you sure you want to undefine this virtual machine ?" = "Are you sure you want to undefine this virtual machine ?";
+
+/* Cancel */
+"Cancel" = "Cancel";
+
+/* Char Devices */
+"Char Devices" = "Char Devices";
+
+/* Definition edited */
+"Definition edited" = "Definition edited";
+
+/* Discard */
+"Discard" = "Discard";
+
+/* Edit selected character device */
+"Edit selected character device" = "Edit selected character device";
+
+/* Edit selected drive */
+"Edit selected drive" = "Edit selected drive";
+
+/* Edit selected graphic device */
+"Edit selected graphic device" = "Edit selected graphic device";
+
+/* Edit selected input device */
+"Edit selected input device" = "Edit selected input device";
+
+/* Edit selected network interface */
+"Edit selected network interface" = "Edit selected network interface";
+
+/* Error */
+"Error" = "Error";
+
+/* Remove selected character devices */
+"Remove selected character devices" = "Remove selected character devices";
+
+/* Remove selected drives */
+"Remove selected drives" = "Remove selected drives";
+
+/* Remove selected input devices */
+"Remove selected input devices" = "Remove selected input devices";
+
+/* Remove selected network interfaces */
+"Remove selected network interfaces" = "Remove selected network interfaces";
+
+/* Undefine */
+"Undefine" = "Undefine";
+
+/* Unsaved changes */
+"Unsaved changes" = "Unsaved changes";
+
+/* Validate */
+"Validate" = "Validate";
+
+/* Virtual machine has been undefined */
+"Virtual machine has been undefined" = "Virtual machine has been undefined";
+
+/* Virtual Medias */
+"Virtual Medias" = "Virtual Medias";
+
+/* Virtual Nics */
+"Virtual Nics" = "Virtual Nics";
+
+/* You can only set one graphic device */
+"You can only set one graphic device" = "You can only set one graphic device";
+
+/* You have made some changes in the virtual machine definition. Would you like save these changes? */
+"You have made some changes in the virtual machine definition. Would you like save these changes?" = "You have made some changes in the virtual machine definition. Would you like save these changes?";
+
+/* You started the virtual machine, but you haven't save the current changes. */
+"You started the virtual machine, but you haven't save the current changes." = "You started the virtual machine, but you haven't save the current changes.";
+
+/* Your hypervisor have not pushed any guest support. For some reason, you can't create domains. Sorry. */
+"Your hypervisor have not pushed any guest support. For some reason, you can't create domains. Sorry." = "Your hypervisor have not pushed any guest support. For some reason, you can't create domains. Sorry.";
+

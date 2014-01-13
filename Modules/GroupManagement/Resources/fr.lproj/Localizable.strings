@@ -1,0 +1,54 @@
+/*  is migrating */
+" is migrating" = " est en train de migrer";
+
+/*  state modified */
+" state modified" = " étaut modifié";
+
+/*  to the selected hypervisor */
+" to the selected hypervisor" = " vers l'hyperviseur sélectionné";
+
+/* Cannot migrate virtual machine  */
+"Cannot migrate virtual machine " = "Impossible de migrer la VM ";
+
+/* Destroy selected virtual machines */
+"Destroy selected virtual machines" = "Détruire la VM sélectionnée";
+
+/* Migrate all selected VMs */
+"Migrate all selected VMs" = "Migrate all selected VMs";
+
+/* Pause selected virtual machines */
+"Pause selected virtual machines" = "Mettre en pause la VM sélectionnée";
+
+/* Reboot selected virtual machines */
+"Reboot selected virtual machines" = "Redémarrer toutes les VMs sélectionnées";
+
+/* Resume selected virtual machines */
+"Resume selected virtual machines" = "Reprendre l'exécution de la VM sélectionnée";
+
+/* Send all selected VM destroy event */
+"Send all selected VM destroy event" = "Send all selected VM destroy event";
+
+/* Send all selected VM pause event */
+"Send all selected VM pause event" = "Send all selected VM pause event";
+
+/* Send all selected VM reboot event */
+"Send all selected VM reboot event" = "Send all selected VM reboot event";
+
+/* Send all selected VM resume event */
+"Send all selected VM resume event" = "Send all selected VM resume event";
+
+/* Send all selected VM shutdown event */
+"Send all selected VM shutdown event" = "Send all selected VM shutdown event";
+
+/* Send all selected VM start event */
+"Send all selected VM start event" = "Send all selected VM start event";
+
+/* Shutdown selected virtual machines */
+"Shutdown selected virtual machines" = "Eteindre la VM sélectionnée";
+
+/* Start selected virtual machines */
+"Start selected virtual machines" = "Démarrer toutes les VMs sélectionnées";
+
+/* Virtual machine  */
+"Virtual machine " = "Machine Virtuelle ";
+

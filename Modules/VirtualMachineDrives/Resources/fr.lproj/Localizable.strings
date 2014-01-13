@@ -1,0 +1,69 @@
+/* Are you sure you want to destroy this drive ? this is not reversible. */
+"Are you sure you want to destroy this drive ? this is not reversible." = "Are you sure you want to destroy this drive ? this is not reversible.";
+
+/* Cancel */
+"Cancel" = "Cancel";
+
+/* Create a drive */
+"Create a drive" = "Create a drive";
+
+/* Create a new disk */
+"Create a new disk" = "Create a new disk";
+
+/* Delete */
+"Delete" = "Delete";
+
+/* Delete selected disks */
+"Delete selected disks" = "Delete selected disks";
+
+/* Delete selected drive */
+"Delete selected drive" = "Delete selected drive";
+
+/* Delete to drive */
+"Delete to drive" = "Delete to drive";
+
+/* Disk has been converted */
+"Disk has been converted" = "Disk has been converted";
+
+/* Disk has been created */
+"Disk has been created" = "Disk has been created";
+
+/* Disk has been removed */
+"Disk has been removed" = "Disk has been removed";
+
+/* Disk has been renamed */
+"Disk has been renamed" = "Disk has been renamed";
+
+/* Edit selected disk */
+"Edit selected disk" = "Edit selected disk";
+
+/* Edit selected drive */
+"Edit selected drive" = "Edit selected drive";
+
+/* Error */
+"Error" = "Error";
+
+/* GB */
+"GB" = "GB";
+
+/* MB */
+"MB" = "MB";
+
+/* You can't edit disks of a running virtual machine */
+"You can't edit disks of a running virtual machine" = "You can't edit disks of a running virtual machine";
+
+/* You can't edit multiple disk */
+"You can't edit multiple disk" = "You can't edit multiple disk";
+
+/* You must choose a different format */
+"You must choose a different format" = "You must choose a different format";
+
+/* You must enter a numeric value */
+"You must enter a numeric value" = "You must enter a numeric value";
+
+/* You must enter a valid name */
+"You must enter a valid name" = "You must enter a valid name";
+
+/* You must select a media */
+"You must select a media" = "You must select a media";
+

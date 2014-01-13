@@ -1,0 +1,379 @@
+/*  contact in group */
+" contact in group" = " Kontakt in der Gruppe";
+
+/*  contacts in group */
+" contacts in group" = " Kontakte in der Gruppe";
+
+/*  has been added */
+" has been added" = " wurde hinzugefügt";
+
+/*  has been created */
+" has been created" = " wurde erstellt";
+
+/*  has been removed */
+" has been removed" = " wurde entfernt";
+
+/*  is asking you subscription. Do you want to authorize it ? */
+" is asking you subscription. Do you want to authorize it ?" = " fragt nach Abonnement. Wollen Sie ihn authorisieren?";
+
+/* About Archipel */
+"About Archipel" = "Über Archipel";
+
+/* Accept */
+"Accept" = "Akzeptieren";
+
+/* Add a contact */
+"Add a contact" = "Einen Kontakt hinzufügen";
+
+/* Add a group */
+"Add a group" = "Eine Gruppe hinzufügen";
+
+/* Add a new contact or group */
+"Add a new contact or group" = "Add a new contact or group";
+
+/* Add contact */
+"Add contact" = "Kontakt hinzufügen";
+
+/* Add group */
+"Add group" = "Gruppe hinzufügen";
+
+/* Admin rights */
+"Admin rights" = "Admin rights";
+
+/* Archipel */
+"Archipel" = "Archipel";
+
+/* Archipel Help */
+"Archipel Help" = "Archipel Hilfe";
+
+/* settagsTNTagsControllerNodeReadyNotification */
+"archipel:tags" = "archipel:tags";
+
+/* Are you sure you want to delete selected items? */
+"Are you sure you want to delete selected items?" = "Are you sure you want to delete selected items?";
+
+/* Ask subscribtion */
+"Ask subscribtion" = "Ask subscribtion";
+
+/* authenticating */
+"authenticating" = "Authentifizierung";
+
+/* authentification-failed */
+"authentification-failed" = "Authentifizierung fehlgeschlagen";
+
+/* Available */
+"Available" = "Verfügbar";
+
+/* Away */
+"Away" = "Abwesend";
+
+/* B */
+"B" = "B";
+
+/* Busy */
+"Busy" = "Beschäftigt";
+
+/* Cancel */
+"Cancel" = "Abbrechen";
+
+/* cancel */
+"cancel" = "Abbrechen";
+
+/* Cannot save your preferences to the XMPP server */
+"Cannot save your preferences to the XMPP server" = "Ihre Einstellungen konnten auf dem XMPP Server nicht gespeichert werden";
+
+/* Collapse all groups */
+"Collapse all groups" = "Alle Gruppen zusammenklappen";
+
+/* Expand group */
+"Collapse group" = "Gruppe zusammenklappen";
+
+/* connect */
+"connect" = "verbinden";
+
+/* connected */
+"connected" = "Verbunden";
+
+/* Connected as  */
+"Connected as " = "Verbunden als ";
+
+/* connecting */
+"connecting" = "Verbinde...";
+
+/* connection-failed */
+"connection-failed" = "Verbindung fehlgeschlagen";
+
+/* Contact */
+"Contact" = "Kontakt";
+
+/* Contact  */
+"Contact " = "Kontakt ";
+
+/* Contact */
+"Contacts" = "Kontakte";
+
+/* Contents */
+"Contents" = "Inhalt";
+
+/* Copy */
+"Copy" = "Kopieren";
+
+/* Current Selection */
+"Current Selection" = "Current Selection";
+
+/* Cut */
+"Cut" = "Ausschneiden";
+
+/* Decline */
+"Decline" = "Rückgängig";
+
+/* Delete */
+"Delete" = "Entfernen";
+
+/* Delete contact
+   Delete contacts */
+"Delete contact" = "Kontakt entfernen";
+
+/* Delete group */
+"Delete group" = "Gruppe entfernen";
+
+/* Delete items */
+"Delete items" = "Delete items";
+
+/* Delete selected contacts or groups */
+"Delete selected contacts or groups" = "Delete selected contacts or groups";
+
+/* disconnected */
+"disconnected" = "Verbindung Getrennt";
+
+/* disconnecting */
+"disconnecting" = "Trenne Verbindung";
+
+/* Do not disturb */
+"Do not disturb" = "Nicht stören";
+
+/* Edit */
+"Edit" = "Bearbeiten";
+
+/* Error */
+"Error" = "Fehler";
+
+/* Error while getting your preferences from the XMPP Server */
+"Error while getting your preferences from the XMPP Server" = "Fehler beim Laden ihrer Einstellungen vom XMPP Server";
+
+/* Expand all groups */
+"Expand all groups" = "Alle Gruppen ausklappen";
+
+/* Expand group */
+"Expand group" = "Gruppe ausklappen";
+
+/* For some reasons, Archipel has not be able to fetch correctly your data from XMPPServer due to an error parsing the data. If this problem is reproducible, you may want to reset them */
+"For some reasons, Archipel has not be able to fetch correctly your data from XMPPServer due to an error parsing the data. If this problem is reproducible, you may want to reset them" = "Aus unbekanntem Grund konnte Archipel ihre Daten nicht vom XMPP Server laden. Falls das Problem wiederholt auftritt können Sie ihre Daten zurücksetzen.";
+
+/* Full JID required */
+"Full JID required" = "Full JID required";
+
+/* GB */
+"GB" = "GB";
+
+/* Go to website */
+"Go to website" = "Zur Webseite gehen";
+
+/* Group */
+"Group" = "Gruppe";
+
+/* Group  */
+"Group " = "Gruppe ";
+
+/* Group addition error */
+"Group addition error" = "Gruppen Zusatzfehler";
+
+/* Group supression */
+"Group supression" = "Gruppe unterdrücken";
+
+/* Groups */
+"Groups" = "Gruppen";
+
+/* Help */
+"Help" = "Hilfe";
+
+/* Hide main menu */
+"Hide main menu" = "Menü ausblenden";
+
+/* host-unreachable */
+"host-unreachable" = "nicht erreichbar";
+
+/* Hypervisor */
+"Hypervisor" = "Hypervisor";
+
+/* JID is not valid */
+"JID is not valid" = "JID ist nicht gültig";
+
+/* KB */
+"KB" = "KB";
+
+/* Later */
+"Later" = "Später";
+
+/* Locale change */
+"Locale change" = "Gebietsschema ändern";
+
+/* Log out */
+"Log out" = "Abmelden";
+
+/* Make a donation */
+"Make a donation" = "Spenden";
+
+/* MB */
+"MB" = "MB";
+
+/* Modules */
+"Modules" = "Module";
+
+/* Navigation */
+"Navigation" = "Navigation";
+
+/* Nevermind */
+"Nevermind" = "Unwichtig";
+
+/* Node only JID required */
+"Node only JID required" = "Node only JID required";
+
+/* Notification */
+"Notifications" = "Benachrichtigungen";
+
+/* OK */
+"OK" = "OK";
+
+/* Password error */
+"Password error" = "Passwortfehler";
+
+/* Paste */
+"Paste" = "Einfügen";
+
+/* Preferences */
+"Preferences" = "Einstellungen";
+
+/* Preferences saved */
+"Preferences saved" = "Einstellungen gespeichert";
+
+/* Quit */
+"Quit" = "Beenden";
+
+/* Undo */
+"Redo" = "Wiederholen";
+
+/* Release note */
+"Release note" = "Freigabevermerk";
+
+/* Remove subscribtion */
+"Remove subscribtion" = "Remove subscribtion";
+
+/* Report a bug */
+"Report a bug" = "Einen Fehler melden";
+
+/* Reset */
+"Reset" = "Reset";
+
+/* Resource */
+"Resource" = "Ressource";
+
+/* Search entity */
+"Search entity" = "Suche Entität";
+
+/* Select all */
+"Select all" = "Alles auswählen";
+
+/* Select next entity */
+"Select next entity" = "Wähle nächste Entität";
+
+/* Select next module */
+"Select next module" = "Select next module";
+
+/* Select previous entity */
+"Select previous entity" = "Wähle vorhergehende Entität";
+
+/* Select previous module */
+"Select previous module" = "Select previous module";
+
+/* Show or hide properties view */
+"Show or hide properties view" = "Show or hide properties view";
+
+/* Status */
+"Status" = "Status";
+
+/* Subscription request */
+"Subscription request" = "Kontaktanfrage";
+
+/* Tags */
+"Tags" = "Tags";
+
+/* TB */
+"TB" = "TB";
+
+/* The group has been removed */
+"The group has been removed" = "Die Gruppe wurde entfernt";
+
+/* The group must be empty */
+"The group must be empty" = "Die Gruppe muss leer sein";
+
+/* The passwords you entered don't match. */
+"The passwords you entered don't match." = "Die Passwörter stimmen nicht überein.";
+
+/* archipelTNPreferencesControllerRestoredNotification */
+"TNPreferencesControllerSavePreferencesRequestNotificationarchipel:preferences" = "TNPreferencesControllerSavePreferencesRequestNotificationarchipel:preferences";
+
+/* Toggle tag view */
+"Toggle tag view" = "Toggle tag view";
+
+/* Unable to grant admin rights to users. See log */
+"Unable to grant admin rights to users. See log" = "Unable to grant admin rights to users. See log";
+
+/* Unable to revoke admin rights to users. See log */
+"Unable to revoke admin rights to users. See log" = "Unable to revoke admin rights to users. See log";
+
+/* Unable to update your password */
+"Unable to update your password" = "Ihr Passwort konnte nichtgeändert werden";
+
+/* Undo */
+"Undo" = "Rückgängig machen";
+
+/* unknown-error */
+"unknown-error" = "unbekannter Fehler";
+
+/* User */
+"User" = "Benutzer";
+
+/* User admin rights successfully granted */
+"User admin rights successfully granted" = "User admin rights successfully granted";
+
+/* User admin rights successfuly revoked */
+"User admin rights successfuly revoked" = "User admin rights successfuly revoked";
+
+/* Virtual machine */
+"Virtual machine" = "Virtuelle Maschine";
+
+/* XMPP Account */
+"XMPP Account" = "XMPP Konto";
+
+/* You can't assign tags here */
+"You can't assign tags here" = "Sie können hier keine Tags zuweisen";
+
+/* You have to enter a valid group name. */
+"You have to enter a valid group name." = "Sie müssen einen gültigen Namen für die Gruppe angeben";
+
+/* You must enter a JID using the form user@domain. */
+"You must enter a JID using the form user@domain." = "Sie müssen eine JID angeben, welcher der Form user@domain entspricht.";
+
+/* You need to reload the application to complete the locale change. */
+"You need to reload the application to complete the locale change." = "Sie müssen diese Anwendung neu laden um die Gebietsschemaänderung abzuschliessen.";
+
+/* Your password has been successfully updated */
+"Your password has been successfully updated" = "Ihr Passwort wurde erfolgreich geändert";
+
+/* Your preferences have been saved to the XMPP server */
+"Your preferences have been saved to the XMPP server" = "Ihre Einstellungen wurden auf dem XMPP Server gespeichert";
+
+/* Your status is now  */
+"Your status is now " = "Ihr Status ist nun ";
+

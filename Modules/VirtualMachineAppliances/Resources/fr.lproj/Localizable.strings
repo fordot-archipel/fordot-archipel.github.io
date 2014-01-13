@@ -1,0 +1,66 @@
+/* Appliance has been detached */
+"Appliance has been detached" = "Appliance has been detached";
+
+/* Appliance is installed. */
+"Appliance is installed." = "Appliance is installed.";
+
+/* Are you sure you want to attach this appliance? This will reset all your virtual machine. */
+"Are you sure you want to attach this appliance? This will reset all your virtual machine." = "Are you sure you want to attach this appliance? This will reset all your virtual machine.";
+
+/* Are you sure you want to detach virtual machine from this appliance? */
+"Are you sure you want to detach virtual machine from this appliance?" = "Are you sure you want to detach virtual machine from this appliance?";
+
+/* Attach */
+"Attach" = "Attach";
+
+/* Attach appliance */
+"Attach appliance" = "Attach appliance";
+
+/* Attach selected appliance */
+"Attach selected appliance" = "Attach selected appliance";
+
+/* Cancel */
+"Cancel" = "Cancel";
+
+/* Create appliance from this virtual machine */
+"Create appliance from this virtual machine" = "Create appliance from this virtual machine";
+
+/* Detach */
+"Detach" = "Detach";
+
+/* Detach current VM from selected appliance */
+"Detach current VM from selected appliance" = "Detach current VM from selected appliance";
+
+/* Detach from appliance */
+"Detach from appliance" = "Detach from appliance";
+
+/* Dettach from selected appliance */
+"Dettach from selected appliance" = "Dettach from selected appliance";
+
+/* Error */
+"Error" = "Error";
+
+/* Instanciation has started */
+"Instanciation has started" = "Instanciation has started";
+
+/* Package current VM into hypervisor's VMCast */
+"Package current VM into hypervisor's VMCast" = "Package current VM into hypervisor's VMCast";
+
+/* Packaging started. */
+"Packaging started." = "Packaging started.";
+
+/* Packaging successful. */
+"Packaging successful." = "Packaging successful.";
+
+/* Unable to create package. Check agent logs */
+"Unable to create package. Check agent logs" = "Unable to create package. Check agent logs";
+
+/* Use selected package for VM. Any changes will be lost */
+"Use selected package for VM. Any changes will be lost" = "Use selected package for VM. Any changes will be lost";
+
+/* Virtual machine must not be running to package it. */
+"Virtual machine must not be running to package it." = "Virtual machine must not be running to package it.";
+
+/* You must select an appliance */
+"You must select an appliance" = "You must select an appliance";
+

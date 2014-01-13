@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Are you sure you want to destroy this drive ? this is not reversible.</key>
+	<string>Are you sure you want to destroy this drive ? this is not reversible.</string>
+	<key>Cancel</key>
+	<string>Cancel</string>
+	<key>Create a drive</key>
+	<string>Create a drive</string>
+	<key>Create a new disk</key>
+	<string>Create a new disk</string>
+	<key>Delete</key>
+	<string>Delete</string>
+	<key>Delete selected disks</key>
+	<string>Delete selected disks</string>
+	<key>Delete selected drive</key>
+	<string>Delete selected drive</string>
+	<key>Delete to drive</key>
+	<string>Delete to drive</string>
+	<key>Disk has been converted</key>
+	<string>Disk has been converted</string>
+	<key>Disk has been created</key>
+	<string>Disk has been created</string>
+	<key>Disk has been removed</key>
+	<string>Disk has been removed</string>
+	<key>Disk has been renamed</key>
+	<string>Disk has been renamed</string>
+	<key>Edit selected disk</key>
+	<string>Edit selected disk</string>
+	<key>Edit selected drive</key>
+	<string>Edit selected drive</string>
+	<key>Error</key>
+	<string>Error</string>
+	<key>GB</key>
+	<string>GB</string>
+	<key>MB</key>
+	<string>MB</string>
+	<key>You can't edit disks of a running virtual machine</key>
+	<string>You can't edit disks of a running virtual machine</string>
+	<key>You can't edit multiple disk</key>
+	<string>You can't edit multiple disk</string>
+	<key>You must choose a different format</key>
+	<string>You must choose a different format</string>
+	<key>You must enter a numeric value</key>
+	<string>You must enter a numeric value</string>
+	<key>You must enter a valid name</key>
+	<string>You must enter a valid name</string>
+	<key>You must select a media</key>
+	<string>You must select a media</string>
+</dict>
+</plist>

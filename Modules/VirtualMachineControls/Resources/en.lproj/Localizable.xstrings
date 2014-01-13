@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Are you sure you want to migrate this virtual machine ?</key>
+	<string>Are you sure you want to migrate this virtual machine ?</string>
+	<key>Autostart has been set.</key>
+	<string>Autostart has been set.</string>
+	<key>Autostart has been unset.</key>
+	<string>Autostart has been unset.</string>
+	<key>Cancel</key>
+	<string>Cancel</string>
+	<key>Crashed</key>
+	<string>Crashed</string>
+	<key>Force Off</key>
+	<string>Force Off</string>
+	<key>Force Off %@?</key>
+	<string>Force Off %@?</string>
+	<key>Force Off (destroy) a virtual machine is dangerous. It is equivalent to removing the power plug of a real computer.</key>
+	<string>Force Off (destroy) a virtual machine is dangerous. It is equivalent to removing the power plug of a real computer.</string>
+	<key>Kill</key>
+	<string>Kill</string>
+	<key>Kill virtual machine?</key>
+	<string>Kill virtual machine?</string>
+	<key>Migrate</key>
+	<string>Migrate</string>
+	<key>Migration has started.</key>
+	<string>Migration has started.</string>
+	<key>No status</key>
+	<string>No status</string>
+	<key>OOM Killer can kill this virtual machine.</key>
+	<string>OOM Killer can kill this virtual machine.</string>
+	<key>OOM Killer cannot kill this virtual machine.</key>
+	<string>OOM Killer cannot kill this virtual machine.</string>
+	<key>Off</key>
+	<string>Off</string>
+	<key>Park</key>
+	<string>Park</string>
+	<key>Park virtual machine?</key>
+	<string>Park virtual machine?</string>
+	<key>Pause</key>
+	<string>Pause</string>
+	<key>Pause / Resume</key>
+	<string>Pause / Resume</string>
+	<key>Paused</key>
+	<string>Paused</string>
+	<key>Play</key>
+	<string>Play</string>
+	<key>Prevented</key>
+	<string>Prevented</string>
+	<key>Reboot</key>
+	<string>Reboot</string>
+	<key>Resume</key>
+	<string>Resume</string>
+	<key>Running</key>
+	<string>Running</string>
+	<key>Shut down</key>
+	<string>Shut down</string>
+	<key>Start</key>
+	<string>Start</string>
+	<key>Stop</key>
+	<string>Stop</string>
+	<key>Virtual machine has been destroyed.</key>
+	<string>Virtual machine has been destroyed.</string>
+	<key>Virtual machine is parking.</key>
+	<string>Virtual machine is parking.</string>
+	<key>Virtual machine is paused.</key>
+	<string>Virtual machine is paused.</string>
+	<key>Virtual machine is rebooting.</key>
+	<string>Virtual machine is rebooting.</string>
+	<key>Virtual machine is running.</key>
+	<string>Virtual machine is running.</string>
+	<key>Virtual machine is shutting down.</key>
+	<string>Virtual machine is shutting down.</string>
+	<key>Virtual machine killed.</key>
+	<string>Virtual machine killed.</string>
+	<key>Virtual machine was resumed.</key>
+	<string>Virtual machine was resumed.</string>
+	<key>You can't migrate to the initial virtual machine's hypervisor.</key>
+	<string>You can't migrate to the initial virtual machine's hypervisor.</string>
+	<key>You may continue to use this machine while migrating</key>
+	<string>You may continue to use this machine while migrating</string>
+	<key>You will loose this virtual machine. It will be destroyed, send to a black hole and it will never come back again. Sure?</key>
+	<string>You will loose this virtual machine. It will be destroyed, send to a black hole and it will never come back again. Sure?</string>
+</dict>
+</plist>
