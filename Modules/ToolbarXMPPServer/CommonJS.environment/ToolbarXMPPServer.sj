@@ -1,200 +1,4 @@
-@STATIC;1.0;p;24;TNXMPPServerController.jt;12731;@STATIC;1.0;I;23;Foundation/Foundation.jI;16;AppKit/CPImage.jI;19;AppKit/CPMenuItem.jI;22;AppKit/CPPopUpButton.jI;22;AppKit/CPPopUpButton.jI;18;AppKit/CPTabView.jI;15;AppKit/CPView.ji;22;../../Model/TNModule.ji;30;TNXMPPSharedGroupsController.ji;23;TNXMPPUsersController.jt;12451;objj_executeFile("Foundation/Foundation.j", NO);
-objj_executeFile("AppKit/CPImage.j", NO);
-objj_executeFile("AppKit/CPMenuItem.j", NO);
-objj_executeFile("AppKit/CPPopUpButton.j", NO);
-objj_executeFile("AppKit/CPPopUpButton.j", NO);
-objj_executeFile("AppKit/CPTabView.j", NO);
-objj_executeFile("AppKit/CPView.j", NO);
-objj_executeFile("../../Model/TNModule.j", YES);
-objj_executeFile("TNXMPPSharedGroupsController.j", YES);
-objj_executeFile("TNXMPPUsersController.j", YES);
-//@global CPLocalizedString
-//@global CPLocalizedStringFromTableInBundle
-//@global TNArchipelEntityTypeHypervisor
-var TNArchipelPushNotificationXMPPServerUsers = "archipel:push:xmppserver:users";
-{var the_class = objj_allocateClassPair(TNModule, "TNXMPPServerController"),
-meta_class = the_class.isa;class_addIvars(the_class, [new objj_ivar("checkBoxPreferencesUseSRG"), new objj_ivar("buttonHypervisors"), new objj_ivar("tabViewMain"), new objj_ivar("viewBottom"), new objj_ivar("sharedGroupsController"), new objj_ivar("usersController"), new objj_ivar("_pushRegistred"), new objj_ivar("_defaultAvatar"), new objj_ivar("_itemViewGroups"), new objj_ivar("_itemViewUsers")]);
-       
-       
-
-
-
-
-
-
-
-       
-       
-
-       
-       
-
-
-       
-       
-
-       
-       
-objj_registerClassPair(the_class);
-class_addMethods(the_class, [new objj_method(sel_getUid("awakeFromCib"), function $TNXMPPServerController__awakeFromCib(self, _cmd)
-{
-    var bundle = objj_msgSend(CPBundle, "bundleForClass:", objj_msgSend(self, "class")),
-        defaults = objj_msgSend(CPUserDefaults, "standardUserDefaults");
-    objj_msgSend(defaults, "registerDefaults:", objj_msgSend(CPDictionary, "dictionaryWithObjectsAndKeys:", objj_msgSend(bundle, "objectForInfoDictionaryKey:", "TNArchipelUseEjabberdSharedRosterGroups"), "TNArchipelUseEjabberdSharedRosterGroups"));
-    self._defaultAvatar = objj_msgSend(objj_msgSend(CPImage, "alloc"), "initWithContentsOfFile:", objj_msgSend(objj_msgSend(CPBundle, "mainBundle"), "pathForResource:", "user-unknown.png"));
-    self._itemViewUsers = objj_msgSend(objj_msgSend(CPTabViewItem, "alloc"), "initWithIdentifier:", "itemUsers"),
-    self._itemViewGroups = objj_msgSend(objj_msgSend(CPTabViewItem, "alloc"), "initWithIdentifier:", "itemGroups");
-    objj_msgSend(self._itemViewUsers, "setLabel:", CPBundleLocalizedString("XMPP Users", "XMPP Users"));
-    objj_msgSend(self._itemViewUsers, "setView:", objj_msgSend(self.usersController, "mainView"));
-    objj_msgSend(self._itemViewGroups, "setLabel:", CPBundleLocalizedString("Shared Groups", "Shared Groups"));
-    objj_msgSend(self._itemViewGroups, "setView:", objj_msgSend(self.sharedGroupsController, "mainView"));
-    objj_msgSend(self, "manageToolbarItems");
-    objj_msgSend(self.usersController, "setDelegate:", self);
-    objj_msgSend(self.sharedGroupsController, "setDelegate:", self);
-    objj_msgSend(self.sharedGroupsController, "setUsersController:", self.usersController);
-    self._pushRegistred = NO;
-    objj_msgSend(self.buttonHypervisors, "setTarget:", self);
-    objj_msgSend(self.buttonHypervisors, "setAction:", sel_getUid("changeCurrentHypervisor:"));
-    var imageBg = objj_msgSend(objj_msgSend(CPImage, "alloc"), "initWithContentsOfFile:", objj_msgSend(objj_msgSend(CPBundle, "bundleForClass:", objj_msgSend(self, "class")), "pathForResource:", "bg-controls.png"));
-    objj_msgSend(self.viewBottom, "setBackgroundColor:", objj_msgSend(CPColor, "colorWithPatternImage:", imageBg));
-}
-,["void"]), new objj_method(sel_getUid("willShow"), function $TNXMPPServerController__willShow(self, _cmd)
-{
-    if (!objj_msgSendSuper({ receiver:self, super_class:objj_getClass("TNXMPPServerController").super_class }, "willShow"))
-        return NO;
-    objj_msgSend(self, "populateHypervisors");
-    if (!self._pushRegistred)
-    {
-        objj_msgSend(self, "registerSelector:ofObject:forPushNotificationType:", sel_getUid("_didReceiveUsersPush:"), self.usersController, TNArchipelPushNotificationXMPPServerUsers);
-        self._pushRegistred = YES;
-    }
-    objj_msgSend(self, "tabView:didSelectTabViewItem:", self.tabViewMain, objj_msgSend(self.tabViewMain, "selectedTabViewItem"));
-    return YES;
-}
-,["BOOL"]), new objj_method(sel_getUid("willHide"), function $TNXMPPServerController__willHide(self, _cmd)
-{
-    if (objj_msgSend(objj_msgSend(CPUserDefaults, "standardUserDefaults"), "integerForKey:", "TNArchipelUseEjabberdSharedRosterGroups"))
-        objj_msgSend(self.sharedGroupsController, "willHide")
-    objj_msgSend(self.usersController, "willHide");
-    objj_msgSend(self, "flushUI");
-    objj_msgSend(objj_msgSend(CPNotificationCenter, "defaultCenter"), "removeObserver:", self);
-    objj_msgSendSuper({ receiver:self, super_class:objj_getClass("TNXMPPServerController").super_class }, "willHide");
-}
-,["void"]), new objj_method(sel_getUid("permissionsChanged"), function $TNXMPPServerController__permissionsChanged(self, _cmd)
-{
-    objj_msgSendSuper({ receiver:self, super_class:objj_getClass("TNXMPPServerController").super_class }, "permissionsChanged");
-    if (objj_msgSend(objj_msgSend(CPUserDefaults, "standardUserDefaults"), "integerForKey:", "TNArchipelUseEjabberdSharedRosterGroups"))
-        objj_msgSend(self.sharedGroupsController, "permissionsChanged");
-    objj_msgSend(self.usersController, "permissionsChanged");
-}
-,["void"]), new objj_method(sel_getUid("setUIAccordingToPermissions"), function $TNXMPPServerController__setUIAccordingToPermissions(self, _cmd)
-{
-    if (objj_msgSend(objj_msgSend(CPUserDefaults, "standardUserDefaults"), "integerForKey:", "TNArchipelUseEjabberdSharedRosterGroups"))
-        objj_msgSend(self.sharedGroupsController, "setUIAccordingToPermissions");
-    objj_msgSend(self.usersController, "setUIAccordingToPermissions");
-}
-,["void"]), new objj_method(sel_getUid("savePreferences"), function $TNXMPPServerController__savePreferences(self, _cmd)
-{
-    var defaults = objj_msgSend(CPUserDefaults, "standardUserDefaults");
-    objj_msgSend(defaults, "setBool:forKey:", (objj_msgSend(self.checkBoxPreferencesUseSRG, "state") == CPOnState), "TNArchipelUseEjabberdSharedRosterGroups");
-    objj_msgSend(self, "manageToolbarItems");
-}
-,["void"]), new objj_method(sel_getUid("loadPreferences"), function $TNXMPPServerController__loadPreferences(self, _cmd)
-{
-    var defaults = objj_msgSend(CPUserDefaults, "standardUserDefaults");
-    objj_msgSend(self.checkBoxPreferencesUseSRG, "setState:", objj_msgSend(defaults, "boolForKey:", "TNArchipelUseEjabberdSharedRosterGroups") ? CPOnState : CPOffState);
-}
-,["void"]), new objj_method(sel_getUid("flushUI"), function $TNXMPPServerController__flushUI(self, _cmd)
-{
-    if (objj_msgSend(objj_msgSend(CPUserDefaults, "standardUserDefaults"), "integerForKey:", "TNArchipelUseEjabberdSharedRosterGroups"))
-        objj_msgSend(self.sharedGroupsController, "flushUI");
-    objj_msgSend(self.usersController, "flushUI");
-}
-,["void"]), new objj_method(sel_getUid("_didHypervisorPresenceUpdate:"), function $TNXMPPServerController___didHypervisorPresenceUpdate_(self, _cmd, aNotification)
-{
-    objj_msgSend(self, "populateHypervisors");
-    objj_msgSend(self.usersController, "reload");
-    if (objj_msgSend(objj_msgSend(CPUserDefaults, "standardUserDefaults"), "integerForKey:", "TNArchipelUseEjabberdSharedRosterGroups"))
-        objj_msgSend(self.sharedGroupsController, "reload");
-}
-,["void","CPNotification"]), new objj_method(sel_getUid("manageToolbarItems"), function $TNXMPPServerController__manageToolbarItems(self, _cmd)
-{
-    objj_msgSend(self.tabViewMain, "setDelegate:", nil);
-    if (!objj_msgSend(objj_msgSend(self.tabViewMain, "tabViewItems"), "containsObject:", self._itemViewUsers))
-        objj_msgSend(self.tabViewMain, "addTabViewItem:", self._itemViewUsers);
-    if (objj_msgSend(objj_msgSend(CPUserDefaults, "standardUserDefaults"), "integerForKey:", "TNArchipelUseEjabberdSharedRosterGroups"))
-    {
-        if (!objj_msgSend(objj_msgSend(self.tabViewMain, "tabViewItems"), "containsObject:", self._itemViewGroups))
-            objj_msgSend(self.tabViewMain, "addTabViewItem:", self._itemViewGroups);
-    }
-    else
-    {
-        objj_msgSend(self.tabViewMain, "removeTabViewItem:", self._itemViewGroups);
-        objj_msgSend(self.tabViewMain, "selectFirstTabViewItem:", nil);
-    }
-    objj_msgSend(self.tabViewMain, "setDelegate:", self);
-}
-,["void"]), new objj_method(sel_getUid("populateHypervisors"), function $TNXMPPServerController__populateHypervisors(self, _cmd)
-{
-    objj_msgSend(self.buttonHypervisors, "removeAllItems");
-    var servers = objj_msgSend(CPArray, "array"),
-        items = objj_msgSend(CPArray, "array");
-    for (var i = 0; i < objj_msgSend(objj_msgSend(objj_msgSend(objj_msgSend(TNStropheIMClient, "defaultClient"), "roster"), "contacts"), "count"); i++)
-    {
-        var contact = objj_msgSend(objj_msgSend(objj_msgSend(objj_msgSend(TNStropheIMClient, "defaultClient"), "roster"), "contacts"), "objectAtIndex:", i),
-            item = objj_msgSend(objj_msgSend(CPMenuItem, "alloc"), "init");
-        if ((objj_msgSend(objj_msgSend(objj_msgSend(TNStropheIMClient, "defaultClient"), "roster"), "analyseVCard:", objj_msgSend(contact, "vCard")) === TNArchipelEntityTypeHypervisor)
-            && (objj_msgSend(contact, "XMPPShow") != TNStropheContactStatusOffline)
-            && !objj_msgSend(servers, "containsObject:", objj_msgSend(objj_msgSend(contact, "JID"), "domain")))
-        {
-            objj_msgSend(servers, "addObject:", objj_msgSend(objj_msgSend(contact, "JID"), "domain"));
-            objj_msgSend(item, "setTitle:", objj_msgSend(objj_msgSend(contact, "JID"), "domain"));
-            objj_msgSend(item, "setRepresentedObject:", contact);
-            objj_msgSend(items, "addObject:", item);
-            objj_msgSend(objj_msgSend(CPNotificationCenter, "defaultCenter"), "removeObserver:name:object:", self, TNStropheContactPresenceUpdatedNotification, contact);
-            objj_msgSend(objj_msgSend(CPNotificationCenter, "defaultCenter"), "addObserver:selector:name:object:", self, sel_getUid("_didHypervisorPresenceUpdate:"), TNStropheContactPresenceUpdatedNotification, contact);
-        }
-    }
-    var sortDescriptor = objj_msgSend(CPSortDescriptor, "sortDescriptorWithKey:ascending:", "title.uppercaseString", YES),
-        sortedItems = objj_msgSend(items, "sortedArrayUsingDescriptors:", objj_msgSend(CPArray, "arrayWithObject:", sortDescriptor));
-    for (var i = 0; i < objj_msgSend(sortedItems, "count"); i++)
-        objj_msgSend(self.buttonHypervisors, "addItem:", objj_msgSend(sortedItems, "objectAtIndex:", i));
-    objj_msgSend(self.buttonHypervisors, "selectItemAtIndex:", 0);
-    self._entity = objj_msgSend(objj_msgSend(self.buttonHypervisors, "selectedItem"), "representedObject");
-}
-,["void"]), new objj_method(sel_getUid("changeCurrentHypervisor:"), function $TNXMPPServerController__changeCurrentHypervisor_(self, _cmd, aSender)
-{
-    self._entity = objj_msgSend(objj_msgSend(self.buttonHypervisors, "selectedItem"), "representedObject");
-    objj_msgSend(self.usersController, "setEntity:", objj_msgSend(objj_msgSend(self.buttonHypervisors, "selectedItem"), "representedObject"));
-    if (objj_msgSend(objj_msgSend(CPUserDefaults, "standardUserDefaults"), "integerForKey:", "TNArchipelUseEjabberdSharedRosterGroups"))
-        objj_msgSend(self.sharedGroupsController, "setEntity:", objj_msgSend(objj_msgSend(self.buttonHypervisors, "selectedItem"), "representedObject"));
-    objj_msgSend(self, "permissionsChanged");
-}
-,["id","id"]), new objj_method(sel_getUid("tabView:didSelectTabViewItem:"), function $TNXMPPServerController__tabView_didSelectTabViewItem_(self, _cmd, aTabView, anItem)
-{
-    switch (objj_msgSend(anItem, "identifier"))
-    {
-        case "itemUsers":
-            objj_msgSend(self.usersController, "setEntity:", objj_msgSend(objj_msgSend(self.buttonHypervisors, "selectedItem"), "representedObject"));
-            objj_msgSend(self.usersController, "reload");
-            break;
-        case "itemGroups":
-            objj_msgSend(self.sharedGroupsController, "setEntity:", objj_msgSend(objj_msgSend(self.buttonHypervisors, "selectedItem"), "representedObject"));
-            objj_msgSend(self.sharedGroupsController, "reload");
-            break;
-    }
-}
-,["void","CPTabView","CPTabViewItem"])]);
-}
-CPBundleLocalizedString = function(key, comment)
-{
-    return CPLocalizedStringFromTableInBundle(key, nil, objj_msgSend(CPBundle, "bundleForClass:", TNXMPPServerController), comment);
-}p;25;TNXMPPServerUserFetcher.jt;11868;@STATIC;1.0;I;23;Foundation/Foundation.jI;36;StropheCappuccino/TNStropheContact.jI;37;StropheCappuccino/TNStropheIMClient.jI;33;TNKit/TNTableViewLazyDataSource.jt;11699;objj_executeFile("Foundation/Foundation.j", NO);
-objj_executeFile("StropheCappuccino/TNStropheContact.j", NO);
-objj_executeFile("StropheCappuccino/TNStropheIMClient.j", NO);
-objj_executeFile("TNKit/TNTableViewLazyDataSource.j", NO);
-//@class TNPermissionsCenter
-var TNArchipelTypeXMPPServerUsers = "archipel:xmppserver:users",
+@STATIC;1.0;p;25;TNXMPPServerUserFetcher.jt;11425;@STATIC;1.0;I;23;Foundation/Foundation.jI;36;StropheCappuccino/TNStropheContact.jI;37;StropheCappuccino/TNStropheIMClient.jI;33;TNKit/TNTableViewLazyDataSource.jt;11256;objj_executeFile("Foundation/Foundation.j", NO);objj_executeFile("StropheCappuccino/TNStropheContact.j", NO);objj_executeFile("StropheCappuccino/TNStropheIMClient.j", NO);objj_executeFile("TNKit/TNTableViewLazyDataSource.j", NO);var TNArchipelTypeXMPPServerUsers = "archipel:xmppserver:users",
     TNArchipelTypeXMPPServerUsersList = "list",
     TNArchipelTypeXMPPServerUsersFilter = "filter",
     TNArchipelTypeXMPPServerUsersNumber = "number";
@@ -203,58 +7,38 @@ var _iconEntityTypeHuman,
     _iconEntityTypeVM,
     _iconUserAdmin;
 {var the_class = objj_allocateClassPair(CPObject, "TNXMPPServerUserFetcher"),
-meta_class = the_class.isa;class_addIvars(the_class, [new objj_ivar("_displaysOnlyHumans"), new objj_ivar("_delegate"), new objj_ivar("_entity"), new objj_ivar("_dataSource"), new objj_ivar("_maxLoadedPage")]);
-
-       
-       
-
-       
-       
-
-       
-       
-
-
-
-
-
-
-       
-       
-
-
-objj_registerClassPair(the_class);
+meta_class = the_class.isa;class_addIvars(the_class, [new objj_ivar("_displaysOnlyHumans"), new objj_ivar("_delegate"), new objj_ivar("_entity"), new objj_ivar("_dataSource"), new objj_ivar("_maxLoadedPage")]);objj_registerClassPair(the_class);
 class_addMethods(the_class, [new objj_method(sel_getUid("isDisplayingOnlyHumans"), function $TNXMPPServerUserFetcher__isDisplayingOnlyHumans(self, _cmd)
 {
-return self._displaysOnlyHumans;
+    return self._displaysOnlyHumans;
 }
 ,["BOOL"]), new objj_method(sel_getUid("setDisplaysOnlyHumans:"), function $TNXMPPServerUserFetcher__setDisplaysOnlyHumans_(self, _cmd, newValue)
 {
-self._displaysOnlyHumans = newValue;
+    self._displaysOnlyHumans = newValue;
 }
 ,["void","BOOL"]), new objj_method(sel_getUid("delegate"), function $TNXMPPServerUserFetcher__delegate(self, _cmd)
 {
-return self._delegate;
+    return self._delegate;
 }
 ,["id"]), new objj_method(sel_getUid("setDelegate:"), function $TNXMPPServerUserFetcher__setDelegate_(self, _cmd, newValue)
 {
-self._delegate = newValue;
+    self._delegate = newValue;
 }
 ,["void","id"]), new objj_method(sel_getUid("entity"), function $TNXMPPServerUserFetcher__entity(self, _cmd)
 {
-return self._entity;
+    return self._entity;
 }
 ,["TNStropheContact"]), new objj_method(sel_getUid("setEntity:"), function $TNXMPPServerUserFetcher__setEntity_(self, _cmd, newValue)
 {
-self._entity = newValue;
+    self._entity = newValue;
 }
 ,["void","TNStropheContact"]), new objj_method(sel_getUid("dataSource"), function $TNXMPPServerUserFetcher__dataSource(self, _cmd)
 {
-return self._dataSource;
+    return self._dataSource;
 }
 ,["TNTableViewLazyDataSource"]), new objj_method(sel_getUid("_setDataSource:"), function $TNXMPPServerUserFetcher___setDataSource_(self, _cmd, newValue)
 {
-self._dataSource = newValue;
+    self._dataSource = newValue;
 }
 ,["void","TNTableViewLazyDataSource"]), new objj_method(sel_getUid("init"), function $TNXMPPServerUserFetcher__init(self, _cmd)
 {
@@ -286,9 +70,7 @@ self._dataSource = newValue;
 {
     var stanza = objj_msgSend(TNStropheStanza, "iqWithType:", "get");
     objj_msgSend(stanza, "addChildWithName:andAttributes:", "query", {"xmlns": TNArchipelTypeXMPPServerUsers});
-    objj_msgSend(stanza, "addChildWithName:andAttributes:", "archipel", {
-        "action": TNArchipelTypeXMPPServerUsersNumber,
-        "humans_only": self._displaysOnlyHumans ? "true" : "false"});
+    objj_msgSend(stanza, "addChildWithName:andAttributes:", "archipel", {"action": TNArchipelTypeXMPPServerUsersNumber, "humans_only": self._displaysOnlyHumans ? "true" : "false"});
     objj_msgSend(self._entity, "sendStanza:andRegisterSelector:ofObject:userInfo:", stanza, sel_getUid("_didGetNumberOfXMPPUsers:callback:"), self, aCallback);
     if (objj_msgSend(self._delegate, "respondsToSelector:", sel_getUid("userFetcher:isLoading:")))
         objj_msgSend(self._delegate, "userFetcher:isLoading:", self, YES);
@@ -323,10 +105,7 @@ self._dataSource = newValue;
     }
     var stanza = objj_msgSend(TNStropheStanza, "iqWithType:", "get");
     objj_msgSend(stanza, "addChildWithName:andAttributes:", "query", {"xmlns": TNArchipelTypeXMPPServerUsers});
-    objj_msgSend(stanza, "addChildWithName:andAttributes:", "archipel", {
-        "action": TNArchipelTypeXMPPServerUsersList,
-        "page": self._maxLoadedPage,
-        "humans_only": self._displaysOnlyHumans ? "true" : "false"});
+    objj_msgSend(stanza, "addChildWithName:andAttributes:", "archipel", {"action": TNArchipelTypeXMPPServerUsersList, "page": self._maxLoadedPage, "humans_only": self._displaysOnlyHumans ? "true" : "false"});
     objj_msgSend(self._dataSource, "setCurrentlyLoading:", YES);
     if (objj_msgSend(self._delegate, "respondsToSelector:", sel_getUid("userFetcher:isLoading:")))
         objj_msgSend(self._delegate, "userFetcher:isLoading:", self, YES);
@@ -336,14 +115,12 @@ self._dataSource = newValue;
 {
     if (!objj_msgSend(objj_msgSend(TNPermissionsCenter, "defaultCenter"), "hasPermission:forEntity:", "xmppserver_users_list", self._entity))
     {
-        objj_msgSend(self._delegate, "userFetcherClean")
+        objj_msgSend(self._delegate, "userFetcherClean");
         return;
     }
     var stanza = objj_msgSend(TNStropheStanza, "iqWithType:", "get");
     objj_msgSend(stanza, "addChildWithName:andAttributes:", "query", {"xmlns": TNArchipelTypeXMPPServerUsers});
-    objj_msgSend(stanza, "addChildWithName:andAttributes:", "archipel", {
-        "action": TNArchipelTypeXMPPServerUsersFilter,
-        "filter": aFilter});
+    objj_msgSend(stanza, "addChildWithName:andAttributes:", "archipel", {"action": TNArchipelTypeXMPPServerUsersFilter, "filter": aFilter});
     objj_msgSend(self._dataSource, "setCurrentlyLoading:", YES);
     if (objj_msgSend(self._delegate, "respondsToSelector:", sel_getUid("userFetcher:isLoading:")))
         objj_msgSend(self._delegate, "userFetcher:isLoading:", self, YES);
@@ -358,8 +135,12 @@ self._dataSource = newValue;
         {
             var user = objj_msgSend(users, "objectAtIndex:", i),
                 jid;
-            try {jid = objj_msgSend(TNStropheJID, "stropheJIDWithString:", objj_msgSend(user, "valueForAttribute:", "jid"))} catch(e){continue};
-            var usertype = objj_msgSend(user, "valueForAttribute:", "type"),
+            try            {
+                jid = objj_msgSend(TNStropheJID, "stropheJIDWithString:", objj_msgSend(user, "valueForAttribute:", "jid"));
+            }
+            catch(e)             {
+                continue;
+            }            var usertype = objj_msgSend(user, "valueForAttribute:", "type"),
                 name = objj_msgSend(jid, "node"),
                 contact = objj_msgSend(objj_msgSend(objj_msgSend(TNStropheIMClient, "defaultClient"), "roster"), "contactWithJID:", jid),
                 userAdminIcon = nil,
@@ -367,18 +148,17 @@ self._dataSource = newValue;
             if (contact)
                 name = objj_msgSend(contact, "name");
             var icon = _iconEntityTypeHuman;
-            switch (usertype)
-            {
-                case "virtualmachine":
-                    icon = _iconEntityTypeVM;
-                    break;
-                case "hypervisor":
-                    icon = _iconEntityTypeHypervisor;
-                    break;
+            switch(usertype) {
+            case "virtualmachine":
+                icon = _iconEntityTypeVM;
+                break;
+            case "hypervisor":
+                icon = _iconEntityTypeHypervisor;
+                break;
             }
             if (objj_msgSend(objj_msgSend(TNPermissionsCenter, "defaultCenter"), "isJIDInAdminList:", jid))
                 userAdminIcon = _iconUserAdmin;
-            newItem = objj_msgSend(CPDictionary, "dictionaryWithObjects:forKeys:", [name, jid, usertype, icon, userAdminIcon], ["name", "JID", "type", "icon", "admin"])
+            newItem = objj_msgSend(objj_msgSend(CPDictionary, "alloc"), "initWithObjectsAndKeys:", name, "name", jid, "JID", usertype, "type", icon, "icon", userAdminIcon, "admin");
             objj_msgSend(self._dataSource, "addObject:", newItem);
         }
         objj_msgSend(objj_msgSend(self._dataSource, "table"), "reloadData");
@@ -410,99 +190,57 @@ self._dataSource = newValue;
 class_addMethods(meta_class, [new objj_method(sel_getUid("initialize"), function $TNXMPPServerUserFetcher__initialize(self, _cmd)
 {
     var bundle = objj_msgSend(CPBundle, "bundleForClass:", TNXMPPServerUserFetcher);
-    _iconEntityTypeHuman = objj_msgSend(objj_msgSend(CPImage, "alloc"), "initWithContentsOfFile:size:", objj_msgSend(bundle, "pathForResource:", "type-human.png"), CGSizeMake(16, 16));
-    _iconEntityTypeVM = objj_msgSend(objj_msgSend(CPImage, "alloc"), "initWithContentsOfFile:size:", objj_msgSend(bundle, "pathForResource:", "type-vm.png"), CGSizeMake(16, 16));
-    _iconEntityTypeHypervisor = objj_msgSend(objj_msgSend(CPImage, "alloc"), "initWithContentsOfFile:size:", objj_msgSend(bundle, "pathForResource:", "type-hypervisor.png"), CGSizeMake(16, 16));
-    _iconUserAdmin = objj_msgSend(objj_msgSend(CPImage, "alloc"), "initWithContentsOfFile:size:", objj_msgSend(bundle, "pathForResource:", "user-admin.png"), CGSizeMake(16, 16));
+    _iconEntityTypeHuman = CPImageInBundle("type-human.png", CGSizeMake(16, 16), bundle);
+    _iconEntityTypeVM = CPImageInBundle("type-vm.png", CGSizeMake(16, 16), bundle);
+    _iconEntityTypeHypervisor = CPImageInBundle("type-hypervisor.png", CGSizeMake(16, 16), bundle);
+    _iconUserAdmin = CPImageInBundle("user-admin.png", CGSizeMake(16, 16), bundle);
 }
 ,["void"])]);
-}p;30;TNXMPPSharedGroupsController.jt;25999;@STATIC;1.0;I;23;Foundation/Foundation.jI;17;AppKit/CPButton.jI;20;AppKit/CPButtonBar.jI;22;AppKit/CPPopUpButton.jI;21;AppKit/CPScrollView.jI;22;AppKit/CPSearchField.jI;20;AppKit/CPSplitView.jI;20;AppKit/CPTableView.jI;20;AppKit/CPTextField.jI;15;AppKit/CPView.jI;17;AppKit/CPWindow.jI;15;TNKit/TNAlert.jI;29;TNKit/TNTableViewDataSource.jI;33;TNKit/TNTableViewLazyDataSource.ji;25;TNXMPPServerUserFetcher.jt;25585;objj_executeFile("Foundation/Foundation.j", NO);
-objj_executeFile("AppKit/CPButton.j", NO);
-objj_executeFile("AppKit/CPButtonBar.j", NO);
-objj_executeFile("AppKit/CPPopUpButton.j", NO);
-objj_executeFile("AppKit/CPScrollView.j", NO);
-objj_executeFile("AppKit/CPSearchField.j", NO);
-objj_executeFile("AppKit/CPSplitView.j", NO);
-objj_executeFile("AppKit/CPTableView.j", NO);
-objj_executeFile("AppKit/CPTextField.j", NO);
-objj_executeFile("AppKit/CPView.j", NO);
-objj_executeFile("AppKit/CPWindow.j", NO);
-objj_executeFile("TNKit/TNAlert.j", NO);
-objj_executeFile("TNKit/TNTableViewDataSource.j", NO);
-objj_executeFile("TNKit/TNTableViewLazyDataSource.j", NO);
-objj_executeFile("TNXMPPServerUserFetcher.j", YES);
-//@class TNPermissionsCenter
-//@global CPLocalizedString
-//@global CPLocalizedStringFromTableInBundle
-var TNArchipelTypeXMPPServerGroups = "archipel:xmppserver:groups",
+}p;30;TNXMPPSharedGroupsController.jt;28110;@STATIC;1.0;I;23;Foundation/Foundation.jI;17;AppKit/CPButton.jI;20;AppKit/CPButtonBar.jI;22;AppKit/CPPopUpButton.jI;21;AppKit/CPScrollView.jI;22;AppKit/CPSearchField.jI;20;AppKit/CPSplitView.jI;20;AppKit/CPTableView.jI;20;AppKit/CPTextField.jI;15;AppKit/CPView.jI;17;AppKit/CPWindow.jI;15;TNKit/TNAlert.jI;29;TNKit/TNTableViewDataSource.jI;33;TNKit/TNTableViewLazyDataSource.ji;25;TNXMPPServerUserFetcher.jt;27696;objj_executeFile("Foundation/Foundation.j", NO);objj_executeFile("AppKit/CPButton.j", NO);objj_executeFile("AppKit/CPButtonBar.j", NO);objj_executeFile("AppKit/CPPopUpButton.j", NO);objj_executeFile("AppKit/CPScrollView.j", NO);objj_executeFile("AppKit/CPSearchField.j", NO);objj_executeFile("AppKit/CPSplitView.j", NO);objj_executeFile("AppKit/CPTableView.j", NO);objj_executeFile("AppKit/CPTextField.j", NO);objj_executeFile("AppKit/CPView.j", NO);objj_executeFile("AppKit/CPWindow.j", NO);objj_executeFile("TNKit/TNAlert.j", NO);objj_executeFile("TNKit/TNTableViewDataSource.j", NO);objj_executeFile("TNKit/TNTableViewLazyDataSource.j", NO);objj_executeFile("TNXMPPServerUserFetcher.j", YES);var TNArchipelTypeXMPPServerGroups = "archipel:xmppserver:groups",
     TNArchipelTypeXMPPServerGroupsCreate = "create",
     TNArchipelTypeXMPPServerGroupsDelete = "delete",
     TNArchipelTypeXMPPServerGroupsAddUsers = "addusers",
     TNArchipelTypeXMPPServerGroupsDeleteUsers = "deleteusers",
     TNArchipelTypeXMPPServerGroupsList = "list";
+var TNModuleControlForAddSharedGroup = "AddSharedGroup",
+    TNModuleControlForRemoveSharedGroup = "RemoveSharedGroup",
+    TNModuleControlForAddUsersInSharedGroup = "AddUsersInSharedGroup",
+    TNModuleControlForRemoveUsersFromSharedGroup = "RemoveUsersFromSharedGroup";
 {var the_class = objj_allocateClassPair(CPObject, "TNXMPPSharedGroupsController"),
-meta_class = the_class.isa;class_addIvars(the_class, [new objj_ivar("buttonAdd"), new objj_ivar("buttonCreate"), new objj_ivar("buttonBarGroups"), new objj_ivar("buttonBarUsersInGroups"), new objj_ivar("popoverAddUserInGroup"), new objj_ivar("popoverNewGroup"), new objj_ivar("filterFieldGroups"), new objj_ivar("filterFieldUsers"), new objj_ivar("filterFieldUsersInGroup"), new objj_ivar("splitViewVertical"), new objj_ivar("tableGroups"), new objj_ivar("tableUsers"), new objj_ivar("tableUsersInGroup"), new objj_ivar("fieldNewGroupDescription"), new objj_ivar("fieldNewGroupName"), new objj_ivar("mainView"), new objj_ivar("viewTableGroupsContainer"), new objj_ivar("viewTableUsersInGroupContainer"), new objj_ivar("_delegate"), new objj_ivar("_usersController"), new objj_ivar("_entity"), new objj_ivar("_addGroupButton"), new objj_ivar("_addUserInGroupButton"), new objj_ivar("_deleteGroupButton"), new objj_ivar("_deleteUserFromGroupButton"), new objj_ivar("_currentSelectedGroup"), new objj_ivar("_oldSelectedIndexesForGroupTable"), new objj_ivar("_datasourceGroups"), new objj_ivar("_datasourceUsers"), new objj_ivar("_datasourceUsersInGroup"), new objj_ivar("_usersFetcher")]);
-       
-       
-
-       
-       
-
-
-
-
-
-       
-       
-
-
-
-
-
-
-
-
-       
-       
-
-
-
-
-
-
-
-
-
-
-       
-       
-
-objj_registerClassPair(the_class);
+meta_class = the_class.isa;class_addIvars(the_class, [new objj_ivar("buttonAdd"), new objj_ivar("buttonCreate"), new objj_ivar("buttonBarGroups"), new objj_ivar("buttonBarUsersInGroups"), new objj_ivar("popoverAddUserInGroup"), new objj_ivar("popoverNewGroup"), new objj_ivar("filterFieldGroups"), new objj_ivar("filterFieldUsers"), new objj_ivar("filterFieldUsersInGroup"), new objj_ivar("splitViewVertical"), new objj_ivar("tableGroups"), new objj_ivar("tableUsers"), new objj_ivar("tableUsersInGroup"), new objj_ivar("fieldNewGroupDescription"), new objj_ivar("fieldNewGroupName"), new objj_ivar("fieldNewGroupDisplay"), new objj_ivar("mainView"), new objj_ivar("viewTableGroupsContainer"), new objj_ivar("viewTableUsersInGroupContainer"), new objj_ivar("_delegate"), new objj_ivar("_usersController"), new objj_ivar("_contextualMenu"), new objj_ivar("_entity"), new objj_ivar("_currentSelectedGroup"), new objj_ivar("_oldSelectedIndexesForGroupTable"), new objj_ivar("_datasourceGroups"), new objj_ivar("_datasourceUsers"), new objj_ivar("_datasourceUsersInGroup"), new objj_ivar("_usersFetcher")]);objj_registerClassPair(the_class);
 class_addMethods(the_class, [new objj_method(sel_getUid("mainView"), function $TNXMPPSharedGroupsController__mainView(self, _cmd)
 {
-return self.mainView;
+    return self.mainView;
 }
 ,["CPView"]), new objj_method(sel_getUid("setMainView:"), function $TNXMPPSharedGroupsController__setMainView_(self, _cmd, newValue)
 {
-self.mainView = newValue;
+    self.mainView = newValue;
 }
 ,["void","CPView"]), new objj_method(sel_getUid("delegate"), function $TNXMPPSharedGroupsController__delegate(self, _cmd)
 {
-return self._delegate;
+    return self._delegate;
 }
 ,["id"]), new objj_method(sel_getUid("setDelegate:"), function $TNXMPPSharedGroupsController__setDelegate_(self, _cmd, newValue)
 {
-self._delegate = newValue;
+    self._delegate = newValue;
 }
 ,["void","id"]), new objj_method(sel_getUid("_usersController"), function $TNXMPPSharedGroupsController___usersController(self, _cmd)
 {
-return self._usersController;
+    return self._usersController;
 }
 ,["TNXMPPUsersController"]), new objj_method(sel_getUid("setUsersController:"), function $TNXMPPSharedGroupsController__setUsersController_(self, _cmd, newValue)
 {
-self._usersController = newValue;
+    self._usersController = newValue;
 }
-,["void","TNXMPPUsersController"]), new objj_method(sel_getUid("awakeFromCib"), function $TNXMPPSharedGroupsController__awakeFromCib(self, _cmd)
+,["void","TNXMPPUsersController"]), new objj_method(sel_getUid("contextualMenu"), function $TNXMPPSharedGroupsController__contextualMenu(self, _cmd)
+{
+    return self._contextualMenu;
+}
+,["CPMenuItem"]), new objj_method(sel_getUid("setContextualMenu:"), function $TNXMPPSharedGroupsController__setContextualMenu_(self, _cmd, newValue)
+{
+    self._contextualMenu = newValue;
+}
+,["void","CPMenuItem"]), new objj_method(sel_getUid("awakeFromCib"), function $TNXMPPSharedGroupsController__awakeFromCib(self, _cmd)
 {
     objj_msgSend(self.splitViewVertical, "setBorderedWithHexColor:", "#C0C7D2");
     objj_msgSend(self.splitViewVertical, "setIsPaneSplitter:", YES);
@@ -519,33 +257,11 @@ self._usersController = newValue;
     objj_msgSend(self._datasourceGroups, "setSearchableKeyPaths:", ["name", "description"]);
     objj_msgSend(self.tableGroups, "setDataSource:", self._datasourceGroups);
     objj_msgSend(self.tableGroups, "setDelegate:", self);
-    self._addGroupButton = objj_msgSend(CPButtonBar, "plusButton");
-    objj_msgSend(self._addGroupButton, "setImage:", objj_msgSend(objj_msgSend(CPImage, "alloc"), "initWithContentsOfFile:size:", objj_msgSend(objj_msgSend(CPBundle, "mainBundle"), "pathForResource:", "IconsButtons/group-add.png"), CGSizeMake(16, 16)));
-    objj_msgSend(self._addGroupButton, "setTarget:", self);
-    objj_msgSend(self._addGroupButton, "setAction:", sel_getUid("openNewGroupWindow:"));
-    objj_msgSend(self._addGroupButton, "setToolTip:", CPBundleLocalizedString("Add a new shared group", "Add a new shared group"));
-    self._deleteGroupButton = objj_msgSend(CPButtonBar, "plusButton");
-    objj_msgSend(self._deleteGroupButton, "setImage:", objj_msgSend(objj_msgSend(CPImage, "alloc"), "initWithContentsOfFile:size:", objj_msgSend(objj_msgSend(CPBundle, "mainBundle"), "pathForResource:", "IconsButtons/group-remove.png"), CGSizeMake(16, 16)));
-    objj_msgSend(self._deleteGroupButton, "setTarget:", self);
-    objj_msgSend(self._deleteGroupButton, "setAction:", sel_getUid("deleteGroup:"));
-    objj_msgSend(self._deleteGroupButton, "setToolTip:", CPBundleLocalizedString("Delete selected shared groups", "Delete selected shared groups"));
-    objj_msgSend(self.buttonBarGroups, "setButtons:", [self._addGroupButton, self._deleteGroupButton]);
     self._datasourceUsersInGroup = objj_msgSend(objj_msgSend(TNTableViewDataSource, "alloc"), "init");
     objj_msgSend(self._datasourceUsersInGroup, "setTable:", self.tableUsersInGroup);
     objj_msgSend(self._datasourceUsersInGroup, "setSearchableKeyPaths:", ["name", "JID"]);
     objj_msgSend(self.tableUsersInGroup, "setDataSource:", self._datasourceUsersInGroup);
     objj_msgSend(self.tableUsersInGroup, "setDelegate:", self);
-    self._addUserInGroupButton = objj_msgSend(CPButtonBar, "plusButton");
-    objj_msgSend(self._addUserInGroupButton, "setImage:", objj_msgSend(objj_msgSend(CPImage, "alloc"), "initWithContentsOfFile:size:", objj_msgSend(objj_msgSend(CPBundle, "mainBundle"), "pathForResource:", "IconsButtons/user-add.png"), CGSizeMake(16, 16)));
-    objj_msgSend(self._addUserInGroupButton, "setTarget:", self);
-    objj_msgSend(self._addUserInGroupButton, "setAction:", sel_getUid("openAddUserInGroupWindow:"));
-    objj_msgSend(self._addUserInGroupButton, "setToolTip:", CPBundleLocalizedString("Add selected users to shared group", "Add selected users to shared group"));
-    self._deleteUserFromGroupButton = objj_msgSend(CPButtonBar, "plusButton");
-    objj_msgSend(self._deleteUserFromGroupButton, "setImage:", objj_msgSend(objj_msgSend(CPImage, "alloc"), "initWithContentsOfFile:size:", objj_msgSend(objj_msgSend(CPBundle, "mainBundle"), "pathForResource:", "IconsButtons/user-remove.png"), CGSizeMake(16, 16)));
-    objj_msgSend(self._deleteUserFromGroupButton, "setTarget:", self);
-    objj_msgSend(self._deleteUserFromGroupButton, "setAction:", sel_getUid("removeUsersFromGroup:"));
-    objj_msgSend(self._deleteUserFromGroupButton, "setToolTip:", CPBundleLocalizedString("Remove selected users from shared group", "Remove selected users from shared group"));
-    objj_msgSend(self.buttonBarUsersInGroups, "setButtons:", [self._addUserInGroupButton, self._deleteUserFromGroupButton]);
     objj_msgSend(self.filterFieldGroups, "setTarget:", self._datasourceGroups);
     objj_msgSend(self.filterFieldGroups, "setAction:", sel_getUid("filterObjects:"));
     objj_msgSend(self.filterFieldUsersInGroup, "setTarget:", self._datasourceUsersInGroup);
@@ -553,7 +269,7 @@ self._usersController = newValue;
     objj_msgSend(self.filterFieldUsers, "setSendsSearchStringImmediately:", YES);
     objj_msgSend(self.filterFieldUsers, "setTarget:", self._datasourceUsers);
     objj_msgSend(self.filterFieldUsers, "setAction:", sel_getUid("filterObjects:"));
-    var filterBg = objj_msgSend(objj_msgSend(CPImage, "alloc"), "initWithContentsOfFile:", objj_msgSend(objj_msgSend(CPBundle, "mainBundle"), "pathForResource:", "Backgrounds/background-filter.png"));
+    var filterBg = CPImageInBundle("Backgrounds/background-filter.png", nil, objj_msgSend(CPBundle, "mainBundle"));
     objj_msgSend(objj_msgSend(self.viewTableGroupsContainer, "superview"), "setBackgroundColor:", objj_msgSend(CPColor, "colorWithPatternImage:", filterBg));
     objj_msgSend(objj_msgSend(self.viewTableUsersInGroupContainer, "superview"), "setBackgroundColor:", objj_msgSend(CPColor, "colorWithPatternImage:", filterBg));
 }
@@ -562,7 +278,16 @@ self._usersController = newValue;
     self._entity = anEntity;
     objj_msgSend(self._usersFetcher, "setEntity:", self._entity);
 }
-,["void","TNStropheContact"]), new objj_method(sel_getUid("willHide"), function $TNXMPPSharedGroupsController__willHide(self, _cmd)
+,["void","TNStropheContact"]), new objj_method(sel_getUid("populateViewWithControls"), function $TNXMPPSharedGroupsController__populateViewWithControls(self, _cmd)
+{
+    objj_msgSend(self._delegate, "addControlsWithIdentifier:title:target:action:image:", TNModuleControlForAddSharedGroup, CPBundleLocalizedString("Create a new shared group", "Create a new shared group"), self, sel_getUid("openNewGroupWindow:"), CPImageInBundle("IconsButtons/group-add.png", nil, objj_msgSend(CPBundle, "mainBundle")));
+    objj_msgSend(self._delegate, "addControlsWithIdentifier:title:target:action:image:", TNModuleControlForRemoveSharedGroup, CPBundleLocalizedString("Delete selected shared group", "Delete selected shared group"), self, sel_getUid("deleteGroup:"), CPImageInBundle("IconsButtons/group-remove.png", nil, objj_msgSend(CPBundle, "mainBundle")));
+    objj_msgSend(self._delegate, "addControlsWithIdentifier:title:target:action:image:", TNModuleControlForAddUsersInSharedGroup, CPBundleLocalizedString("Add user(s) to shared group", "Add user(s) to shared group"), self, sel_getUid("openAddUserInGroupWindow:"), CPImageInBundle("IconsButtons/user-add.png", nil, objj_msgSend(CPBundle, "mainBundle")));
+    objj_msgSend(self._delegate, "addControlsWithIdentifier:title:target:action:image:", TNModuleControlForRemoveUsersFromSharedGroup, CPBundleLocalizedString("Remove selected user(s) from shared group", "Remove selected user(s) from shared group"), self, sel_getUid("removeUsersFromGroup:"), CPImageInBundle("IconsButtons/user-remove.png", nil, objj_msgSend(CPBundle, "mainBundle")));
+    objj_msgSend(self.buttonBarGroups, "setButtons:", [objj_msgSend(self._delegate, "buttonWithIdentifier:", TNModuleControlForAddSharedGroup), objj_msgSend(self._delegate, "buttonWithIdentifier:", TNModuleControlForRemoveSharedGroup)]);
+    objj_msgSend(self.buttonBarUsersInGroups, "setButtons:", [objj_msgSend(self._delegate, "buttonWithIdentifier:", TNModuleControlForAddUsersInSharedGroup), objj_msgSend(self._delegate, "buttonWithIdentifier:", TNModuleControlForRemoveUsersFromSharedGroup)]);
+}
+,["void"]), new objj_method(sel_getUid("willHide"), function $TNXMPPSharedGroupsController__willHide(self, _cmd)
 {
     objj_msgSend(self, "closeNewGroupWindow:", nil);
     objj_msgSend(self, "closeAddUserInGroupWindow:", nil);
@@ -574,12 +299,12 @@ self._usersController = newValue;
 }
 ,["void"]), new objj_method(sel_getUid("setUIAccordingToPermissions"), function $TNXMPPSharedGroupsController__setUIAccordingToPermissions(self, _cmd)
 {
-    var condition1 = (objj_msgSend(self.tableGroups, "numberOfSelectedRows") > 0),
-        condition2 = condition1 && (objj_msgSend(self.tableUsersInGroup, "numberOfSelectedRows") > 0);
-    objj_msgSend(self._delegate, "setControl:enabledAccordingToPermissions:", self._addGroupButton, ["xmppserver_groups_list", "xmppserver_groups_create"]);
-    objj_msgSend(self._delegate, "setControl:enabledAccordingToPermissions:specialCondition:", self._deleteGroupButton, ["xmppserver_groups_list", "xmppserver_groups_delete"], condition1);
-    objj_msgSend(self._delegate, "setControl:enabledAccordingToPermissions:specialCondition:", self._addUserInGroupButton, ["xmppserver_users_list", "xmppserver_groups_list", "xmppserver_groups_addusers"], condition1);
-    objj_msgSend(self._delegate, "setControl:enabledAccordingToPermissions:specialCondition:", self._deleteUserFromGroupButton, ["xmppserver_groups_list", "xmppserver_groups_deleteusers"], condition2);
+    var condition1 = objj_msgSend(self.tableGroups, "numberOfSelectedRows") > 0,
+        condition2 = condition1 && objj_msgSend(self.tableUsersInGroup, "numberOfSelectedRows") > 0;
+    objj_msgSend(self._delegate, "setControl:enabledAccordingToPermissions:", objj_msgSend(self._delegate, "buttonWithIdentifier:", TNModuleControlForAddSharedGroup), ["xmppserver_groups_list", "xmppserver_groups_create"]);
+    objj_msgSend(self._delegate, "setControl:enabledAccordingToPermissions:specialCondition:", objj_msgSend(self._delegate, "buttonWithIdentifier:", TNModuleControlForRemoveSharedGroup), ["xmppserver_groups_list", "xmppserver_groups_delete"], condition1);
+    objj_msgSend(self._delegate, "setControl:enabledAccordingToPermissions:specialCondition:", objj_msgSend(self._delegate, "buttonWithIdentifier:", TNModuleControlForAddUsersInSharedGroup), ["xmppserver_users_list", "xmppserver_groups_list", "xmppserver_groups_addusers"], condition1);
+    objj_msgSend(self._delegate, "setControl:enabledAccordingToPermissions:specialCondition:", objj_msgSend(self._delegate, "buttonWithIdentifier:", TNModuleControlForRemoveUsersFromSharedGroup), ["xmppserver_groups_list", "xmppserver_groups_deleteusers"], condition2);
     if (!objj_msgSend(self._delegate, "currentEntityHasPermissions:", ["xmppserver_users_list", "xmppserver_groups_list", "xmppserver_groups_addusers"]))
         objj_msgSend(self.popoverAddUserInGroup, "close");
     if (!objj_msgSend(self._delegate, "currentEntityHasPermissions:", ["xmppserver_groups_list", "xmppserver_groups_create"]))
@@ -604,8 +329,9 @@ self._usersController = newValue;
 {
     objj_msgSend(self.fieldNewGroupName, "setStringValue:", "");
     objj_msgSend(self.fieldNewGroupDescription, "setStringValue:", "");
+    objj_msgSend(self.fieldNewGroupDisplay, "setStringValue:", "");
     objj_msgSend(self.popoverNewGroup, "close");
-    objj_msgSend(self.popoverNewGroup, "showRelativeToRect:ofView:preferredEdge:", nil, aSender, nil);
+    objj_msgSend(self.popoverNewGroup, "showRelativeToRect:ofView:preferredEdge:", nil, objj_msgSend(self._delegate, "buttonWithIdentifier:", TNModuleControlForAddSharedGroup), nil);
     objj_msgSend(self.popoverNewGroup, "setDefaultButton:", self.buttonCreate);
     objj_msgSend(self.popoverNewGroup, "makeFirstResponder:", self.fieldNewGroupName);
 }
@@ -620,7 +346,7 @@ self._usersController = newValue;
     objj_msgSend(self._usersFetcher, "reset");
     objj_msgSend(self._usersFetcher, "getXMPPUsers");
     objj_msgSend(self.popoverAddUserInGroup, "close");
-    objj_msgSend(self.popoverAddUserInGroup, "showRelativeToRect:ofView:preferredEdge:", nil, aSender, nil);
+    objj_msgSend(self.popoverAddUserInGroup, "showRelativeToRect:ofView:preferredEdge:", nil, objj_msgSend(self._delegate, "buttonWithIdentifier:", TNModuleControlForAddUsersInSharedGroup), nil);
     objj_msgSend(self.popoverAddUserInGroup, "setDefaultButton:", self.buttonAdd);
 }
 ,["id","id"]), new objj_method(sel_getUid("closeAddUserInGroupWindow:"), function $TNXMPPSharedGroupsController__closeAddUserInGroupWindow_(self, _cmd, aSender)
@@ -635,7 +361,7 @@ self._usersController = newValue;
         return;
     }
     objj_msgSend(self.popoverNewGroup, "close");
-    objj_msgSend(self, "createGroup:description:", objj_msgSend(self.fieldNewGroupName, "stringValue"), objj_msgSend(self.fieldNewGroupDescription, "stringValue"));
+    objj_msgSend(self, "createGroup:description:display:", objj_msgSend(self.fieldNewGroupName, "stringValue"), objj_msgSend(self.fieldNewGroupDescription, "stringValue"), objj_msgSend(self.fieldNewGroupDisplay, "stringValue"));
 }
 ,["id","id"]), new objj_method(sel_getUid("deleteGroup:"), function $TNXMPPSharedGroupsController__deleteGroup_(self, _cmd, aSender)
 {
@@ -694,7 +420,7 @@ self._usersController = newValue;
                 name = objj_msgSend(group, "valueForAttribute:", "displayed_name"),
                 desc = objj_msgSend(group, "valueForAttribute:", "description"),
                 users = objj_msgSend(group, "childrenWithName:", "user"),
-                newItem = objj_msgSend(CPDictionary, "dictionaryWithObjects:forKeys:", [gid, name, desc, users], ["id", "name", "description", "users"]);
+                newItem = objj_msgSend(objj_msgSend(CPDictionary, "alloc"), "initWithObjectsAndKeys:", gid, "id", name, "name", desc, "description", users, "users");
             objj_msgSend(self._datasourceGroups, "addObject:", newItem);
         }
         objj_msgSend(self.tableGroups, "reloadData");
@@ -705,21 +431,17 @@ self._usersController = newValue;
     else
         objj_msgSend(self._delegate, "handleIqErrorFromStanza:", aStanza);
 }
-,["void","TNStropheStanza"]), new objj_method(sel_getUid("createGroup:description:"), function $TNXMPPSharedGroupsController__createGroup_description_(self, _cmd, aName, aDescription)
+,["void","TNStropheStanza"]), new objj_method(sel_getUid("createGroup:description:display:"), function $TNXMPPSharedGroupsController__createGroup_description_display_(self, _cmd, aName, aDescription, aDisplay)
 {
     var stanza = objj_msgSend(TNStropheStanza, "iqWithType:", "get");
     objj_msgSend(stanza, "addChildWithName:andAttributes:", "query", {"xmlns": TNArchipelTypeXMPPServerGroups});
-    objj_msgSend(stanza, "addChildWithName:andAttributes:", "archipel", {
-        "action": TNArchipelTypeXMPPServerGroupsCreate,
-        "id": objj_msgSend(CPString, "UUID"),
-        "name": aName,
-        "description": aDescription});
+    objj_msgSend(stanza, "addChildWithName:andAttributes:", "archipel", {"action": TNArchipelTypeXMPPServerGroupsCreate, "id": aName, "name": aName, "description": aDescription, "display": aDisplay});
     objj_msgSend(self._entity, "sendStanza:andRegisterSelector:ofObject:", stanza, sel_getUid("_didCreateGroup:"), self);
 }
-,["void","CPString","CPString"]), new objj_method(sel_getUid("_didCreateGroup:"), function $TNXMPPSharedGroupsController___didCreateGroup_(self, _cmd, aStanza)
+,["void","CPString","CPString","CPString"]), new objj_method(sel_getUid("_didCreateGroup:"), function $TNXMPPSharedGroupsController___didCreateGroup_(self, _cmd, aStanza)
 {
     if (objj_msgSend(aStanza, "type") == "result")
-        objj_msgSend(self, "reload")
+        objj_msgSend(self, "reload");
     else
         objj_msgSend(self._delegate, "handleIqErrorFromStanza:", aStanza);
 }
@@ -727,15 +449,13 @@ self._usersController = newValue;
 {
     var stanza = objj_msgSend(TNStropheStanza, "iqWithType:", "get");
     objj_msgSend(stanza, "addChildWithName:andAttributes:", "query", {"xmlns": TNArchipelTypeXMPPServerGroups});
-    objj_msgSend(stanza, "addChildWithName:andAttributes:", "archipel", {
-        "action": TNArchipelTypeXMPPServerGroupsDelete,
-        "id": aGroupId});
+    objj_msgSend(stanza, "addChildWithName:andAttributes:", "archipel", {"action": TNArchipelTypeXMPPServerGroupsDelete, "id": aGroupId});
     objj_msgSend(self._entity, "sendStanza:andRegisterSelector:ofObject:", stanza, sel_getUid("_didRemoveGroup:"), self);
 }
 ,["void","CPString"]), new objj_method(sel_getUid("_didRemoveGroup:"), function $TNXMPPSharedGroupsController___didRemoveGroup_(self, _cmd, aStanza)
 {
     if (objj_msgSend(aStanza, "type") == "result")
-        objj_msgSend(self, "reload")
+        objj_msgSend(self, "reload");
     else
         objj_msgSend(self._delegate, "handleIqErrorFromStanza:", aStanza);
 }
@@ -743,9 +463,7 @@ self._usersController = newValue;
 {
     var stanza = objj_msgSend(TNStropheStanza, "iqWithType:", "get");
     objj_msgSend(stanza, "addChildWithName:andAttributes:", "query", {"xmlns": TNArchipelTypeXMPPServerGroups});
-    objj_msgSend(stanza, "addChildWithName:andAttributes:", "archipel", {
-        "action": TNArchipelTypeXMPPServerGroupsAddUsers,
-        "groupid": aGroupUID});
+    objj_msgSend(stanza, "addChildWithName:andAttributes:", "archipel", {"action": TNArchipelTypeXMPPServerGroupsAddUsers, "groupid": aGroupUID});
     for (var i = 0; i < objj_msgSend(someJIDs, "count"); i++)
     {
         objj_msgSend(stanza, "addChildWithName:andAttributes:", "user", {"jid": objj_msgSend(objj_msgSend(someJIDs, "objectAtIndex:", i), "objectForKey:", "JID")});
@@ -764,9 +482,7 @@ self._usersController = newValue;
 {
     var stanza = objj_msgSend(TNStropheStanza, "iqWithType:", "get");
     objj_msgSend(stanza, "addChildWithName:andAttributes:", "query", {"xmlns": TNArchipelTypeXMPPServerGroups});
-    objj_msgSend(stanza, "addChildWithName:andAttributes:", "archipel", {
-        "action": TNArchipelTypeXMPPServerGroupsDeleteUsers,
-        "groupid": aGroupUID});
+    objj_msgSend(stanza, "addChildWithName:andAttributes:", "archipel", {"action": TNArchipelTypeXMPPServerGroupsDeleteUsers, "groupid": aGroupUID});
     for (var i = 0; i < objj_msgSend(someJIDs, "count"); i++)
     {
         objj_msgSend(stanza, "addChildWithName:andAttributes:", "user", {"jid": objj_msgSend(objj_msgSend(someJIDs, "objectAtIndex:", i), "objectForKey:", "JID")});
@@ -804,7 +520,7 @@ self._usersController = newValue;
             for (var i = 0; i < objj_msgSend(users, "count"); i++)
             {
                 var user = objj_msgSend(users, "objectAtIndex:", i),
-                    newItem = objj_msgSend(CPDictionary, "dictionaryWithObjects:forKeys:", [objj_msgSend(user, "valueForAttribute:", "jid")], ["JID"]);
+                    newItem = objj_msgSend(objj_msgSend(CPDictionary, "alloc"), "initWithObjectsAndKeys:", objj_msgSend(user, "valueForAttribute:", "jid"), "JID");
                 objj_msgSend(self._datasourceUsersInGroup, "addObject:", newItem);
             }
             objj_msgSend(self.tableUsersInGroup, "reloadData");
@@ -812,131 +528,274 @@ self._usersController = newValue;
     }
     objj_msgSend(self, "setUIAccordingToPermissions");
 }
-,["void","CPNotification"]), new objj_method(sel_getUid("userFetcherClean"), function $TNXMPPSharedGroupsController__userFetcherClean(self, _cmd)
+,["void","CPNotification"]), new objj_method(sel_getUid("tableView:menuForTableColumn:row:"), function $TNXMPPSharedGroupsController__tableView_menuForTableColumn_row_(self, _cmd, aTableView, aColumn, aRow)
+{
+    var itemRow = objj_msgSend(aTableView, "rowAtPoint:", aRow);
+    if (objj_msgSend(aTableView, "selectedRow") != aRow)
+        objj_msgSend(aTableView, "selectRowIndexes:byExtendingSelection:", objj_msgSend(CPIndexSet, "indexSetWithIndex:", aRow), NO);
+    objj_msgSend(self._contextualMenu, "removeAllItems");
+    switch(aTableView) {
+    case self.tableUsersInGroup:
+        if (objj_msgSend(aTableView, "numberOfSelectedRows") == 0)
+        {
+            objj_msgSend(self._contextualMenu, "addItem:", objj_msgSend(self._delegate, "menuItemWithIdentifier:", TNModuleControlForAddUsersInSharedGroup));
+        }
+        else
+        {
+            objj_msgSend(self._contextualMenu, "addItem:", objj_msgSend(self._delegate, "menuItemWithIdentifier:", TNModuleControlForRemoveUsersFromSharedGroup));
+        }
+        break;
+    case self.tableGroups:
+        if (objj_msgSend(aTableView, "numberOfSelectedRows") == 0)
+        {
+            objj_msgSend(self._contextualMenu, "addItem:", objj_msgSend(self._delegate, "menuItemWithIdentifier:", TNModuleControlForAddSharedGroup));
+        }
+        else
+        {
+            objj_msgSend(self._contextualMenu, "addItem:", objj_msgSend(self._delegate, "menuItemWithIdentifier:", TNModuleControlForRemoveSharedGroup));
+        }
+        break;
+    }
+    return self._contextualMenu;
+}
+,["CPMenu","CPTableView","CPTableColumn","int"]), new objj_method(sel_getUid("tableViewDeleteKeyPressed:"), function $TNXMPPSharedGroupsController__tableViewDeleteKeyPressed_(self, _cmd, aTableView)
+{
+    if (objj_msgSend(aTableView, "numberOfSelectedRows") == 0)
+        return;
+    switch(aTableView) {
+    case self.tableUsersInGroup:
+        objj_msgSend(self, "removeUsersFromGroup");
+        break;
+    case self.tableGroups:
+        objj_msgSend(self, "RemoveSharedGroup");
+        break;
+    }
+}
+,["void","CPTableView"]), new objj_method(sel_getUid("userFetcherClean"), function $TNXMPPSharedGroupsController__userFetcherClean(self, _cmd)
 {
     objj_msgSend(self._usersFetcher, "reset");
     objj_msgSend(self._datasourceUsers, "removeAllObjects");
     objj_msgSend(self.tableUsers, "reloadData");
 }
 ,["void"])]);
-}
-CPBundleLocalizedString = function(key, comment)
+}CPBundleLocalizedString = function(key, comment)
 {
     return CPLocalizedStringFromTableInBundle(key, nil, objj_msgSend(CPBundle, "bundleForClass:", TNXMPPSharedGroupsController), comment);
-}p;23;TNXMPPUsersController.jt;20312;@STATIC;1.0;I;23;Foundation/Foundation.jI;17;AppKit/CPButton.jI;20;AppKit/CPButtonBar.jI;16;AppKit/CPImage.jI;21;AppKit/CPScrollView.jI;22;AppKit/CPSearchField.jI;20;AppKit/CPTableView.jI;20;AppKit/CPTextField.jI;15;AppKit/CPView.jI;17;AppKit/CPWindow.jI;33;GrowlCappuccino/GrowlCappuccino.jI;15;TNKit/TNAlert.jI;33;TNKit/TNTableViewLazyDataSource.ji;25;TNXMPPServerUserFetcher.jt;19925;objj_executeFile("Foundation/Foundation.j", NO);
-objj_executeFile("AppKit/CPButton.j", NO);
-objj_executeFile("AppKit/CPButtonBar.j", NO);
-objj_executeFile("AppKit/CPImage.j", NO);
-objj_executeFile("AppKit/CPScrollView.j", NO);
-objj_executeFile("AppKit/CPSearchField.j", NO);
-objj_executeFile("AppKit/CPTableView.j", NO);
-objj_executeFile("AppKit/CPTextField.j", NO);
-objj_executeFile("AppKit/CPView.j", NO);
-objj_executeFile("AppKit/CPWindow.j", NO);
-objj_executeFile("GrowlCappuccino/GrowlCappuccino.j", NO);
-objj_executeFile("TNKit/TNAlert.j", NO);
-objj_executeFile("TNKit/TNTableViewLazyDataSource.j", NO);
-objj_executeFile("TNXMPPServerUserFetcher.j", YES);
-//@class TNTableViewLazyDataSource
-//@class TNPermissionsCenter
-//@global CPLocalizedString
-//@global CPLocalizedStringFromTableInBundle
-//@global TNPermissionsAdminListUpdatedNotification
-var TNArchipelTypeXMPPServerUsers = "archipel:xmppserver:users",
+}
+p;24;TNXMPPServerController.jt;12612;@STATIC;1.0;I;23;Foundation/Foundation.jI;16;AppKit/CPImage.jI;19;AppKit/CPMenuItem.jI;22;AppKit/CPPopUpButton.jI;22;AppKit/CPPopUpButton.jI;18;AppKit/CPTabView.jI;15;AppKit/CPView.ji;22;../../Model/TNModule.ji;30;TNXMPPSharedGroupsController.ji;23;TNXMPPUsersController.jt;12332;objj_executeFile("Foundation/Foundation.j", NO);objj_executeFile("AppKit/CPImage.j", NO);objj_executeFile("AppKit/CPMenuItem.j", NO);objj_executeFile("AppKit/CPPopUpButton.j", NO);objj_executeFile("AppKit/CPPopUpButton.j", NO);objj_executeFile("AppKit/CPTabView.j", NO);objj_executeFile("AppKit/CPView.j", NO);objj_executeFile("../../Model/TNModule.j", YES);objj_executeFile("TNXMPPSharedGroupsController.j", YES);objj_executeFile("TNXMPPUsersController.j", YES);var TNArchipelPushNotificationXMPPServerUsers = "archipel:push:xmppserver:users";
+{var the_class = objj_allocateClassPair(TNModule, "TNXMPPServerController"),
+meta_class = the_class.isa;class_addIvars(the_class, [new objj_ivar("checkBoxPreferencesUseSRG"), new objj_ivar("buttonHypervisors"), new objj_ivar("tabViewMain"), new objj_ivar("viewBottom"), new objj_ivar("sharedGroupsController"), new objj_ivar("usersController"), new objj_ivar("_pushRegistred"), new objj_ivar("_defaultAvatar"), new objj_ivar("_itemViewGroups"), new objj_ivar("_itemViewUsers")]);objj_registerClassPair(the_class);
+class_addMethods(the_class, [new objj_method(sel_getUid("awakeFromCib"), function $TNXMPPServerController__awakeFromCib(self, _cmd)
+{
+    var bundle = objj_msgSend(CPBundle, "bundleForClass:", objj_msgSend(self, "class")),
+        defaults = objj_msgSend(CPUserDefaults, "standardUserDefaults");
+    objj_msgSend(defaults, "registerDefaults:", objj_msgSend(objj_msgSend(CPDictionary, "alloc"), "initWithObjectsAndKeys:", objj_msgSend(bundle, "objectForInfoDictionaryKey:", "TNArchipelUseEjabberdSharedRosterGroups"), "TNArchipelUseEjabberdSharedRosterGroups"));
+    self._defaultAvatar = CPImageInBundle("user-unknown.png", nil, objj_msgSend(CPBundle, "mainBundle"));
+    (self._itemViewUsers = objj_msgSend(objj_msgSend(CPTabViewItem, "alloc"), "initWithIdentifier:", "itemUsers"), self._itemViewGroups = objj_msgSend(objj_msgSend(CPTabViewItem, "alloc"), "initWithIdentifier:", "itemGroups"));
+    objj_msgSend(self._itemViewUsers, "setLabel:", CPBundleLocalizedString("XMPP Users", "XMPP Users"));
+    objj_msgSend(self._itemViewUsers, "setView:", objj_msgSend(self.usersController, "mainView"));
+    objj_msgSend(self._itemViewGroups, "setLabel:", CPBundleLocalizedString("Shared Groups", "Shared Groups"));
+    objj_msgSend(self._itemViewGroups, "setView:", objj_msgSend(self.sharedGroupsController, "mainView"));
+    objj_msgSend(self, "manageToolbarItems");
+    objj_msgSend(self.usersController, "setDelegate:", self);
+    objj_msgSend(self.usersController, "setContextualMenu:", self._contextualMenu);
+    objj_msgSend(self.usersController, "populateViewWithControls");
+    objj_msgSend(self.sharedGroupsController, "setDelegate:", self);
+    objj_msgSend(self.sharedGroupsController, "setContextualMenu:", self._contextualMenu);
+    objj_msgSend(self.sharedGroupsController, "setUsersController:", self.usersController);
+    objj_msgSend(self.sharedGroupsController, "populateViewWithControls");
+    self._pushRegistred = NO;
+    objj_msgSend(self.buttonHypervisors, "setTarget:", self);
+    objj_msgSend(self.buttonHypervisors, "setAction:", sel_getUid("changeCurrentHypervisor:"));
+    var imageBg = CPImageInBundle("bg-controls.png", nil, objj_msgSend(CPBundle, "bundleForClass:", objj_msgSend(self, "class")));
+    objj_msgSend(self.viewBottom, "setBackgroundColor:", objj_msgSend(CPColor, "colorWithPatternImage:", imageBg));
+}
+,["void"]), new objj_method(sel_getUid("willShow"), function $TNXMPPServerController__willShow(self, _cmd)
+{
+    if (!objj_msgSendSuper({ receiver:self, super_class:objj_getClass("TNXMPPServerController").super_class }, "willShow"))
+        return NO;
+    objj_msgSend(self, "populateHypervisors");
+    if (!self._pushRegistred)
+    {
+        objj_msgSend(self, "registerSelector:ofObject:forPushNotificationType:", sel_getUid("_didReceiveUsersPush:"), self.usersController, TNArchipelPushNotificationXMPPServerUsers);
+        self._pushRegistred = YES;
+    }
+    objj_msgSend(self, "tabView:didSelectTabViewItem:", self.tabViewMain, objj_msgSend(self.tabViewMain, "selectedTabViewItem"));
+    return YES;
+}
+,["BOOL"]), new objj_method(sel_getUid("willHide"), function $TNXMPPServerController__willHide(self, _cmd)
+{
+    if (objj_msgSend(objj_msgSend(CPUserDefaults, "standardUserDefaults"), "integerForKey:", "TNArchipelUseEjabberdSharedRosterGroups"))
+        objj_msgSend(self.sharedGroupsController, "willHide");
+    objj_msgSend(self.usersController, "willHide");
+    objj_msgSend(self, "flushUI");
+    objj_msgSend(objj_msgSend(CPNotificationCenter, "defaultCenter"), "removeObserver:", self);
+    objj_msgSendSuper({ receiver:self, super_class:objj_getClass("TNXMPPServerController").super_class }, "willHide");
+}
+,["void"]), new objj_method(sel_getUid("permissionsChanged"), function $TNXMPPServerController__permissionsChanged(self, _cmd)
+{
+    objj_msgSendSuper({ receiver:self, super_class:objj_getClass("TNXMPPServerController").super_class }, "permissionsChanged");
+    if (objj_msgSend(objj_msgSend(CPUserDefaults, "standardUserDefaults"), "integerForKey:", "TNArchipelUseEjabberdSharedRosterGroups"))
+        objj_msgSend(self.sharedGroupsController, "permissionsChanged");
+    objj_msgSend(self.usersController, "permissionsChanged");
+}
+,["void"]), new objj_method(sel_getUid("setUIAccordingToPermissions"), function $TNXMPPServerController__setUIAccordingToPermissions(self, _cmd)
+{
+    if (objj_msgSend(objj_msgSend(CPUserDefaults, "standardUserDefaults"), "integerForKey:", "TNArchipelUseEjabberdSharedRosterGroups"))
+        objj_msgSend(self.sharedGroupsController, "setUIAccordingToPermissions");
+    objj_msgSend(self.usersController, "setUIAccordingToPermissions");
+}
+,["void"]), new objj_method(sel_getUid("savePreferences"), function $TNXMPPServerController__savePreferences(self, _cmd)
+{
+    var defaults = objj_msgSend(CPUserDefaults, "standardUserDefaults");
+    objj_msgSend(defaults, "setBool:forKey:", objj_msgSend(self.checkBoxPreferencesUseSRG, "state") == CPOnState, "TNArchipelUseEjabberdSharedRosterGroups");
+    objj_msgSend(self, "manageToolbarItems");
+}
+,["void"]), new objj_method(sel_getUid("loadPreferences"), function $TNXMPPServerController__loadPreferences(self, _cmd)
+{
+    var defaults = objj_msgSend(CPUserDefaults, "standardUserDefaults");
+    objj_msgSend(self.checkBoxPreferencesUseSRG, "setState:", objj_msgSend(defaults, "boolForKey:", "TNArchipelUseEjabberdSharedRosterGroups") ? CPOnState : CPOffState);
+}
+,["void"]), new objj_method(sel_getUid("flushUI"), function $TNXMPPServerController__flushUI(self, _cmd)
+{
+    if (objj_msgSend(objj_msgSend(CPUserDefaults, "standardUserDefaults"), "integerForKey:", "TNArchipelUseEjabberdSharedRosterGroups"))
+        objj_msgSend(self.sharedGroupsController, "flushUI");
+    objj_msgSend(self.usersController, "flushUI");
+}
+,["void"]), new objj_method(sel_getUid("_didHypervisorPresenceUpdate:"), function $TNXMPPServerController___didHypervisorPresenceUpdate_(self, _cmd, aNotification)
+{
+    objj_msgSend(self, "populateHypervisors");
+    objj_msgSend(self.usersController, "reload");
+    if (objj_msgSend(objj_msgSend(CPUserDefaults, "standardUserDefaults"), "integerForKey:", "TNArchipelUseEjabberdSharedRosterGroups"))
+        objj_msgSend(self.sharedGroupsController, "reload");
+}
+,["void","CPNotification"]), new objj_method(sel_getUid("manageToolbarItems"), function $TNXMPPServerController__manageToolbarItems(self, _cmd)
+{
+    objj_msgSend(self.tabViewMain, "setDelegate:", nil);
+    if (!objj_msgSend(objj_msgSend(self.tabViewMain, "tabViewItems"), "containsObject:", self._itemViewUsers))
+        objj_msgSend(self.tabViewMain, "addTabViewItem:", self._itemViewUsers);
+    if (objj_msgSend(objj_msgSend(CPUserDefaults, "standardUserDefaults"), "integerForKey:", "TNArchipelUseEjabberdSharedRosterGroups"))
+    {
+        if (!objj_msgSend(objj_msgSend(self.tabViewMain, "tabViewItems"), "containsObject:", self._itemViewGroups))
+            objj_msgSend(self.tabViewMain, "addTabViewItem:", self._itemViewGroups);
+    }
+    else
+    {
+        objj_msgSend(self.tabViewMain, "removeTabViewItem:", self._itemViewGroups);
+        objj_msgSend(self.tabViewMain, "selectFirstTabViewItem:", nil);
+    }
+    objj_msgSend(self.tabViewMain, "setDelegate:", self);
+}
+,["void"]), new objj_method(sel_getUid("populateHypervisors"), function $TNXMPPServerController__populateHypervisors(self, _cmd)
+{
+    objj_msgSend(self.buttonHypervisors, "removeAllItems");
+    var servers = objj_msgSend(CPArray, "array"),
+        items = objj_msgSend(CPArray, "array");
+    for (var i = 0; i < objj_msgSend(objj_msgSend(objj_msgSend(objj_msgSend(TNStropheIMClient, "defaultClient"), "roster"), "contacts"), "count"); i++)
+    {
+        var contact = objj_msgSend(objj_msgSend(objj_msgSend(objj_msgSend(TNStropheIMClient, "defaultClient"), "roster"), "contacts"), "objectAtIndex:", i),
+            item = objj_msgSend(objj_msgSend(CPMenuItem, "alloc"), "init");
+        if (objj_msgSend(objj_msgSend(objj_msgSend(TNStropheIMClient, "defaultClient"), "roster"), "analyseVCard:", objj_msgSend(contact, "vCard")) === TNArchipelEntityTypeHypervisor && objj_msgSend(contact, "XMPPShow") != TNStropheContactStatusOffline && !objj_msgSend(servers, "containsObject:", objj_msgSend(objj_msgSend(contact, "JID"), "domain")))
+        {
+            objj_msgSend(servers, "addObject:", objj_msgSend(objj_msgSend(contact, "JID"), "domain"));
+            objj_msgSend(item, "setTitle:", objj_msgSend(objj_msgSend(contact, "JID"), "domain"));
+            objj_msgSend(item, "setRepresentedObject:", contact);
+            objj_msgSend(items, "addObject:", item);
+            objj_msgSend(objj_msgSend(CPNotificationCenter, "defaultCenter"), "removeObserver:name:object:", self, TNStropheContactPresenceUpdatedNotification, contact);
+            objj_msgSend(objj_msgSend(CPNotificationCenter, "defaultCenter"), "addObserver:selector:name:object:", self, sel_getUid("_didHypervisorPresenceUpdate:"), TNStropheContactPresenceUpdatedNotification, contact);
+        }
+    }
+    var sortDescriptor = objj_msgSend(CPSortDescriptor, "sortDescriptorWithKey:ascending:", "title.uppercaseString", YES),
+        sortedItems = objj_msgSend(items, "sortedArrayUsingDescriptors:", objj_msgSend(CPArray, "arrayWithObject:", sortDescriptor));
+    for (var i = 0; i < objj_msgSend(sortedItems, "count"); i++)
+        objj_msgSend(self.buttonHypervisors, "addItem:", objj_msgSend(sortedItems, "objectAtIndex:", i));
+    objj_msgSend(self.buttonHypervisors, "selectItemAtIndex:", 0);
+    self._entity = objj_msgSend(objj_msgSend(self.buttonHypervisors, "selectedItem"), "representedObject");
+}
+,["void"]), new objj_method(sel_getUid("changeCurrentHypervisor:"), function $TNXMPPServerController__changeCurrentHypervisor_(self, _cmd, aSender)
+{
+    self._entity = objj_msgSend(objj_msgSend(self.buttonHypervisors, "selectedItem"), "representedObject");
+    objj_msgSend(self.usersController, "setEntity:", objj_msgSend(objj_msgSend(self.buttonHypervisors, "selectedItem"), "representedObject"));
+    if (objj_msgSend(objj_msgSend(CPUserDefaults, "standardUserDefaults"), "integerForKey:", "TNArchipelUseEjabberdSharedRosterGroups"))
+        objj_msgSend(self.sharedGroupsController, "setEntity:", objj_msgSend(objj_msgSend(self.buttonHypervisors, "selectedItem"), "representedObject"));
+    objj_msgSend(self, "permissionsChanged");
+}
+,["id","id"]), new objj_method(sel_getUid("tabView:didSelectTabViewItem:"), function $TNXMPPServerController__tabView_didSelectTabViewItem_(self, _cmd, aTabView, anItem)
+{
+    switch(objj_msgSend(anItem, "identifier")) {
+    case "itemUsers":
+        objj_msgSend(self.usersController, "setEntity:", objj_msgSend(objj_msgSend(self.buttonHypervisors, "selectedItem"), "representedObject"));
+        objj_msgSend(self.usersController, "reload");
+        break;
+    case "itemGroups":
+        objj_msgSend(self.sharedGroupsController, "setEntity:", objj_msgSend(objj_msgSend(self.buttonHypervisors, "selectedItem"), "representedObject"));
+        objj_msgSend(self.sharedGroupsController, "reload");
+        break;
+    }
+}
+,["void","CPTabView","CPTabViewItem"])]);
+}CPBundleLocalizedString = function(key, comment)
+{
+    return CPLocalizedStringFromTableInBundle(key, nil, objj_msgSend(CPBundle, "bundleForClass:", TNXMPPServerController), comment);
+}
+p;23;TNXMPPUsersController.jt;22117;@STATIC;1.0;I;23;Foundation/Foundation.jI;17;AppKit/CPButton.jI;20;AppKit/CPButtonBar.jI;16;AppKit/CPImage.jI;21;AppKit/CPScrollView.jI;22;AppKit/CPSearchField.jI;20;AppKit/CPTableView.jI;20;AppKit/CPTextField.jI;15;AppKit/CPView.jI;17;AppKit/CPWindow.jI;33;GrowlCappuccino/GrowlCappuccino.jI;15;TNKit/TNAlert.jI;33;TNKit/TNTableViewLazyDataSource.ji;25;TNXMPPServerUserFetcher.jt;21730;objj_executeFile("Foundation/Foundation.j", NO);objj_executeFile("AppKit/CPButton.j", NO);objj_executeFile("AppKit/CPButtonBar.j", NO);objj_executeFile("AppKit/CPImage.j", NO);objj_executeFile("AppKit/CPScrollView.j", NO);objj_executeFile("AppKit/CPSearchField.j", NO);objj_executeFile("AppKit/CPTableView.j", NO);objj_executeFile("AppKit/CPTextField.j", NO);objj_executeFile("AppKit/CPView.j", NO);objj_executeFile("AppKit/CPWindow.j", NO);objj_executeFile("GrowlCappuccino/GrowlCappuccino.j", NO);objj_executeFile("TNKit/TNAlert.j", NO);objj_executeFile("TNKit/TNTableViewLazyDataSource.j", NO);objj_executeFile("TNXMPPServerUserFetcher.j", YES);var TNArchipelTypeXMPPServerUsers = "archipel:xmppserver:users",
     TNArchipelTypeXMPPServerUsersRegister = "register",
-    TNArchipelTypeXMPPServerUsersUnregister = "unregister",
-    TNArchipelXMPPUserAdminImage,
-    TNArchipelXMPPUserNormalImage;
+    TNArchipelTypeXMPPServerUsersUnregister = "unregister";
+var TNModuleControlForRegisterUser = "RegisterUser",
+    TNModuleControlForUnregisterUser = "UnregisterUser",
+    TNModuleControlForGrantAdmin = "GrantAdmin",
+    TNModuleControlForRevokeAdmin = "RevokeAdmin";
 {var the_class = objj_allocateClassPair(CPObject, "TNXMPPUsersController"),
-meta_class = the_class.isa;class_addIvars(the_class, [new objj_ivar("buttonCreate"), new objj_ivar("buttonBarControl"), new objj_ivar("imageFecthingUsers"), new objj_ivar("popoverNewUser"), new objj_ivar("filterField"), new objj_ivar("tableUsers"), new objj_ivar("fieldNewUserPassword"), new objj_ivar("fieldNewUserPasswordConfirm"), new objj_ivar("fieldNewUserUsername"), new objj_ivar("labelFecthingUsers"), new objj_ivar("mainView"), new objj_ivar("viewTableContainer"), new objj_ivar("_delegate"), new objj_ivar("_entity"), new objj_ivar("_datasourceUsers"), new objj_ivar("_addButton"), new objj_ivar("_deleteButton"), new objj_ivar("_grantAdminButton"), new objj_ivar("_revokeAdminButton"), new objj_ivar("_usersFetcher")]);
-
-       
-       
-
-       
-       
-
-       
-       
-
-
-
-
-
-       
-       
-
-
-
-
-
-
-       
-       
-
-
-
-
-       
-       
-
-objj_registerClassPair(the_class);
+meta_class = the_class.isa;class_addIvars(the_class, [new objj_ivar("buttonCreate"), new objj_ivar("buttonBarControl"), new objj_ivar("imageFecthingUsers"), new objj_ivar("popoverNewUser"), new objj_ivar("filterField"), new objj_ivar("tableUsers"), new objj_ivar("fieldNewUserPassword"), new objj_ivar("fieldNewUserPasswordConfirm"), new objj_ivar("fieldNewUserUsername"), new objj_ivar("labelFecthingUsers"), new objj_ivar("mainView"), new objj_ivar("viewTableContainer"), new objj_ivar("_delegate"), new objj_ivar("_contextualMenu"), new objj_ivar("_entity"), new objj_ivar("_datasourceUsers"), new objj_ivar("_usersFetcher")]);objj_registerClassPair(the_class);
 class_addMethods(the_class, [new objj_method(sel_getUid("mainView"), function $TNXMPPUsersController__mainView(self, _cmd)
 {
-return self.mainView;
+    return self.mainView;
 }
 ,["CPView"]), new objj_method(sel_getUid("setMainView:"), function $TNXMPPUsersController__setMainView_(self, _cmd, newValue)
 {
-self.mainView = newValue;
+    self.mainView = newValue;
 }
 ,["void","CPView"]), new objj_method(sel_getUid("delegate"), function $TNXMPPUsersController__delegate(self, _cmd)
 {
-return self._delegate;
+    return self._delegate;
 }
 ,["id"]), new objj_method(sel_getUid("setDelegate:"), function $TNXMPPUsersController__setDelegate_(self, _cmd, newValue)
 {
-self._delegate = newValue;
+    self._delegate = newValue;
 }
-,["void","id"]), new objj_method(sel_getUid("awakeFromCib"), function $TNXMPPUsersController__awakeFromCib(self, _cmd)
+,["void","id"]), new objj_method(sel_getUid("contextualMenu"), function $TNXMPPUsersController__contextualMenu(self, _cmd)
+{
+    return self._contextualMenu;
+}
+,["CPMenuItem"]), new objj_method(sel_getUid("setContextualMenu:"), function $TNXMPPUsersController__setContextualMenu_(self, _cmd, newValue)
+{
+    self._contextualMenu = newValue;
+}
+,["void","CPMenuItem"]), new objj_method(sel_getUid("awakeFromCib"), function $TNXMPPUsersController__awakeFromCib(self, _cmd)
 {
     objj_msgSend(self.viewTableContainer, "setBorderedWithHexColor:", "#C0C7D2");
-    objj_msgSend(self.imageFecthingUsers, "setImage:", objj_msgSend(objj_msgSend(CPImage, "alloc"), "initWithContentsOfFile:size:", objj_msgSend(objj_msgSend(CPBundle, "mainBundle"), "pathForResource:", "spinner.gif"), CGSizeMake(16, 16)));
+    objj_msgSend(self.imageFecthingUsers, "setImage:", CPImageInBundle("spinner.gif", CGSizeMake(16, 16), objj_msgSend(CPBundle, "mainBundle")));
     self._datasourceUsers = objj_msgSend(objj_msgSend(TNTableViewLazyDataSource, "alloc"), "init");
     objj_msgSend(self._datasourceUsers, "setTable:", self.tableUsers);
     objj_msgSend(self._datasourceUsers, "setSearchableKeyPaths:", ["name", "JID"]);
     objj_msgSend(self.tableUsers, "setDataSource:", self._datasourceUsers);
+    objj_msgSend(self.tableUsers, "setDelegate:", self);
     self._usersFetcher = objj_msgSend(objj_msgSend(TNXMPPServerUserFetcher, "alloc"), "init");
     objj_msgSend(self._usersFetcher, "setDataSource:", self._datasourceUsers);
     objj_msgSend(self._usersFetcher, "setDelegate:", self);
     objj_msgSend(self._usersFetcher, "setDisplaysOnlyHumans:", YES);
-    self._addButton = objj_msgSend(CPButtonBar, "plusButton");
-    objj_msgSend(self._addButton, "setImage:", objj_msgSend(objj_msgSend(CPImage, "alloc"), "initWithContentsOfFile:size:", objj_msgSend(objj_msgSend(CPBundle, "mainBundle"), "pathForResource:", "IconsButtons/user-add.png"), CGSizeMake(16, 16)));
-    objj_msgSend(self._addButton, "setTarget:", self);
-    objj_msgSend(self._addButton, "setAction:", sel_getUid("openRegisterUserWindow:"));
-    objj_msgSend(self._addButton, "setToolTip:", CPBundleLocalizedString("Register a new user", "Register a new user"));
-    self._deleteButton = objj_msgSend(CPButtonBar, "plusButton");
-    objj_msgSend(self._deleteButton, "setImage:", objj_msgSend(objj_msgSend(CPImage, "alloc"), "initWithContentsOfFile:size:", objj_msgSend(objj_msgSend(CPBundle, "mainBundle"), "pathForResource:", "IconsButtons/user-remove.png"), CGSizeMake(16, 16)));
-    objj_msgSend(self._deleteButton, "setTarget:", self);
-    objj_msgSend(self._deleteButton, "setAction:", sel_getUid("unregisterUser:"));
-    objj_msgSend(self._deleteButton, "setToolTip:", CPBundleLocalizedString("Unregister selected users", "Unregister selected users"));
-    self._grantAdminButton = objj_msgSend(CPButtonBar, "plusButton");
-    objj_msgSend(self._grantAdminButton, "setImage:", objj_msgSend(objj_msgSend(CPImage, "alloc"), "initWithContentsOfFile:size:", objj_msgSend(objj_msgSend(CPBundle, "mainBundle"), "pathForResource:", "IconsButtons/star.png"), CGSizeMake(16, 16)));
-    objj_msgSend(self._grantAdminButton, "setTarget:", self);
-    objj_msgSend(self._grantAdminButton, "setAction:", sel_getUid("grantAdmin:"));
-    objj_msgSend(self._grantAdminButton, "setToolTip:", CPBundleLocalizedString("Make selected users as admins", "Make selected users as admins"));
-    self._revokeAdminButton = objj_msgSend(CPButtonBar, "minusButton");
-    objj_msgSend(self._revokeAdminButton, "setImage:", objj_msgSend(objj_msgSend(CPImage, "alloc"), "initWithContentsOfFile:size:", objj_msgSend(objj_msgSend(CPBundle, "mainBundle"), "pathForResource:", "IconsButtons/unstar.png"), CGSizeMake(16, 16)));
-    objj_msgSend(self._revokeAdminButton, "setTarget:", self);
-    objj_msgSend(self._revokeAdminButton, "setAction:", sel_getUid("revokeAdmin:"));
-    objj_msgSend(self._revokeAdminButton, "setToolTip:", CPBundleLocalizedString("Remove admin rights to selected users", "Remove admin rights to selected users"));
-    objj_msgSend(self.buttonBarControl, "setButtons:", [self._addButton, self._deleteButton, self._grantAdminButton, self._revokeAdminButton]);
     objj_msgSend(self.filterField, "setTarget:", self._datasourceUsers);
     objj_msgSend(self.filterField, "setAction:", sel_getUid("filterObjects:"));
     objj_msgSend(self.fieldNewUserPassword, "setSecure:", YES);
     objj_msgSend(self.fieldNewUserPasswordConfirm, "setSecure:", YES);
     objj_msgSend(objj_msgSend(CPNotificationCenter, "defaultCenter"), "addObserver:selector:name:object:", self, sel_getUid("_didAdminAccountsListUpdate:"), TNPermissionsAdminListUpdatedNotification, nil);
+    objj_msgSend(objj_msgSend(CPNotificationCenter, "defaultCenter"), "addObserver:selector:name:object:", self, sel_getUid("_didUsernameChanged:"), CPControlTextDidChangeNotification, self.fieldNewUserUsername);
 }
-,["void"]), new objj_method(sel_getUid("_didAdminAccountsListUpdate:"), function $TNXMPPUsersController___didAdminAccountsListUpdate_(self, _cmd, aNotification)
+,["void"]), new objj_method(sel_getUid("_didUsernameChanged:"), function $TNXMPPUsersController___didUsernameChanged_(self, _cmd, aNotification)
+{
+    objj_msgSend(self.fieldNewUserUsername, "setStringValue:", (objj_msgSend(self.fieldNewUserUsername, "stringValue").split("@"))[0] + "@" + objj_msgSend(objj_msgSend(self._entity, "JID"), "domain"));
+}
+,["void","CPNotification"]), new objj_method(sel_getUid("_didAdminAccountsListUpdate:"), function $TNXMPPUsersController___didAdminAccountsListUpdate_(self, _cmd, aNotification)
 {
     if (objj_msgSend(objj_msgSend(TNStropheIMClient, "defaultClient"), "JID"))
     {
@@ -951,16 +810,15 @@ self._delegate = newValue;
         change = objj_msgSend(somePushInfo, "objectForKey:", "change"),
         date = objj_msgSend(somePushInfo, "objectForKey:", "date"),
         stanza = objj_msgSend(somePushInfo, "objectForKey:", "rawStanza");
-    switch (change)
-    {
-        case "registered":
-            objj_msgSend(self, "flushUI");
-            objj_msgSend(self._usersFetcher, "getXMPPUsers");
-            break;
-        case "unregistered":
-            objj_msgSend(self, "flushUI");
-            objj_msgSend(self._usersFetcher, "getXMPPUsers");
-            break
+    switch(change) {
+    case "registered":
+        objj_msgSend(self, "flushUI");
+        objj_msgSend(self._usersFetcher, "getXMPPUsers");
+        break;
+    case "unregistered":
+        objj_msgSend(self, "flushUI");
+        objj_msgSend(self._usersFetcher, "getXMPPUsers");
+        break;
     }
     return YES;
 }
@@ -969,7 +827,15 @@ self._delegate = newValue;
     self._entity = anEntity;
     objj_msgSend(self._usersFetcher, "setEntity:", self._entity);
 }
-,["void","TNStropheContact"]), new objj_method(sel_getUid("willHide"), function $TNXMPPUsersController__willHide(self, _cmd)
+,["void","TNStropheContact"]), new objj_method(sel_getUid("populateViewWithControls"), function $TNXMPPUsersController__populateViewWithControls(self, _cmd)
+{
+    objj_msgSend(self._delegate, "addControlsWithIdentifier:title:target:action:image:", TNModuleControlForRegisterUser, CPBundleLocalizedString("Register a new user", "Register a new user"), self, sel_getUid("openRegisterUserWindow:"), CPImageInBundle("IconsButtons/user-add.png", nil, objj_msgSend(CPBundle, "mainBundle")));
+    objj_msgSend(self._delegate, "addControlsWithIdentifier:title:target:action:image:", TNModuleControlForUnregisterUser, CPBundleLocalizedString("Unregister selected user(s)", "Unregister selected user(s)"), self, sel_getUid("unregisterUser:"), CPImageInBundle("IconsButtons/user-remove.png", nil, objj_msgSend(CPBundle, "mainBundle")));
+    objj_msgSend(self._delegate, "addControlsWithIdentifier:title:target:action:image:", TNModuleControlForGrantAdmin, CPBundleLocalizedString("Grand selected user(s) as admin", "Grand selected user(s) as admin"), self, sel_getUid("grantAdmin:"), CPImageInBundle("IconsButtons/star.png", nil, objj_msgSend(CPBundle, "mainBundle")));
+    objj_msgSend(self._delegate, "addControlsWithIdentifier:title:target:action:image:", TNModuleControlForRevokeAdmin, CPBundleLocalizedString("Remove admin rights on selected user(s)", "Remove admin rights on selected user(s)"), self, sel_getUid("revokeAdmin:"), CPImageInBundle("IconsButtons/unstar.png", nil, objj_msgSend(CPBundle, "mainBundle")));
+    objj_msgSend(self.buttonBarControl, "setButtons:", [objj_msgSend(self._delegate, "buttonWithIdentifier:", TNModuleControlForRegisterUser), objj_msgSend(self._delegate, "buttonWithIdentifier:", TNModuleControlForUnregisterUser), objj_msgSend(self._delegate, "buttonWithIdentifier:", TNModuleControlForGrantAdmin), objj_msgSend(self._delegate, "buttonWithIdentifier:", TNModuleControlForRevokeAdmin)]);
+}
+,["void"]), new objj_method(sel_getUid("willHide"), function $TNXMPPUsersController__willHide(self, _cmd)
 {
     objj_msgSend(self, "closeRegisterUserWindow:", nil);
     objj_msgSend(self._usersFetcher, "reset");
@@ -980,10 +846,10 @@ self._delegate = newValue;
 }
 ,["void"]), new objj_method(sel_getUid("setUIAccordingToPermissions"), function $TNXMPPUsersController__setUIAccordingToPermissions(self, _cmd)
 {
-    objj_msgSend(self._delegate, "setControl:enabledAccordingToPermissions:", self._revokeAdminButton, ["dummy_permission"]);
-    objj_msgSend(self._delegate, "setControl:enabledAccordingToPermissions:", self._grantAdminButton, ["dummy_permission"]);
-    objj_msgSend(self._delegate, "setControl:enabledAccordingToPermissions:", self._addButton, ["xmppserver_users_list", "xmppserver_users_register"]);
-    objj_msgSend(self._delegate, "setControl:enabledAccordingToPermissions:", self._deleteButton, ["xmppserver_users_list", "xmppserver_users_unregister"]);
+    objj_msgSend(self._delegate, "setControl:enabledAccordingToPermissions:", objj_msgSend(self._delegate, "buttonWithIdentifier:", TNModuleControlForRevokeAdmin), ["dummy_permission"]);
+    objj_msgSend(self._delegate, "setControl:enabledAccordingToPermissions:", objj_msgSend(self._delegate, "buttonWithIdentifier:", TNModuleControlForGrantAdmin), ["dummy_permission"]);
+    objj_msgSend(self._delegate, "setControl:enabledAccordingToPermissions:", objj_msgSend(self._delegate, "buttonWithIdentifier:", TNModuleControlForRegisterUser), ["xmppserver_users_list", "xmppserver_users_register"]);
+    objj_msgSend(self._delegate, "setControl:enabledAccordingToPermissions:", objj_msgSend(self._delegate, "buttonWithIdentifier:", TNModuleControlForUnregisterUser), ["xmppserver_users_list", "xmppserver_users_unregister"]);
     if (!objj_msgSend(self._delegate, "currentEntityHasPermissions:", ["xmppserver_users_list", "xmppserver_users_register"]))
         objj_msgSend(self.popoverNewUser, "close");
 }
@@ -1009,7 +875,7 @@ self._delegate = newValue;
     objj_msgSend(self.fieldNewUserPassword, "setStringValue:", "");
     objj_msgSend(self.fieldNewUserPasswordConfirm, "setStringValue:", "");
     objj_msgSend(self.popoverNewUser, "close");
-    objj_msgSend(self.popoverNewUser, "showRelativeToRect:ofView:preferredEdge:", nil, aSender, nil);
+    objj_msgSend(self.popoverNewUser, "showRelativeToRect:ofView:preferredEdge:", nil, objj_msgSend(self._delegate, "buttonWithIdentifier:", TNModuleControlForRegisterUser), nil);
     objj_msgSend(self.popoverNewUser, "setDefaultButton:", self.buttonCreate);
     objj_msgSend(self.popoverNewUser, "makeFirstResponder:", self.fieldNewUserUsername);
 }
@@ -1031,17 +897,15 @@ self._delegate = newValue;
     }
     objj_msgSend(self.popoverNewUser, "close");
     var JID;
-    try {
+    try    {
         JID = objj_msgSend(TNStropheJID, "stropheJIDWithString:", objj_msgSend(self.fieldNewUserUsername, "stringValue"));
         if (!objj_msgSend(JID, "domain"))
-            objj_msgSend(CPException, "raise:reason:", "Bad JID", "JID must follow the form user@node")
+            objj_msgSend(CPException, "raise:reason:", "Bad JID", "JID must follow the form user@node");
     }
-    catch(e)
-    {
+    catch(e)     {
         objj_msgSend(TNAlert, "showAlertWithMessage:informative:style:", CPBundleLocalizedString("Bad JID", "Bad JID"), objj_msgSend(self.fieldNewUserUsername, "stringValue") + CPLocalizedString(" is not a valid JID.", " is not a valid JID."), CPCriticalAlertStyle);
         return;
-    }
-    objj_msgSend(self, "registerUserWithJID:password:", JID, objj_msgSend(self.fieldNewUserPassword, "stringValue"));
+    }    objj_msgSend(self, "registerUserWithJID:password:", JID, objj_msgSend(self.fieldNewUserPassword, "stringValue"));
 }
 ,["id","id"]), new objj_method(sel_getUid("unregisterUser:"), function $TNXMPPUsersController__unregisterUser_(self, _cmd, aSender)
 {
@@ -1053,7 +917,7 @@ self._delegate = newValue;
     var indexes = objj_msgSend(self.tableUsers, "selectedRowIndexes"),
         users = objj_msgSend(self._datasourceUsers, "objectsAtIndexes:", indexes),
         usernames = objj_msgSend(CPArray, "array");
-    for (var i = 0; i < objj_msgSend(users, "count"); i ++)
+    for (var i = 0; i < objj_msgSend(users, "count"); i++)
     {
         var user = objj_msgSend(users, "objectAtIndex:", i);
         objj_msgSend(usernames, "addObject:", objj_msgSend(user, "objectForKey:", "JID"));
@@ -1066,7 +930,7 @@ self._delegate = newValue;
 {
     var indexes = objj_msgSend(self.tableUsers, "selectedRowIndexes"),
         users = objj_msgSend(self._datasourceUsers, "objectsAtIndexes:", indexes);
-    for (var i = 0; i < objj_msgSend(users, "count"); i ++)
+    for (var i = 0; i < objj_msgSend(users, "count"); i++)
     {
         var user = objj_msgSend(users, "objectAtIndex:", i);
         objj_msgSend(objj_msgSend(TNPermissionsCenter, "defaultCenter"), "addAdminAccount:", objj_msgSend(user, "objectForKey:", "JID"));
@@ -1076,7 +940,7 @@ self._delegate = newValue;
 {
     var indexes = objj_msgSend(self.tableUsers, "selectedRowIndexes"),
         users = objj_msgSend(self._datasourceUsers, "objectsAtIndexes:", indexes);
-    for (var i = 0; i < objj_msgSend(users, "count"); i ++)
+    for (var i = 0; i < objj_msgSend(users, "count"); i++)
     {
         var user = objj_msgSend(users, "objectAtIndex:", i);
         if (!objj_msgSend(objj_msgSend(user, "objectForKey:", "JID"), "bareEquals:", objj_msgSend(objj_msgSend(TNStropheIMClient, "defaultClient"), "JID")))
@@ -1091,8 +955,7 @@ self._delegate = newValue;
 {
     var stanza = objj_msgSend(TNStropheStanza, "iqWithType:", "set");
     objj_msgSend(stanza, "addChildWithName:andAttributes:", "query", {"xmlns": TNArchipelTypeXMPPServerUsers});
-    objj_msgSend(stanza, "addChildWithName:andAttributes:", "archipel", {
-        "action": TNArchipelTypeXMPPServerUsersRegister});
+    objj_msgSend(stanza, "addChildWithName:andAttributes:", "archipel", {"action": TNArchipelTypeXMPPServerUsersRegister});
     objj_msgSend(stanza, "addChildWithName:andAttributes:", "user", {"jid": objj_msgSend(aJID, "bare"), "password": aPassword});
     objj_msgSend(self._entity, "sendStanza:andRegisterSelector:ofObject:", stanza, sel_getUid("_didRegisterUser:"), self);
 }
@@ -1112,8 +975,7 @@ self._delegate = newValue;
 {
     var stanza = objj_msgSend(TNStropheStanza, "iqWithType:", "set");
     objj_msgSend(stanza, "addChildWithName:andAttributes:", "query", {"xmlns": TNArchipelTypeXMPPServerUsers});
-    objj_msgSend(stanza, "addChildWithName:andAttributes:", "archipel", {
-        "action": TNArchipelTypeXMPPServerUsersUnregister});
+    objj_msgSend(stanza, "addChildWithName:andAttributes:", "archipel", {"action": TNArchipelTypeXMPPServerUsersUnregister});
     for (var i = 0; i < objj_msgSend(someJIDs, "count"); i++)
     {
         var JID = objj_msgSend(someJIDs, "objectAtIndex:", i);
@@ -1134,7 +996,31 @@ self._delegate = newValue;
         objj_msgSend(self._delegate, "handleIqErrorFromStanza:", aStanza);
     }
 }
-,["void","TNStropheStanza"]), new objj_method(sel_getUid("userFetcherClean"), function $TNXMPPUsersController__userFetcherClean(self, _cmd)
+,["void","TNStropheStanza"]), new objj_method(sel_getUid("tableView:menuForTableColumn:row:"), function $TNXMPPUsersController__tableView_menuForTableColumn_row_(self, _cmd, aTableView, aColumn, aRow)
+{
+    var itemRow = objj_msgSend(aTableView, "rowAtPoint:", aRow);
+    if (objj_msgSend(aTableView, "selectedRow") != aRow)
+        objj_msgSend(aTableView, "selectRowIndexes:byExtendingSelection:", objj_msgSend(CPIndexSet, "indexSetWithIndex:", aRow), NO);
+    objj_msgSend(self._contextualMenu, "removeAllItems");
+    if (objj_msgSend(aTableView, "numberOfSelectedRows") == 0)
+    {
+        objj_msgSend(self._contextualMenu, "addItem:", objj_msgSend(self._delegate, "menuItemWithIdentifier:", TNModuleControlForRegisterUser));
+    }
+    else
+    {
+        objj_msgSend(self._contextualMenu, "addItem:", objj_msgSend(self._delegate, "menuItemWithIdentifier:", TNModuleControlForUnregisterUser));
+        objj_msgSend(self._contextualMenu, "addItem:", objj_msgSend(self._delegate, "menuItemWithIdentifier:", TNModuleControlForGrantAdmin));
+        objj_msgSend(self._contextualMenu, "addItem:", objj_msgSend(self._delegate, "menuItemWithIdentifier:", TNModuleControlForRevokeAdmin));
+    }
+    return self._contextualMenu;
+}
+,["CPMenu","CPTableView","CPTableColumn","int"]), new objj_method(sel_getUid("tableViewDeleteKeyPressed:"), function $TNXMPPUsersController__tableViewDeleteKeyPressed_(self, _cmd, aTableView)
+{
+    if (objj_msgSend(aTableView, "numberOfSelectedRows") == 0)
+        return;
+    objj_msgSend(self, "unregisterUser:", aTableView);
+}
+,["void","CPTableView"]), new objj_method(sel_getUid("userFetcherClean"), function $TNXMPPUsersController__userFetcherClean(self, _cmd)
 {
     objj_msgSend(self, "flushUI");
 }
@@ -1144,8 +1030,8 @@ self._delegate = newValue;
     objj_msgSend(self.imageFecthingUsers, "setHidden:", !isLoading);
 }
 ,["void","TNXMPPServerUserFetcher","BOOL"])]);
-}
-CPBundleLocalizedString = function(key, comment)
+}CPBundleLocalizedString = function(key, comment)
 {
     return CPLocalizedStringFromTableInBundle(key, nil, objj_msgSend(CPBundle, "bundleForClass:", TNXMPPUsersController), comment);
-}e;
+}
+e;

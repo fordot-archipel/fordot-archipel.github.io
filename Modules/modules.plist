@@ -6,47 +6,7 @@
         <array>
             <dict>
                 <key>folder</key>
-                <string>GeneralWelcomeView</string>
-            </dict>
-            <dict>
-                <key>folder</key>
-                <string>GroupManagement</string>
-            </dict>
-            <dict>
-                <key>folder</key>
-                <string>HypervisorHealth</string>
-            </dict>
-            <dict>
-                <key>folder</key>
-                <string>HypervisorNetworks</string>
-            </dict>
-            <dict>
-                <key>folder</key>
-                <string>HypervisorVMCasts</string>
-            </dict>
-            <dict>
-                <key>folder</key>
-                <string>HypervisorVMCreation</string>
-            </dict>
-            <dict>
-                <key>folder</key>
-                <string>MUCChat</string>
-            </dict>
-            <dict>
-                <key>folder</key>
-                <string>Permissions</string>
-            </dict>
-            <dict>
-                <key>folder</key>
-                <string>ToolbarDestroyButton</string>
-            </dict>
-            <dict>
-                <key>folder</key>
-                <string>ToolbarMapView</string>
-            </dict>
-            <dict>
-                <key>folder</key>
-                <string>ToolbarPauseButton</string>
+                <string>ToolbarPlayButton</string>
             </dict>
             <dict>
                 <key>folder</key>
@@ -54,27 +14,15 @@
             </dict>
             <dict>
                 <key>folder</key>
-                <string>ToolbarPlayButton</string>
+                <string>GroupManagement</string>
             </dict>
             <dict>
                 <key>folder</key>
-                <string>ToolbarScreenButton</string>
+                <string>HypervisorVMCreation</string>
             </dict>
             <dict>
                 <key>folder</key>
-                <string>ToolbarStopButton</string>
-            </dict>
-            <dict>
-                <key>folder</key>
-                <string>ToolbarXMPPServer</string>
-            </dict>
-            <dict>
-                <key>folder</key>
-                <string>UserChat</string>
-            </dict>
-            <dict>
-                <key>folder</key>
-                <string>VirtualMachineAppliances</string>
+                <string>HypervisorNetworks</string>
             </dict>
             <dict>
                 <key>folder</key>
@@ -82,7 +30,27 @@
             </dict>
             <dict>
                 <key>folder</key>
-                <string>VirtualMachineDefinition</string>
+                <string>ToolbarScreenButton</string>
+            </dict>
+            <dict>
+                <key>folder</key>
+                <string>ToolbarPauseButton</string>
+            </dict>
+            <dict>
+                <key>folder</key>
+                <string>ToolbarDestroyButton</string>
+            </dict>
+            <dict>
+                <key>folder</key>
+                <string>Permissions</string>
+            </dict>
+            <dict>
+                <key>folder</key>
+                <string>VirtualMachineAppliances</string>
+            </dict>
+            <dict>
+                <key>folder</key>
+                <string>MUCChat</string>
             </dict>
             <dict>
                 <key>folder</key>
@@ -90,7 +58,7 @@
             </dict>
             <dict>
                 <key>folder</key>
-                <string>VirtualMachineNOVNC</string>
+                <string>VirtualMachineDefinition</string>
             </dict>
             <dict>
                 <key>folder</key>
@@ -98,7 +66,39 @@
             </dict>
             <dict>
                 <key>folder</key>
+                <string>ToolbarStopButton</string>
+            </dict>
+            <dict>
+                <key>folder</key>
+                <string>HypervisorHealth</string>
+            </dict>
+            <dict>
+                <key>folder</key>
                 <string>VirtualMachineSnapshots</string>
+            </dict>
+            <dict>
+                <key>folder</key>
+                <string>ToolbarXMPPServer</string>
+            </dict>
+            <dict>
+                <key>folder</key>
+                <string>GeneralWelcomeView</string>
+            </dict>
+            <dict>
+                <key>folder</key>
+                <string>VirtualMachineNOVNC</string>
+            </dict>
+            <dict>
+                <key>folder</key>
+                <string>HypervisorVMCasts</string>
+            </dict>
+            <dict>
+                <key>folder</key>
+                <string>ToolbarMapView</string>
+            </dict>
+            <dict>
+                <key>folder</key>
+                <string>UserChat</string>
             </dict>
 
         </array>

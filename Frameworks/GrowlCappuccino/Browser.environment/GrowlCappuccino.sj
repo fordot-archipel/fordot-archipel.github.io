@@ -1,5 +1,204 @@
-@STATIC;1.0;p;17;GrowlCappuccino.jt;138;@STATIC;1.0;i;15;TNGrowlCenter.ji;13;TNGrowlView.jt;83;objj_executeFile("TNGrowlCenter.j", YES);;
-objj_executeFile("TNGrowlView.j", YES);;p;15;TNGrowlCenter.jt;12234;@STATIC;1.0;I;23;Foundation/Foundation.jI;15;AppKit/CPView.jI;24;AppKit/CPViewAnimation.ji;16;TNGrowlMessage.ji;13;TNGrowlView.jt;12098;objj_executeFile("Foundation/Foundation.j", NO);
+@STATIC;1.0;p;13;TNGrowlView.jt;9960;@STATIC;1.0;I;23;Foundation/Foundation.jI;16;AppKit/CPImage.jI;20;AppKit/CPImageView.jI;20;AppKit/CPTextField.jI;15;AppKit/CPView.jt;9822;objj_executeFile("Foundation/Foundation.j", NO);
+objj_executeFile("AppKit/CPImage.j", NO);
+objj_executeFile("AppKit/CPImageView.j", NO);
+objj_executeFile("AppKit/CPTextField.j", NO);
+objj_executeFile("AppKit/CPView.j", NO);
+//@global TNGrowlPlacementHeight
+TNGrowlIconInfo = "TNGrowlIconInfo";
+TNGrowlIconError = "TNGrowlIconError";
+TNGrowlIconWarning = "TNGrowlIconWarning";
+TNGrowlViewLifeTimeExpirationNotification = "TNGrowlViewLifeTimeExpirationNotification";
+{var the_class = objj_allocateClassPair(CPView, "TNGrowlView"),
+meta_class = the_class.isa;class_addIvars(the_class, [new objj_ivar("_actionParameters"), new objj_ivar("_target"), new objj_ivar("_action"), new objj_ivar("_icon"), new objj_ivar("_message"), new objj_ivar("_title"), new objj_ivar("_timer"), new objj_ivar("_lifeTime")]);//#pragma mark -
+//#pragma mark Initialization
+
+//#pragma mark -
+//#pragma mark Events
+
+
+
+//#pragma mark -
+//#pragma mark Timer handlers
+
+//#pragma mark -
+//#pragma mark Theming
+
+objj_registerClassPair(the_class);
+class_addMethods(the_class, [new objj_method(sel_getUid("actionParameters"), function $TNGrowlView__actionParameters(self, _cmd)
+{
+return self._actionParameters;
+}
+,["id"]), new objj_method(sel_getUid("setActionParameters:"), function $TNGrowlView__setActionParameters_(self, _cmd, newValue)
+{
+self._actionParameters = newValue;
+}
+,["void","id"]), new objj_method(sel_getUid("target"), function $TNGrowlView__target(self, _cmd)
+{
+return self._target;
+}
+,["id"]), new objj_method(sel_getUid("setTarget:"), function $TNGrowlView__setTarget_(self, _cmd, newValue)
+{
+self._target = newValue;
+}
+,["void","id"]), new objj_method(sel_getUid("action"), function $TNGrowlView__action(self, _cmd)
+{
+return self._action;
+}
+,["SEL"]), new objj_method(sel_getUid("setAction:"), function $TNGrowlView__setAction_(self, _cmd, newValue)
+{
+self._action = newValue;
+}
+,["void","SEL"]), new objj_method(sel_getUid("initWithFrame:title:message:icon:lifeTime:"), function $TNGrowlView__initWithFrame_title_message_icon_lifeTime_(self, _cmd, aFrame, aTitle, aMessage, anIcon, aLifeTime)
+{
+    if (self = objj_msgSendSuper({ receiver:self, super_class:objj_getClass("TNGrowlView").super_class }, "initWithFrame:", aFrame))
+    {
+        self._title = objj_msgSend(objj_msgSend(CPTextField, "alloc"), "initWithFrame:", CGRectMake(44, 5, aFrame.size.width - 44, 20));
+        objj_msgSend(self._title, "setStringValue:", aTitle);
+        objj_msgSend(self._title, "setFont:", objj_msgSend(CPFont, "boldSystemFontOfSize:", 12));
+        objj_msgSend(self._title, "setTextColor:", objj_msgSend(CPColor, "whiteColor"));
+        objj_msgSend(self._title, "setAutoresizingMask:", CPViewWidthSizable);
+        objj_msgSend(self, "addSubview:", self._title);
+        self._message = objj_msgSend(objj_msgSend(CPTextField, "alloc"), "initWithFrame:", CGRectMake(44, 20, aFrame.size.width - 50, aFrame.size.height - 25));
+        objj_msgSend(self._message, "setStringValue:", aMessage);
+        objj_msgSend(self._message, "setLineBreakMode:", CPLineBreakByWordWrapping);
+        objj_msgSend(self._message, "setAutoresizingMask:", CPViewHeightSizable | CPViewWidthSizable);
+        objj_msgSend(self._message, "setTextColor:", objj_msgSend(self, "valueForThemeAttribute:", "text-color"));
+        objj_msgSend(self, "addSubview:", self._message);
+        objj_msgSend(self, "setBackgroundColor:", objj_msgSend(self, "valueForThemeAttribute:", "background-color"));
+        objj_msgSend(self, "setAlphaValue:", objj_msgSend(self, "valueForThemeAttribute:", "alpha-value"));
+        self._icon = objj_msgSend(objj_msgSend(CPImageView, "alloc"), "initWithFrame:", CGRectMake(5, 6, 36, 36));
+        objj_msgSend(self._icon, "setImageScaling:", CPScaleProportionally);
+        if (objj_msgSend(anIcon, "isKindOfClass:", CPImage))
+            objj_msgSend(self._icon, "setImage:", anIcon);
+        else
+            switch (anIcon)
+            {
+                case TNGrowlIconInfo:
+                    objj_msgSend(self._icon, "setImage:", objj_msgSend(self, "valueForThemeAttribute:", "icon-info"));
+                    break;
+                case TNGrowlIconWarning:
+                    objj_msgSend(self._icon, "setImage:", objj_msgSend(self, "valueForThemeAttribute:", "icon-warning"));
+                    break;
+                case TNGrowlIconError:
+                    objj_msgSend(self._icon, "setImage:", objj_msgSend(self, "valueForThemeAttribute:", "icon-error"));
+                    break;
+            }
+        objj_msgSend(self, "addSubview:", self._icon);
+        var height = objj_msgSend(aMessage, "sizeWithFont:inWidth:", objj_msgSend(self._message, "font"), CGRectGetWidth(aFrame) - 44).height;
+        aFrame.size.height = height + 30;
+        if (aFrame.size.height < TNGrowlPlacementHeight)
+            aFrame.size.height = TNGrowlPlacementHeight
+        objj_msgSend(self, "setFrame:", aFrame);
+        self._lifeTime = aLifeTime;
+        self._timer = objj_msgSend(CPTimer, "scheduledTimerWithTimeInterval:target:selector:userInfo:repeats:", self._lifeTime, self, sel_getUid("willBeRemoved:"), nil, NO);
+    }
+    return self;
+}
+,["id","CGRect","CPString","CPString","id","float"]), new objj_method(sel_getUid("mouseDown:"), function $TNGrowlView__mouseDown_(self, _cmd, anEvent)
+{
+    if (objj_msgSend(anEvent, "type") == CPLeftMouseDown)
+    {
+        objj_msgSend(self._timer, "invalidate");
+        objj_msgSend(self, "willBeRemoved:", nil);
+        if (self._target && self._action)
+            objj_msgSend(self._target, "performSelector:withObject:withObject:", self._action, self, self._actionParameters);
+    }
+    objj_msgSendSuper({ receiver:self, super_class:objj_getClass("TNGrowlView").super_class }, "mouseDown:", anEvent);
+}
+,["void","CPEvent"]), new objj_method(sel_getUid("mouseEntered:"), function $TNGrowlView__mouseEntered_(self, _cmd, anEvent)
+{
+    if (objj_msgSend(anEvent, "type") == CPMouseEntered)
+    {
+        objj_msgSend(self._timer, "invalidate");
+        objj_msgSend(self, "setAlphaValue:", 1.0);
+    }
+    objj_msgSendSuper({ receiver:self, super_class:objj_getClass("TNGrowlView").super_class }, "mouseEntered:", anEvent);
+}
+,["void","CPEvent"]), new objj_method(sel_getUid("mouseExited:"), function $TNGrowlView__mouseExited_(self, _cmd, anEvent)
+{
+    if (objj_msgSend(anEvent, "type") == CPMouseExited)
+    {
+        self._timer = objj_msgSend(CPTimer, "scheduledTimerWithTimeInterval:target:selector:userInfo:repeats:", self._lifeTime, self, sel_getUid("willBeRemoved:"), nil, NO);
+    }
+    objj_msgSendSuper({ receiver:self, super_class:objj_getClass("TNGrowlView").super_class }, "mouseExited:", anEvent);
+}
+,["void","CPEvent"]), new objj_method(sel_getUid("willBeRemoved:"), function $TNGrowlView__willBeRemoved_(self, _cmd, aTimer)
+{
+    var center = objj_msgSend(CPNotificationCenter, "defaultCenter");
+    objj_msgSend(center, "postNotificationName:object:", TNGrowlViewLifeTimeExpirationNotification, self);
+}
+,["void","CPTimer"])]);
+class_addMethods(meta_class, [new objj_method(sel_getUid("themeClass"), function $TNGrowlView__themeClass(self, _cmd)
+{
+    return "growl-view";
+}
+,["CPString"]), new objj_method(sel_getUid("themeAttributes"), function $TNGrowlView__themeAttributes(self, _cmd)
+{
+    var bundle = objj_msgSend(CPBundle, "bundleForClass:", objj_msgSend(self, "class")),
+        backgroundImage = objj_msgSend(CPColor, "colorWithPatternImage:", objj_msgSend(objj_msgSend(CPNinePartImage, "alloc"), "initWithImageSlices:", [
+            objj_msgSend(objj_msgSend(CPImage, "alloc"), "initWithContentsOfFile:size:", objj_msgSend(bundle, "pathForResource:", "Noir/top-left.png"), CGSizeMake(10.0, 30.0)),
+            objj_msgSend(objj_msgSend(CPImage, "alloc"), "initWithContentsOfFile:size:", objj_msgSend(bundle, "pathForResource:", "Noir/top.png"), CGSizeMake(1.0, 30.0)),
+            objj_msgSend(objj_msgSend(CPImage, "alloc"), "initWithContentsOfFile:size:", objj_msgSend(bundle, "pathForResource:", "Noir/top-right.png"), CGSizeMake(10.0, 30.0)),
+            objj_msgSend(objj_msgSend(CPImage, "alloc"), "initWithContentsOfFile:size:", objj_msgSend(bundle, "pathForResource:", "Noir/left.png"), CGSizeMake(10.0, 1.0)),
+            objj_msgSend(objj_msgSend(CPImage, "alloc"), "initWithContentsOfFile:size:", objj_msgSend(bundle, "pathForResource:", "Noir/center.png"), CGSizeMake(1.0, 1.0)),
+            objj_msgSend(objj_msgSend(CPImage, "alloc"), "initWithContentsOfFile:size:", objj_msgSend(bundle, "pathForResource:", "Noir/right.png"), CGSizeMake(10.0, 1.0)),
+            objj_msgSend(objj_msgSend(CPImage, "alloc"), "initWithContentsOfFile:size:", objj_msgSend(bundle, "pathForResource:", "Noir/bottom-left.png"), CGSizeMake(10.0, 12.0)),
+            objj_msgSend(objj_msgSend(CPImage, "alloc"), "initWithContentsOfFile:size:", objj_msgSend(bundle, "pathForResource:", "Noir/bottom.png"), CGSizeMake(1.0, 12.0)),
+            objj_msgSend(objj_msgSend(CPImage, "alloc"), "initWithContentsOfFile:size:", objj_msgSend(bundle, "pathForResource:", "Noir/bottom-right.png"), CGSizeMake(10.0, 12.0)),
+        ])),
+        iconInfo = objj_msgSend(objj_msgSend(CPImage, "alloc"), "initWithContentsOfFile:", objj_msgSend(bundle, "pathForResource:", "icon-info.png")),
+        iconError = objj_msgSend(objj_msgSend(CPImage, "alloc"), "initWithContentsOfFile:", objj_msgSend(bundle, "pathForResource:", "icon-error.png")),
+        iconWarning = objj_msgSend(objj_msgSend(CPImage, "alloc"), "initWithContentsOfFile:", objj_msgSend(bundle, "pathForResource:", "icon-warning.png"));
+    return objj_msgSend(CPDictionary, "dictionaryWithObjects:forKeys:", [backgroundImage, iconInfo, iconError, iconWarning, objj_msgSend(CPColor, "whiteColor"), 0.8], ["background-color", "icon-info", "icon-error", "icon-warning", "text-color", "alpha-value"]);
+}
+,["id"])]);
+}p;16;TNGrowlMessage.jt;2055;@STATIC;1.0;I;23;Foundation/Foundation.jt;2008;objj_executeFile("Foundation/Foundation.j", NO);
+{var the_class = objj_allocateClassPair(CPObject, "TNGrowlMessage"),
+meta_class = the_class.isa;class_addIvars(the_class, [new objj_ivar("title"), new objj_ivar("message"), new objj_ivar("icon"), new objj_ivar("date")]);objj_registerClassPair(the_class);
+class_addMethods(the_class, [new objj_method(sel_getUid("title"), function $TNGrowlMessage__title(self, _cmd)
+{
+return self.title;
+}
+,["CPString"]), new objj_method(sel_getUid("setTitle:"), function $TNGrowlMessage__setTitle_(self, _cmd, newValue)
+{
+self.title = newValue;
+}
+,["void","CPString"]), new objj_method(sel_getUid("message"), function $TNGrowlMessage__message(self, _cmd)
+{
+return self.message;
+}
+,["CPString"]), new objj_method(sel_getUid("setMessage:"), function $TNGrowlMessage__setMessage_(self, _cmd, newValue)
+{
+self.message = newValue;
+}
+,["void","CPString"]), new objj_method(sel_getUid("icon"), function $TNGrowlMessage__icon(self, _cmd)
+{
+return self.icon;
+}
+,["CPImage"]), new objj_method(sel_getUid("setIcon:"), function $TNGrowlMessage__setIcon_(self, _cmd, newValue)
+{
+self.icon = newValue;
+}
+,["void","CPImage"]), new objj_method(sel_getUid("date"), function $TNGrowlMessage__date(self, _cmd)
+{
+return self.date;
+}
+,["CPDate"]), new objj_method(sel_getUid("setDate:"), function $TNGrowlMessage__setDate_(self, _cmd, newValue)
+{
+self.date = newValue;
+}
+,["void","CPDate"])]);
+class_addMethods(meta_class, [new objj_method(sel_getUid("growlMessageWithTitle:message:icon:"), function $TNGrowlMessage__growlMessageWithTitle_message_icon_(self, _cmd, aTitle, aMessage, anIcon)
+{
+    var growlMessage = objj_msgSend(objj_msgSend(TNGrowlMessage, "alloc"), "init");
+    objj_msgSend(growlMessage, "setTitle:", aTitle);
+    objj_msgSend(growlMessage, "setMessage:", aMessage);
+    objj_msgSend(growlMessage, "setIcon:", anIcon);
+    objj_msgSend(growlMessage, "setDate:", objj_msgSend(CPDate, "date"));
+    return growlMessage;
+}
+,["TNGrowlMessage","CPString","CPString","CPImage"])]);
+}p;15;TNGrowlCenter.jt;12425;@STATIC;1.0;I;23;Foundation/Foundation.jI;15;AppKit/CPView.jI;24;AppKit/CPViewAnimation.ji;16;TNGrowlMessage.ji;13;TNGrowlView.jt;12289;objj_executeFile("Foundation/Foundation.j", NO);
 objj_executeFile("AppKit/CPView.j", NO);
 objj_executeFile("AppKit/CPViewAnimation.j", NO);
 objj_executeFile("TNGrowlMessage.j", YES);
@@ -14,28 +213,30 @@ var _TNGrowlIconInfo,
     _TNGrowlIconError,
     _TNGrowlIconWarning;
 {var the_class = objj_allocateClassPair(CPObject, "TNGrowlCenter"),
-meta_class = the_class.isa;class_addIvars(the_class, [new objj_ivar("_notificationsHistory"), new objj_ivar("_tableForNotificationHistory"), new objj_ivar("_view"), new objj_ivar("_defaultLifeTime"), new objj_ivar("_maxHistory"), new objj_ivar("_notifications"), new objj_ivar("_notificationFrame")]);
-
-
-
-       
-       
-
-       
-       
-
-       
-       
+meta_class = the_class.isa;class_addIvars(the_class, [new objj_ivar("_notificationsHistory"), new objj_ivar("_tableForNotificationHistory"), new objj_ivar("_view"), new objj_ivar("_defaultLifeTime"), new objj_ivar("_maxHistory"), new objj_ivar("_notifications"), new objj_ivar("_notificationFrame")]);//#pragma mark -
+//#pragma mark Class methods
 
 
 
 
-       
-       
+//#pragma mark -
+//#pragma mark Initialization
+
+//#pragma mark -
+//#pragma mark Notification handlers
+
+//#pragma mark -
+//#pragma mark Messaging
 
 
-       
-       
+
+
+//#pragma mark -
+//#pragma mark History
+
+
+//#pragma mark -
+//#pragma mark Delegates
 objj_registerClassPair(the_class);
 class_addMethods(the_class, [new objj_method(sel_getUid("notificationsHistory"), function $TNGrowlCenter__notificationsHistory(self, _cmd)
 {
@@ -220,202 +421,5 @@ class_addMethods(meta_class, [new objj_method(sel_getUid("defaultCenter"), funct
     objj_msgSend(objj_msgSend(TNGrowlCenter, "defaultCenter"), "pushNotificationWithTitle:message:icon:", aTitle, aMessage, TNGrowlIconWarning);
 }
 ,["void","CPString","CPString"])]);
-}p;16;TNGrowlMessage.jt;2055;@STATIC;1.0;I;23;Foundation/Foundation.jt;2008;objj_executeFile("Foundation/Foundation.j", NO);
-{var the_class = objj_allocateClassPair(CPObject, "TNGrowlMessage"),
-meta_class = the_class.isa;class_addIvars(the_class, [new objj_ivar("title"), new objj_ivar("message"), new objj_ivar("icon"), new objj_ivar("date")]);objj_registerClassPair(the_class);
-class_addMethods(the_class, [new objj_method(sel_getUid("title"), function $TNGrowlMessage__title(self, _cmd)
-{
-return self.title;
-}
-,["CPString"]), new objj_method(sel_getUid("setTitle:"), function $TNGrowlMessage__setTitle_(self, _cmd, newValue)
-{
-self.title = newValue;
-}
-,["void","CPString"]), new objj_method(sel_getUid("message"), function $TNGrowlMessage__message(self, _cmd)
-{
-return self.message;
-}
-,["CPString"]), new objj_method(sel_getUid("setMessage:"), function $TNGrowlMessage__setMessage_(self, _cmd, newValue)
-{
-self.message = newValue;
-}
-,["void","CPString"]), new objj_method(sel_getUid("icon"), function $TNGrowlMessage__icon(self, _cmd)
-{
-return self.icon;
-}
-,["CPImage"]), new objj_method(sel_getUid("setIcon:"), function $TNGrowlMessage__setIcon_(self, _cmd, newValue)
-{
-self.icon = newValue;
-}
-,["void","CPImage"]), new objj_method(sel_getUid("date"), function $TNGrowlMessage__date(self, _cmd)
-{
-return self.date;
-}
-,["CPDate"]), new objj_method(sel_getUid("setDate:"), function $TNGrowlMessage__setDate_(self, _cmd, newValue)
-{
-self.date = newValue;
-}
-,["void","CPDate"])]);
-class_addMethods(meta_class, [new objj_method(sel_getUid("growlMessageWithTitle:message:icon:"), function $TNGrowlMessage__growlMessageWithTitle_message_icon_(self, _cmd, aTitle, aMessage, anIcon)
-{
-    var growlMessage = objj_msgSend(objj_msgSend(TNGrowlMessage, "alloc"), "init");
-    objj_msgSend(growlMessage, "setTitle:", aTitle);
-    objj_msgSend(growlMessage, "setMessage:", aMessage);
-    objj_msgSend(growlMessage, "setIcon:", anIcon);
-    objj_msgSend(growlMessage, "setDate:", objj_msgSend(CPDate, "date"));
-    return growlMessage;
-}
-,["TNGrowlMessage","CPString","CPString","CPImage"])]);
-}p;13;TNGrowlView.jt;9835;@STATIC;1.0;I;23;Foundation/Foundation.jI;16;AppKit/CPImage.jI;20;AppKit/CPImageView.jI;20;AppKit/CPTextField.jI;15;AppKit/CPView.jt;9697;objj_executeFile("Foundation/Foundation.j", NO);
-objj_executeFile("AppKit/CPImage.j", NO);
-objj_executeFile("AppKit/CPImageView.j", NO);
-objj_executeFile("AppKit/CPTextField.j", NO);
-objj_executeFile("AppKit/CPView.j", NO);
-//@global TNGrowlPlacementHeight
-TNGrowlIconInfo = "TNGrowlIconInfo";
-TNGrowlIconError = "TNGrowlIconError";
-TNGrowlIconWarning = "TNGrowlIconWarning";
-TNGrowlViewLifeTimeExpirationNotification = "TNGrowlViewLifeTimeExpirationNotification";
-{var the_class = objj_allocateClassPair(CPView, "TNGrowlView"),
-meta_class = the_class.isa;class_addIvars(the_class, [new objj_ivar("_actionParameters"), new objj_ivar("_target"), new objj_ivar("_action"), new objj_ivar("_icon"), new objj_ivar("_message"), new objj_ivar("_title"), new objj_ivar("_timer"), new objj_ivar("_lifeTime")]);
-       
-       
-
-
-
-       
-       
-
-       
-       
-
-objj_registerClassPair(the_class);
-class_addMethods(the_class, [new objj_method(sel_getUid("actionParameters"), function $TNGrowlView__actionParameters(self, _cmd)
-{
-return self._actionParameters;
-}
-,["id"]), new objj_method(sel_getUid("setActionParameters:"), function $TNGrowlView__setActionParameters_(self, _cmd, newValue)
-{
-self._actionParameters = newValue;
-}
-,["void","id"]), new objj_method(sel_getUid("target"), function $TNGrowlView__target(self, _cmd)
-{
-return self._target;
-}
-,["id"]), new objj_method(sel_getUid("setTarget:"), function $TNGrowlView__setTarget_(self, _cmd, newValue)
-{
-self._target = newValue;
-}
-,["void","id"]), new objj_method(sel_getUid("action"), function $TNGrowlView__action(self, _cmd)
-{
-return self._action;
-}
-,["SEL"]), new objj_method(sel_getUid("setAction:"), function $TNGrowlView__setAction_(self, _cmd, newValue)
-{
-self._action = newValue;
-}
-,["void","SEL"]), new objj_method(sel_getUid("initWithFrame:title:message:icon:lifeTime:"), function $TNGrowlView__initWithFrame_title_message_icon_lifeTime_(self, _cmd, aFrame, aTitle, aMessage, anIcon, aLifeTime)
-{
-    if (self = objj_msgSendSuper({ receiver:self, super_class:objj_getClass("TNGrowlView").super_class }, "initWithFrame:", aFrame))
-    {
-        self._title = objj_msgSend(objj_msgSend(CPTextField, "alloc"), "initWithFrame:", CGRectMake(44, 5, aFrame.size.width - 44, 20));
-        objj_msgSend(self._title, "setStringValue:", aTitle);
-        objj_msgSend(self._title, "setFont:", objj_msgSend(CPFont, "boldSystemFontOfSize:", 12));
-        objj_msgSend(self._title, "setTextColor:", objj_msgSend(CPColor, "whiteColor"));
-        objj_msgSend(self._title, "setAutoresizingMask:", CPViewWidthSizable);
-        objj_msgSend(self, "addSubview:", self._title);
-        self._message = objj_msgSend(objj_msgSend(CPTextField, "alloc"), "initWithFrame:", CGRectMake(44, 20, aFrame.size.width - 50, aFrame.size.height - 25));
-        objj_msgSend(self._message, "setStringValue:", aMessage);
-        objj_msgSend(self._message, "setLineBreakMode:", CPLineBreakByWordWrapping);
-        objj_msgSend(self._message, "setAutoresizingMask:", CPViewHeightSizable | CPViewWidthSizable);
-        objj_msgSend(self._message, "setTextColor:", objj_msgSend(self, "valueForThemeAttribute:", "text-color"));
-        objj_msgSend(self, "addSubview:", self._message);
-        objj_msgSend(self, "setBackgroundColor:", objj_msgSend(self, "valueForThemeAttribute:", "background-color"));
-        objj_msgSend(self, "setAlphaValue:", objj_msgSend(self, "valueForThemeAttribute:", "alpha-value"));
-        self._icon = objj_msgSend(objj_msgSend(CPImageView, "alloc"), "initWithFrame:", CGRectMake(5, 6, 36, 36));
-        objj_msgSend(self._icon, "setImageScaling:", CPScaleProportionally);
-        if (objj_msgSend(anIcon, "isKindOfClass:", CPImage))
-            objj_msgSend(self._icon, "setImage:", anIcon);
-        else
-            switch (anIcon)
-            {
-                case TNGrowlIconInfo:
-                    objj_msgSend(self._icon, "setImage:", objj_msgSend(self, "valueForThemeAttribute:", "icon-info"));
-                    break;
-                case TNGrowlIconWarning:
-                    objj_msgSend(self._icon, "setImage:", objj_msgSend(self, "valueForThemeAttribute:", "icon-warning"));
-                    break;
-                case TNGrowlIconError:
-                    objj_msgSend(self._icon, "setImage:", objj_msgSend(self, "valueForThemeAttribute:", "icon-error"));
-                    break;
-            }
-        objj_msgSend(self, "addSubview:", self._icon);
-        var height = objj_msgSend(aMessage, "sizeWithFont:inWidth:", objj_msgSend(self._message, "font"), CGRectGetWidth(aFrame) - 44).height;
-        aFrame.size.height = height + 30;
-        if (aFrame.size.height < TNGrowlPlacementHeight)
-            aFrame.size.height = TNGrowlPlacementHeight
-        objj_msgSend(self, "setFrame:", aFrame);
-        self._lifeTime = aLifeTime;
-        self._timer = objj_msgSend(CPTimer, "scheduledTimerWithTimeInterval:target:selector:userInfo:repeats:", self._lifeTime, self, sel_getUid("willBeRemoved:"), nil, NO);
-    }
-    return self;
-}
-,["id","CGRect","CPString","CPString","id","float"]), new objj_method(sel_getUid("mouseDown:"), function $TNGrowlView__mouseDown_(self, _cmd, anEvent)
-{
-    if (objj_msgSend(anEvent, "type") == CPLeftMouseDown)
-    {
-        objj_msgSend(self._timer, "invalidate");
-        objj_msgSend(self, "willBeRemoved:", nil);
-        if (self._target && self._action)
-            objj_msgSend(self._target, "performSelector:withObject:withObject:", self._action, self, self._actionParameters);
-    }
-    objj_msgSendSuper({ receiver:self, super_class:objj_getClass("TNGrowlView").super_class }, "mouseDown:", anEvent);
-}
-,["void","CPEvent"]), new objj_method(sel_getUid("mouseEntered:"), function $TNGrowlView__mouseEntered_(self, _cmd, anEvent)
-{
-    if (objj_msgSend(anEvent, "type") == CPMouseEntered)
-    {
-        objj_msgSend(self._timer, "invalidate");
-        objj_msgSend(self, "setAlphaValue:", 1.0);
-    }
-    objj_msgSendSuper({ receiver:self, super_class:objj_getClass("TNGrowlView").super_class }, "mouseEntered:", anEvent);
-}
-,["void","CPEvent"]), new objj_method(sel_getUid("mouseExited:"), function $TNGrowlView__mouseExited_(self, _cmd, anEvent)
-{
-    if (objj_msgSend(anEvent, "type") == CPMouseExited)
-    {
-        self._timer = objj_msgSend(CPTimer, "scheduledTimerWithTimeInterval:target:selector:userInfo:repeats:", self._lifeTime, self, sel_getUid("willBeRemoved:"), nil, NO);
-    }
-    objj_msgSendSuper({ receiver:self, super_class:objj_getClass("TNGrowlView").super_class }, "mouseExited:", anEvent);
-}
-,["void","CPEvent"]), new objj_method(sel_getUid("willBeRemoved:"), function $TNGrowlView__willBeRemoved_(self, _cmd, aTimer)
-{
-    var center = objj_msgSend(CPNotificationCenter, "defaultCenter");
-    objj_msgSend(center, "postNotificationName:object:", TNGrowlViewLifeTimeExpirationNotification, self);
-}
-,["void","CPTimer"])]);
-class_addMethods(meta_class, [new objj_method(sel_getUid("themeClass"), function $TNGrowlView__themeClass(self, _cmd)
-{
-    return "growl-view";
-}
-,["CPString"]), new objj_method(sel_getUid("themeAttributes"), function $TNGrowlView__themeAttributes(self, _cmd)
-{
-    var bundle = objj_msgSend(CPBundle, "bundleForClass:", objj_msgSend(self, "class")),
-        backgroundImage = objj_msgSend(CPColor, "colorWithPatternImage:", objj_msgSend(objj_msgSend(CPNinePartImage, "alloc"), "initWithImageSlices:", [
-            objj_msgSend(objj_msgSend(CPImage, "alloc"), "initWithContentsOfFile:size:", objj_msgSend(bundle, "pathForResource:", "Noir/top-left.png"), CGSizeMake(10.0, 30.0)),
-            objj_msgSend(objj_msgSend(CPImage, "alloc"), "initWithContentsOfFile:size:", objj_msgSend(bundle, "pathForResource:", "Noir/top.png"), CGSizeMake(1.0, 30.0)),
-            objj_msgSend(objj_msgSend(CPImage, "alloc"), "initWithContentsOfFile:size:", objj_msgSend(bundle, "pathForResource:", "Noir/top-right.png"), CGSizeMake(10.0, 30.0)),
-            objj_msgSend(objj_msgSend(CPImage, "alloc"), "initWithContentsOfFile:size:", objj_msgSend(bundle, "pathForResource:", "Noir/left.png"), CGSizeMake(10.0, 1.0)),
-            objj_msgSend(objj_msgSend(CPImage, "alloc"), "initWithContentsOfFile:size:", objj_msgSend(bundle, "pathForResource:", "Noir/center.png"), CGSizeMake(1.0, 1.0)),
-            objj_msgSend(objj_msgSend(CPImage, "alloc"), "initWithContentsOfFile:size:", objj_msgSend(bundle, "pathForResource:", "Noir/right.png"), CGSizeMake(10.0, 1.0)),
-            objj_msgSend(objj_msgSend(CPImage, "alloc"), "initWithContentsOfFile:size:", objj_msgSend(bundle, "pathForResource:", "Noir/bottom-left.png"), CGSizeMake(10.0, 12.0)),
-            objj_msgSend(objj_msgSend(CPImage, "alloc"), "initWithContentsOfFile:size:", objj_msgSend(bundle, "pathForResource:", "Noir/bottom.png"), CGSizeMake(1.0, 12.0)),
-            objj_msgSend(objj_msgSend(CPImage, "alloc"), "initWithContentsOfFile:size:", objj_msgSend(bundle, "pathForResource:", "Noir/bottom-right.png"), CGSizeMake(10.0, 12.0)),
-        ])),
-        iconInfo = objj_msgSend(objj_msgSend(CPImage, "alloc"), "initWithContentsOfFile:", objj_msgSend(bundle, "pathForResource:", "icon-info.png")),
-        iconError = objj_msgSend(objj_msgSend(CPImage, "alloc"), "initWithContentsOfFile:", objj_msgSend(bundle, "pathForResource:", "icon-error.png")),
-        iconWarning = objj_msgSend(objj_msgSend(CPImage, "alloc"), "initWithContentsOfFile:", objj_msgSend(bundle, "pathForResource:", "icon-warning.png"));
-    return objj_msgSend(CPDictionary, "dictionaryWithObjects:forKeys:", [backgroundImage, iconInfo, iconError, iconWarning, objj_msgSend(CPColor, "whiteColor"), 0.8], ["background-color", "icon-info", "icon-error", "icon-warning", "text-color", "alpha-value"]);
-}
-,["id"])]);
-}e;
+}p;17;GrowlCappuccino.jt;138;@STATIC;1.0;i;15;TNGrowlCenter.ji;13;TNGrowlView.jt;83;objj_executeFile("TNGrowlCenter.j", YES);;
+objj_executeFile("TNGrowlView.j", YES);;e;

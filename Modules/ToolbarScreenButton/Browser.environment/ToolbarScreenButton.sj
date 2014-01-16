@@ -1,20 +1,7 @@
-@STATIC;1.0;p;21;ToolbarScreenButton.jt;3649;@STATIC;1.0;I;23;Foundation/Foundation.ji;22;../../Model/TNModule.jt;3575;objj_executeFile("Foundation/Foundation.j", NO);
-objj_executeFile("../../Model/TNModule.j", YES);
-//@global TNArchipelEntityTypeVirtualMachine
-var TNArchipelVNCInformationRecoveredNotification = "TNArchipelVNCInformationRecoveredNotification",
+@STATIC;1.0;p;21;ToolbarScreenButton.jt;3522;@STATIC;1.0;I;23;Foundation/Foundation.ji;22;../../Model/TNModule.jt;3448;objj_executeFile("Foundation/Foundation.j", NO);objj_executeFile("../../Model/TNModule.j", YES);var TNArchipelVNCInformationRecoveredNotification = "TNArchipelVNCInformationRecoveredNotification",
     TNArchipelVNCShowExternalWindowNotification = "TNArchipelVNCShowExternalWindowNotification";
 {var the_class = objj_allocateClassPair(TNModule, "TNToolbarScreenButtonController"),
-meta_class = the_class.isa;class_addIvars(the_class, [new objj_ivar("_vncReady")]);
-       
-       
-
-
-       
-       
-
-       
-       
-objj_registerClassPair(the_class);
+meta_class = the_class.isa;class_addIvars(the_class, [new objj_ivar("_vncReady")]);objj_registerClassPair(the_class);
 class_addMethods(the_class, [new objj_method(sel_getUid("willLoad"), function $TNToolbarScreenButtonController__willLoad(self, _cmd)
 {
     if (!objj_msgSendSuper({ receiver:self, super_class:objj_getClass("TNToolbarScreenButtonController").super_class }, "willLoad"))
@@ -29,14 +16,13 @@ class_addMethods(the_class, [new objj_method(sel_getUid("willLoad"), function $T
         objj_msgSend(objj_msgSend(self, "UIItem"), "setEnabled:", NO);
         return;
     }
-    switch (objj_msgSend(self._entity, "XMPPShow"))
-    {
-        case TNStropheContactStatusOnline:
-            objj_msgSend(objj_msgSend(self, "UIItem"), "setEnabled:", YES);
-            break;
-        default:
-            objj_msgSend(objj_msgSend(self, "UIItem"), "setEnabled:", NO);
-   }
+    switch(objj_msgSend(self._entity, "XMPPShow")) {
+    case TNStropheContactStatusOnline:
+        objj_msgSend(objj_msgSend(self, "UIItem"), "setEnabled:", YES);
+        break;
+default:
+        objj_msgSend(objj_msgSend(self, "UIItem"), "setEnabled:", NO);
+    }
 }
 ,["void","CPNotification"]), new objj_method(sel_getUid("didVNCInformationRecovered:"), function $TNToolbarScreenButtonController__didVNCInformationRecovered_(self, _cmd, aNotification)
 {

@@ -1,49 +1,10 @@
-@STATIC;1.0;p;21;TNExternalVNCWindow.jt;16870;@STATIC;1.0;I;23;Foundation/Foundation.jI;20;AppKit/CPImageView.jI;17;AppKit/CPSlider.jI;17;AppKit/CPWindow.jI;17;TNKit/TNToolbar.jI;15;TNKit/TNAlert.jI;31;GrowlCappuccino/TNGrowlCenter.jI;29;VNCCappuccino/VNCCappuccino.jt;16641;objj_executeFile("Foundation/Foundation.j", NO);
-objj_executeFile("AppKit/CPImageView.j", NO);
-objj_executeFile("AppKit/CPSlider.j", NO);
-objj_executeFile("AppKit/CPWindow.j", NO);
-objj_executeFile("TNKit/TNToolbar.j", NO);
-objj_executeFile("TNKit/TNAlert.j", NO);
-objj_executeFile("GrowlCappuccino/TNGrowlCenter.j", NO);
-objj_executeFile("VNCCappuccino/VNCCappuccino.j", NO);
-//@global CPLocalizedStringTNAlert
-//@global CPLocalizedStringFromTableInBundle
-//@global TNStropheContactVCardReceivedNotification
-//@global TNStropheContactNicknameUpdatedNotification
-//@global TNArchipelVNCScreenTypeVNC
-//@global TNArchipelVNCScreenTypeSPICE
-var TNVNCWindowToolBarCtrlAltDel = "TNVNCWindowToolBarCtrlAltDel",
+@STATIC;1.0;p;21;TNExternalVNCWindow.jt;16279;@STATIC;1.0;I;23;Foundation/Foundation.jI;20;AppKit/CPImageView.jI;17;AppKit/CPSlider.jI;17;AppKit/CPWindow.jI;17;TNKit/TNToolbar.jI;15;TNKit/TNAlert.jI;31;GrowlCappuccino/TNGrowlCenter.jI;29;VNCCappuccino/VNCCappuccino.jt;16050;objj_executeFile("Foundation/Foundation.j", NO);objj_executeFile("AppKit/CPImageView.j", NO);objj_executeFile("AppKit/CPSlider.j", NO);objj_executeFile("AppKit/CPWindow.j", NO);objj_executeFile("TNKit/TNToolbar.j", NO);objj_executeFile("TNKit/TNAlert.j", NO);objj_executeFile("GrowlCappuccino/TNGrowlCenter.j", NO);objj_executeFile("VNCCappuccino/VNCCappuccino.j", NO);var TNVNCWindowToolBarCtrlAltDel = "TNVNCWindowToolBarCtrlAltDel",
     TNVNCWindowToolBarSendPasteboard = "TNVNCWindowToolBarSendPasteboard",
     TNVNCWindowToolBarGetPasteboard = "TNVNCWindowToolBarGetPasteboard",
     TNVNCWindowToolBarFullScreen = "TNVNCWindowToolBarFullScreen",
     TNVNCWindowToolBarZoom = "TNVNCWindowToolBarZoom";
 {var the_class = objj_allocateClassPair(CPWindow, "TNExternalVNCWindow"),
-meta_class = the_class.isa;class_addIvars(the_class, [new objj_ivar("_hasBeenConnected"), new objj_ivar("_imageViewVirtualMachineAvatar"), new objj_ivar("_currentZoom"), new objj_ivar("_entity"), new objj_ivar("_mainToolbar"), new objj_ivar("_vncView"), new objj_ivar("_spiceView"), new objj_ivar("_screenView")]);
-       
-       
-
-
-       
-       
-
-
-
-       
-       
-
-
-
-
-
-       
-       
-
-
-
-
-       
-       
-objj_registerClassPair(the_class);
+meta_class = the_class.isa;class_addIvars(the_class, [new objj_ivar("_hasBeenConnected"), new objj_ivar("_imageViewVirtualMachineAvatar"), new objj_ivar("_currentZoom"), new objj_ivar("_entity"), new objj_ivar("_mainToolbar"), new objj_ivar("_vncView"), new objj_ivar("_spiceView"), new objj_ivar("_screenView")]);objj_registerClassPair(the_class);
 class_addMethods(the_class, [new objj_method(sel_getUid("initWithContentRect:styleMask:"), function $TNExternalVNCWindow__initWithContentRect_styleMask_(self, _cmd, aRect, aStyleMask)
 {
     if (self = objj_msgSendSuper({ receiver:self, super_class:objj_getClass("TNExternalVNCWindow").super_class }, "initWithContentRect:styleMask:", aRect, aStyleMask))
@@ -91,10 +52,11 @@ class_addMethods(the_class, [new objj_method(sel_getUid("initWithContentRect:sty
     objj_msgSend(objj_msgSend(CPNotificationCenter, "defaultCenter"), "addObserver:selector:name:object:", self, sel_getUid("_entityNicknameUpdated:"), TNStropheContactNicknameUpdatedNotification, self._entity);
     objj_msgSend(self, "setTitle:", CPBundleLocalizedString("Screen for ", "Screen for ") + objj_msgSend(self._entity, "name") + " (" + objj_msgSend(self._entity, "JID") + ")");
     var domWindow = objj_msgSend(objj_msgSend(self, "platformWindow"), "DOMWindow"),
-        unloadFunction = function() {
-                objj_msgSend(objj_msgSend(CPRunLoop, "currentRunLoop"), "limitDateForMode:", CPDefaultRunLoopMode);
-                objj_msgSend(self, "close");
-            };
+        unloadFunction = function()
+    {
+        objj_msgSend(objj_msgSend(CPRunLoop, "currentRunLoop"), "limitDateForMode:", CPDefaultRunLoopMode);
+        objj_msgSend(self, "close");
+    };
     if (window.onbeforeunload)
         domWindow.onbeforeunload = unloadFunction;
     else if (window.onunload)
@@ -103,51 +65,47 @@ class_addMethods(the_class, [new objj_method(sel_getUid("initWithContentRect:sty
     objj_msgSend(self._imageViewVirtualMachineAvatar, "setImage:", objj_msgSend(self._entity, "avatar"));
     objj_msgSend(objj_msgSend(self._mainToolbar, "customSubViews"), "addObject:", self._imageViewVirtualMachineAvatar);
     objj_msgSend(self._mainToolbar, "reloadToolbarItems");
-    switch (aType)
-    {
-        case TNArchipelVNCScreenTypeVNC:
-            self._vncView = objj_msgSend(objj_msgSend(TNVNCView, "alloc"), "initWithFrame:", objj_msgSend(objj_msgSend(self, "contentView"), "bounds"));
-            objj_msgSend(self._vncView, "setFocusContainer:", objj_msgSend(objj_msgSend(self, "platformWindow"), "DOMWindow").document);
-            objj_msgSend(self._vncView, "setAutoResizeViewPort:", NO);
-            objj_msgSend(self._vncView, "setAutoresizingMask:", CPViewWidthSizable | CPViewHeightSizable);
-            objj_msgSend(self._vncView, "setHost:", aHost);
-            objj_msgSend(self._vncView, "setPort:", aPort);
-            objj_msgSend(self._vncView, "setPassword:", aPassword);
-            objj_msgSend(self._vncView, "setZoom:", 1);
-            objj_msgSend(self._vncView, "setTrueColor:", isTrueColor);
-            objj_msgSend(self._vncView, "setEncrypted:", isEncrypted);
-            objj_msgSend(self._vncView, "setCheckRate:", aCheckRate);
-            objj_msgSend(self._vncView, "setFrameBufferRequestRate:", aFBURate);
-            objj_msgSend(self._vncView, "setDelegate:", self);
-            objj_msgSend(objj_msgSend(self, "contentView"), "addSubview:", self._vncView);
-            self._screenView = self._vncView;
-            break;
-        case TNArchipelVNCScreenTypeSPICE:
-            self._spiceView = objj_msgSend(objj_msgSend(TNSpiceView, "alloc"), "initWithFrame:focusContainer:", objj_msgSend(objj_msgSend(self, "contentView"), "bounds"), objj_msgSend(objj_msgSend(self, "platformWindow"), "DOMWindow").document);
-            objj_msgSend(self._spiceView, "setAutoResizeViewPort:", NO);
-            objj_msgSend(self._spiceView, "setHost:", aHost);
-            objj_msgSend(self._spiceView, "setPort:", aPort);
-            objj_msgSend(self._spiceView, "setPassword:", aPassword);
-            objj_msgSend(self._spiceView, "setZoom:", 1);
-            objj_msgSend(self._spiceView, "setEncrypted:", isEncrypted);
-            objj_msgSend(self._spiceView, "setDelegate:", self);
-            objj_msgSend(objj_msgSend(self, "contentView"), "addSubview:", self._spiceView);
-            self._screenView = self._spiceView;
-            break;
+    switch(aType) {
+    case TNArchipelVNCScreenTypeVNC:
+        self._vncView = objj_msgSend(objj_msgSend(TNVNCView, "alloc"), "initWithFrame:", objj_msgSend(objj_msgSend(self, "contentView"), "bounds"));
+        objj_msgSend(self._vncView, "setFocusContainer:", objj_msgSend(objj_msgSend(self, "platformWindow"), "DOMWindow").document);
+        objj_msgSend(self._vncView, "setAutoResizeViewPort:", NO);
+        objj_msgSend(self._vncView, "setAutoresizingMask:", CPViewWidthSizable | CPViewHeightSizable);
+        objj_msgSend(self._vncView, "setHost:", aHost);
+        objj_msgSend(self._vncView, "setPort:", aPort);
+        objj_msgSend(self._vncView, "setPassword:", aPassword);
+        objj_msgSend(self._vncView, "setZoom:", 1);
+        objj_msgSend(self._vncView, "setTrueColor:", isTrueColor);
+        objj_msgSend(self._vncView, "setEncrypted:", isEncrypted);
+        objj_msgSend(self._vncView, "setCheckRate:", aCheckRate);
+        objj_msgSend(self._vncView, "setFrameBufferRequestRate:", aFBURate);
+        objj_msgSend(self._vncView, "setDelegate:", self);
+        objj_msgSend(objj_msgSend(self, "contentView"), "addSubview:", self._vncView);
+        self._screenView = self._vncView;
+        break;
+    case TNArchipelVNCScreenTypeSPICE:
+        self._spiceView = objj_msgSend(objj_msgSend(TNSpiceView, "alloc"), "initWithFrame:focusContainer:", objj_msgSend(objj_msgSend(self, "contentView"), "bounds"), objj_msgSend(objj_msgSend(self, "platformWindow"), "DOMWindow").document);
+        objj_msgSend(self._spiceView, "setAutoResizeViewPort:", NO);
+        objj_msgSend(self._spiceView, "setHost:", aHost);
+        objj_msgSend(self._spiceView, "setPort:", aPort);
+        objj_msgSend(self._spiceView, "setPassword:", aPassword);
+        objj_msgSend(self._spiceView, "setZoom:", 1);
+        objj_msgSend(self._spiceView, "setEncrypted:", isEncrypted);
+        objj_msgSend(self._spiceView, "setDelegate:", self);
+        objj_msgSend(objj_msgSend(self, "contentView"), "addSubview:", self._spiceView);
+        self._screenView = self._spiceView;
+        break;
     }
     CPLog.info("VNC: type: %@ connecting to %@:%@ using SSL: %@ ", aType, aHost, aPort, isEncrypted);
-    try
-    {
+    try    {
         objj_msgSend(self._screenView, "load");
         objj_msgSend(self._screenView, "connect:", nil);
     }
-    catch(e)
-    {
+    catch(e)     {
         objj_msgSend(TNAlert, "showAlertWithMessage:informative:style:", CPBundleLocalizedString("Websocket error for VNC", "Websocket error for VNC"), CPBundleLocalizedString("It seems your websocket configuration is not properly configured. If you are using Firefox, go to about:config and set 'network.websocket.override-security-block' and 'network.websocket.enabled' to 'True'.", "It seems your websocket configuration is not properly configured. If you are using Firefox, go to about:config and set 'network.websocket.override-security-block' and 'network.websocket.enabled' to 'True'."), CPCriticalAlertStyle);
         CPLog.error("Websocket problem. unable to start noVNC subsystem.");
         objj_msgSend(self, "close");
-    }
-    objj_msgSend(self, "makeKeyAndOrderFront:", nil);
+    }    objj_msgSend(self, "makeKeyAndOrderFront:", nil);
 }
 ,["void","CPString","CPString","CPString","CPString","BOOL","BOOL","int","int","TNStropheContact"]), new objj_method(sel_getUid("fitWindowToVNCView"), function $TNExternalVNCWindow__fitWindowToVNCView(self, _cmd)
 {
@@ -189,30 +147,30 @@ class_addMethods(the_class, [new objj_method(sel_getUid("initWithContentRect:sty
 }
 ,["id","id"]), new objj_method(sel_getUid("remoteScreenView:updateState:message:"), function $TNExternalVNCWindow__remoteScreenView_updateState_message_(self, _cmd, aScreenView, aState, aMessage)
 {
-    switch (aState)
-    {
-        case TNRemoteScreenViewStateError:
+    switch(aState) {
+    case TNRemoteScreenViewStateError:
+        objj_msgSend(aScreenView, "setHidden:", YES);
+        var growl = objj_msgSend(objj_msgSend(TNGrowlCenter, "alloc"), "init");
+        objj_msgSend(growl, "setView:", objj_msgSend(self, "contentView"));
+        objj_msgSend(growl, "pushNotificationWithTitle:message:icon:", objj_msgSend(self._entity, "name"), CPBundleLocalizedString("Error connecting to the VNC screen. Use the VNC tab for more information.", "Error connecting to the VNC screen. Use the VNC tab for more information."), TNGrowlIconError);
+        CPLog.error("Cannot connect to the VNC screen at " + objj_msgSend(aScreenView, "host") + ":" + objj_msgSend(aScreenView, "port"));
+        break;
+    case TNRemoteScreenViewStateConnected:
+        self._hasBeenConnected = YES;
+        objj_msgSend(aScreenView, "setHidden:", NO);
+        objj_msgSend(aScreenView, "focus");
+        setTimeout(function()
+        {
+            objj_msgSend(self, "fitWindowToVNCView");
+        }, 500);
+        break;
+    case TNRemoteScreenViewStateDisconnected:
+        if (self._hasBeenConnected)
+        {
             objj_msgSend(aScreenView, "setHidden:", YES);
-            var growl = objj_msgSend(objj_msgSend(TNGrowlCenter, "alloc"), "init");
-            objj_msgSend(growl, "setView:", objj_msgSend(self, "contentView"));
-            objj_msgSend(growl, "pushNotificationWithTitle:message:icon:", objj_msgSend(self._entity, "name"), CPBundleLocalizedString("Error connecting to the VNC screen. Use the VNC tab for more information.", "Error connecting to the VNC screen. Use the VNC tab for more information."), TNGrowlIconError);
-            CPLog.error("Cannot connect to the VNC screen at " + objj_msgSend(aScreenView, "host") + ":" + objj_msgSend(aScreenView, "port"));
-            break;
-        case TNRemoteScreenViewStateConnected:
-            self._hasBeenConnected = YES;
-            objj_msgSend(aScreenView, "setHidden:", NO);
-            objj_msgSend(aScreenView, "focus");
-            setTimeout(function(){
-                objj_msgSend(self, "fitWindowToVNCView");
-            }, 500);
-            break;
-        case TNRemoteScreenViewStateDisconnected:
-            if (self._hasBeenConnected)
-            {
-                objj_msgSend(aScreenView, "setHidden:", YES);
-                objj_msgSend(self, "close");
-                objj_msgSend(objj_msgSend(self, "platformWindow"), "orderOut:", nil);
-            }
+            objj_msgSend(self, "close");
+            objj_msgSend(objj_msgSend(self, "platformWindow"), "orderOut:", nil);
+        }
     }
 }
 ,["void","TNRemoteScreenView","CPString","CPString"]), new objj_method(sel_getUid("remoteScreenView:didDesktopSizeChange:"), function $TNExternalVNCWindow__remoteScreenView_didDesktopSizeChange_(self, _cmd, aScreenView, aNewSize)
@@ -232,32 +190,18 @@ class_addMethods(the_class, [new objj_method(sel_getUid("initWithContentRect:sty
 ,["void","TNRemoteScreenView"]), new objj_method(sel_getUid("close"), function $TNExternalVNCWindow__close(self, _cmd)
 {
     objj_msgSend(objj_msgSend(CPNotificationCenter, "defaultCenter"), "removeObserver:", self);
-    CPLog.info("disconnecting windowed noVNC client")
+    CPLog.info("disconnecting windowed noVNC client");
     if (objj_msgSend(self._screenView, "state") != TNRemoteScreenViewStateDisconnected)
         objj_msgSend(self._screenView, "disconnect:", nil);
     objj_msgSend(self._screenView, "unfocus");
     objj_msgSendSuper({ receiver:self, super_class:objj_getClass("TNExternalVNCWindow").super_class }, "close");
 }
 ,["void"])]);
-}
-CPBundleLocalizedString = function(key, comment)
+}CPBundleLocalizedString = function(key, comment)
 {
     return CPLocalizedStringFromTableInBundle(key, nil, objj_msgSend(CPBundle, "bundleForClass:", TNExternalVNCWindow), comment);
-}p;33;TNVirtualMachineNOVNCController.jt;35348;@STATIC;1.0;I;23;Foundation/Foundation.jI;17;AppKit/CPButton.jI;19;AppKit/CPCheckBox.jI;20;AppKit/CPImageView.jI;15;AppKit/CPView.jI;17;AppKit/CPWindow.jI;28;LPKit/LPMultiLineTextField.jI;29;VNCCappuccino/VNCCappuccino.ji;22;../../Views/TNSwitch.ji;22;../../Model/TNModule.ji;21;TNExternalVNCWindow.ji;17;TNZoomAnimation.jt;35018;objj_executeFile("Foundation/Foundation.j", NO);
-objj_executeFile("AppKit/CPButton.j", NO);
-objj_executeFile("AppKit/CPCheckBox.j", NO);
-objj_executeFile("AppKit/CPImageView.j", NO);
-objj_executeFile("AppKit/CPView.j", NO);
-objj_executeFile("AppKit/CPWindow.j", NO);
-objj_executeFile("LPKit/LPMultiLineTextField.j", NO);
-objj_executeFile("VNCCappuccino/VNCCappuccino.j", NO);
-objj_executeFile("../../Views/TNSwitch.j", YES);
-objj_executeFile("../../Model/TNModule.j", YES);
-objj_executeFile("TNExternalVNCWindow.j", YES);
-objj_executeFile("TNZoomAnimation.j", YES);
-//@global CPLocalizedString
-//@global CPLocalizedStringFromTableInBundle
-var TNArchipelPushNotificationVNC = "archipel:push:virtualmachine:vnc",
+}
+p;33;TNVirtualMachineNOVNCController.jt;33347;@STATIC;1.0;I;23;Foundation/Foundation.jI;17;AppKit/CPButton.jI;19;AppKit/CPCheckBox.jI;20;AppKit/CPImageView.jI;15;AppKit/CPView.jI;17;AppKit/CPWindow.jI;28;LPKit/LPMultiLineTextField.jI;29;VNCCappuccino/VNCCappuccino.ji;22;../../Views/TNSwitch.ji;22;../../Model/TNModule.ji;21;TNExternalVNCWindow.ji;17;TNZoomAnimation.jt;33017;objj_executeFile("Foundation/Foundation.j", NO);objj_executeFile("AppKit/CPButton.j", NO);objj_executeFile("AppKit/CPCheckBox.j", NO);objj_executeFile("AppKit/CPImageView.j", NO);objj_executeFile("AppKit/CPView.j", NO);objj_executeFile("AppKit/CPWindow.j", NO);objj_executeFile("LPKit/LPMultiLineTextField.j", NO);objj_executeFile("VNCCappuccino/VNCCappuccino.j", NO);objj_executeFile("../../Views/TNSwitch.j", YES);objj_executeFile("../../Model/TNModule.j", YES);objj_executeFile("TNExternalVNCWindow.j", YES);objj_executeFile("TNZoomAnimation.j", YES);var TNArchipelPushNotificationVNC = "archipel:push:virtualmachine:vnc",
     TNArchipelTypeVirtualMachineVNC = "archipel:virtualmachine:vnc",
     TNArchipelTypeVirtualMachineVNCDisplay = "display",
     TNArchipelVNCInformationRecoveredNotification = "TNArchipelVNCInformationRecoveredNotification",
@@ -266,58 +210,7 @@ var TNArchipelPushNotificationVNC = "archipel:push:virtualmachine:vnc",
 TNArchipelVNCScreenTypeVNC = "vnc";
 TNArchipelVNCScreenTypeSPICE = "spice";
 {var the_class = objj_allocateClassPair(TNModule, "TNVirtualMachineNOVNCController"),
-meta_class = the_class.isa;class_addIvars(the_class, [new objj_ivar("buttonAddCertificateException"), new objj_ivar("buttonExternalWindow"), new objj_ivar("buttonGetPasteBoard"), new objj_ivar("buttonPasswordSend"), new objj_ivar("buttonPasteBoardSend"), new objj_ivar("buttonSendCtrlAtlDel"), new objj_ivar("buttonSendPasteBoard"), new objj_ivar("buttonZoomFitToWindow"), new objj_ivar("buttonZoomReset"), new objj_ivar("checkboxPasswordRemember"), new objj_ivar("imageViewSecureConnection"), new objj_ivar("popoverPasteBoard"), new objj_ivar("sliderScaling"), new objj_ivar("fieldPassword"), new objj_ivar("fieldPreferencesCheckRate"), new objj_ivar("fieldPreferencesFBURefreshRate"), new objj_ivar("labelErrorInformation"), new objj_ivar("viewConnectionErrorHelp"), new objj_ivar("viewControls"), new objj_ivar("viewVNCContainer"), new objj_ivar("windowPassword"), new objj_ivar("fieldPasteBoard"), new objj_ivar("switchPreferencesPreferSSL"), new objj_ivar("_useSSL"), new objj_ivar("_onlySSL"), new objj_ivar("_supportsSSL"), new objj_ivar("_remoteScreenType"), new objj_ivar("_url"), new objj_ivar("_VMHost"), new objj_ivar("_remoteScreenDirectPort"), new objj_ivar("_remoteScreenProxyPort"), new objj_ivar("_vncView"), new objj_ivar("_spiceView")]);
-       
-       
-
-
-
-
-
-
-
-       
-       
-
-
-
-       
-       
-
-
-
-
-
-
-
-
-
-
-       
-       
-
-
-
-
-
-
-
-
-
-
-
-       
-       
-
-
-       
-       
-
-
-
-
-
-objj_registerClassPair(the_class);
+meta_class = the_class.isa;class_addIvars(the_class, [new objj_ivar("buttonAddCertificateException"), new objj_ivar("buttonExternalWindow"), new objj_ivar("buttonGetPasteBoard"), new objj_ivar("buttonPasswordSend"), new objj_ivar("buttonPasteBoardSend"), new objj_ivar("buttonSendCtrlAtlDel"), new objj_ivar("buttonSendPasteBoard"), new objj_ivar("buttonZoomFitToWindow"), new objj_ivar("buttonZoomReset"), new objj_ivar("checkboxPasswordRemember"), new objj_ivar("imageViewSecureConnection"), new objj_ivar("popoverPasteBoard"), new objj_ivar("sliderScaling"), new objj_ivar("fieldPassword"), new objj_ivar("fieldPreferencesCheckRate"), new objj_ivar("fieldPreferencesFBURefreshRate"), new objj_ivar("labelErrorInformation"), new objj_ivar("viewConnectionErrorHelp"), new objj_ivar("viewControls"), new objj_ivar("viewVNCContainer"), new objj_ivar("windowPassword"), new objj_ivar("fieldPasteBoard"), new objj_ivar("switchPreferencesPreferSSL"), new objj_ivar("_useSSL"), new objj_ivar("_onlySSL"), new objj_ivar("_supportsSSL"), new objj_ivar("_remoteScreenType"), new objj_ivar("_url"), new objj_ivar("_VMHost"), new objj_ivar("_remoteScreenDirectPort"), new objj_ivar("_remoteScreenProxyPort"), new objj_ivar("_vncView"), new objj_ivar("_spiceView")]);objj_registerClassPair(the_class);
 class_addMethods(the_class, [new objj_method(sel_getUid("awakeFromCib"), function $TNVirtualMachineNOVNCController__awakeFromCib(self, _cmd)
 {
     objj_msgSend(self.windowPassword, "setDefaultButton:", self.buttonPasswordSend);
@@ -325,15 +218,14 @@ class_addMethods(the_class, [new objj_method(sel_getUid("awakeFromCib"), functio
         defaults = objj_msgSend(CPUserDefaults, "standardUserDefaults");
     objj_msgSend(self.imageViewSecureConnection, "setHidden:", YES);
     objj_msgSend(self.imageViewSecureConnection, "setImage:", CPImageInBundle("secure.png", CGSizeMake(16.0, 16.0), bundle));
-    objj_msgSend(defaults, "registerDefaults:", objj_msgSend(CPDictionary, "dictionaryWithObjectsAndKeys:", objj_msgSend(bundle, "objectForInfoDictionaryKey:", "NOVNCPreferSSL"), "NOVNCPreferSSL", objj_msgSend(bundle, "objectForInfoDictionaryKey:", "NOVNCFBURate"), "NOVNCFBURate", objj_msgSend(bundle, "objectForInfoDictionaryKey:", "NOVNCheckRate"), "NOVNCheckRate"));
-    var imageBg = objj_msgSend(objj_msgSend(CPImage, "alloc"), "initWithContentsOfFile:", objj_msgSend(bundle, "pathForResource:", "bg-controls.png")),
-        imageZoomFit = objj_msgSend(objj_msgSend(CPImage, "alloc"), "initWithContentsOfFile:size:", objj_msgSend(objj_msgSend(CPBundle, "mainBundle"), "pathForResource:", "IconsButtons/fullscreen.png"), CGSizeMake(16, 16)),
-        imageZoomReset = objj_msgSend(objj_msgSend(CPImage, "alloc"), "initWithContentsOfFile:size:", objj_msgSend(objj_msgSend(CPBundle, "mainBundle"), "pathForResource:", "IconsButtons/reset.png"), CGSizeMake(16, 16)),
-        imageDirectAccess = objj_msgSend(objj_msgSend(CPImage, "alloc"), "initWithContentsOfFile:size:", objj_msgSend(objj_msgSend(CPBundle, "mainBundle"), "pathForResource:", "IconsButtons/screen.png"), CGSizeMake(16, 16)),
-        imageCtrlAltDel = objj_msgSend(objj_msgSend(CPImage, "alloc"), "initWithContentsOfFile:size:", objj_msgSend(bundle, "pathForResource:", "skull.png"), CGSizeMake(16, 16)),
-        imageSendPasteBoard = objj_msgSend(objj_msgSend(CPImage, "alloc"), "initWithContentsOfFile:size:", objj_msgSend(bundle, "pathForResource:", "sendPasteBoard.png"), CGSizeMake(16, 16)),
-        imageGetPasteBoard = objj_msgSend(objj_msgSend(CPImage, "alloc"), "initWithContentsOfFile:size:", objj_msgSend(bundle, "pathForResource:", "getPasteBoard.png"), CGSizeMake(16, 16));
-    objj_msgSend(self.viewControls, "setBackgroundColor:", objj_msgSend(CPColor, "colorWithPatternImage:", imageBg));
+    objj_msgSend(defaults, "registerDefaults:", objj_msgSend(objj_msgSend(CPDictionary, "alloc"), "initWithObjectsAndKeys:", objj_msgSend(bundle, "objectForInfoDictionaryKey:", "NOVNCPreferSSL"), "NOVNCPreferSSL", objj_msgSend(bundle, "objectForInfoDictionaryKey:", "NOVNCFBURate"), "NOVNCFBURate", objj_msgSend(bundle, "objectForInfoDictionaryKey:", "NOVNCheckRate"), "NOVNCheckRate"));
+    var imageZoomFit = CPImageInBundle("IconsButtons/fullscreen.png", CGSizeMake(16, 16), objj_msgSend(CPBundle, "mainBundle")),
+        imageZoomReset = CPImageInBundle("IconsButtons/reset.png", CGSizeMake(16, 16), objj_msgSend(CPBundle, "mainBundle")),
+        imageDirectAccess = CPImageInBundle("IconsButtons/screen.png", CGSizeMake(16, 16), objj_msgSend(CPBundle, "mainBundle")),
+        imageCtrlAltDel = CPImageInBundle("skull.png", CGSizeMake(16, 16), bundle),
+        imageSendPasteBoard = CPImageInBundle("sendPasteBoard.png", CGSizeMake(16, 16), bundle),
+        imageGetPasteBoard = CPImageInBundle("getPasteBoard.png", CGSizeMake(16, 16), bundle);
+    objj_msgSend(self.viewControls, "setBackgroundColor:", CPColorWithImages("bg-controls.png", nil, nil, bundle));
     objj_msgSend(self.buttonZoomFitToWindow, "setImage:", imageZoomFit);
     objj_msgSend(self.buttonZoomReset, "setImage:", imageZoomReset);
     objj_msgSend(self.buttonExternalWindow, "setImage:", imageDirectAccess);
@@ -363,7 +255,7 @@ class_addMethods(the_class, [new objj_method(sel_getUid("awakeFromCib"), functio
     if (!objj_msgSendSuper({ receiver:self, super_class:objj_getClass("TNVirtualMachineNOVNCController").super_class }, "willLoad"))
         return NO;
     objj_msgSend(objj_msgSend(CPNotificationCenter, "defaultCenter"), "addObserver:selector:name:object:", self, sel_getUid("_showExternalScreen:"), TNArchipelVNCShowExternalWindowNotification, nil);
-   objj_msgSend(objj_msgSend(CPNotificationCenter, "defaultCenter"), "addObserver:selector:name:object:", self, sel_getUid("_didDefinitionUpdated:"), TNArchipelDefinitionUpdatedNotification, nil);
+    objj_msgSend(objj_msgSend(CPNotificationCenter, "defaultCenter"), "addObserver:selector:name:object:", self, sel_getUid("_didDefinitionUpdated:"), TNArchipelDefinitionUpdatedNotification, nil);
     objj_msgSend(self, "registerSelector:forPushNotificationType:", sel_getUid("_didReceivePush:"), TNArchipelPushNotificationVNC);
     objj_msgSend(self, "getVirtualMachineVNCDisplay");
     return YES;
@@ -418,27 +310,19 @@ class_addMethods(the_class, [new objj_method(sel_getUid("awakeFromCib"), functio
     objj_msgSend(self.fieldPreferencesCheckRate, "setIntValue:", objj_msgSend(defaults, "integerForKey:", "NOVNCheckRate"));
     objj_msgSend(self.switchPreferencesPreferSSL, "setOn:animated:sendAction:", objj_msgSend(defaults, "boolForKey:", "NOVNCPreferSSL"), YES, NO);
 }
-,["void"]), new objj_method(sel_getUid("menuReady"), function $TNVirtualMachineNOVNCController__menuReady(self, _cmd)
-{
-    objj_msgSend(objj_msgSend(self._menu, "addItemWithTitle:action:keyEquivalent:", CPBundleLocalizedString("Fit screen to window", "Fit screen to window"), sel_getUid("fitToScreen:"), ""), "setTarget:", self);
-    objj_msgSend(objj_msgSend(self._menu, "addItemWithTitle:action:keyEquivalent:", CPBundleLocalizedString("Reset zoom", "Reset zoom"), sel_getUid("resetZoom:"), ""), "setTarget:", self);
-    objj_msgSend(self._menu, "addItem:", objj_msgSend(CPMenuItem, "separatorItem"));
-    objj_msgSend(objj_msgSend(self._menu, "addItemWithTitle:action:keyEquivalent:", CPBundleLocalizedString("Open external VNC program", "Open external VNC program"), sel_getUid("openExternalWindow:"), ""), "setTarget:", self);
-}
 ,["void"]), new objj_method(sel_getUid("_didReceivePush:"), function $TNVirtualMachineNOVNCController___didReceivePush_(self, _cmd, somePushInfo)
 {
     var sender = objj_msgSend(somePushInfo, "objectForKey:", "owner"),
         type = objj_msgSend(somePushInfo, "objectForKey:", "type"),
         change = objj_msgSend(somePushInfo, "objectForKey:", "change"),
         date = objj_msgSend(somePushInfo, "objectForKey:", "date");
-    switch (change)
-    {
-        case "websocketvncstart":
-            objj_msgSend(self, "getVirtualMachineVNCDisplay");
-            break;
-        case "websocketvncstop":
-            objj_msgSend(self, "handleDisplayVNCScreen");
-            break;
+    switch(change) {
+    case "websocketvncstart":
+        objj_msgSend(self, "getVirtualMachineVNCDisplay");
+        break;
+    case "websocketvncstop":
+        objj_msgSend(self, "handleDisplayVNCScreen");
+        break;
     }
     return YES;
 }
@@ -452,25 +336,25 @@ class_addMethods(the_class, [new objj_method(sel_getUid("awakeFromCib"), functio
 }
 ,["void","CPNotification"]), new objj_method(sel_getUid("_switchViewAccordingToCurrentType"), function $TNVirtualMachineNOVNCController___switchViewAccordingToCurrentType(self, _cmd)
 {
-    switch (self._remoteScreenType)
-    {
-        case TNArchipelVNCScreenTypeVNC:
-            objj_msgSend(self._spiceView, "removeFromSuperview");
-            objj_msgSend(self.viewVNCContainer, "addSubview:", self._vncView);
-            break;
-        case TNArchipelVNCScreenTypeSPICE:
-            objj_msgSend(self._vncView, "removeFromSuperview");
-            objj_msgSend(self.viewVNCContainer, "addSubview:", self._spiceView);
-            break;
+    switch(self._remoteScreenType) {
+    case TNArchipelVNCScreenTypeVNC:
+        objj_msgSend(self._spiceView, "removeFromSuperview");
+        objj_msgSend(self.viewVNCContainer, "addSubview:", self._vncView);
+        break;
+    case TNArchipelVNCScreenTypeSPICE:
+        objj_msgSend(self._vncView, "removeFromSuperview");
+        objj_msgSend(self.viewVNCContainer, "addSubview:", self._spiceView);
+        break;
     }
     objj_msgSend(self, "_centerScreenView");
 }
 ,["void"]), new objj_method(sel_getUid("currentScreenView"), function $TNVirtualMachineNOVNCController__currentScreenView(self, _cmd)
 {
-    switch (self._remoteScreenType)
-    {
-        case TNArchipelVNCScreenTypeVNC : return self._vncView;
-        case TNArchipelVNCScreenTypeSPICE : return self._spiceView;
+    switch(self._remoteScreenType) {
+    case TNArchipelVNCScreenTypeVNC:
+        return self._vncView;
+    case TNArchipelVNCScreenTypeSPICE:
+        return self._spiceView;
     }
 }
 ,["TNRemoteScreenView"]), new objj_method(sel_getUid("_centerScreenView"), function $TNVirtualMachineNOVNCController___centerScreenView(self, _cmd)
@@ -482,12 +366,12 @@ class_addMethods(the_class, [new objj_method(sel_getUid("awakeFromCib"), functio
 }
 ,["void"]), new objj_method(sel_getUid("isConnected"), function $TNVirtualMachineNOVNCController__isConnected(self, _cmd)
 {
-    return (objj_msgSend(self._vncView, "state") != TNRemoteScreenViewStateDisconnected || objj_msgSend(self._vncView, "state") == TNRemoteScreenViewStateDisconnecting)
+    return objj_msgSend(self._vncView, "state") != TNRemoteScreenViewStateDisconnected || objj_msgSend(self._vncView, "state") == TNRemoteScreenViewStateDisconnecting;
 }
 ,["BOOL"]), new objj_method(sel_getUid("handleDisplayVNCScreen"), function $TNVirtualMachineNOVNCController__handleDisplayVNCScreen(self, _cmd)
 {
-    var conditionVMStatusOK = (objj_msgSend(self._entity, "XMPPShow") == TNStropheContactStatusOnline || objj_msgSend(self._entity, "XMPPShow") == TNStropheContactStatusAway);
-    if (!conditionVMStatusOK || self._remoteScreenProxyPort == -1|| !self._remoteScreenProxyPort)
+    var conditionVMStatusOK = objj_msgSend(self._entity, "XMPPShow") == TNStropheContactStatusOnline || objj_msgSend(self._entity, "XMPPShow") == TNStropheContactStatusAway;
+    if (!conditionVMStatusOK || self._remoteScreenProxyPort == -1 || !self._remoteScreenProxyPort)
     {
         self._VMHost = nil;
         self._remoteScreenProxyPort = nil;
@@ -509,7 +393,7 @@ class_addMethods(the_class, [new objj_method(sel_getUid("awakeFromCib"), functio
     var defaults = objj_msgSend(CPUserDefaults, "standardUserDefaults"),
         passwordKey = "TNArchipelNOVNCPasswordRememberFor" + objj_msgSend(self._entity, "JID"),
         preferSSL = objj_msgSend(defaults, "boolForKey:", "NOVNCPreferSSL");
-    if (self._onlySSL || (preferSSL && self._supportsSSL))
+    if (self._onlySSL || preferSSL && self._supportsSSL)
         self._useSSL = YES;
     objj_msgSend(self.sliderScaling, "setDoubleValue:", 1);
     if (objj_msgSend(defaults, "stringForKey:", passwordKey))
@@ -525,29 +409,25 @@ class_addMethods(the_class, [new objj_method(sel_getUid("awakeFromCib"), functio
     objj_msgSend(self, "showMaskView:", NO);
     objj_msgSend(self, "_switchViewAccordingToCurrentType");
     var currentScreenView;
-    switch (self._remoteScreenType)
-    {
-        case TNArchipelVNCScreenTypeVNC:
-            currentScreenView = objj_msgSend(self, "_loadVNC");
-            break;
-        case TNArchipelVNCScreenTypeSPICE:
-            currentScreenView = objj_msgSend(self, "_loadSpice");
-            break;
-        default:
-            objj_msgSend(TNAlert, "showAlertWithMessage:informative:style:", "Unknown screen type received", "Screen type " + self._remoteScreenType + " is not valid", CPCriticalAlertStyle);
-            return;
+    switch(self._remoteScreenType) {
+    case TNArchipelVNCScreenTypeVNC:
+        currentScreenView = objj_msgSend(self, "_loadVNC");
+        break;
+    case TNArchipelVNCScreenTypeSPICE:
+        currentScreenView = objj_msgSend(self, "_loadSpice");
+        break;
+default:
+        objj_msgSend(TNAlert, "showAlertWithMessage:informative:style:", "Unknown screen type received", "Screen type " + self._remoteScreenType + " is not valid", CPCriticalAlertStyle);
+        return;
     }
-    try
-    {
+    try    {
         objj_msgSend(currentScreenView, "load");
         objj_msgSend(currentScreenView, "connect:", nil);
     }
-    catch(e)
-    {
+    catch(e)     {
         objj_msgSend(TNAlert, "showAlertWithMessage:informative:style:", CPBundleLocalizedString("Websocket error for VNC", "Websocket error for VNC"), CPBundleLocalizedString("It seems your websocket configuration is not properly configured. If you are using Firefox, go to about:config and set 'network.websocket.override-security-block' and 'network.websocket.enabled' to 'True'.", "It seems your websocket configuration is not properly configured. If you are using Firefox, go to about:config and set 'network.websocket.override-security-block' and 'network.websocket.enabled' to 'True'."), CPCriticalAlertStyle);
         CPLog.error("Websocket problem. unable to start noVNC subsystem: " + e);
-    }
-}
+    }}
 ,["void"]), new objj_method(sel_getUid("_loadVNC"), function $TNVirtualMachineNOVNCController___loadVNC(self, _cmd)
 {
     var defaults = objj_msgSend(CPUserDefaults, "standardUserDefaults");
@@ -662,8 +542,8 @@ class_addMethods(the_class, [new objj_method(sel_getUid("awakeFromCib"), functio
     var visibleRect = objj_msgSend(self.viewVNCContainer, "frame"),
         currentVNCSize = objj_msgSend(objj_msgSend(self, "currentScreenView"), "displaySize"),
         currentVNCZoom = objj_msgSend(objj_msgSend(self, "currentScreenView"), "zoom"),
-        diffPerc = ((visibleRect.size.height - currentVNCSize.height) / currentVNCSize.height),
-        newZoom = (diffPerc < 0) ? 1 - (Math.abs(diffPerc)) : 1 + (Math.abs(diffPerc));
+        diffPerc = (visibleRect.size.height - currentVNCSize.height) / currentVNCSize.height,
+        newZoom = diffPerc < 0 ? 1 - Math.abs(diffPerc) : 1 + Math.abs(diffPerc);
     objj_msgSend(self, "animateChangeScaleFrom:to:", currentVNCZoom, newZoom);
 }
 ,["id","id"]), new objj_method(sel_getUid("resetZoom:"), function $TNVirtualMachineNOVNCController__resetZoom_(self, _cmd, aSender)
@@ -698,7 +578,7 @@ class_addMethods(the_class, [new objj_method(sel_getUid("awakeFromCib"), functio
 {
     objj_msgSend(self, "rememberPassword:", nil);
     objj_msgSend(self.windowPassword, "close");
-    if ((objj_msgSend(objj_msgSend(self, "currentScreenView"), "state") == TNRemoteScreenViewStateDisconnected) || (objj_msgSend(objj_msgSend(self, "currentScreenView"), "state") == TNRemoteScreenViewStateDisconnecting))
+    if (objj_msgSend(objj_msgSend(self, "currentScreenView"), "state") == TNRemoteScreenViewStateDisconnected || objj_msgSend(objj_msgSend(self, "currentScreenView"), "state") == TNRemoteScreenViewStateDisconnecting)
     {
         objj_msgSend(objj_msgSend(self, "currentScreenView"), "setPassword:", objj_msgSend(self.fieldPassword, "stringValue"));
         objj_msgSend(objj_msgSend(self, "currentScreenView"), "connect:", nil);
@@ -727,8 +607,7 @@ class_addMethods(the_class, [new objj_method(sel_getUid("awakeFromCib"), functio
 {
     var stanza = objj_msgSend(TNStropheStanza, "iqWithType:", "get");
     objj_msgSend(stanza, "addChildWithName:andAttributes:", "query", {"xmlns": TNArchipelTypeVirtualMachineVNC});
-    objj_msgSend(stanza, "addChildWithName:andAttributes:", "archipel", {
-        "action": TNArchipelTypeVirtualMachineVNCDisplay});
+    objj_msgSend(stanza, "addChildWithName:andAttributes:", "archipel", {"action": TNArchipelTypeVirtualMachineVNCDisplay});
     objj_msgSend(self._entity, "sendStanza:andRegisterSelector:ofObject:", stanza, sel_getUid("_didReceiveVNCDisplay:"), self);
 }
 ,["void"]), new objj_method(sel_getUid("_didReceiveVNCDisplay:"), function $TNVirtualMachineNOVNCController___didReceiveVNCDisplay_(self, _cmd, aStanza)
@@ -740,8 +619,8 @@ class_addMethods(the_class, [new objj_method(sel_getUid("awakeFromCib"), functio
         self._remoteScreenProxyPort = objj_msgSend(displayNode, "valueForAttribute:", "proxy");
         self._remoteScreenDirectPort = objj_msgSend(displayNode, "valueForAttribute:", "port");
         self._remoteScreenType = objj_msgSend(displayNode, "valueForAttribute:", "type");
-        self._supportsSSL = (objj_msgSend(displayNode, "valueForAttribute:", "supportssl") == "True") ? YES : NO;
-        self._onlySSL = (objj_msgSend(displayNode, "valueForAttribute:", "onlyssl") == "True") ? YES : NO;
+        self._supportsSSL = objj_msgSend(displayNode, "valueForAttribute:", "supportssl") == "True" ? YES : NO;
+        self._onlySSL = objj_msgSend(displayNode, "valueForAttribute:", "onlyssl") == "True" ? YES : NO;
         self._useSSL = NO;
         objj_msgSend(objj_msgSend(CPNotificationCenter, "defaultCenter"), "postNotificationName:object:", TNArchipelVNCInformationRecoveredNotification, displayNode);
         objj_msgSend(self, "handleDisplayVNCScreen");
@@ -762,39 +641,41 @@ class_addMethods(the_class, [new objj_method(sel_getUid("awakeFromCib"), functio
 }
 ,["void","CPAnimation"]), new objj_method(sel_getUid("remoteScreenView:updateState:message:"), function $TNVirtualMachineNOVNCController__remoteScreenView_updateState_message_(self, _cmd, aScreenView, aState, aMessage)
 {
-    switch (aState)
-    {
-        case TNRemoteScreenViewStateError:
-            objj_msgSend(aScreenView, "setHidden:", YES);
-            if (objj_msgSend(self.windowPassword, "isVisible") || !objj_msgSend(self, "isConnected"))
-                break;
-            if (objj_msgSend(aScreenView, "oldState") == TNVNCStateSecurityResult)
-            {
-                objj_msgSend(self.imageViewSecureConnection, "setHidden:", YES);
-                objj_msgSend(self, "_showConnectionHelp:", NO);
-                objj_msgSend(self.windowPassword, "center");
-                objj_msgSend(self.windowPassword, "makeKeyAndOrderFront:", nil);
-            }
-            else
-            {
-                objj_msgSend(self.imageViewSecureConnection, "setHidden:", YES);
-                CPLog.error("disconnected from the VNC screen at " + self._VMHost + ":" + self._remoteScreenProxyPort);
-                if (objj_msgSend(aScreenView, "oldState") !== TNRemoteScreenViewStateConnected)
-                    objj_msgSend(self, "_showConnectionHelp:", YES);
-            }
+    switch(aState) {
+    case TNRemoteScreenViewStateError:
+        objj_msgSend(aScreenView, "setHidden:", YES);
+        if (objj_msgSend(self.windowPassword, "isVisible") || !objj_msgSend(self, "isConnected"))
             break;
-        case TNRemoteScreenViewNeedsPassword:
+        if (objj_msgSend(aScreenView, "oldState") == TNVNCStateSecurityResult)
+        {
+            objj_msgSend(self.imageViewSecureConnection, "setHidden:", YES);
+            objj_msgSend(self, "_showConnectionHelp:", NO);
             objj_msgSend(self.windowPassword, "center");
             objj_msgSend(self.windowPassword, "makeKeyAndOrderFront:", nil);
-            objj_msgSend(self, "_showConnectionHelp:", NO);
-            break;
-        case TNRemoteScreenViewStateConnected:
-            objj_msgSend(aScreenView, "setHidden:", NO);
-            objj_msgSend(self, "_centerScreenView");
-            objj_msgSend(self, "_showConnectionHelp:", NO);
-            setTimeout(function(){ objj_msgSend(self, "fitToScreen:", nil) }, 500);
-            objj_msgSend(self.imageViewSecureConnection, "setHidden:", !self._useSSL);
-            break;
+        }
+        else
+        {
+            objj_msgSend(self.imageViewSecureConnection, "setHidden:", YES);
+            CPLog.error("disconnected from the VNC screen at " + self._VMHost + ":" + self._remoteScreenProxyPort);
+            if (objj_msgSend(aScreenView, "oldState") !== TNRemoteScreenViewStateConnected)
+                objj_msgSend(self, "_showConnectionHelp:", YES);
+        }
+        break;
+    case TNRemoteScreenViewNeedsPassword:
+        objj_msgSend(self.windowPassword, "center");
+        objj_msgSend(self.windowPassword, "makeKeyAndOrderFront:", nil);
+        objj_msgSend(self, "_showConnectionHelp:", NO);
+        break;
+    case TNRemoteScreenViewStateConnected:
+        objj_msgSend(aScreenView, "setHidden:", NO);
+        objj_msgSend(self, "_centerScreenView");
+        objj_msgSend(self, "_showConnectionHelp:", NO);
+        setTimeout(function()
+        {
+            objj_msgSend(self, "fitToScreen:", nil);
+        }, 500);
+        objj_msgSend(self.imageViewSecureConnection, "setHidden:", !self._useSSL);
+        break;
     }
 }
 ,["void","TNRemoteScreenView","CPString","CPString"]), new objj_method(sel_getUid("remoteScreenView:didDesktopSizeChange:"), function $TNVirtualMachineNOVNCController__remoteScreenView_didDesktopSizeChange_(self, _cmd, aScreenView, aNewSize)
@@ -809,37 +690,35 @@ class_addMethods(the_class, [new objj_method(sel_getUid("awakeFromCib"), functio
 {
 }
 ,["void","TNRemoteScreenView","BOOL"])]);
-}
-CPBundleLocalizedString = function(key, comment)
+}CPBundleLocalizedString = function(key, comment)
 {
     return CPLocalizedStringFromTableInBundle(key, nil, objj_msgSend(CPBundle, "bundleForClass:", TNVirtualMachineNOVNCController), comment);
-}p;17;TNZoomAnimation.jt;1838;@STATIC;1.0;I;23;Foundation/Foundation.jI;20;AppKit/CPAnimation.jt;1766;objj_executeFile("Foundation/Foundation.j", NO);
-objj_executeFile("AppKit/CPAnimation.j", NO);
-{var the_class = objj_allocateClassPair(CPAnimation, "TNZoomAnimation"),
+}
+p;17;TNZoomAnimation.jt;1860;@STATIC;1.0;I;23;Foundation/Foundation.jI;20;AppKit/CPAnimation.jt;1788;objj_executeFile("Foundation/Foundation.j", NO);objj_executeFile("AppKit/CPAnimation.j", NO);{var the_class = objj_allocateClassPair(CPAnimation, "TNZoomAnimation"),
 meta_class = the_class.isa;class_addIvars(the_class, [new objj_ivar("_currentZoom"), new objj_ivar("_endZoomValue"), new objj_ivar("_startZoomValue")]);objj_registerClassPair(the_class);
 class_addMethods(the_class, [new objj_method(sel_getUid("currentZoom"), function $TNZoomAnimation__currentZoom(self, _cmd)
 {
-return self._currentZoom;
+    return self._currentZoom;
 }
 ,["float"]), new objj_method(sel_getUid("_setCurrentZoom:"), function $TNZoomAnimation___setCurrentZoom_(self, _cmd, newValue)
 {
-self._currentZoom = newValue;
+    self._currentZoom = newValue;
 }
 ,["void","float"]), new objj_method(sel_getUid("endZoomValue"), function $TNZoomAnimation__endZoomValue(self, _cmd)
 {
-return self._endZoomValue;
+    return self._endZoomValue;
 }
 ,["float"]), new objj_method(sel_getUid("setEndZoomValue:"), function $TNZoomAnimation__setEndZoomValue_(self, _cmd, newValue)
 {
-self._endZoomValue = newValue;
+    self._endZoomValue = newValue;
 }
 ,["void","float"]), new objj_method(sel_getUid("startZoomValue"), function $TNZoomAnimation__startZoomValue(self, _cmd)
 {
-return self._startZoomValue;
+    return self._startZoomValue;
 }
 ,["float"]), new objj_method(sel_getUid("setStartZoomValue:"), function $TNZoomAnimation__setStartZoomValue_(self, _cmd, newValue)
 {
-self._startZoomValue = newValue;
+    self._startZoomValue = newValue;
 }
 ,["void","float"]), new objj_method(sel_getUid("setCurrentProgress:"), function $TNZoomAnimation__setCurrentProgress_(self, _cmd, aProgress)
 {

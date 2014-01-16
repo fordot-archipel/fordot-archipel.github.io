@@ -1,19 +1,7 @@
-@STATIC;1.0;p;31;TNToolbarPlayButtonController.jt;2772;@STATIC;1.0;I;23;Foundation/Foundation.ji;22;../../Model/TNModule.jt;2698;objj_executeFile("Foundation/Foundation.j", NO);
-objj_executeFile("../../Model/TNModule.j", YES);
-//@global TNArchipelEntityTypeVirtualMachine
-var TNArchipelControlNotification = "TNArchipelControlNotification",
+@STATIC;1.0;p;31;TNToolbarPlayButtonController.jt;2646;@STATIC;1.0;I;23;Foundation/Foundation.ji;22;../../Model/TNModule.jt;2572;objj_executeFile("Foundation/Foundation.j", NO);objj_executeFile("../../Model/TNModule.j", YES);var TNArchipelControlNotification = "TNArchipelControlNotification",
     TNArchipelControlPlay = "TNArchipelControlPlay";
 {var the_class = objj_allocateClassPair(TNModule, "TNToolbarPlayButtonController"),
-meta_class = the_class.isa;
-       
-       
-
-       
-       
-
-       
-       
-objj_registerClassPair(the_class);
+meta_class = the_class.isa;objj_registerClassPair(the_class);
 class_addMethods(the_class, [new objj_method(sel_getUid("willLoad"), function $TNToolbarPlayButtonController__willLoad(self, _cmd)
 {
     if (!objj_msgSendSuper({ receiver:self, super_class:objj_getClass("TNToolbarPlayButtonController").super_class }, "willLoad"))
@@ -23,14 +11,13 @@ class_addMethods(the_class, [new objj_method(sel_getUid("willLoad"), function $T
 }
 ,["BOOL"]), new objj_method(sel_getUid("setGUIAccordingToStatus:"), function $TNToolbarPlayButtonController__setGUIAccordingToStatus_(self, _cmd, aNotification)
 {
-    switch (objj_msgSend(self._entity, "XMPPShow"))
-    {
-        case TNStropheContactStatusBusy:
-            objj_msgSend(objj_msgSend(self, "UIItem"), "setEnabled:", YES);
-            break;
-        default:
-            objj_msgSend(objj_msgSend(self, "UIItem"), "setEnabled:", NO);
-   }
+    switch(objj_msgSend(self._entity, "XMPPShow")) {
+    case TNStropheContactStatusBusy:
+        objj_msgSend(objj_msgSend(self, "UIItem"), "setEnabled:", YES);
+        break;
+default:
+        objj_msgSend(objj_msgSend(self, "UIItem"), "setEnabled:", NO);
+    }
 }
 ,["void","CPNotification"]), new objj_method(sel_getUid("setEntity:"), function $TNToolbarPlayButtonController__setEntity_(self, _cmd, anEntity)
 {
