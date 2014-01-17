@@ -1,5 +1,43 @@
-@STATIC;1.0;p;22;TNPermissionDataView.jt;2742;@STATIC;1.0;I;23;Foundation/Foundation.jI;15;AppKit/CPView.jI;19;AppKit/CPCheckBox.jI;20;AppKit/CPTextField.ji;29;../../Views/TNBasicDataView.jt;2592;objj_executeFile("Foundation/Foundation.j", NO);objj_executeFile("AppKit/CPView.j", NO);objj_executeFile("AppKit/CPCheckBox.j", NO);objj_executeFile("AppKit/CPTextField.j", NO);objj_executeFile("../../Views/TNBasicDataView.j", YES);{var the_class = objj_allocateClassPair(TNBasicDataView, "TNPermissionDataView"),
-meta_class = the_class.isa;class_addIvars(the_class, [new objj_ivar("fieldName"), new objj_ivar("fieldDescription"), new objj_ivar("checkboxState"), new objj_ivar("_currentPermission")]);objj_registerClassPair(the_class);
+@STATIC;1.0;p;14;TNPermission.jt;1188;@STATIC;1.0;I;23;Foundation/Foundation.jt;1141;objj_executeFile("Foundation/Foundation.j", NO);
+{var the_class = objj_allocateClassPair(CPObject, "TNPermission"),
+meta_class = the_class.isa;class_addIvars(the_class, [new objj_ivar("_name"), new objj_ivar("_description"), new objj_ivar("_state")]);objj_registerClassPair(the_class);
+class_addMethods(the_class, [new objj_method(sel_getUid("name"), function $TNPermission__name(self, _cmd)
+{
+return self._name;
+}
+,["CPString"]), new objj_method(sel_getUid("setName:"), function $TNPermission__setName_(self, _cmd, newValue)
+{
+self._name = newValue;
+}
+,["void","CPString"]), new objj_method(sel_getUid("description"), function $TNPermission__description(self, _cmd)
+{
+return self._description;
+}
+,["CPString"]), new objj_method(sel_getUid("setDescription:"), function $TNPermission__setDescription_(self, _cmd, newValue)
+{
+self._description = newValue;
+}
+,["void","CPString"]), new objj_method(sel_getUid("state"), function $TNPermission__state(self, _cmd)
+{
+return self._state;
+}
+,["BOOL"]), new objj_method(sel_getUid("setState:"), function $TNPermission__setState_(self, _cmd, newValue)
+{
+self._state = newValue;
+}
+,["void","BOOL"])]);
+}p;22;TNPermissionDataView.jt;2767;@STATIC;1.0;I;23;Foundation/Foundation.jI;15;AppKit/CPView.jI;19;AppKit/CPCheckBox.jI;20;AppKit/CPTextField.ji;29;../../Views/TNBasicDataView.jt;2617;objj_executeFile("Foundation/Foundation.j", NO);
+objj_executeFile("AppKit/CPView.j", NO);
+objj_executeFile("AppKit/CPCheckBox.j", NO);
+objj_executeFile("AppKit/CPTextField.j", NO);
+objj_executeFile("../../Views/TNBasicDataView.j", YES);
+{var the_class = objj_allocateClassPair(TNBasicDataView, "TNPermissionDataView"),
+meta_class = the_class.isa;class_addIvars(the_class, [new objj_ivar("fieldName"), new objj_ivar("fieldDescription"), new objj_ivar("checkboxState"), new objj_ivar("_currentPermission")]);
+
+       
+       
+
+objj_registerClassPair(the_class);
 class_addMethods(the_class, [new objj_method(sel_getUid("setObjectValue:"), function $TNPermissionDataView__setObjectValue_(self, _cmd, aPermission)
 {
     self._currentPermission = aPermission;
@@ -11,7 +49,7 @@ class_addMethods(the_class, [new objj_method(sel_getUid("setObjectValue:"), func
 }
 ,["void","CPDictionary"]), new objj_method(sel_getUid("updateState:"), function $TNPermissionDataView__updateState_(self, _cmd, aSender)
 {
-    objj_msgSend(self._currentPermission, "setState:", objj_msgSend(aSender, "state") == CPOnState);
+    objj_msgSend(self._currentPermission, "setState:", (objj_msgSend(aSender, "state") == CPOnState))
 }
 ,["id","id"]), new objj_method(sel_getUid("initWithCoder:"), function $TNPermissionDataView__initWithCoder_(self, _cmd, aCoder)
 {
@@ -32,196 +70,26 @@ class_addMethods(the_class, [new objj_method(sel_getUid("setObjectValue:"), func
     objj_msgSend(aCoder, "encodeObject:forKey:", self.checkboxState, "checkboxState");
 }
 ,["void","CPCoder"])]);
-}p;25;TNPermissionUserFetcher.jt;9288;@STATIC;1.0;I;23;Foundation/Foundation.jI;35;StropheCappuccino/TNStropheStanza.jI;36;StropheCappuccino/TNStropheContact.jI;33;TNKit/TNTableViewLazyDataSource.jt;9122;objj_executeFile("Foundation/Foundation.j", NO);objj_executeFile("StropheCappuccino/TNStropheStanza.j", NO);objj_executeFile("StropheCappuccino/TNStropheContact.j", NO);objj_executeFile("TNKit/TNTableViewLazyDataSource.j", NO);var TNArchipelTypeXMPPServerUsers = "archipel:xmppserver:users",
-    TNArchipelTypeXMPPServerUsersList = "list",
-    TNArchipelTypeXMPPServerUsersFilter = "filter",
-    TNArchipelTypeXMPPServerUsersNumber = "number";
-{var the_class = objj_allocateClassPair(CPObject, "TNPermissionUserFetcher"),
-meta_class = the_class.isa;class_addIvars(the_class, [new objj_ivar("_displaysOnlyHumans"), new objj_ivar("_delegate"), new objj_ivar("_entity"), new objj_ivar("_dataSource"), new objj_ivar("_maxLoadedPage")]);objj_registerClassPair(the_class);
-class_addMethods(the_class, [new objj_method(sel_getUid("isDisplayingOnlyHumans"), function $TNPermissionUserFetcher__isDisplayingOnlyHumans(self, _cmd)
-{
-    return self._displaysOnlyHumans;
-}
-,["BOOL"]), new objj_method(sel_getUid("setDisplaysOnlyHumans:"), function $TNPermissionUserFetcher__setDisplaysOnlyHumans_(self, _cmd, newValue)
-{
-    self._displaysOnlyHumans = newValue;
-}
-,["void","BOOL"]), new objj_method(sel_getUid("delegate"), function $TNPermissionUserFetcher__delegate(self, _cmd)
-{
-    return self._delegate;
-}
-,["id"]), new objj_method(sel_getUid("setDelegate:"), function $TNPermissionUserFetcher__setDelegate_(self, _cmd, newValue)
-{
-    self._delegate = newValue;
-}
-,["void","id"]), new objj_method(sel_getUid("entity"), function $TNPermissionUserFetcher__entity(self, _cmd)
-{
-    return self._entity;
-}
-,["TNStropheContact"]), new objj_method(sel_getUid("setEntity:"), function $TNPermissionUserFetcher__setEntity_(self, _cmd, newValue)
-{
-    self._entity = newValue;
-}
-,["void","TNStropheContact"]), new objj_method(sel_getUid("dataSource"), function $TNPermissionUserFetcher__dataSource(self, _cmd)
-{
-    return self._dataSource;
-}
-,["TNTableViewLazyDataSource"]), new objj_method(sel_getUid("_setDataSource:"), function $TNPermissionUserFetcher___setDataSource_(self, _cmd, newValue)
-{
-    self._dataSource = newValue;
-}
-,["void","TNTableViewLazyDataSource"]), new objj_method(sel_getUid("init"), function $TNPermissionUserFetcher__init(self, _cmd)
-{
-    if (self = objj_msgSendSuper({ receiver:self, super_class:objj_getClass("TNPermissionUserFetcher").super_class }, "init"))
-    {
-        self._maxLoadedPage = 0;
-        self._displaysOnlyHumans = YES;
-    }
-    return self;
-}
-,["void"]), new objj_method(sel_getUid("setDataSource:"), function $TNPermissionUserFetcher__setDataSource_(self, _cmd, aDataSource)
-{
-    self._dataSource = aDataSource;
-    objj_msgSend(self._dataSource, "setDelegate:", self);
-}
-,["void","TNTableViewLazyDataSource"]), new objj_method(sel_getUid("reset"), function $TNPermissionUserFetcher__reset(self, _cmd)
-{
-    self._maxLoadedPage = 0;
-    objj_msgSend(self._dataSource, "setTotalCount:", -1);
-    objj_msgSend(self._dataSource, "setCurrentlyLoading:", NO);
-    if (objj_msgSend(self._delegate, "respondsToSelector:", sel_getUid("userFetcher:isLoading:")))
-        objj_msgSend(self._delegate, "userFetcher:isLoading:", self, NO);
-}
-,["void"]), new objj_method(sel_getUid("getNumberOfXMPPUsers"), function $TNPermissionUserFetcher__getNumberOfXMPPUsers(self, _cmd)
-{
-    objj_msgSend(self, "getNumberOfXMPPUsers:", nil);
-}
-,["void"]), new objj_method(sel_getUid("getNumberOfXMPPUsers:"), function $TNPermissionUserFetcher__getNumberOfXMPPUsers_(self, _cmd, aCallback)
-{
-    var stanza = objj_msgSend(TNStropheStanza, "iqWithType:", "get");
-    objj_msgSend(stanza, "addChildWithName:andAttributes:", "query", {"xmlns": TNArchipelTypeXMPPServerUsers});
-    objj_msgSend(stanza, "addChildWithName:andAttributes:", "archipel", {"action": TNArchipelTypeXMPPServerUsersNumber, "humans_only": self._displaysOnlyHumans ? "true" : "false"});
-    objj_msgSend(self._entity, "sendStanza:andRegisterSelector:ofObject:userInfo:", stanza, sel_getUid("_didGetNumberOfXMPPUsers:callback:"), self, aCallback);
-}
-,["void","SEL"]), new objj_method(sel_getUid("_didGetNumberOfXMPPUsers:callback:"), function $TNPermissionUserFetcher___didGetNumberOfXMPPUsers_callback_(self, _cmd, aStanza, aCallback)
-{
-    if (objj_msgSend(aStanza, "type") == "result")
-    {
-        var total = objj_msgSend(objj_msgSend(aStanza, "firstChildWithName:", "users"), "valueForAttribute:", "total");
-        objj_msgSend(self._dataSource, "setTotalCount:", total);
-        if (aCallback)
-            objj_msgSend(self, "performSelector:", aCallback);
-    }
-    else
-    {
-        objj_msgSend(self._delegate, "handleIqErrorFromStanza:", aStanza);
-    }
-}
-,["BOOL","TNStropheStanza","SEL"]), new objj_method(sel_getUid("getXMPPUsers"), function $TNPermissionUserFetcher__getXMPPUsers(self, _cmd)
-{
-    if (!objj_msgSend(objj_msgSend(TNPermissionsCenter, "defaultCenter"), "hasPermission:forEntity:", "xmppserver_users_list", self._entity))
-    {
-        objj_msgSend(self._delegate, "userFetcherClean");
-        return;
-    }
-    if (objj_msgSend(self._dataSource, "totalCount") == -1)
-    {
-        objj_msgSend(self, "getNumberOfXMPPUsers:", sel_getUid("getXMPPUsers"));
-        return;
-    }
-    var stanza = objj_msgSend(TNStropheStanza, "iqWithType:", "get");
-    objj_msgSend(stanza, "addChildWithName:andAttributes:", "query", {"xmlns": TNArchipelTypeXMPPServerUsers});
-    objj_msgSend(stanza, "addChildWithName:andAttributes:", "archipel", {"action": TNArchipelTypeXMPPServerUsersList, "page": self._maxLoadedPage, "humans_only": self._displaysOnlyHumans ? "true" : "false"});
-    objj_msgSend(self._dataSource, "setCurrentlyLoading:", YES);
-    if (objj_msgSend(self._delegate, "respondsToSelector:", sel_getUid("userFetcher:isLoading:")))
-        objj_msgSend(self._delegate, "userFetcher:isLoading:", self, YES);
-    objj_msgSend(self._entity, "sendStanza:andRegisterSelector:ofObject:", stanza, sel_getUid("_didGetXMPPUsers:"), self);
-}
-,["void"]), new objj_method(sel_getUid("getXMPPFilteredUsers:"), function $TNPermissionUserFetcher__getXMPPFilteredUsers_(self, _cmd, aFilter)
-{
-    if (!objj_msgSend(objj_msgSend(TNPermissionsCenter, "defaultCenter"), "hasPermission:forEntity:", "xmppserver_users_list", self._entity))
-    {
-        objj_msgSend(self._delegate, "userFetcherClean");
-        return;
-    }
-    var stanza = objj_msgSend(TNStropheStanza, "iqWithType:", "get");
-    objj_msgSend(stanza, "addChildWithName:andAttributes:", "query", {"xmlns": TNArchipelTypeXMPPServerUsers});
-    objj_msgSend(stanza, "addChildWithName:andAttributes:", "archipel", {"action": TNArchipelTypeXMPPServerUsersFilter, "filter": aFilter});
-    objj_msgSend(self._dataSource, "setCurrentlyLoading:", YES);
-    if (objj_msgSend(self._delegate, "respondsToSelector:", sel_getUid("userFetcher:isLoading:")))
-        objj_msgSend(self._delegate, "userFetcher:isLoading:", self, YES);
-    objj_msgSend(self._entity, "sendStanza:andRegisterSelector:ofObject:", stanza, sel_getUid("_didGetXMPPUsers:"), self);
-}
-,["void","CPString"]), new objj_method(sel_getUid("_didGetXMPPUsers:"), function $TNPermissionUserFetcher___didGetXMPPUsers_(self, _cmd, aStanza)
-{
-    if (objj_msgSend(aStanza, "type") == "result")
-    {
-        var users = objj_msgSend(aStanza, "childrenWithName:", "user");
-        for (var i = 0; i < objj_msgSend(users, "count"); i++)
-        {
-            var user = objj_msgSend(users, "objectAtIndex:", i),
-                jid;
-            try            {
-                jid = objj_msgSend(TNStropheJID, "stropheJIDWithString:", objj_msgSend(user, "valueForAttribute:", "jid"));
-            }
-            catch(e)             {
-                continue;
-            }            objj_msgSend(self._dataSource, "addObject:", jid);
-        }
-        objj_msgSend(objj_msgSend(self._dataSource, "table"), "reloadData");
-    }
-    else
-    {
-        objj_msgSend(self._delegate, "handleIqErrorFromStanza:", aStanza);
-    }
-    objj_msgSend(self._dataSource, "setCurrentlyLoading:", NO);
-    if (objj_msgSend(self._delegate, "respondsToSelector:", sel_getUid("userFetcher:isLoading:")))
-        objj_msgSend(self._delegate, "userFetcher:isLoading:", self, NO);
-}
-,["void","TNStropheStanza"]), new objj_method(sel_getUid("tableViewDataSourceNeedsLoading:"), function $TNPermissionUserFetcher__tableViewDataSourceNeedsLoading_(self, _cmd, aDataSource)
-{
-    self._maxLoadedPage++;
-    objj_msgSend(self, "getXMPPUsers");
-}
-,["void","TNTableViewLazyDataSource"]), new objj_method(sel_getUid("tableViewDataSource:applyFilter:"), function $TNPermissionUserFetcher__tableViewDataSource_applyFilter_(self, _cmd, aDataSource, aFilter)
-{
-    objj_msgSend(self._delegate, "userFetcherClean");
-    objj_msgSend(self, "getXMPPFilteredUsers:", aFilter);
-}
-,["void","TNTableViewLazyDataSource","CPString"]), new objj_method(sel_getUid("tableViewDataSource:removeFilter:"), function $TNPermissionUserFetcher__tableViewDataSource_removeFilter_(self, _cmd, aDataSource, aFilter)
-{
-    objj_msgSend(self._delegate, "userFetcherClean");
-    objj_msgSend(self, "getXMPPUsers");
-}
-,["void","TNTableViewLazyDataSource","CPString"])]);
-}p;14;TNPermission.jt;1211;@STATIC;1.0;I;23;Foundation/Foundation.jt;1164;objj_executeFile("Foundation/Foundation.j", NO);{var the_class = objj_allocateClassPair(CPObject, "TNPermission"),
-meta_class = the_class.isa;class_addIvars(the_class, [new objj_ivar("_name"), new objj_ivar("_description"), new objj_ivar("_state")]);objj_registerClassPair(the_class);
-class_addMethods(the_class, [new objj_method(sel_getUid("name"), function $TNPermission__name(self, _cmd)
-{
-    return self._name;
-}
-,["CPString"]), new objj_method(sel_getUid("setName:"), function $TNPermission__setName_(self, _cmd, newValue)
-{
-    self._name = newValue;
-}
-,["void","CPString"]), new objj_method(sel_getUid("description"), function $TNPermission__description(self, _cmd)
-{
-    return self._description;
-}
-,["CPString"]), new objj_method(sel_getUid("setDescription:"), function $TNPermission__setDescription_(self, _cmd, newValue)
-{
-    self._description = newValue;
-}
-,["void","CPString"]), new objj_method(sel_getUid("state"), function $TNPermission__state(self, _cmd)
-{
-    return self._state;
-}
-,["BOOL"]), new objj_method(sel_getUid("setState:"), function $TNPermission__setState_(self, _cmd, newValue)
-{
-    self._state = newValue;
-}
-,["void","BOOL"])]);
-}p;25;TNPermissionsController.jt;27171;@STATIC;1.0;I;23;Foundation/Foundation.jI;17;AppKit/CPButton.jI;20;AppKit/CPButtonBar.jI;16;AppKit/CPImage.jI;22;AppKit/CPSearchField.jI;20;AppKit/CPSplitView.jI;20;AppKit/CPTableView.jI;20;AppKit/CPTextField.jI;15;AppKit/CPView.jI;29;TNKit/TNTableViewDataSource.jI;33;TNKit/TNTableViewLazyDataSource.ji;22;../../Model/TNModule.ji;25;TNPermissionUserFetcher.ji;19;TNRolesController.ji;22;TNPermissionDataView.ji;14;TNPermission.jt;26734;objj_executeFile("Foundation/Foundation.j", NO);objj_executeFile("AppKit/CPButton.j", NO);objj_executeFile("AppKit/CPButtonBar.j", NO);objj_executeFile("AppKit/CPImage.j", NO);objj_executeFile("AppKit/CPSearchField.j", NO);objj_executeFile("AppKit/CPSplitView.j", NO);objj_executeFile("AppKit/CPTableView.j", NO);objj_executeFile("AppKit/CPTextField.j", NO);objj_executeFile("AppKit/CPView.j", NO);objj_executeFile("TNKit/TNTableViewDataSource.j", NO);objj_executeFile("TNKit/TNTableViewLazyDataSource.j", NO);objj_executeFile("../../Model/TNModule.j", YES);objj_executeFile("TNPermissionUserFetcher.j", YES);objj_executeFile("TNRolesController.j", YES);objj_executeFile("TNPermissionDataView.j", YES);objj_executeFile("TNPermission.j", YES);var TNArchipelTypePermissions = "archipel:permissions",
+}p;25;TNPermissionsController.jt;27531;@STATIC;1.0;I;23;Foundation/Foundation.jI;17;AppKit/CPButton.jI;20;AppKit/CPButtonBar.jI;16;AppKit/CPImage.jI;22;AppKit/CPSearchField.jI;20;AppKit/CPSplitView.jI;20;AppKit/CPTableView.jI;20;AppKit/CPTextField.jI;15;AppKit/CPView.jI;29;TNKit/TNTableViewDataSource.jI;33;TNKit/TNTableViewLazyDataSource.ji;22;../../Model/TNModule.ji;25;TNPermissionUserFetcher.ji;19;TNRolesController.ji;22;TNPermissionDataView.ji;14;TNPermission.jt;27094;objj_executeFile("Foundation/Foundation.j", NO);
+objj_executeFile("AppKit/CPButton.j", NO);
+objj_executeFile("AppKit/CPButtonBar.j", NO);
+objj_executeFile("AppKit/CPImage.j", NO);
+objj_executeFile("AppKit/CPSearchField.j", NO);
+objj_executeFile("AppKit/CPSplitView.j", NO);
+objj_executeFile("AppKit/CPTableView.j", NO);
+objj_executeFile("AppKit/CPTextField.j", NO);
+objj_executeFile("AppKit/CPView.j", NO);
+objj_executeFile("TNKit/TNTableViewDataSource.j", NO);
+objj_executeFile("TNKit/TNTableViewLazyDataSource.j", NO);
+objj_executeFile("../../Model/TNModule.j", YES);
+objj_executeFile("TNPermissionUserFetcher.j", YES);
+objj_executeFile("TNRolesController.j", YES);
+objj_executeFile("TNPermissionDataView.j", YES);
+objj_executeFile("TNPermission.j", YES);
+//@global CPLocalizedString
+//@global CPLocalizedStringFromTableInBundle
+//@global TNArchipelEntityTypeUser
+var TNArchipelTypePermissions = "archipel:permissions",
     TNArchipelTypePermissionsList = "list",
     TNArchipelTypePermissionsGet = "get",
     TNArchipelTypePermissionsSet = "set",
@@ -229,25 +97,60 @@ class_addMethods(the_class, [new objj_method(sel_getUid("name"), function $TNPer
     TNArchipelTypePermissionsSetOwn = "setown",
     TNArchipelPushNotificationPermissions = "archipel:push:permissions",
     TNArchipelPushNotificationXMPPServerUsers = "archipel:push:xmppserver:users";
-var TNModuleControlForApplyRole = "ApplyRole",
-    TNModuleControlForSaveAsTemplate = "SaveAsTemplate",
-    TNModuleControlForApplyPermissions = "ApplyPermissions";
 {var the_class = objj_allocateClassPair(TNModule, "TNPermissionsController"),
-meta_class = the_class.isa;class_addIvars(the_class, [new objj_ivar("buttonBarControl"), new objj_ivar("imageFecthingUsers"), new objj_ivar("filterField"), new objj_ivar("filterRosterUsers"), new objj_ivar("filterUsers"), new objj_ivar("splitView"), new objj_ivar("tablePermissions"), new objj_ivar("tableRosterUsers"), new objj_ivar("tableUsers"), new objj_ivar("labelFecthingUsers"), new objj_ivar("labelNoUserSelected"), new objj_ivar("viewTableContainer"), new objj_ivar("permissionDataViewPrototype"), new objj_ivar("rolesController"), new objj_ivar("_datasourcePermissions"), new objj_ivar("_currentUserPermissions"), new objj_ivar("_defaultAvatar"), new objj_ivar("_outlineViewUsers"), new objj_ivar("_userFetcher"), new objj_ivar("_datasourceRosterUsers"), new objj_ivar("_datasourceUsers")]);objj_registerClassPair(the_class);
+meta_class = the_class.isa;class_addIvars(the_class, [new objj_ivar("buttonBarControl"), new objj_ivar("imageFecthingUsers"), new objj_ivar("filterField"), new objj_ivar("filterRosterUsers"), new objj_ivar("filterUsers"), new objj_ivar("splitView"), new objj_ivar("tablePermissions"), new objj_ivar("tableRosterUsers"), new objj_ivar("tableUsers"), new objj_ivar("labelFecthingUsers"), new objj_ivar("labelNoUserSelected"), new objj_ivar("viewTableContainer"), new objj_ivar("permissionDataViewPrototype"), new objj_ivar("rolesController"), new objj_ivar("_datasourcePermissions"), new objj_ivar("_currentUserPermissions"), new objj_ivar("_applyRoleButton"), new objj_ivar("_saveAsTemplateButton"), new objj_ivar("_saveButton"), new objj_ivar("_defaultAvatar"), new objj_ivar("_outlineViewUsers"), new objj_ivar("_userFetcher"), new objj_ivar("_datasourceRosterUsers"), new objj_ivar("_datasourceUsers")]);
+       
+       
+
+
+
+
+
+
+       
+       
+
+
+       
+       
+
+
+
+
+
+
+       
+       
+
+
+       
+       
+
+
+
+
+
+
+       
+       
+
+
+
+objj_registerClassPair(the_class);
 class_addMethods(the_class, [new objj_method(sel_getUid("datasourcePermissions"), function $TNPermissionsController__datasourcePermissions(self, _cmd)
 {
-    return self._datasourcePermissions;
+return self._datasourcePermissions;
 }
 ,["TNTableViewDataSource"]), new objj_method(sel_getUid("_setDatasourcePermissions:"), function $TNPermissionsController___setDatasourcePermissions_(self, _cmd, newValue)
 {
-    self._datasourcePermissions = newValue;
+self._datasourcePermissions = newValue;
 }
 ,["void","TNTableViewDataSource"]), new objj_method(sel_getUid("awakeFromCib"), function $TNPermissionsController__awakeFromCib(self, _cmd)
 {
     self._currentUserPermissions = objj_msgSend(CPArray, "array");
-    self._defaultAvatar = CPImageInBundle("user-unknown.png", nil, objj_msgSend(CPBundle, "mainBundle"));
+    self._defaultAvatar = objj_msgSend(objj_msgSend(CPImage, "alloc"), "initWithContentsOfFile:", objj_msgSend(objj_msgSend(CPBundle, "mainBundle"), "pathForResource:", "user-unknown.png"));
     objj_msgSend(self.viewTableContainer, "setBorderedWithHexColor:", "#C0C7D2");
-    objj_msgSend(self.imageFecthingUsers, "setImage:", CPImageInBundle("spinner.gif", CGSizeMake(16, 16), objj_msgSend(CPBundle, "mainBundle")));
+    objj_msgSend(self.imageFecthingUsers, "setImage:", objj_msgSend(objj_msgSend(CPImage, "alloc"), "initWithContentsOfFile:size:", objj_msgSend(objj_msgSend(CPBundle, "mainBundle"), "pathForResource:", "spinner.gif"), CGSizeMake(16, 16)));
     objj_msgSend(self.splitView, "setBorderedWithHexColor:", "#C0C7D2");
     objj_msgSend(self.viewTableContainer, "setHidden:", YES);
     self._datasourcePermissions = objj_msgSend(objj_msgSend(TNTableViewDataSource, "alloc"), "init");
@@ -256,16 +159,28 @@ class_addMethods(the_class, [new objj_method(sel_getUid("datasourcePermissions")
     objj_msgSend(self.tablePermissions, "setDataSource:", self._datasourcePermissions);
     objj_msgSend(objj_msgSend(self.tablePermissions, "tableColumnWithIdentifier:", "self"), "setDataView:", objj_msgSend(self.permissionDataViewPrototype, "duplicate"));
     objj_msgSend(self.tablePermissions, "setIntercellSpacing:", CGSizeMakeZero());
-    objj_msgSend(self, "addControlsWithIdentifier:title:target:action:image:", TNModuleControlForApplyPermissions, CPBundleLocalizedString("Save current permission set", "Save current permission set"), self, sel_getUid("changePermissionsState:"), CPImageInBundle("IconsButtons/save.png", nil, objj_msgSend(CPBundle, "mainBundle")));
-    objj_msgSend(self, "addControlsWithIdentifier:title:target:action:image:", TNModuleControlForSaveAsTemplate, CPBundleLocalizedString("Save current permission set as template", "Save current permission set as template"), self.rolesController, sel_getUid("openNewTemplateWindow:"), CPImageInBundle("IconsButtons/role_add.png", nil, objj_msgSend(CPBundle, "mainBundle")));
-    objj_msgSend(self, "addControlsWithIdentifier:title:target:action:image:", TNModuleControlForApplyRole, CPBundleLocalizedString("Apply a role", "Apply a role"), self, sel_getUid("openRolesWindow:"), CPImageInBundle("IconsButtons/roles.png", nil, objj_msgSend(CPBundle, "mainBundle")));
-    objj_msgSend(self.buttonBarControl, "setButtons:", [objj_msgSend(self, "buttonWithIdentifier:", TNModuleControlForApplyPermissions), objj_msgSend(self, "buttonWithIdentifier:", TNModuleControlForSaveAsTemplate), objj_msgSend(self, "buttonWithIdentifier:", TNModuleControlForApplyRole)]);
+    self._saveButton = objj_msgSend(CPButtonBar, "plusButton");
+    objj_msgSend(self._saveButton, "setImage:", objj_msgSend(objj_msgSend(CPImage, "alloc"), "initWithContentsOfFile:size:", objj_msgSend(objj_msgSend(CPBundle, "mainBundle"), "pathForResource:", "IconsButtons/save.png"), CGSizeMake(16, 16)));
+    objj_msgSend(self._saveButton, "setTarget:", self);
+    objj_msgSend(self._saveButton, "setAction:", sel_getUid("changePermissionsState:"));
+    objj_msgSend(self._saveButton, "setToolTip:", CPBundleLocalizedString("Save current permission set", "Save current permission set"));
+    self._saveAsTemplateButton = objj_msgSend(CPButtonBar, "plusButton");
+    objj_msgSend(self._saveAsTemplateButton, "setImage:", objj_msgSend(objj_msgSend(CPImage, "alloc"), "initWithContentsOfFile:size:", objj_msgSend(objj_msgSend(CPBundle, "mainBundle"), "pathForResource:", "IconsButtons/role_add.png"), CGSizeMake(16, 16)));
+    objj_msgSend(self._saveAsTemplateButton, "setTarget:", self.rolesController);
+    objj_msgSend(self._saveAsTemplateButton, "setAction:", sel_getUid("openNewTemplateWindow:"));
+    objj_msgSend(self._saveAsTemplateButton, "setToolTip:", CPBundleLocalizedString("Save current permission set as template", "Save current permission set as template"));
+    self._applyRoleButton = objj_msgSend(CPButtonBar, "plusButton");
+    objj_msgSend(self._applyRoleButton, "setImage:", objj_msgSend(objj_msgSend(CPImage, "alloc"), "initWithContentsOfFile:size:", objj_msgSend(objj_msgSend(CPBundle, "mainBundle"), "pathForResource:", "IconsButtons/roles.png"), CGSizeMake(16, 16)));
+    objj_msgSend(self._applyRoleButton, "setTarget:", self);
+    objj_msgSend(self._applyRoleButton, "setAction:", sel_getUid("openRolesWindow:"));
+    objj_msgSend(self._applyRoleButton, "setToolTip:", CPBundleLocalizedString("Apply a role", "Apply a role"));
+    objj_msgSend(self.buttonBarControl, "setButtons:", [self._saveButton, self._saveAsTemplateButton, self._applyRoleButton]);
     objj_msgSend(self.filterField, "setTarget:", self._datasourcePermissions);
     objj_msgSend(self.filterField, "setAction:", sel_getUid("filterObjects:"));
     objj_msgSend(self.rolesController, "setDelegate:", self);
     objj_msgSend(self.labelNoUserSelected, "setTextShadowOffset:", CGSizeMake(0.0, 1.0));
     objj_msgSend(self.labelNoUserSelected, "setValue:forThemeAttribute:", objj_msgSend(CPColor, "whiteColor"), "text-shadow-color");
-    self._datasourceRosterUsers = objj_msgSend(objj_msgSend(TNTableViewDataSource, "alloc"), "init");
+    self._datasourceRosterUsers= objj_msgSend(objj_msgSend(TNTableViewDataSource, "alloc"), "init");
     objj_msgSend(self._datasourceRosterUsers, "setTable:", self.tableRosterUsers);
     objj_msgSend(self._datasourceRosterUsers, "setSearchableKeyPaths:", ["JID.bare"]);
     objj_msgSend(self.tableRosterUsers, "setDataSource:", self._datasourceRosterUsers);
@@ -280,10 +195,10 @@ class_addMethods(the_class, [new objj_method(sel_getUid("datasourcePermissions")
     objj_msgSend(self.filterUsers, "setAction:", sel_getUid("filterObjects:"));
     objj_msgSend(self.filterRosterUsers, "setTarget:", self._datasourceRosterUsers);
     objj_msgSend(self.filterRosterUsers, "setAction:", sel_getUid("filterObjects:"));
-    var filterBgColor = CPColorWithImages("Backgrounds/background-filter.png", nil, nil, objj_msgSend(CPBundle, "mainBundle"));
-    objj_msgSend(objj_msgSend(self.filterUsers, "superview"), "setBackgroundColor:", filterBgColor);
-    objj_msgSend(objj_msgSend(self.filterRosterUsers, "superview"), "setBackgroundColor:", filterBgColor);
-    objj_msgSend(objj_msgSend(self.filterField, "superview"), "setBackgroundColor:", filterBgColor);
+    var filterBg = objj_msgSend(objj_msgSend(CPImage, "alloc"), "initWithContentsOfFile:", objj_msgSend(objj_msgSend(CPBundle, "mainBundle"), "pathForResource:", "Backgrounds/background-filter.png"));
+    objj_msgSend(objj_msgSend(self.filterUsers, "superview"), "setBackgroundColor:", objj_msgSend(CPColor, "colorWithPatternImage:", filterBg));
+    objj_msgSend(objj_msgSend(self.filterRosterUsers, "superview"), "setBackgroundColor:", objj_msgSend(CPColor, "colorWithPatternImage:", filterBg));
+    objj_msgSend(objj_msgSend(self.filterField, "superview"), "setBackgroundColor:", objj_msgSend(CPColor, "colorWithPatternImage:", filterBg));
 }
 ,["void"]), new objj_method(sel_getUid("willLoad"), function $TNPermissionsController__willLoad(self, _cmd)
 {
@@ -334,12 +249,12 @@ class_addMethods(the_class, [new objj_method(sel_getUid("datasourcePermissions")
     if (hasSet || hasSetOwn)
     {
         if (hasSetOwn)
-            objj_msgSend(self, "setControl:enabledAccordingToPermission:", objj_msgSend(self, "buttonWithIdentifier:", TNModuleControlForApplyPermissions), "permission_setown");
+            objj_msgSend(self, "setControl:enabledAccordingToPermission:", self._saveButton, "permission_setown");
         if (hasSet)
-            objj_msgSend(self, "setControl:enabledAccordingToPermission:", objj_msgSend(self, "buttonWithIdentifier:", TNModuleControlForApplyPermissions), "permission_set");
+            objj_msgSend(self, "setControl:enabledAccordingToPermission:", self._saveButton, "permission_set");
     }
     else
-        objj_msgSend(self, "setControl:enabledAccordingToPermission:", objj_msgSend(self, "buttonWithIdentifier:", TNModuleControlForApplyPermissions), "permission_FAKE!");
+        objj_msgSend(self, "setControl:enabledAccordingToPermission:", self._saveButton, "permission_FAKE!");
 }
 ,["void"]), new objj_method(sel_getUid("flushUI"), function $TNPermissionsController__flushUI(self, _cmd)
 {
@@ -458,7 +373,7 @@ class_addMethods(the_class, [new objj_method(sel_getUid("datasourcePermissions")
 }
 ,["id","id"]), new objj_method(sel_getUid("openRolesWindow:"), function $TNPermissionsController__openRolesWindow_(self, _cmd, aSender)
 {
-    objj_msgSend(self.rolesController, "openWindow:", objj_msgSend(aSender, "isKindOfClass:", CPMenuItem) ? self.tableUsers : aSender);
+    objj_msgSend(self.rolesController, "openWindow:", aSender);
 }
 ,["id","id"]), new objj_method(sel_getUid("getPermissions"), function $TNPermissionsController__getPermissions(self, _cmd)
 {
@@ -466,7 +381,8 @@ class_addMethods(the_class, [new objj_method(sel_getUid("datasourcePermissions")
         return;
     var stanza = objj_msgSend(TNStropheStanza, "iqWithType:", "get");
     objj_msgSend(stanza, "addChildWithName:andAttributes:", "query", {"xmlns": TNArchipelTypePermissions});
-    objj_msgSend(stanza, "addChildWithName:andAttributes:", "archipel", {"action": TNArchipelTypePermissionsList});
+    objj_msgSend(stanza, "addChildWithName:andAttributes:", "archipel", {
+        "action": TNArchipelTypePermissionsList});
     objj_msgSend(self, "setModuleStatus:", TNArchipelModuleStatusWaiting);
     objj_msgSend(self._entity, "sendStanza:andRegisterSelector:ofObject:", stanza, sel_getUid("_didReceivePermissions:"), self);
 }
@@ -504,9 +420,12 @@ class_addMethods(the_class, [new objj_method(sel_getUid("datasourcePermissions")
     var stanza = objj_msgSend(TNStropheStanza, "iqWithType:", "get"),
         currentAction = TNArchipelTypePermissionsGetOwn;
     if (objj_msgSend(self, "currentEntityHasPermission:", "permission_get"))
-        currentAction = TNArchipelTypePermissionsGet;
+        currentAction = TNArchipelTypePermissionsGet
     objj_msgSend(stanza, "addChildWithName:andAttributes:", "query", {"xmlns": TNArchipelTypePermissions});
-    objj_msgSend(stanza, "addChildWithName:andAttributes:", "archipel", {"action": currentAction, "permission_type": "user", "permission_target": aUser});
+    objj_msgSend(stanza, "addChildWithName:andAttributes:", "archipel", {
+        "action": currentAction,
+        "permission_type": "user",
+        "permission_target": aUser});
     objj_msgSend(self, "setModuleStatus:", TNArchipelModuleStatusWaiting);
     objj_msgSend(self._entity, "sendStanza:andRegisterSelector:ofObject:", stanza, sel_getUid("_didReceiveUserPermissions:"), self);
 }
@@ -520,7 +439,7 @@ class_addMethods(the_class, [new objj_method(sel_getUid("datasourcePermissions")
         {
             var permission = objj_msgSend(permissions, "objectAtIndex:", i),
                 name = objj_msgSend(permission, "valueForAttribute:", "name");
-            objj_msgSend(self._currentUserPermissions, "addObject:", name);
+            objj_msgSend(self._currentUserPermissions, "addObject:", name)
         }
         objj_msgSend(self, "getPermissions");
     }
@@ -531,21 +450,27 @@ class_addMethods(the_class, [new objj_method(sel_getUid("datasourcePermissions")
 }
 ,["void","TNStropheStanza"]), new objj_method(sel_getUid("changePermissionsState"), function $TNPermissionsController__changePermissionsState(self, _cmd)
 {
-    var currentTable = objj_msgSend(self.tableUsers, "numberOfSelectedRows") > 0 ? self.tableUsers : self.tableRosterUsers,
+    var currentTable = (objj_msgSend(self.tableUsers, "numberOfSelectedRows") > 0) ? self.tableUsers : self.tableRosterUsers,
         stanza = objj_msgSend(TNStropheStanza, "iqWithType:", "set"),
         currentAction = TNArchipelTypePermissionsSetOwn,
         permissionTargets = objj_msgSend(objj_msgSend(currentTable, "dataSource"), "objectsAtIndexes:", objj_msgSend(currentTable, "selectedRowIndexes"));
     if (objj_msgSend(self, "currentEntityHasPermission:", "permission_set"))
-        currentAction = TNArchipelTypePermissionsSet;
+        currentAction = TNArchipelTypePermissionsSet
     objj_msgSend(stanza, "addChildWithName:andAttributes:", "query", {"xmlns": TNArchipelTypePermissions});
-    objj_msgSend(stanza, "addChildWithName:andAttributes:", "archipel", {"action": currentAction});
+    objj_msgSend(stanza, "addChildWithName:andAttributes:", "archipel", {
+        "action": currentAction});
     for (var i = 0; i < objj_msgSend(self._datasourcePermissions, "count"); i++)
     {
         var perm = objj_msgSend(self._datasourcePermissions, "objectAtIndex:", i);
         for (var j = 0; j < objj_msgSend(permissionTargets, "count"); j++)
         {
             var target = objj_msgSend(permissionTargets, "objectAtIndex:", j);
-            objj_msgSend(stanza, "addChildWithName:andAttributes:", "permission", {"permission_target": objj_msgSend(target, "isKindOfClass:", TNStropheContact) ? objj_msgSend(objj_msgSend(target, "JID"), "bare") : objj_msgSend(target, "bare"), "permission_type": "user", "permission_name": objj_msgSend(perm, "name"), "permission_value": objj_msgSend(perm, "state")});
+            objj_msgSend(stanza, "addChildWithName:andAttributes:", "permission", {
+                    "permission_target": objj_msgSend(target, "isKindOfClass:", TNStropheContact) ? objj_msgSend(objj_msgSend(target, "JID"), "bare") : objj_msgSend(target, "bare"),
+                    "permission_type": "user",
+                    "permission_name": objj_msgSend(perm, "name"),
+                    "permission_value": objj_msgSend(perm, "state")
+                });
             objj_msgSend(stanza, "up");
         }
     }
@@ -562,46 +487,37 @@ class_addMethods(the_class, [new objj_method(sel_getUid("datasourcePermissions")
 {
     if (aTableView !== self.tablePermissions)
         return;
-    try    {
+    try
+    {
         if (objj_msgSend(aView, "isKindOfClass:", CPCheckBox))
             objj_msgSend(aView, "setState:", objj_msgSend(objj_msgSend(self._datasourcePermissions, "objectAtIndex:", aRow), "state"));
     }
-    catch(e)     {
+    catch (e)
+    {
         CPLog.error("weird error here " + e);
-    }}
+    }
+}
 ,["void","CPTableView","CPView","CPTableColumn","int"]), new objj_method(sel_getUid("tableViewSelectionDidChange:"), function $TNPermissionsController__tableViewSelectionDidChange_(self, _cmd, aNotification)
 {
     if (objj_msgSend(aNotification, "object") === self.tablePermissions)
         return;
-    switch(objj_msgSend(aNotification, "object")) {
-    case self.tableUsers:
-        if (objj_msgSend(self.tableRosterUsers, "numberOfSelectedRows") > 0)
-            objj_msgSend(self.tableRosterUsers, "deselectAll");
-        else
-            objj_msgSend(self, "changeCurrentUser:", self.tableUsers);
-        break;
-    case self.tableRosterUsers:
-        if (objj_msgSend(self.tableUsers, "numberOfSelectedRows") > 0)
-            objj_msgSend(self.tableUsers, "deselectAll");
-        else
-            objj_msgSend(self, "changeCurrentUser:", self.tableRosterUsers);
-        break;
-    }
-}
-,["void","CPNotification"]), new objj_method(sel_getUid("tableView:menuForTableColumn:row:"), function $TNPermissionsController__tableView_menuForTableColumn_row_(self, _cmd, aTableView, aColumn, aRow)
-{
-    objj_msgSend(self._contextualMenu, "removeAllItems");
-    var itemRow = objj_msgSend(aTableView, "rowAtPoint:", aRow);
-    if (objj_msgSend(aTableView, "selectedRow") != aRow)
-        objj_msgSend(aTableView, "selectRowIndexes:byExtendingSelection:", objj_msgSend(CPIndexSet, "indexSetWithIndex:", aRow), NO);
-    if (objj_msgSend(aTableView, "numberOfSelectedRows") >= 1 && aTableView == self.tableUsers)
+    switch (objj_msgSend(aNotification, "object"))
     {
-        objj_msgSend(self._contextualMenu, "addItem:", objj_msgSend(self, "menuItemWithIdentifier:", TNModuleControlForApplyRole));
-        return self._contextualMenu;
+        case self.tableUsers:
+            if (objj_msgSend(self.tableRosterUsers, "numberOfSelectedRows") > 0)
+                objj_msgSend(self.tableRosterUsers, "deselectAll");
+            else
+                objj_msgSend(self, "changeCurrentUser:", self.tableUsers);
+            break;
+        case self.tableRosterUsers:
+            if (objj_msgSend(self.tableUsers, "numberOfSelectedRows") > 0)
+                objj_msgSend(self.tableUsers, "deselectAll");
+            else
+                objj_msgSend(self, "changeCurrentUser:", self.tableRosterUsers);
+            break;
     }
-    return;
 }
-,["CPMenu","CPTableView","CPTableColumn","int"]), new objj_method(sel_getUid("userFetcherClean"), function $TNPermissionsController__userFetcherClean(self, _cmd)
+,["void","CPNotification"]), new objj_method(sel_getUid("userFetcherClean"), function $TNPermissionsController__userFetcherClean(self, _cmd)
 {
     objj_msgSend(self._userFetcher, "reset");
     objj_msgSend(self._datasourceUsers, "removeAllObjects");
@@ -613,19 +529,246 @@ class_addMethods(the_class, [new objj_method(sel_getUid("datasourcePermissions")
     objj_msgSend(self.imageFecthingUsers, "setHidden:", !isLoading);
 }
 ,["void","TNXMPPServerUserFetcher","BOOL"])]);
-}CPBundleLocalizedString = function(key, comment)
+}
+CPBundleLocalizedString = function(key, comment)
 {
     return CPLocalizedStringFromTableInBundle(key, nil, objj_msgSend(CPBundle, "bundleForClass:", TNPermissionsController), comment);
+}p;25;TNPermissionUserFetcher.jt;9327;@STATIC;1.0;I;23;Foundation/Foundation.jI;35;StropheCappuccino/TNStropheStanza.jI;36;StropheCappuccino/TNStropheContact.jI;33;TNKit/TNTableViewLazyDataSource.jt;9161;objj_executeFile("Foundation/Foundation.j", NO);
+objj_executeFile("StropheCappuccino/TNStropheStanza.j", NO);
+objj_executeFile("StropheCappuccino/TNStropheContact.j", NO);
+objj_executeFile("TNKit/TNTableViewLazyDataSource.j", NO);
+//@class TNPermissionsCenter
+var TNArchipelTypeXMPPServerUsers = "archipel:xmppserver:users",
+    TNArchipelTypeXMPPServerUsersList = "list",
+    TNArchipelTypeXMPPServerUsersFilter = "filter",
+    TNArchipelTypeXMPPServerUsersNumber = "number";
+{var the_class = objj_allocateClassPair(CPObject, "TNPermissionUserFetcher"),
+meta_class = the_class.isa;class_addIvars(the_class, [new objj_ivar("_displaysOnlyHumans"), new objj_ivar("_delegate"), new objj_ivar("_entity"), new objj_ivar("_dataSource"), new objj_ivar("_maxLoadedPage")]);
+       
+       
+
+       
+       
+
+       
+       
+
+
+
+
+
+
+       
+       
+
+
+objj_registerClassPair(the_class);
+class_addMethods(the_class, [new objj_method(sel_getUid("isDisplayingOnlyHumans"), function $TNPermissionUserFetcher__isDisplayingOnlyHumans(self, _cmd)
+{
+return self._displaysOnlyHumans;
 }
-p;19;TNRolesController.jt;13726;@STATIC;1.0;I;23;Foundation/Foundation.jI;17;AppKit/CPButton.jI;20;AppKit/CPButtonBar.jI;22;AppKit/CPSearchField.jI;20;AppKit/CPTableView.jI;15;AppKit/CPView.jI;33;GrowlCappuccino/GrowlCappuccino.jI;28;StropheCappuccino/TNPubSub.jI;37;StropheCappuccino/TNStropheIMClient.jI;29;TNKit/TNTableViewDataSource.jt;13412;objj_executeFile("Foundation/Foundation.j", NO);objj_executeFile("AppKit/CPButton.j", NO);objj_executeFile("AppKit/CPButtonBar.j", NO);objj_executeFile("AppKit/CPSearchField.j", NO);objj_executeFile("AppKit/CPTableView.j", NO);objj_executeFile("AppKit/CPView.j", NO);objj_executeFile("GrowlCappuccino/GrowlCappuccino.j", NO);objj_executeFile("StropheCappuccino/TNPubSub.j", NO);objj_executeFile("StropheCappuccino/TNStropheIMClient.j", NO);objj_executeFile("TNKit/TNTableViewDataSource.j", NO);{var the_class = objj_allocateClassPair(CPObject, "TNRolesController"),
-meta_class = the_class.isa;class_addIvars(the_class, [new objj_ivar("buttonSave"), new objj_ivar("buttonBar"), new objj_ivar("mainPopover"), new objj_ivar("popoverNewTemplate"), new objj_ivar("filterField"), new objj_ivar("tableRoles"), new objj_ivar("fieldNewTemplateDescription"), new objj_ivar("fieldNewTemplateName"), new objj_ivar("viewTableContainer"), new objj_ivar("_delegate"), new objj_ivar("_nodeRolesTemplates"), new objj_ivar("_datasourceRoles")]);objj_registerClassPair(the_class);
+,["BOOL"]), new objj_method(sel_getUid("setDisplaysOnlyHumans:"), function $TNPermissionUserFetcher__setDisplaysOnlyHumans_(self, _cmd, newValue)
+{
+self._displaysOnlyHumans = newValue;
+}
+,["void","BOOL"]), new objj_method(sel_getUid("delegate"), function $TNPermissionUserFetcher__delegate(self, _cmd)
+{
+return self._delegate;
+}
+,["id"]), new objj_method(sel_getUid("setDelegate:"), function $TNPermissionUserFetcher__setDelegate_(self, _cmd, newValue)
+{
+self._delegate = newValue;
+}
+,["void","id"]), new objj_method(sel_getUid("entity"), function $TNPermissionUserFetcher__entity(self, _cmd)
+{
+return self._entity;
+}
+,["TNStropheContact"]), new objj_method(sel_getUid("setEntity:"), function $TNPermissionUserFetcher__setEntity_(self, _cmd, newValue)
+{
+self._entity = newValue;
+}
+,["void","TNStropheContact"]), new objj_method(sel_getUid("dataSource"), function $TNPermissionUserFetcher__dataSource(self, _cmd)
+{
+return self._dataSource;
+}
+,["TNTableViewLazyDataSource"]), new objj_method(sel_getUid("_setDataSource:"), function $TNPermissionUserFetcher___setDataSource_(self, _cmd, newValue)
+{
+self._dataSource = newValue;
+}
+,["void","TNTableViewLazyDataSource"]), new objj_method(sel_getUid("init"), function $TNPermissionUserFetcher__init(self, _cmd)
+{
+    if (self = objj_msgSendSuper({ receiver:self, super_class:objj_getClass("TNPermissionUserFetcher").super_class }, "init"))
+    {
+        self._maxLoadedPage = 0;
+        self._displaysOnlyHumans = YES;
+    }
+    return self;
+}
+,["void"]), new objj_method(sel_getUid("setDataSource:"), function $TNPermissionUserFetcher__setDataSource_(self, _cmd, aDataSource)
+{
+    self._dataSource = aDataSource;
+    objj_msgSend(self._dataSource, "setDelegate:", self);
+}
+,["void","TNTableViewLazyDataSource"]), new objj_method(sel_getUid("reset"), function $TNPermissionUserFetcher__reset(self, _cmd)
+{
+    self._maxLoadedPage = 0;
+    objj_msgSend(self._dataSource, "setTotalCount:", -1);
+    objj_msgSend(self._dataSource, "setCurrentlyLoading:", NO);
+    if (objj_msgSend(self._delegate, "respondsToSelector:", sel_getUid("userFetcher:isLoading:")))
+        objj_msgSend(self._delegate, "userFetcher:isLoading:", self, NO);
+}
+,["void"]), new objj_method(sel_getUid("getNumberOfXMPPUsers"), function $TNPermissionUserFetcher__getNumberOfXMPPUsers(self, _cmd)
+{
+    objj_msgSend(self, "getNumberOfXMPPUsers:", nil);
+}
+,["void"]), new objj_method(sel_getUid("getNumberOfXMPPUsers:"), function $TNPermissionUserFetcher__getNumberOfXMPPUsers_(self, _cmd, aCallback)
+{
+    var stanza = objj_msgSend(TNStropheStanza, "iqWithType:", "get");
+    objj_msgSend(stanza, "addChildWithName:andAttributes:", "query", {"xmlns": TNArchipelTypeXMPPServerUsers});
+    objj_msgSend(stanza, "addChildWithName:andAttributes:", "archipel", {
+        "action": TNArchipelTypeXMPPServerUsersNumber,
+        "humans_only": self._displaysOnlyHumans ? "true" : "false"});
+    objj_msgSend(self._entity, "sendStanza:andRegisterSelector:ofObject:userInfo:", stanza, sel_getUid("_didGetNumberOfXMPPUsers:callback:"), self, aCallback);
+}
+,["void","SEL"]), new objj_method(sel_getUid("_didGetNumberOfXMPPUsers:callback:"), function $TNPermissionUserFetcher___didGetNumberOfXMPPUsers_callback_(self, _cmd, aStanza, aCallback)
+{
+    if (objj_msgSend(aStanza, "type") == "result")
+    {
+        var total = objj_msgSend(objj_msgSend(aStanza, "firstChildWithName:", "users"), "valueForAttribute:", "total");
+        objj_msgSend(self._dataSource, "setTotalCount:", total);
+        if (aCallback)
+            objj_msgSend(self, "performSelector:", aCallback);
+    }
+    else
+    {
+        objj_msgSend(self._delegate, "handleIqErrorFromStanza:", aStanza);
+    }
+}
+,["BOOL","TNStropheStanza","SEL"]), new objj_method(sel_getUid("getXMPPUsers"), function $TNPermissionUserFetcher__getXMPPUsers(self, _cmd)
+{
+    if (!objj_msgSend(objj_msgSend(TNPermissionsCenter, "defaultCenter"), "hasPermission:forEntity:", "xmppserver_users_list", self._entity))
+    {
+        objj_msgSend(self._delegate, "userFetcherClean");
+        return;
+    }
+    if (objj_msgSend(self._dataSource, "totalCount") == -1)
+    {
+        objj_msgSend(self, "getNumberOfXMPPUsers:", sel_getUid("getXMPPUsers"));
+        return;
+    }
+    var stanza = objj_msgSend(TNStropheStanza, "iqWithType:", "get");
+    objj_msgSend(stanza, "addChildWithName:andAttributes:", "query", {"xmlns": TNArchipelTypeXMPPServerUsers});
+    objj_msgSend(stanza, "addChildWithName:andAttributes:", "archipel", {
+        "action": TNArchipelTypeXMPPServerUsersList,
+        "page": self._maxLoadedPage,
+        "humans_only": self._displaysOnlyHumans ? "true" : "false"});
+    objj_msgSend(self._dataSource, "setCurrentlyLoading:", YES);
+    if (objj_msgSend(self._delegate, "respondsToSelector:", sel_getUid("userFetcher:isLoading:")))
+        objj_msgSend(self._delegate, "userFetcher:isLoading:", self, YES);
+    objj_msgSend(self._entity, "sendStanza:andRegisterSelector:ofObject:", stanza, sel_getUid("_didGetXMPPUsers:"), self);
+}
+,["void"]), new objj_method(sel_getUid("getXMPPFilteredUsers:"), function $TNPermissionUserFetcher__getXMPPFilteredUsers_(self, _cmd, aFilter)
+{
+    if (!objj_msgSend(objj_msgSend(TNPermissionsCenter, "defaultCenter"), "hasPermission:forEntity:", "xmppserver_users_list", self._entity))
+    {
+        objj_msgSend(self._delegate, "userFetcherClean");
+        return;
+    }
+    var stanza = objj_msgSend(TNStropheStanza, "iqWithType:", "get");
+    objj_msgSend(stanza, "addChildWithName:andAttributes:", "query", {"xmlns": TNArchipelTypeXMPPServerUsers});
+    objj_msgSend(stanza, "addChildWithName:andAttributes:", "archipel", {
+        "action": TNArchipelTypeXMPPServerUsersFilter,
+        "filter": aFilter});
+    objj_msgSend(self._dataSource, "setCurrentlyLoading:", YES);
+    if (objj_msgSend(self._delegate, "respondsToSelector:", sel_getUid("userFetcher:isLoading:")))
+        objj_msgSend(self._delegate, "userFetcher:isLoading:", self, YES);
+    objj_msgSend(self._entity, "sendStanza:andRegisterSelector:ofObject:", stanza, sel_getUid("_didGetXMPPUsers:"), self);
+}
+,["void","CPString"]), new objj_method(sel_getUid("_didGetXMPPUsers:"), function $TNPermissionUserFetcher___didGetXMPPUsers_(self, _cmd, aStanza)
+{
+    if (objj_msgSend(aStanza, "type") == "result")
+    {
+        var users = objj_msgSend(aStanza, "childrenWithName:", "user");
+        for (var i = 0; i < objj_msgSend(users, "count"); i++)
+        {
+            var user = objj_msgSend(users, "objectAtIndex:", i),
+                jid;
+            try {jid = objj_msgSend(TNStropheJID, "stropheJIDWithString:", objj_msgSend(user, "valueForAttribute:", "jid"))} catch(e){continue};
+            objj_msgSend(self._dataSource, "addObject:", jid);
+        }
+        objj_msgSend(objj_msgSend(self._dataSource, "table"), "reloadData");
+    }
+    else
+    {
+        objj_msgSend(self._delegate, "handleIqErrorFromStanza:", aStanza);
+    }
+    objj_msgSend(self._dataSource, "setCurrentlyLoading:", NO);
+    if (objj_msgSend(self._delegate, "respondsToSelector:", sel_getUid("userFetcher:isLoading:")))
+        objj_msgSend(self._delegate, "userFetcher:isLoading:", self, NO);
+}
+,["void","TNStropheStanza"]), new objj_method(sel_getUid("tableViewDataSourceNeedsLoading:"), function $TNPermissionUserFetcher__tableViewDataSourceNeedsLoading_(self, _cmd, aDataSource)
+{
+    self._maxLoadedPage++;
+    objj_msgSend(self, "getXMPPUsers");
+}
+,["void","TNTableViewLazyDataSource"]), new objj_method(sel_getUid("tableViewDataSource:applyFilter:"), function $TNPermissionUserFetcher__tableViewDataSource_applyFilter_(self, _cmd, aDataSource, aFilter)
+{
+    objj_msgSend(self._delegate, "userFetcherClean");
+    objj_msgSend(self, "getXMPPFilteredUsers:", aFilter);
+}
+,["void","TNTableViewLazyDataSource","CPString"]), new objj_method(sel_getUid("tableViewDataSource:removeFilter:"), function $TNPermissionUserFetcher__tableViewDataSource_removeFilter_(self, _cmd, aDataSource, aFilter)
+{
+    objj_msgSend(self._delegate, "userFetcherClean");
+    objj_msgSend(self, "getXMPPUsers");
+}
+,["void","TNTableViewLazyDataSource","CPString"])]);
+}p;19;TNRolesController.jt;13663;@STATIC;1.0;I;23;Foundation/Foundation.jI;17;AppKit/CPButton.jI;20;AppKit/CPButtonBar.jI;22;AppKit/CPSearchField.jI;20;AppKit/CPTableView.jI;15;AppKit/CPView.jI;33;GrowlCappuccino/GrowlCappuccino.jI;28;StropheCappuccino/TNPubSub.jI;37;StropheCappuccino/TNStropheIMClient.jI;29;TNKit/TNTableViewDataSource.jt;13349;objj_executeFile("Foundation/Foundation.j", NO);
+objj_executeFile("AppKit/CPButton.j", NO);
+objj_executeFile("AppKit/CPButtonBar.j", NO);
+objj_executeFile("AppKit/CPSearchField.j", NO);
+objj_executeFile("AppKit/CPTableView.j", NO);
+objj_executeFile("AppKit/CPView.j", NO);
+objj_executeFile("GrowlCappuccino/GrowlCappuccino.j", NO);
+objj_executeFile("StropheCappuccino/TNPubSub.j", NO);
+objj_executeFile("StropheCappuccino/TNStropheIMClient.j", NO);
+objj_executeFile("TNKit/TNTableViewDataSource.j", NO);
+//@global CPLocalizedString
+//@global CPLocalizedStringFromTableInBundle
+{var the_class = objj_allocateClassPair(CPObject, "TNRolesController"),
+meta_class = the_class.isa;class_addIvars(the_class, [new objj_ivar("buttonSave"), new objj_ivar("buttonBar"), new objj_ivar("mainPopover"), new objj_ivar("popoverNewTemplate"), new objj_ivar("filterField"), new objj_ivar("tableRoles"), new objj_ivar("fieldNewTemplateDescription"), new objj_ivar("fieldNewTemplateName"), new objj_ivar("viewTableContainer"), new objj_ivar("_delegate"), new objj_ivar("_nodeRolesTemplates"), new objj_ivar("_datasourceRoles")]);
+       
+       
+
+
+
+
+       
+       
+
+
+
+
+
+
+
+
+
+       
+       
+
+
+
+       
+       
+
+objj_registerClassPair(the_class);
 class_addMethods(the_class, [new objj_method(sel_getUid("delegate"), function $TNRolesController__delegate(self, _cmd)
 {
-    return self._delegate;
+return self._delegate;
 }
 ,["id"]), new objj_method(sel_getUid("setDelegate:"), function $TNRolesController__setDelegate_(self, _cmd, newValue)
 {
-    self._delegate = newValue;
+self._delegate = newValue;
 }
 ,["void","id"]), new objj_method(sel_getUid("awakeFromCib"), function $TNRolesController__awakeFromCib(self, _cmd)
 {
@@ -635,7 +778,7 @@ class_addMethods(the_class, [new objj_method(sel_getUid("delegate"), function $T
     objj_msgSend(self._datasourceRoles, "setSearchableKeyPaths:", ["name", "description"]);
     objj_msgSend(self.tableRoles, "setDataSource:", self._datasourceRoles);
     var buttonDelete = objj_msgSend(CPButtonBar, "plusButton");
-    objj_msgSend(buttonDelete, "setImage:", CPImageInBundle("IconsButtons/minus.png", CGSizeMake(16, 16), objj_msgSend(CPBundle, "mainBundle")));
+    objj_msgSend(buttonDelete, "setImage:", objj_msgSend(objj_msgSend(CPImage, "alloc"), "initWithContentsOfFile:size:", objj_msgSend(objj_msgSend(CPBundle, "mainBundle"), "pathForResource:", "IconsButtons/minus.png"), CGSizeMake(16, 16)));
     objj_msgSend(buttonDelete, "setTarget:", self);
     objj_msgSend(buttonDelete, "setAction:", sel_getUid("deleteSelectedRole:"));
     objj_msgSend(self.buttonBar, "setButtons:", [buttonDelete]);
@@ -669,15 +812,8 @@ class_addMethods(the_class, [new objj_method(sel_getUid("delegate"), function $T
 ,["void","CPNotificationCenter"]), new objj_method(sel_getUid("openWindow:"), function $TNRolesController__openWindow_(self, _cmd, aSender)
 {
     objj_msgSend(self, "reload");
-    if (objj_msgSend(aSender, "isKindOfClass:", CPTableView))
-    {
-        var rect = objj_msgSend(aSender, "rectOfRow:", objj_msgSend(aSender, "selectedRow"));
-        rect.origin.y += rect.size.height / 2;
-        rect.origin.x += rect.size.width / 2;
-        objj_msgSend(self.mainPopover, "showRelativeToRect:ofView:preferredEdge:", CGRectMake(rect.origin.x, rect.origin.y, 10, 10), aSender, nil);
-    }
-    else
-        objj_msgSend(self.mainPopover, "showRelativeToRect:ofView:preferredEdge:", nil, aSender, nil);
+    objj_msgSend(self.mainPopover, "close");
+    objj_msgSend(self.mainPopover, "showRelativeToRect:ofView:preferredEdge:", nil, aSender, nil);
 }
 ,["id","id"]), new objj_method(sel_getUid("closeWindow:"), function $TNRolesController__closeWindow_(self, _cmd, aSender)
 {
@@ -718,7 +854,12 @@ class_addMethods(the_class, [new objj_method(sel_getUid("delegate"), function $T
         var perm = objj_msgSend(objj_msgSend(self._delegate, "datasourcePermissions"), "objectAtIndex:", i);
         if (objj_msgSend(perm, "state"))
         {
-            objj_msgSend(template, "addChildWithName:andAttributes:", "permission", {"permission_target": "template", "permission_type": "user", "permission_name": objj_msgSend(perm, "name"), "permission_value": "true"});
+            objj_msgSend(template, "addChildWithName:andAttributes:", "permission", {
+                "permission_target": "template",
+                "permission_type": "user",
+                "permission_name": objj_msgSend(perm, "name"),
+                "permission_value": "true",
+            });
             objj_msgSend(template, "up");
         }
     }
@@ -757,7 +898,7 @@ class_addMethods(the_class, [new objj_method(sel_getUid("delegate"), function $T
         var role = objj_msgSend(objj_msgSend(self._nodeRolesTemplates, "content"), "objectAtIndex:", i),
             name = objj_msgSend(objj_msgSend(role, "firstChildWithName:", "role"), "valueForAttribute:", "name"),
             description = objj_msgSend(objj_msgSend(role, "firstChildWithName:", "role"), "valueForAttribute:", "description"),
-            newRole = objj_msgSend(objj_msgSend(CPDictionary, "alloc"), "initWithObjectsAndKeys:", name, "name", description, "description", CPOffState, "state", role, "role");
+            newRole = objj_msgSend(CPDictionary, "dictionaryWithObjectsAndKeys:", name, "name", description, "description", CPOffState, "state", role, "role");
         objj_msgSend(self._datasourceRoles, "addObject:", newRole);
     }
     objj_msgSend(self.tableRoles, "reloadData");
@@ -781,8 +922,8 @@ class_addMethods(the_class, [new objj_method(sel_getUid("delegate"), function $T
         objj_msgSend(self._nodeRolesTemplates, "retrievedItems");
 }
 ,["void","TNPubSubNode","TNStropheStanza"])]);
-}CPBundleLocalizedString = function(key, comment)
+}
+CPBundleLocalizedString = function(key, comment)
 {
     return CPLocalizedStringFromTableInBundle(key, nil, objj_msgSend(CPBundle, "bundleForClass:", TNRolesController), comment);
-}
-e;
+}e;

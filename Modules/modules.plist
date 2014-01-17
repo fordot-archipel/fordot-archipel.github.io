@@ -6,11 +6,7 @@
         <array>
             <dict>
                 <key>folder</key>
-                <string>ToolbarPlayButton</string>
-            </dict>
-            <dict>
-                <key>folder</key>
-                <string>ToolbarPlatformRequestVM</string>
+                <string>GeneralWelcomeView</string>
             </dict>
             <dict>
                 <key>folder</key>
@@ -18,7 +14,7 @@
             </dict>
             <dict>
                 <key>folder</key>
-                <string>HypervisorVMCreation</string>
+                <string>HypervisorHealth</string>
             </dict>
             <dict>
                 <key>folder</key>
@@ -26,27 +22,11 @@
             </dict>
             <dict>
                 <key>folder</key>
-                <string>VirtualMachineControls</string>
+                <string>HypervisorVMCasts</string>
             </dict>
             <dict>
                 <key>folder</key>
-                <string>ToolbarScreenButton</string>
-            </dict>
-            <dict>
-                <key>folder</key>
-                <string>ToolbarPauseButton</string>
-            </dict>
-            <dict>
-                <key>folder</key>
-                <string>ToolbarDestroyButton</string>
-            </dict>
-            <dict>
-                <key>folder</key>
-                <string>Permissions</string>
-            </dict>
-            <dict>
-                <key>folder</key>
-                <string>VirtualMachineAppliances</string>
+                <string>HypervisorVMCreation</string>
             </dict>
             <dict>
                 <key>folder</key>
@@ -54,43 +34,11 @@
             </dict>
             <dict>
                 <key>folder</key>
-                <string>VirtualMachineDrives</string>
+                <string>Permissions</string>
             </dict>
             <dict>
                 <key>folder</key>
-                <string>VirtualMachineDefinition</string>
-            </dict>
-            <dict>
-                <key>folder</key>
-                <string>VirtualMachineScheduler</string>
-            </dict>
-            <dict>
-                <key>folder</key>
-                <string>ToolbarStopButton</string>
-            </dict>
-            <dict>
-                <key>folder</key>
-                <string>HypervisorHealth</string>
-            </dict>
-            <dict>
-                <key>folder</key>
-                <string>VirtualMachineSnapshots</string>
-            </dict>
-            <dict>
-                <key>folder</key>
-                <string>ToolbarXMPPServer</string>
-            </dict>
-            <dict>
-                <key>folder</key>
-                <string>GeneralWelcomeView</string>
-            </dict>
-            <dict>
-                <key>folder</key>
-                <string>VirtualMachineNOVNC</string>
-            </dict>
-            <dict>
-                <key>folder</key>
-                <string>HypervisorVMCasts</string>
+                <string>ToolbarDestroyButton</string>
             </dict>
             <dict>
                 <key>folder</key>
@@ -98,7 +46,59 @@
             </dict>
             <dict>
                 <key>folder</key>
+                <string>ToolbarPauseButton</string>
+            </dict>
+            <dict>
+                <key>folder</key>
+                <string>ToolbarPlatformRequestVM</string>
+            </dict>
+            <dict>
+                <key>folder</key>
+                <string>ToolbarPlayButton</string>
+            </dict>
+            <dict>
+                <key>folder</key>
+                <string>ToolbarScreenButton</string>
+            </dict>
+            <dict>
+                <key>folder</key>
+                <string>ToolbarStopButton</string>
+            </dict>
+            <dict>
+                <key>folder</key>
+                <string>ToolbarXMPPServer</string>
+            </dict>
+            <dict>
+                <key>folder</key>
                 <string>UserChat</string>
+            </dict>
+            <dict>
+                <key>folder</key>
+                <string>VirtualMachineAppliances</string>
+            </dict>
+            <dict>
+                <key>folder</key>
+                <string>VirtualMachineControls</string>
+            </dict>
+            <dict>
+                <key>folder</key>
+                <string>VirtualMachineDefinition</string>
+            </dict>
+            <dict>
+                <key>folder</key>
+                <string>VirtualMachineDrives</string>
+            </dict>
+            <dict>
+                <key>folder</key>
+                <string>VirtualMachineNOVNC</string>
+            </dict>
+            <dict>
+                <key>folder</key>
+                <string>VirtualMachineScheduler</string>
+            </dict>
+            <dict>
+                <key>folder</key>
+                <string>VirtualMachineSnapshots</string>
             </dict>
 
         </array>

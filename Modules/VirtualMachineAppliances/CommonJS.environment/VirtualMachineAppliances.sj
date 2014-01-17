@@ -1,30 +1,184 @@
-@STATIC;1.0;p;38;TNVirtualMachineAppliancesController.jt;23819;@STATIC;1.0;I;23;Foundation/Foundation.jI;17;AppKit/CPButton.jI;20;AppKit/CPButtonBar.jI;22;AppKit/CPSearchField.jI;20;AppKit/CPTableView.jI;20;AppKit/CPTextField.jI;15;AppKit/CPView.jI;17;AppKit/CPWindow.jI;15;TNKit/TNAlert.jI;29;TNKit/TNTableViewDataSource.ji;22;../../Model/TNModule.ji;29;TNInstalledAppliancesObject.jt;23490;objj_executeFile("Foundation/Foundation.j", NO);objj_executeFile("AppKit/CPButton.j", NO);objj_executeFile("AppKit/CPButtonBar.j", NO);objj_executeFile("AppKit/CPSearchField.j", NO);objj_executeFile("AppKit/CPTableView.j", NO);objj_executeFile("AppKit/CPTextField.j", NO);objj_executeFile("AppKit/CPView.j", NO);objj_executeFile("AppKit/CPWindow.j", NO);objj_executeFile("TNKit/TNAlert.j", NO);objj_executeFile("TNKit/TNTableViewDataSource.j", NO);objj_executeFile("../../Model/TNModule.j", YES);objj_executeFile("TNInstalledAppliancesObject.j", YES);var TNArchipelTypeVirtualMachineVMCasting = "archipel:virtualmachine:vmcasting",
+@STATIC;1.0;p;29;TNInstalledAppliancesObject.jt;3980;@STATIC;1.0;I;23;Foundation/Foundation.jt;3933;objj_executeFile("Foundation/Foundation.j", NO);
+TNArchipelApplianceInstalled = 1;
+TNArchipelApplianceStatusInstalled = "installed";
+TNArchipelApplianceStatusInstalling = "installing";
+TNArchipelApplianceStatusNone = "none";
+var TNInstalledApplianceIconUsed,
+    TNInstalledApplianceIconInstalling,
+    TNInstalledApplianceIconNone;
+{var the_class = objj_allocateClassPair(CPObject, "TNInstalledAppliance"),
+meta_class = the_class.isa;class_addIvars(the_class, [new objj_ivar("_comment"), new objj_ivar("_name"), new objj_ivar("_path"), new objj_ivar("_status"), new objj_ivar("_UUID")]);
+
+       
+       
+
+objj_registerClassPair(the_class);
+class_addMethods(the_class, [new objj_method(sel_getUid("comment"), function $TNInstalledAppliance__comment(self, _cmd)
+{
+return self._comment;
+}
+,["CPString"]), new objj_method(sel_getUid("setComment:"), function $TNInstalledAppliance__setComment_(self, _cmd, newValue)
+{
+self._comment = newValue;
+}
+,["void","CPString"]), new objj_method(sel_getUid("name"), function $TNInstalledAppliance__name(self, _cmd)
+{
+return self._name;
+}
+,["CPString"]), new objj_method(sel_getUid("setName:"), function $TNInstalledAppliance__setName_(self, _cmd, newValue)
+{
+self._name = newValue;
+}
+,["void","CPString"]), new objj_method(sel_getUid("path"), function $TNInstalledAppliance__path(self, _cmd)
+{
+return self._path;
+}
+,["CPString"]), new objj_method(sel_getUid("setPath:"), function $TNInstalledAppliance__setPath_(self, _cmd, newValue)
+{
+self._path = newValue;
+}
+,["void","CPString"]), new objj_method(sel_getUid("statusString"), function $TNInstalledAppliance__statusString(self, _cmd)
+{
+return self._status;
+}
+,["CPString"]), new objj_method(sel_getUid("setStatus:"), function $TNInstalledAppliance__setStatus_(self, _cmd, newValue)
+{
+self._status = newValue;
+}
+,["void","CPString"]), new objj_method(sel_getUid("UUID"), function $TNInstalledAppliance__UUID(self, _cmd)
+{
+return self._UUID;
+}
+,["CPString"]), new objj_method(sel_getUid("setUUID:"), function $TNInstalledAppliance__setUUID_(self, _cmd, newValue)
+{
+self._UUID = newValue;
+}
+,["void","CPString"]), new objj_method(sel_getUid("status"), function $TNInstalledAppliance__status(self, _cmd)
+{
+    if (self._status == TNArchipelApplianceStatusInstalled)
+        return TNInstalledApplianceIconUsed;
+    else if (self._status == TNArchipelApplianceStatusInstalling)
+        return TNInstalledApplianceIconInstalling;
+    else
+        return TNInstalledApplianceIconNone;
+}
+,["CPImage"]), new objj_method(sel_getUid("description"), function $TNInstalledAppliance__description(self, _cmd)
+{
+    return self._name;
+}
+,["CPString"])]);
+class_addMethods(meta_class, [new objj_method(sel_getUid("initialize"), function $TNInstalledAppliance__initialize(self, _cmd)
+{
+    var bundle = objj_msgSend(CPBundle, "mainBundle");
+    TNInstalledApplianceIconUsed = objj_msgSend(objj_msgSend(CPImage, "alloc"), "initWithContentsOfFile:size:", objj_msgSend(bundle, "pathForResource:", "IconsButtons/check.png"), CGSizeMake(12, 12));
+    TNInstalledApplianceIconInstalling = objj_msgSend(objj_msgSend(CPImage, "alloc"), "initWithContentsOfFile:size:", objj_msgSend(bundle, "pathForResource:", "spinner.gif"), CGSizeMake(16, 16));
+    TNInstalledApplianceIconNone = nil;
+}
+,["void"]), new objj_method(sel_getUid("InstalledApplianceWithName:UUID:path:comment:status:"), function $TNInstalledAppliance__InstalledApplianceWithName_UUID_path_comment_status_(self, _cmd, aName, anUUID, aPath, aComment, aStatus)
+{
+    var appliance = objj_msgSend(objj_msgSend(TNInstalledAppliance, "alloc"), "init");
+    objj_msgSend(appliance, "setName:", aName);
+    objj_msgSend(appliance, "setPath:", aPath);
+    objj_msgSend(appliance, "setUUID:", anUUID);
+    objj_msgSend(appliance, "setStatus:", aStatus);
+    objj_msgSend(appliance, "setComment:", aComment);
+    return appliance;
+}
+,["TNInstalledAppliance","CPString","CPString","CPString","CPString","CPString"])]);
+}p;38;TNVirtualMachineAppliancesController.jt;23876;@STATIC;1.0;I;23;Foundation/Foundation.jI;17;AppKit/CPButton.jI;20;AppKit/CPButtonBar.jI;22;AppKit/CPSearchField.jI;20;AppKit/CPTableView.jI;20;AppKit/CPTextField.jI;15;AppKit/CPView.jI;17;AppKit/CPWindow.jI;15;TNKit/TNAlert.jI;29;TNKit/TNTableViewDataSource.ji;22;../../Model/TNModule.ji;29;TNInstalledAppliancesObject.jt;23547;objj_executeFile("Foundation/Foundation.j", NO);
+objj_executeFile("AppKit/CPButton.j", NO);
+objj_executeFile("AppKit/CPButtonBar.j", NO);
+objj_executeFile("AppKit/CPSearchField.j", NO);
+objj_executeFile("AppKit/CPTableView.j", NO);
+objj_executeFile("AppKit/CPTextField.j", NO);
+objj_executeFile("AppKit/CPView.j", NO);
+objj_executeFile("AppKit/CPWindow.j", NO);
+objj_executeFile("TNKit/TNAlert.j", NO);
+objj_executeFile("TNKit/TNTableViewDataSource.j", NO);
+objj_executeFile("../../Model/TNModule.j", YES);
+objj_executeFile("TNInstalledAppliancesObject.j", YES);;
+//@global CPLocalizedString
+//@global CPLocalizedStringFromTableInBundle
+var TNArchipelTypeVirtualMachineVMCasting = "archipel:virtualmachine:vmcasting",
     TNArchipelTypeVirtualMachineVMCastingGet = "get",
     TNArchipelTypeVirtualMachineVMCastingAttach = "attach",
     TNArchipelTypeVirtualMachineVMCastingDetach = "detach",
     TNArchipelTypeVirtualMachineVMCastingPackage = "package",
     TNArchipelPushNotificationVMCasting = "archipel:push:vmcasting";
-var TNModuleControlForAttachAppliance = "AttachAppliance",
-    TNModuleControlForDetachAppliance = "DetachAppliance",
-    TNModuleControlForCreateAppliance = "CreateAppliance";
 {var the_class = objj_allocateClassPair(TNModule, "TNVirtualMachineAppliancesController"),
-meta_class = the_class.isa;class_addIvars(the_class, [new objj_ivar("buttonCreate"), new objj_ivar("buttonBarControl"), new objj_ivar("checkBoxShouldGZIP"), new objj_ivar("popoverNewAppliances"), new objj_ivar("fieldFilterAppliance"), new objj_ivar("tableAppliances"), new objj_ivar("fieldNewApplianceName"), new objj_ivar("viewTableContainer"), new objj_ivar("_appliancesDatasource")]);objj_registerClassPair(the_class);
+meta_class = the_class.isa;class_addIvars(the_class, [new objj_ivar("buttonCreate"), new objj_ivar("buttonBarControl"), new objj_ivar("checkBoxShouldGZIP"), new objj_ivar("popoverNewAppliances"), new objj_ivar("fieldFilterAppliance"), new objj_ivar("tableAppliances"), new objj_ivar("fieldNewApplianceName"), new objj_ivar("viewTableContainer"), new objj_ivar("_detachButton"), new objj_ivar("_attachButton"), new objj_ivar("_packageButton"), new objj_ivar("_appliancesDatasource")]);
+       
+       
+
+
+
+
+
+
+
+       
+       
+
+
+       
+       
+
+       
+       
+
+
+
+
+
+
+       
+       
+
+
+
+
+
+
+
+
+
+
+       
+       
+objj_registerClassPair(the_class);
 class_addMethods(the_class, [new objj_method(sel_getUid("awakeFromCib"), function $TNVirtualMachineAppliancesController__awakeFromCib(self, _cmd)
 {
     objj_msgSend(self.viewTableContainer, "setBorderedWithHexColor:", "#C0C7D2");
     self._appliancesDatasource = objj_msgSend(objj_msgSend(TNTableViewDataSource, "alloc"), "init");
     objj_msgSend(self.tableAppliances, "setTarget:", self);
-    objj_msgSend(self.tableAppliances, "setDelegate:", self);
     objj_msgSend(self.tableAppliances, "setDoubleAction:", sel_getUid("tableDoubleClicked:"));
     objj_msgSend(self._appliancesDatasource, "setTable:", self.tableAppliances);
-    objj_msgSend(self._appliancesDatasource, "setSearchableKeyPaths:", ["name", "path", "comment"]);
+    objj_msgSend(self._appliancesDatasource, "setSearchableKeyPaths:", ["name", "path", "comment"])
     objj_msgSend(self.tableAppliances, "setDataSource:", self._appliancesDatasource);
     objj_msgSend(self.fieldFilterAppliance, "setTarget:", self._appliancesDatasource);
     objj_msgSend(self.fieldFilterAppliance, "setAction:", sel_getUid("filterObjects:"));
-    objj_msgSend(self, "addControlsWithIdentifier:title:target:action:image:", TNModuleControlForAttachAppliance, CPBundleLocalizedString("Use the selected appliance", "Use the selected appliance"), self, sel_getUid("attach:"), CPImageInBundle("IconsButtons/lock.png", nil, objj_msgSend(CPBundle, "mainBundle")));
-    objj_msgSend(self, "addControlsWithIdentifier:title:target:action:image:", TNModuleControlForDetachAppliance, CPBundleLocalizedString("Detach the selected appliance", "Detach the selected appliance"), self, sel_getUid("detach:"), CPImageInBundle("IconsButtons/unlock.png", nil, objj_msgSend(CPBundle, "mainBundle")));
-    objj_msgSend(self, "addControlsWithIdentifier:title:target:action:image:", TNModuleControlForCreateAppliance, CPBundleLocalizedString("Create a new appliance from current virtual machine", "Create a new appliance from current virtual machine"), self, sel_getUid("openNewApplianceWindow:"), CPImageInBundle("IconsButtons/package.png", nil, objj_msgSend(CPBundle, "mainBundle")));
-    objj_msgSend(self.buttonBarControl, "setButtons:", [objj_msgSend(self, "buttonWithIdentifier:", TNModuleControlForAttachAppliance), objj_msgSend(self, "buttonWithIdentifier:", TNModuleControlForDetachAppliance), objj_msgSend(self, "buttonWithIdentifier:", TNModuleControlForCreateAppliance)]);
+    var menu = objj_msgSend(objj_msgSend(CPMenu, "alloc"), "init");
+    objj_msgSend(menu, "addItemWithTitle:action:keyEquivalent:", "Install", sel_getUid("attach:"), "");
+    objj_msgSend(menu, "addItemWithTitle:action:keyEquivalent:", "Detach", sel_getUid("detach:"), "");
+    objj_msgSend(self.tableAppliances, "setMenu:", menu);
+    self._packageButton = objj_msgSend(CPButtonBar, "plusButton");
+    objj_msgSend(self._packageButton, "setImage:", objj_msgSend(objj_msgSend(CPImage, "alloc"), "initWithContentsOfFile:size:", objj_msgSend(objj_msgSend(CPBundle, "mainBundle"), "pathForResource:", "IconsButtons/package.png"), CGSizeMake(16, 16)));
+    objj_msgSend(self._packageButton, "setTarget:", self);
+    objj_msgSend(self._packageButton, "setAction:", sel_getUid("openNewApplianceWindow:"));
+    objj_msgSend(self._packageButton, "setToolTip:", CPBundleLocalizedString("Package current VM into hypervisor's VMCast", "Package current VM into hypervisor's VMCast"));
+    self._attachButton = objj_msgSend(CPButtonBar, "plusButton");
+    objj_msgSend(self._attachButton, "setImage:", objj_msgSend(objj_msgSend(CPImage, "alloc"), "initWithContentsOfFile:size:", objj_msgSend(objj_msgSend(CPBundle, "mainBundle"), "pathForResource:", "IconsButtons/lock.png"), CGSizeMake(16, 16)));
+    objj_msgSend(self._attachButton, "setTarget:", self);
+    objj_msgSend(self._attachButton, "setAction:", sel_getUid("attach:"));
+    objj_msgSend(self._attachButton, "setEnabled:", NO);
+    objj_msgSend(self._attachButton, "setToolTip:", CPBundleLocalizedString("Use selected package for VM. Any changes will be lost", "Use selected package for VM. Any changes will be lost"));
+    self._detachButton = objj_msgSend(CPButtonBar, "plusButton");
+    objj_msgSend(self._detachButton, "setImage:", objj_msgSend(objj_msgSend(CPImage, "alloc"), "initWithContentsOfFile:size:", objj_msgSend(objj_msgSend(CPBundle, "mainBundle"), "pathForResource:", "IconsButtons/unlock.png"), CGSizeMake(16, 16)));
+    objj_msgSend(self._detachButton, "setTarget:", self);
+    objj_msgSend(self._detachButton, "setAction:", sel_getUid("detach:"));
+    objj_msgSend(self._detachButton, "setEnabled:", NO);
+    objj_msgSend(self._detachButton, "setToolTip:", CPBundleLocalizedString("Detach current VM from selected appliance", "Detach current VM from selected appliance"));
+    objj_msgSend(self.buttonBarControl, "setButtons:", [self._attachButton, self._detachButton, self._packageButton]);
 }
 ,["void"]), new objj_method(sel_getUid("willLoad"), function $TNVirtualMachineAppliancesController__willLoad(self, _cmd)
 {
@@ -49,6 +203,13 @@ class_addMethods(the_class, [new objj_method(sel_getUid("awakeFromCib"), functio
     objj_msgSend(self.popoverNewAppliances, "close");
     objj_msgSendSuper({ receiver:self, super_class:objj_getClass("TNVirtualMachineAppliancesController").super_class }, "willHide");
 }
+,["void"]), new objj_method(sel_getUid("menuReady"), function $TNVirtualMachineAppliancesController__menuReady(self, _cmd)
+{
+    objj_msgSend(objj_msgSend(self._menu, "addItemWithTitle:action:keyEquivalent:", CPBundleLocalizedString("Attach selected appliance", "Attach selected appliance"), sel_getUid("attach:"), ""), "setTarget:", self);
+    objj_msgSend(objj_msgSend(self._menu, "addItemWithTitle:action:keyEquivalent:", CPBundleLocalizedString("Dettach from selected appliance", "Dettach from selected appliance"), sel_getUid("detach:"), ""), "setTarget:", self);
+    objj_msgSend(self._menu, "addItem:", objj_msgSend(CPMenuItem, "separatorItem"));
+    objj_msgSend(objj_msgSend(self._menu, "addItemWithTitle:action:keyEquivalent:", CPBundleLocalizedString("Create appliance from this virtual machine", "Create appliance from this virtual machine"), sel_getUid("package:"), ""), "setTarget:", self);
+}
 ,["void"]), new objj_method(sel_getUid("permissionsChanged"), function $TNVirtualMachineAppliancesController__permissionsChanged(self, _cmd)
 {
     objj_msgSendSuper({ receiver:self, super_class:objj_getClass("TNVirtualMachineAppliancesController").super_class }, "permissionsChanged");
@@ -56,9 +217,9 @@ class_addMethods(the_class, [new objj_method(sel_getUid("awakeFromCib"), functio
 }
 ,["void"]), new objj_method(sel_getUid("setUIAccordingToPermissions"), function $TNVirtualMachineAppliancesController__setUIAccordingToPermissions(self, _cmd)
 {
-    objj_msgSend(self, "setControl:enabledAccordingToPermission:", objj_msgSend(self, "buttonWithIdentifier:", TNModuleControlForCreateAppliance), "appliance_package");
-    objj_msgSend(self, "setControl:enabledAccordingToPermission:", objj_msgSend(self, "buttonWithIdentifier:", TNModuleControlForAttachAppliance), "appliance_attach");
-    objj_msgSend(self, "setControl:enabledAccordingToPermission:", objj_msgSend(self, "buttonWithIdentifier:", TNModuleControlForDetachAppliance), "appliance_detach");
+    objj_msgSend(self, "setControl:enabledAccordingToPermission:", self._packageButton, "appliance_package");
+    objj_msgSend(self, "setControl:enabledAccordingToPermission:", self._attachButton, "appliance_attach");
+    objj_msgSend(self, "setControl:enabledAccordingToPermission:", self._detachButton, "appliance_detach");
     if (objj_msgSend(self, "currentEntityHasPermission:", "appliance_package"))
         objj_msgSend(self.popoverNewAppliances, "close");
 }
@@ -77,23 +238,24 @@ class_addMethods(the_class, [new objj_method(sel_getUid("awakeFromCib"), functio
         type = objj_msgSend(somePushInfo, "objectForKey:", "type"),
         change = objj_msgSend(somePushInfo, "objectForKey:", "change"),
         date = objj_msgSend(somePushInfo, "objectForKey:", "date");
-    switch(change) {
-    case "packaging":
-        objj_msgSend(objj_msgSend(TNGrowlCenter, "defaultCenter"), "pushNotificationWithTitle:message:", objj_msgSend(self._entity, "name"), CPBundleLocalizedString("Packaging started.", "Packaging started."));
-        break;
-    case "packagingerror":
-        objj_msgSend(objj_msgSend(TNGrowlCenter, "defaultCenter"), "pushNotificationWithTitle:message:icon:", objj_msgSend(self._entity, "name"), CPBundleLocalizedString("Unable to create package. Check agent logs", "Unable to create package. Check agent logs"), TNGrowlIconError);
-        break;
-    case "packaged":
-        objj_msgSend(objj_msgSend(TNGrowlCenter, "defaultCenter"), "pushNotificationWithTitle:message:", objj_msgSend(self._entity, "name"), CPBundleLocalizedString("Packaging successful.", "Packaging successful."));
-        objj_msgSend(self, "getInstalledAppliances");
-        break;
-    case "applianceinstalled":
-        objj_msgSend(objj_msgSend(TNGrowlCenter, "defaultCenter"), "pushNotificationWithTitle:message:", objj_msgSend(self._entity, "name"), CPBundleLocalizedString("Appliance is installed.", "Appliance is installed."));
-        objj_msgSend(self, "getInstalledAppliances");
-        break;
-default:
-        objj_msgSend(self, "getInstalledAppliances");
+    switch (change)
+    {
+        case "packaging":
+            objj_msgSend(objj_msgSend(TNGrowlCenter, "defaultCenter"), "pushNotificationWithTitle:message:", objj_msgSend(self._entity, "name"), CPBundleLocalizedString("Packaging started.", "Packaging started."));
+            break;
+        case "packagingerror":
+            objj_msgSend(objj_msgSend(TNGrowlCenter, "defaultCenter"), "pushNotificationWithTitle:message:icon:", objj_msgSend(self._entity, "name"), CPBundleLocalizedString("Unable to create package. Check agent logs", "Unable to create package. Check agent logs"), TNGrowlIconError);
+            break;
+        case "packaged":
+            objj_msgSend(objj_msgSend(TNGrowlCenter, "defaultCenter"), "pushNotificationWithTitle:message:", objj_msgSend(self._entity, "name"), CPBundleLocalizedString("Packaging successful.", "Packaging successful."));
+            objj_msgSend(self, "getInstalledAppliances");
+            break
+        case "applianceinstalled":
+            objj_msgSend(objj_msgSend(TNGrowlCenter, "defaultCenter"), "pushNotificationWithTitle:message:", objj_msgSend(self._entity, "name"), CPBundleLocalizedString("Appliance is installed.", "Appliance is installed."));
+            objj_msgSend(self, "getInstalledAppliances");
+            break;
+        default:
+            objj_msgSend(self, "getInstalledAppliances");
     }
     return YES;
 }
@@ -109,7 +271,7 @@ default:
     objj_msgSend(self.fieldNewApplianceName, "setStringValue:", objj_msgSend(CPString, "UUID"));
     objj_msgSend(self.checkBoxShouldGZIP, "setState:", CPOnState);
     objj_msgSend(self.popoverNewAppliances, "close");
-    objj_msgSend(self.popoverNewAppliances, "showRelativeToRect:ofView:preferredEdge:", nil, objj_msgSend(self, "buttonWithIdentifier:", TNModuleControlForCreateAppliance), nil);
+    objj_msgSend(self.popoverNewAppliances, "showRelativeToRect:ofView:preferredEdge:", nil, aSender, nil);
     objj_msgSend(self.popoverNewAppliances, "makeFirstResponder:", self.fieldNewApplianceName);
     objj_msgSend(self.popoverNewAppliances, "setDefaultButton:", self.buttonCreate);
 }
@@ -153,7 +315,8 @@ default:
 {
     var stanza = objj_msgSend(TNStropheStanza, "iqWithType:", "get");
     objj_msgSend(stanza, "addChildWithName:andAttributes:", "query", {"xmlns": TNArchipelTypeVirtualMachineVMCasting});
-    objj_msgSend(stanza, "addChildWithName:andAttributes:", "archipel", {"action": TNArchipelTypeVirtualMachineVMCastingGet});
+    objj_msgSend(stanza, "addChildWithName:andAttributes:", "archipel", {
+        "action": TNArchipelTypeVirtualMachineVMCastingGet});
     objj_msgSend(self, "setModuleStatus:", TNArchipelModuleStatusWaiting);
     objj_msgSend(self._entity, "sendStanza:andRegisterSelector:ofObject:", stanza, sel_getUid("_didReceiveInstalledAppliances:"), self);
 }
@@ -186,10 +349,10 @@ default:
 }
 ,["BOOL","TNStropheStanza"]), new objj_method(sel_getUid("attach"), function $TNVirtualMachineAppliancesController__attach(self, _cmd)
 {
-    if (objj_msgSend(self.tableAppliances, "numberOfRows") && objj_msgSend(self.tableAppliances, "numberOfSelectedRows") <= 0)
+    if (objj_msgSend(self.tableAppliances, "numberOfRows") && (objj_msgSend(self.tableAppliances, "numberOfSelectedRows") <= 0))
     {
-        objj_msgSend(TNAlert, "showAlertWithMessage:informative:", CPBundleLocalizedString("Error", "Error"), CPBundleLocalizedString("You must select an appliance", "You must select an appliance"));
-        return;
+         objj_msgSend(TNAlert, "showAlertWithMessage:informative:", CPBundleLocalizedString("Error", "Error"), CPBundleLocalizedString("You must select an appliance", "You must select an appliance"));
+         return;
     }
     var alert = objj_msgSend(TNAlert, "alertWithMessage:informative:target:actions:", CPBundleLocalizedString("Attach appliance", "Attach appliance"), CPBundleLocalizedString("Are you sure you want to attach this appliance? This will reset all your virtual machine.", "Are you sure you want to attach this appliance? This will reset all your virtual machine."), self, [[CPBundleLocalizedString("Attach", "Attach"), sel_getUid("performAttach:")], [CPBundleLocalizedString("Cancel", "Cancel"), nil]]);
     objj_msgSend(alert, "runModal");
@@ -200,9 +363,11 @@ default:
         appliance = objj_msgSend(self._appliancesDatasource, "objectAtIndex:", selectedIndex),
         stanza = objj_msgSend(TNStropheStanza, "iqWithType:", "set");
     objj_msgSend(stanza, "addChildWithName:andAttributes:", "query", {"xmlns": TNArchipelTypeVirtualMachineVMCasting});
-    objj_msgSend(stanza, "addChildWithName:andAttributes:", "archipel", {"action": TNArchipelTypeVirtualMachineVMCastingAttach, "uuid": objj_msgSend(appliance, "UUID")});
+    objj_msgSend(stanza, "addChildWithName:andAttributes:", "archipel", {
+        "action": TNArchipelTypeVirtualMachineVMCastingAttach,
+        "uuid": objj_msgSend(appliance, "UUID")});
     if (objj_msgSend(self, "currentEntityHasPermission:", "appliance_attach"))
-        objj_msgSend(objj_msgSend(self, "buttonWithIdentifier:", TNModuleControlForAttachAppliance), "setEnabled:", NO);
+        objj_msgSend(self._attachButton, "setEnabled:", NO);
     objj_msgSend(self._entity, "sendStanza:andRegisterSelector:ofObject:", stanza, sel_getUid("_didAttach:"), self);
 }
 ,["void","id"]), new objj_method(sel_getUid("_didAttach:"), function $TNVirtualMachineAppliancesController___didAttach_(self, _cmd, aStanza)
@@ -219,10 +384,10 @@ default:
 }
 ,["BOOL","TNStropheStanza"]), new objj_method(sel_getUid("detach"), function $TNVirtualMachineAppliancesController__detach(self, _cmd)
 {
-    if (objj_msgSend(self.tableAppliances, "numberOfRows") && objj_msgSend(self.tableAppliances, "numberOfSelectedRows") <= 0)
+    if (objj_msgSend(self.tableAppliances, "numberOfRows") && (objj_msgSend(self.tableAppliances, "numberOfSelectedRows") <= 0))
     {
-        objj_msgSend(TNAlert, "showAlertWithMessage:informative:", CPBundleLocalizedString("Error", "Error"), CPBundleLocalizedString("You must select an appliance", "You must select an appliance"));
-        return;
+         objj_msgSend(TNAlert, "showAlertWithMessage:informative:", CPBundleLocalizedString("Error", "Error"), CPBundleLocalizedString("You must select an appliance", "You must select an appliance"));
+         return;
     }
     var alert = objj_msgSend(TNAlert, "alertWithMessage:informative:target:actions:", CPBundleLocalizedString("Detach from appliance", "Detach from appliance"), CPBundleLocalizedString("Are you sure you want to detach virtual machine from this appliance?", "Are you sure you want to detach virtual machine from this appliance?"), self, [[CPBundleLocalizedString("Detach", "Detach"), sel_getUid("performDetach:")], [CPBundleLocalizedString("Cancel", "Cancel"), nil]]);
     objj_msgSend(alert, "runModal");
@@ -235,9 +400,10 @@ default:
     if (objj_msgSend(appliance, "statusString") != TNArchipelApplianceStatusInstalled)
         return;
     objj_msgSend(stanza, "addChildWithName:andAttributes:", "query", {"xmlns": TNArchipelTypeVirtualMachineVMCasting});
-    objj_msgSend(stanza, "addChildWithName:andAttributes:", "archipel", {"action": TNArchipelTypeVirtualMachineVMCastingDetach});
+    objj_msgSend(stanza, "addChildWithName:andAttributes:", "archipel", {
+        "action": TNArchipelTypeVirtualMachineVMCastingDetach});
     if (objj_msgSend(self, "currentEntityHasPermission:", "appliance_attach"))
-        objj_msgSend(objj_msgSend(self, "buttonWithIdentifier:", TNModuleControlForDetachAppliance), "setEnabled:", NO);
+        objj_msgSend(self._detachButton, "setEnabled:", NO);
     objj_msgSend(self._entity, "sendStanza:andRegisterSelector:ofObject:", stanza, sel_getUid("_didDetach:"), self);
 }
 ,["void","id"]), new objj_method(sel_getUid("_didDetach:"), function $TNVirtualMachineAppliancesController___didDetach_(self, _cmd, aStanza)
@@ -245,7 +411,7 @@ default:
     if (objj_msgSend(aStanza, "type") == "result")
     {
         objj_msgSend(objj_msgSend(TNGrowlCenter, "defaultCenter"), "pushNotificationWithTitle:message:", objj_msgSend(self._entity, "name"), CPBundleLocalizedString("Appliance has been detached", "Appliance has been detached"));
-        objj_msgSend(self, "setControl:enabledAccordingToPermission:", objj_msgSend(self, "buttonWithIdentifier:", TNModuleControlForAttachAppliance), "appliance_attach");
+        objj_msgSend(self, "setControl:enabledAccordingToPermission:", self._attachButton, "appliance_attach");
     }
     else
     {
@@ -257,14 +423,17 @@ default:
 {
     if (objj_msgSend(self._entity, "XMPPShow") != TNStropheContactStatusBusy)
     {
-        objj_msgSend(TNAlert, "showAlertWithMessage:informative:", CPBundleLocalizedString("Error", "Error"), CPBundleLocalizedString("Virtual machine must not be running to package it.", "Virtual machine must not be running to package it."));
-        return;
+         objj_msgSend(TNAlert, "showAlertWithMessage:informative:", CPBundleLocalizedString("Error", "Error"), CPBundleLocalizedString("Virtual machine must not be running to package it.", "Virtual machine must not be running to package it."));
+         return;
     }
     var stanza = objj_msgSend(TNStropheStanza, "iqWithType:", "get"),
         name = objj_msgSend(self.fieldNewApplianceName, "stringValue"),
         shouldGZIP = objj_msgSend(self.checkBoxShouldGZIP, "state") == CPOnState ? "True" : "False";
     objj_msgSend(stanza, "addChildWithName:andAttributes:", "query", {"xmlns": TNArchipelTypeVirtualMachineVMCasting});
-    objj_msgSend(stanza, "addChildWithName:andAttributes:", "archipel", {"action": TNArchipelTypeVirtualMachineVMCastingPackage, "name": name, "gzip": shouldGZIP});
+    objj_msgSend(stanza, "addChildWithName:andAttributes:", "archipel", {
+        "action": TNArchipelTypeVirtualMachineVMCastingPackage,
+        "name": name,
+        "gzip": shouldGZIP});
     objj_msgSend(self._entity, "sendStanza:andRegisterSelector:ofObject:", stanza, sel_getUid("_didPackageAppliance:"), self);
     objj_msgSend(self.popoverNewAppliances, "close");
 }
@@ -276,122 +445,20 @@ default:
 }
 ,["BOOL","TNStropheStanza"]), new objj_method(sel_getUid("tableViewSelectionDidChange:"), function $TNVirtualMachineAppliancesController__tableViewSelectionDidChange_(self, _cmd, aTableView)
 {
-    objj_msgSend(objj_msgSend(self, "buttonWithIdentifier:", TNModuleControlForAttachAppliance), "setEnabled:", NO);
-    objj_msgSend(objj_msgSend(self, "buttonWithIdentifier:", TNModuleControlForDetachAppliance), "setEnabled:", NO);
+    objj_msgSend(self._attachButton, "setEnabled:", NO);
+    objj_msgSend(self._detachButton, "setEnabled:", NO);
     if (objj_msgSend(self.tableAppliances, "numberOfSelectedRows") <= 0)
         return;
     var selectedIndex = objj_msgSend(objj_msgSend(self.tableAppliances, "selectedRowIndexes"), "firstIndex"),
         appliance = objj_msgSend(self._appliancesDatasource, "objectAtIndex:", selectedIndex);
     if (objj_msgSend(appliance, "statusString") == TNArchipelApplianceStatusInstalled)
-        objj_msgSend(self, "setControl:enabledAccordingToPermission:", objj_msgSend(self, "buttonWithIdentifier:", TNModuleControlForDetachAppliance), "appliance_detach");
+        objj_msgSend(self, "setControl:enabledAccordingToPermission:", self._detachButton, "appliance_detach");
     else
-        objj_msgSend(self, "setControl:enabledAccordingToPermission:", objj_msgSend(self, "buttonWithIdentifier:", TNModuleControlForAttachAppliance), "appliance_attach");
+        objj_msgSend(self, "setControl:enabledAccordingToPermission:", self._attachButton, "appliance_attach");
 }
-,["void","CPTableView"]), new objj_method(sel_getUid("tableView:menuForTableColumn:row:"), function $TNVirtualMachineAppliancesController__tableView_menuForTableColumn_row_(self, _cmd, aTableView, aColumn, aRow)
-{
-    if (objj_msgSend(aTableView, "numberOfSelectedRows") > 1)
-        return;
-    objj_msgSend(self._contextualMenu, "removeAllItems");
-    if (objj_msgSend(aTableView, "numberOfSelectedRows") == 0 && aTableView == self.tableAppliances)
-    {
-        objj_msgSend(self._contextualMenu, "addItem:", objj_msgSend(self, "menuItemWithIdentifier:", TNModuleControlForCreateAppliance));
-        return self._contextualMenu;
-    }
-    var itemRow = objj_msgSend(aTableView, "rowAtPoint:", aRow);
-    if (objj_msgSend(aTableView, "selectedRow") != aRow)
-        objj_msgSend(aTableView, "selectRowIndexes:byExtendingSelection:", objj_msgSend(CPIndexSet, "indexSetWithIndex:", aRow), NO);
-    var selectedIndex = objj_msgSend(objj_msgSend(self.tableAppliances, "selectedRowIndexes"), "firstIndex"),
-        appliance = objj_msgSend(self._appliancesDatasource, "objectAtIndex:", selectedIndex);
-    if (objj_msgSend(appliance, "statusString") == TNArchipelApplianceStatusInstalled)
-        objj_msgSend(self._contextualMenu, "addItem:", objj_msgSend(self, "menuItemWithIdentifier:", TNModuleControlForDetachAppliance));
-    else
-        objj_msgSend(self._contextualMenu, "addItem:", objj_msgSend(self, "menuItemWithIdentifier:", TNModuleControlForAttachAppliance));
-    return self._contextualMenu;
+,["void","CPTableView"])]);
 }
-,["CPMenu","CPTableView","CPTableColumn","int"])]);
-}CPBundleLocalizedString = function(key, comment)
+CPBundleLocalizedString = function(key, comment)
 {
     return CPLocalizedStringFromTableInBundle(key, nil, objj_msgSend(CPBundle, "bundleForClass:", TNVirtualMachineAppliancesController), comment);
-}
-p;29;TNInstalledAppliancesObject.jt;3810;@STATIC;1.0;I;23;Foundation/Foundation.jt;3763;objj_executeFile("Foundation/Foundation.j", NO);TNArchipelApplianceInstalled = 1;
-TNArchipelApplianceStatusInstalled = "installed";
-TNArchipelApplianceStatusInstalling = "installing";
-TNArchipelApplianceStatusNone = "none";
-var TNInstalledApplianceIconUsed,
-    TNInstalledApplianceIconInstalling,
-    TNInstalledApplianceIconNone;
-{var the_class = objj_allocateClassPair(CPObject, "TNInstalledAppliance"),
-meta_class = the_class.isa;class_addIvars(the_class, [new objj_ivar("_comment"), new objj_ivar("_name"), new objj_ivar("_path"), new objj_ivar("_status"), new objj_ivar("_UUID")]);objj_registerClassPair(the_class);
-class_addMethods(the_class, [new objj_method(sel_getUid("comment"), function $TNInstalledAppliance__comment(self, _cmd)
-{
-    return self._comment;
-}
-,["CPString"]), new objj_method(sel_getUid("setComment:"), function $TNInstalledAppliance__setComment_(self, _cmd, newValue)
-{
-    self._comment = newValue;
-}
-,["void","CPString"]), new objj_method(sel_getUid("name"), function $TNInstalledAppliance__name(self, _cmd)
-{
-    return self._name;
-}
-,["CPString"]), new objj_method(sel_getUid("setName:"), function $TNInstalledAppliance__setName_(self, _cmd, newValue)
-{
-    self._name = newValue;
-}
-,["void","CPString"]), new objj_method(sel_getUid("path"), function $TNInstalledAppliance__path(self, _cmd)
-{
-    return self._path;
-}
-,["CPString"]), new objj_method(sel_getUid("setPath:"), function $TNInstalledAppliance__setPath_(self, _cmd, newValue)
-{
-    self._path = newValue;
-}
-,["void","CPString"]), new objj_method(sel_getUid("statusString"), function $TNInstalledAppliance__statusString(self, _cmd)
-{
-    return self._status;
-}
-,["CPString"]), new objj_method(sel_getUid("setStatus:"), function $TNInstalledAppliance__setStatus_(self, _cmd, newValue)
-{
-    self._status = newValue;
-}
-,["void","CPString"]), new objj_method(sel_getUid("UUID"), function $TNInstalledAppliance__UUID(self, _cmd)
-{
-    return self._UUID;
-}
-,["CPString"]), new objj_method(sel_getUid("setUUID:"), function $TNInstalledAppliance__setUUID_(self, _cmd, newValue)
-{
-    self._UUID = newValue;
-}
-,["void","CPString"]), new objj_method(sel_getUid("status"), function $TNInstalledAppliance__status(self, _cmd)
-{
-    if (self._status == TNArchipelApplianceStatusInstalled)
-        return TNInstalledApplianceIconUsed;
-    else if (self._status == TNArchipelApplianceStatusInstalling)
-        return TNInstalledApplianceIconInstalling;
-    else
-        return TNInstalledApplianceIconNone;
-}
-,["CPImage"]), new objj_method(sel_getUid("description"), function $TNInstalledAppliance__description(self, _cmd)
-{
-    return self._name;
-}
-,["CPString"])]);
-class_addMethods(meta_class, [new objj_method(sel_getUid("initialize"), function $TNInstalledAppliance__initialize(self, _cmd)
-{
-    var bundle = objj_msgSend(CPBundle, "mainBundle");
-    TNInstalledApplianceIconUsed = CPImageInBundle("IconsButtons/check.png", CGSizeMake(12, 12), bundle);
-    TNInstalledApplianceIconInstalling = CPImageInBundle("spinner.gif", CGSizeMake(16, 16), bundle);
-    TNInstalledApplianceIconNone = nil;
-}
-,["void"]), new objj_method(sel_getUid("InstalledApplianceWithName:UUID:path:comment:status:"), function $TNInstalledAppliance__InstalledApplianceWithName_UUID_path_comment_status_(self, _cmd, aName, anUUID, aPath, aComment, aStatus)
-{
-    var appliance = objj_msgSend(objj_msgSend(TNInstalledAppliance, "alloc"), "init");
-    objj_msgSend(appliance, "setName:", aName);
-    objj_msgSend(appliance, "setPath:", aPath);
-    objj_msgSend(appliance, "setUUID:", anUUID);
-    objj_msgSend(appliance, "setStatus:", aStatus);
-    objj_msgSend(appliance, "setComment:", aComment);
-    return appliance;
-}
-,["TNInstalledAppliance","CPString","CPString","CPString","CPString","CPString"])]);
 }e;

@@ -1,81 +1,310 @@
-@STATIC;1.0;p;18;TNLogEntryObject.jt;3633;@STATIC;1.0;I;23;Foundation/Foundation.jt;3586;objj_executeFile("Foundation/Foundation.j", NO);{var the_class = objj_allocateClassPair(CPObject, "TNLogEntry"),
-meta_class = the_class.isa;class_addIvars(the_class, [new objj_ivar("_date"), new objj_ivar("_file"), new objj_ivar("_level"), new objj_ivar("_message"), new objj_ivar("_method")]);objj_registerClassPair(the_class);
-class_addMethods(the_class, [new objj_method(sel_getUid("date"), function $TNLogEntry__date(self, _cmd)
+@STATIC;1.0;p;15;TNCellLogView.jt;4542;@STATIC;1.0;I;23;Foundation/Foundation.jI;25;AppKit/CPLevelIndicator.jI;28;AppKit/CPProgressIndicator.jI;20;AppKit/CPTextField.ji;29;../../Views/TNBasicDataView.jt;4373;objj_executeFile("Foundation/Foundation.j", NO);
+objj_executeFile("AppKit/CPLevelIndicator.j", NO);
+objj_executeFile("AppKit/CPProgressIndicator.j", NO);
+objj_executeFile("AppKit/CPTextField.j", NO);
+objj_executeFile("../../Views/TNBasicDataView.j", YES);
+var TNCellLogViewIconError,
+    TNCellLogViewIconWarning,
+    TNCellLogViewIconInfo,
+    TNCellLogViewIconDebug;
+{var the_class = objj_allocateClassPair(TNBasicDataView, "TNCellLogView"),
+meta_class = the_class.isa;class_addIvars(the_class, [new objj_ivar("imageViewIcon"), new objj_ivar("fieldDate"), new objj_ivar("fieldLevel"), new objj_ivar("fieldMessage")]);
+       
+       
+
+       
+       
+
+objj_registerClassPair(the_class);
+class_addMethods(the_class, [new objj_method(sel_getUid("setObjectValue:"), function $TNCellLogView__setObjectValue_(self, _cmd, aLog)
 {
-    return self._date;
+    objj_msgSend(self.fieldLevel, "setStringValue:", objj_msgSend(aLog, "level"));
+    objj_msgSend(self.fieldDate, "setStringValue:", objj_msgSend(aLog, "date"));
+    objj_msgSend(self.fieldMessage, "setStringValue:", objj_msgSend(aLog, "message"));
+    switch (objj_msgSend(objj_msgSend(aLog, "level"), "lowercaseString"))
+    {
+        case "debug":
+            objj_msgSend(self.fieldLevel, "setTextColor:", objj_msgSend(CPColor, "colorWithHexString:", "4C8AFF"));
+            objj_msgSend(self.imageViewIcon, "setImage:", TNCellLogViewIconDebug);
+            break;
+        case "info":
+            objj_msgSend(self.fieldLevel, "setTextColor:", objj_msgSend(CPColor, "colorWithHexString:", "EAD700"));
+            objj_msgSend(self.imageViewIcon, "setImage:", TNCellLogViewIconInfo);
+            break;
+        case "warn":
+            objj_msgSend(self.fieldLevel, "setTextColor:", objj_msgSend(CPColor, "colorWithHexString:", "EC9C1B"));
+            objj_msgSend(self.imageViewIcon, "setImage:", TNCellLogViewIconWarning);
+            break;
+        case "error":
+            objj_msgSend(self.fieldLevel, "setTextColor:", objj_msgSend(CPColor, "colorWithHexString:", "ED4E44"));
+            objj_msgSend(self.imageViewIcon, "setImage:", TNCellLogViewIconError);
+            break;
+    }
 }
-,["CPString"]), new objj_method(sel_getUid("setDate:"), function $TNLogEntry__setDate_(self, _cmd, newValue)
+,["void","TNLogEntryObject"]), new objj_method(sel_getUid("initWithCoder:"), function $TNCellLogView__initWithCoder_(self, _cmd, aCoder)
 {
-    self._date = newValue;
+    if (self = objj_msgSendSuper({ receiver:self, super_class:objj_getClass("TNCellLogView").super_class }, "initWithCoder:", aCoder))
+    {
+        self.imageViewIcon = objj_msgSend(aCoder, "decodeObjectForKey:", "imageViewIcon");
+        self.fieldDate = objj_msgSend(aCoder, "decodeObjectForKey:", "fieldDate");
+        self.fieldLevel = objj_msgSend(aCoder, "decodeObjectForKey:", "fieldLevel");
+        self.fieldMessage = objj_msgSend(aCoder, "decodeObjectForKey:", "fieldMessage");
+    }
+    return self;
 }
-,["void","CPString"]), new objj_method(sel_getUid("file"), function $TNLogEntry__file(self, _cmd)
+,["id","CPCoder"]), new objj_method(sel_getUid("encodeWithCoder:"), function $TNCellLogView__encodeWithCoder_(self, _cmd, aCoder)
 {
-    return self._file;
+    objj_msgSendSuper({ receiver:self, super_class:objj_getClass("TNCellLogView").super_class }, "encodeWithCoder:", aCoder);
+    objj_msgSend(aCoder, "encodeObject:forKey:", self.imageViewIcon, "imageViewIcon");
+    objj_msgSend(aCoder, "encodeObject:forKey:", self.fieldDate, "fieldDate");
+    objj_msgSend(aCoder, "encodeObject:forKey:", self.fieldLevel, "fieldLevel");
+    objj_msgSend(aCoder, "encodeObject:forKey:", self.fieldMessage, "fieldMessage");
 }
-,["CPString"]), new objj_method(sel_getUid("setFile:"), function $TNLogEntry__setFile_(self, _cmd, newValue)
+,["void","CPCoder"])]);
+class_addMethods(meta_class, [new objj_method(sel_getUid("initialize"), function $TNCellLogView__initialize(self, _cmd)
 {
-    self._file = newValue;
+    var bundle = objj_msgSend(CPBundle, "bundleForClass:", TNCellLogView);
+    TNCellLogViewIconError = objj_msgSend(objj_msgSend(CPImage, "alloc"), "initWithContentsOfFile:size:", objj_msgSend(bundle, "pathForResource:", "icon-error.png"), CGSizeMake(18.0, 18.0));
+    TNCellLogViewIconWarning = objj_msgSend(objj_msgSend(CPImage, "alloc"), "initWithContentsOfFile:size:", objj_msgSend(bundle, "pathForResource:", "icon-warning.png"), CGSizeMake(18.0, 18.0));
+    TNCellLogViewIconInfo = objj_msgSend(objj_msgSend(CPImage, "alloc"), "initWithContentsOfFile:size:", objj_msgSend(bundle, "pathForResource:", "icon-info.png"), CGSizeMake(18.0, 18.0));
+    TNCellLogViewIconDebug = objj_msgSend(objj_msgSend(CPImage, "alloc"), "initWithContentsOfFile:size:", objj_msgSend(bundle, "pathForResource:", "icon-debug.png"), CGSizeMake(18.0, 18.0));
 }
-,["void","CPString"]), new objj_method(sel_getUid("_level"), function $TNLogEntry___level(self, _cmd)
+,["void"])]);
+}p;21;TNCellPartitionView.jt;3126;@STATIC;1.0;I;23;Foundation/Foundation.jI;25;AppKit/CPLevelIndicator.jI;28;AppKit/CPProgressIndicator.jI;20;AppKit/CPTextField.ji;29;../../Views/TNBasicDataView.jt;2957;objj_executeFile("Foundation/Foundation.j", NO);
+objj_executeFile("AppKit/CPLevelIndicator.j", NO);
+objj_executeFile("AppKit/CPProgressIndicator.j", NO);
+objj_executeFile("AppKit/CPTextField.j", NO);
+objj_executeFile("../../Views/TNBasicDataView.j", YES);
+//@global CPLocalizedString
+//@global CPLocalizedStringFromTableInBundle
+{var the_class = objj_allocateClassPair(TNBasicDataView, "TNCellPartitionView"),
+meta_class = the_class.isa;class_addIvars(the_class, [new objj_ivar("levelIndicator"), new objj_ivar("nameLabel"), new objj_ivar("totalLabel"), new objj_ivar("usedLabel"), new objj_ivar("availableLabel")]);
+       
+       
+
+objj_registerClassPair(the_class);
+class_addMethods(the_class, [new objj_method(sel_getUid("setObjectValue:"), function $TNCellPartitionView__setObjectValue_(self, _cmd, aPartition)
 {
-    return self._level;
+    var capacity = parseInt(objj_msgSend(aPartition, "capacity"));
+    objj_msgSend(self.levelIndicator, "setDoubleValue:", 50 - capacity / 2);
+    objj_msgSend(self.nameLabel, "setStringValue:", objj_msgSend(aPartition, "mount"));
+    objj_msgSend(self.usedLabel, "setStringValue:", CPBundleLocalizedString("Used: ", "Used: ") + objj_msgSend(CPString, "formatByteSize:", objj_msgSend(objj_msgSend(aPartition, "used"), "intValue")));
+    objj_msgSend(self.availableLabel, "setStringValue:", CPBundleLocalizedString("Available: ", "Available: ") + objj_msgSend(CPString, "formatByteSize:", objj_msgSend(objj_msgSend(aPartition, "available"), "intValue")));
 }
-,["CPString"]), new objj_method(sel_getUid("setLevel:"), function $TNLogEntry__setLevel_(self, _cmd, newValue)
+,["void","CPDictionary"]), new objj_method(sel_getUid("initWithCoder:"), function $TNCellPartitionView__initWithCoder_(self, _cmd, aCoder)
 {
-    self._level = newValue;
+    if (self = objj_msgSendSuper({ receiver:self, super_class:objj_getClass("TNCellPartitionView").super_class }, "initWithCoder:", aCoder))
+    {
+        self.levelIndicator = objj_msgSend(aCoder, "decodeObjectForKey:", "levelIndicator");
+        self.nameLabel = objj_msgSend(aCoder, "decodeObjectForKey:", "nameLabel");
+        self.usedLabel = objj_msgSend(aCoder, "decodeObjectForKey:", "usedLabel");
+        self.availableLabel = objj_msgSend(aCoder, "decodeObjectForKey:", "availableLabel");
+    }
+    return self;
 }
-,["void","CPString"]), new objj_method(sel_getUid("_message"), function $TNLogEntry___message(self, _cmd)
+,["id","CPCoder"]), new objj_method(sel_getUid("encodeWithCoder:"), function $TNCellPartitionView__encodeWithCoder_(self, _cmd, aCoder)
 {
-    return self._message;
+    objj_msgSendSuper({ receiver:self, super_class:objj_getClass("TNCellPartitionView").super_class }, "encodeWithCoder:", aCoder);
+    objj_msgSend(aCoder, "encodeObject:forKey:", self.nameLabel, "nameLabel");
+    objj_msgSend(aCoder, "encodeObject:forKey:", self.levelIndicator, "levelIndicator");
+    objj_msgSend(aCoder, "encodeObject:forKey:", self.usedLabel, "usedLabel");
+    objj_msgSend(aCoder, "encodeObject:forKey:", self.availableLabel, "availableLabel");
 }
-,["CPString"]), new objj_method(sel_getUid("setMessage:"), function $TNLogEntry__setMessage_(self, _cmd, newValue)
+,["void","CPCoder"])]);
+}
+CPBundleLocalizedString = function(key, comment)
 {
-    self._message = newValue;
-}
-,["void","CPString"]), new objj_method(sel_getUid("method"), function $TNLogEntry__method(self, _cmd)
+    return CPLocalizedStringFromTableInBundle(key, nil, objj_msgSend(CPBundle, "bundleForClass:", TNCellPartitionView), comment);
+}p;23;TNDatasourceChartView.jt;5147;@STATIC;1.0;I;23;Foundation/Foundation.jI;19;LPKit/LPChartView.jt;5076;objj_executeFile("Foundation/Foundation.j", NO);
+objj_executeFile("LPKit/LPChartView.j", NO);
+{var the_class = objj_allocateClassPair(CPObject, "TNDatasourceChartView"),
+meta_class = the_class.isa;class_addIvars(the_class, [new objj_ivar("_datas"), new objj_ivar("_maxNumberOfPoints")]);
+
+       
+       
+
+
+
+
+       
+       
+
+
+objj_registerClassPair(the_class);
+class_addMethods(the_class, [new objj_method(sel_getUid("initWithNumberOfSets:"), function $TNDatasourceChartView__initWithNumberOfSets_(self, _cmd, numberOfSets)
 {
-    return self._method;
+    if (self = objj_msgSendSuper({ receiver:self, super_class:objj_getClass("TNDatasourceChartView").super_class }, "init"))
+    {
+        self._datas = objj_msgSend(CPArray, "array");
+        for (var i = 0 ; i < numberOfSets; i++)
+            objj_msgSend(self._datas, "addObject:", objj_msgSend(CPArray, "array"));
+        self._maxNumberOfPoints = 100;
+    }
+    return self;
 }
-,["CPString"]), new objj_method(sel_getUid("setMethod:"), function $TNLogEntry__setMethod_(self, _cmd, newValue)
+,["void","int"]), new objj_method(sel_getUid("init"), function $TNDatasourceChartView__init(self, _cmd)
 {
-    self._method = newValue;
+    return objj_msgSend(self, "initWithSets:", 1);
 }
-,["void","CPString"]), new objj_method(sel_getUid("stripTerminalColors:"), function $TNLogEntry__stripTerminalColors_(self, _cmd, aString)
+,["void"]), new objj_method(sel_getUid("numberOfSetsInChart:"), function $TNDatasourceChartView__numberOfSetsInChart_(self, _cmd, aCharView)
 {
-    return aString.replace(new RegExp('\\[[0-9]+m', "g"), "");
+    return objj_msgSend(self._datas, "count");
 }
-,["CPString","CPString"]), new objj_method(sel_getUid("level"), function $TNLogEntry__level(self, _cmd)
+,["CPNumber","LPChartView"]), new objj_method(sel_getUid("chart:numberOfValuesInSet:"), function $TNDatasourceChartView__chart_numberOfValuesInSet_(self, _cmd, aChartView, setIndex)
 {
-    return objj_msgSend(self, "stripTerminalColors:", self._level).replace(/ /g, "");
+    return objj_msgSend(objj_msgSend(self._datas, "objectAtIndex:", setIndex), "count");
 }
-,["CPString"]), new objj_method(sel_getUid("message"), function $TNLogEntry__message(self, _cmd)
+,["CPNumber","LPChartView","CPNumber"]), new objj_method(sel_getUid("chart:valueForIndex:set:"), function $TNDatasourceChartView__chart_valueForIndex_set_(self, _cmd, aChartView, itemIndex, setIndex)
 {
-    self._message = self._message.replace("DEBUG", "");
-    self._message = self._message.replace("INFO", "");
-    self._message = self._message.replace("WARNING", "");
-    self._message = self._message.replace("ERROR", "");
-    self._message = self._message.replace("CRITICAL", "");
-    self._message = self._message.replace(new RegExp('[0-9]+-[0-9]+-[0-9]+ [0-9]+:[0-9]+:[0-9]+', 'g'), '');
-    self._message = self._message.replace('::::', '');
-    self._message = self._message.replace('::', ' ');
-    self._message = self._message.replace(/(^\s*)|(\s*$)/gi, "");
-    self._message = self._message.replace(/[ ]{2,}/gi, "");
-    self._message = self._message.replace(/\n /, "\n");
-    return objj_msgSend(self, "stripTerminalColors:", self._message);
+    if (itemIndex > (objj_msgSend(objj_msgSend(self._datas, "objectAtIndex:", setIndex), "count") - 1))
+        return 0;
+    return objj_msgSend(objj_msgSend(self._datas, "objectAtIndex:", setIndex), "objectAtIndex:", itemIndex);
 }
-,["CPString"])]);
-class_addMethods(meta_class, [new objj_method(sel_getUid("logEntryWithLevel:date:file:method:message:"), function $TNLogEntry__logEntryWithLevel_date_file_method_message_(self, _cmd, aLevel, aDate, aFile, aMethod, aMessage)
+,["id","LPChartView","CPNumber","CPNumber"]), new objj_method(sel_getUid("chart:labelValueForIndex:"), function $TNDatasourceChartView__chart_labelValueForIndex_(self, _cmd, aChartView, anIndex)
 {
-    var log = objj_msgSend(objj_msgSend(TNLogEntry, "alloc"), "init");
-    objj_msgSend(log, "setLevel:", aLevel);
-    objj_msgSend(log, "setDate:", aDate);
-    objj_msgSend(log, "setFile:", aFile);
-    objj_msgSend(log, "setMethod:", aMethod);
-    objj_msgSend(log, "setMessage:", aMessage);
-    return log;
+    return "";
 }
-,["TNLogEntry","CPString","CPString","CPString","CPString","CPString"])]);
-}p;30;TNHypervisorHealthController.jt;30431;@STATIC;1.0;I;23;Foundation/Foundation.jI;20;AppKit/CPImageView.jI;21;AppKit/CPScrollView.jI;22;AppKit/CPSearchField.jI;20;AppKit/CPTableView.jI;18;AppKit/CPTabView.jI;20;AppKit/CPTextField.jI;15;AppKit/CPView.jI;19;LPKit/LPChartView.jI;29;TNKit/TNTableViewDataSource.jI;16;TNKit/TNWorker.ji;22;../../Model/TNModule.ji;22;../../Views/TNSwitch.ji;15;TNCellLogView.ji;21;TNCellPartitionView.ji;23;TNDatasourceChartView.ji;26;TNDatasourcePieChartView.ji;18;TNLogEntryObject.ji;19;TNPartitionObject.jt;29927;objj_executeFile("Foundation/Foundation.j", NO);objj_executeFile("AppKit/CPImageView.j", NO);objj_executeFile("AppKit/CPScrollView.j", NO);objj_executeFile("AppKit/CPSearchField.j", NO);objj_executeFile("AppKit/CPTableView.j", NO);objj_executeFile("AppKit/CPTabView.j", NO);objj_executeFile("AppKit/CPTextField.j", NO);objj_executeFile("AppKit/CPView.j", NO);objj_executeFile("LPKit/LPChartView.j", NO);objj_executeFile("TNKit/TNTableViewDataSource.j", NO);objj_executeFile("TNKit/TNWorker.j", NO);objj_executeFile("../../Model/TNModule.j", YES);objj_executeFile("../../Views/TNSwitch.j", YES);objj_executeFile("TNCellLogView.j", YES);objj_executeFile("TNCellPartitionView.j", YES);objj_executeFile("TNDatasourceChartView.j", YES);objj_executeFile("TNDatasourcePieChartView.j", YES);objj_executeFile("TNLogEntryObject.j", YES);objj_executeFile("TNPartitionObject.j", YES);var TNArchipelTypeHypervisorHealth = "archipel:hypervisor:health",
+,["CPString","LPChartView","int"]), new objj_method(sel_getUid("pushData:inSet:"), function $TNDatasourceChartView__pushData_inSet_(self, _cmd, data, setIndex)
+{
+    if (setIndex >= objj_msgSend(self._datas, "count"))
+        return;
+    if (objj_msgSend(objj_msgSend(self._datas, "objectAtIndex:", setIndex), "count") >= self._maxNumberOfPoints)
+        objj_msgSend(objj_msgSend(self._datas, "objectAtIndex:", setIndex), "removeObjectAtIndex:", 0);
+    objj_msgSend(self._datas, "objectAtIndex:", setIndex).push(parseFloat(data));
+}
+,["void","id","CPNumber"]), new objj_method(sel_getUid("setData:inSet:"), function $TNDatasourceChartView__setData_inSet_(self, _cmd, data, setIndex)
+{
+    if (setIndex >= objj_msgSend(self._datas, "count"))
+    {
+        objj_msgSend(CPException, "raise:reason:", "set index too big", "setIndex set to " + setIndex + ". Maximum is " + objj_msgSend(self._datas, "count") - 1);
+    }
+    self._datas[setIndex] = objj_msgSend(CPArray, "arrayWithArray:", data);
+}
+,["void","CPArray","CPNumber"]), new objj_method(sel_getUid("removeAllObjects"), function $TNDatasourceChartView__removeAllObjects(self, _cmd)
+{
+    self._datas = [];
+}
+,["void"])]);
+}
+{var the_class = objj_allocateClassPair(LPChartDrawView, "TNChartDrawView"),
+meta_class = the_class.isa;objj_registerClassPair(the_class);
+class_addMethods(the_class, [new objj_method(sel_getUid("drawSetWithFrames:inContext:"), function $TNChartDrawView__drawSetWithFrames_inContext_(self, _cmd, aFramesSet, context)
+{
+    var fillColors = [
+                        objj_msgSend(CPColor, "colorWithHexString:", "4379ca"),
+                        objj_msgSend(CPColor, "colorWithHexString:", "7fca43"),
+                        objj_msgSend(CPColor, "colorWithHexString:", "ca4343"),
+                        objj_msgSend(CPColor, "colorWithHexString:", "dcd639"),
+                        objj_msgSend(CPColor, "colorWithHexString:", "ca9f43"),
+                        objj_msgSend(CPColor, "colorWithHexString:", "af43ca"),
+                        objj_msgSend(CPColor, "colorWithHexString:", "43afca")
+                    ];
+    CGContextSetLineWidth(context, 1.6);
+    for (var setIndex = 0; setIndex < aFramesSet.length; setIndex++)
+    {
+        CGContextSetStrokeColor(context, fillColors[setIndex]);
+        var items = aFramesSet[setIndex];
+        CGContextBeginPath(context);
+        for (var itemIndex = 0; itemIndex < items.length; itemIndex++)
+        {
+            var itemFrame = items[itemIndex],
+                point = CGPointMake(CGRectGetMidX(itemFrame), CGRectGetMinY(itemFrame));
+            if (itemIndex == 0)
+                CGContextMoveToPoint(context, point.x, point.y);
+            else
+                CGContextAddLineToPoint(context, point.x, point.y);
+        }
+        CGContextStrokePath(context);
+        CGContextClosePath(context);
+    }
+}
+,["void","CPArray","CGContext"])]);
+}p;26;TNDatasourcePieChartView.jt;3521;@STATIC;1.0;I;23;Foundation/Foundation.jI;19;AppKit/CGGradient.jI;22;LPKit/LPPieChartView.jt;3423;objj_executeFile("Foundation/Foundation.j", NO);
+objj_executeFile("AppKit/CGGradient.j", NO);
+objj_executeFile("LPKit/LPPieChartView.j", NO);
+{var the_class = objj_allocateClassPair(CPObject, "TNDatasourcePieChartView"),
+meta_class = the_class.isa;class_addIvars(the_class, [new objj_ivar("_datas")]);
+       
+       
+
+
+       
+       
+
+objj_registerClassPair(the_class);
+class_addMethods(the_class, [new objj_method(sel_getUid("init"), function $TNDatasourcePieChartView__init(self, _cmd)
+{
+    if (self = objj_msgSendSuper({ receiver:self, super_class:objj_getClass("TNDatasourcePieChartView").super_class }, "init"))
+    {
+        self._datas = objj_msgSend(CPArray, "array");
+    }
+    return self;
+}
+,["void"]), new objj_method(sel_getUid("numberOfItemsInPieChartView:"), function $TNDatasourcePieChartView__numberOfItemsInPieChartView_(self, _cmd, aPieChartView)
+{
+    return objj_msgSend(self._datas, "count");
+}
+,["int","LPPieChartView"]), new objj_method(sel_getUid("pieChartView:floatValueForIndex:"), function $TNDatasourcePieChartView__pieChartView_floatValueForIndex_(self, _cmd, aPieChartView, anIndex)
+{
+    return self._datas[anIndex];
+}
+,["int","LPPieChartView","int"]), new objj_method(sel_getUid("pushData:"), function $TNDatasourcePieChartView__pushData_(self, _cmd, aData)
+{
+    objj_msgSend(self._datas, "addObject:", aData);
+}
+,["void","id"]), new objj_method(sel_getUid("removeAllObjects"), function $TNDatasourcePieChartView__removeAllObjects(self, _cmd)
+{
+    objj_msgSend(self._datas, "removeAllObjects");
+}
+,["void"])]);
+}
+{var the_class = objj_allocateClassPair(LPPieChartDrawView, "TNPieChartDrawView"),
+meta_class = the_class.isa;objj_registerClassPair(the_class);
+class_addMethods(the_class, [new objj_method(sel_getUid("drawInContext:paths:"), function $TNPieChartDrawView__drawInContext_paths_(self, _cmd, context, paths)
+{
+    CGContextSetLineWidth(context, 1.3);
+    CGContextSetStrokeColor(context, objj_msgSend(CPColor, "whiteColor"));
+    var blueColor = objj_msgSend(CPColor, "colorWithHexString:", "4379ca"),
+        darkBlueColor = objj_msgSend(CPColor, "colorWithHexString:", "3A5FA5"),
+        greenColor = objj_msgSend(CPColor, "colorWithHexString:", "7fca43"),
+        darkGreenColor = objj_msgSend(CPColor, "colorWithHexString:", "758B2C"),
+        fillColors = [
+                        [objj_msgSend(blueColor, "redComponent"), objj_msgSend(blueColor, "greenComponent"), objj_msgSend(blueColor, "blueComponent"),1.0, objj_msgSend(darkBlueColor, "redComponent"), objj_msgSend(darkBlueColor, "greenComponent"), objj_msgSend(darkBlueColor, "blueComponent"),1.0],
+                        [objj_msgSend(greenColor, "redComponent"), objj_msgSend(greenColor, "greenComponent"), objj_msgSend(greenColor, "blueComponent"),1.0, objj_msgSend(darkGreenColor, "redComponent"), objj_msgSend(darkGreenColor, "greenComponent"), objj_msgSend(darkGreenColor, "blueComponent"),1.0]
+                     ];
+    for (var i = 0; i < paths.length; i++)
+    {
+        CGContextBeginPath(context);
+        CGContextAddPath(context, paths[i]);
+        var gradient = CGGradientCreateWithColorComponents(CGColorSpaceCreateDeviceRGB(), fillColors[i], [0,1], 2);
+        CGContextDrawLinearGradient(context, gradient, objj_msgSend(self, "frame").origin, CGPointMake(0.0, 200.0), 0);
+        CGContextClosePath(context);
+        CGContextStrokePath(context);
+    }
+}
+,["void","CGContext","CPArray"])]);
+}p;30;TNHypervisorHealthController.jt;30924;@STATIC;1.0;I;23;Foundation/Foundation.jI;20;AppKit/CPImageView.jI;21;AppKit/CPScrollView.jI;22;AppKit/CPSearchField.jI;20;AppKit/CPTableView.jI;18;AppKit/CPTabView.jI;20;AppKit/CPTextField.jI;15;AppKit/CPView.jI;19;LPKit/LPChartView.jI;29;TNKit/TNTableViewDataSource.jI;16;TNKit/TNWorker.ji;22;../../Model/TNModule.ji;22;../../Views/TNSwitch.ji;15;TNCellLogView.ji;21;TNCellPartitionView.ji;23;TNDatasourceChartView.ji;26;TNDatasourcePieChartView.ji;18;TNLogEntryObject.ji;19;TNPartitionObject.jt;30420;objj_executeFile("Foundation/Foundation.j", NO);
+objj_executeFile("AppKit/CPImageView.j", NO);
+objj_executeFile("AppKit/CPScrollView.j", NO);
+objj_executeFile("AppKit/CPSearchField.j", NO);
+objj_executeFile("AppKit/CPTableView.j", NO);
+objj_executeFile("AppKit/CPTabView.j", NO);
+objj_executeFile("AppKit/CPTextField.j", NO);
+objj_executeFile("AppKit/CPView.j", NO);
+objj_executeFile("LPKit/LPChartView.j", NO);
+objj_executeFile("TNKit/TNTableViewDataSource.j", NO);
+objj_executeFile("TNKit/TNWorker.j", NO);
+objj_executeFile("../../Model/TNModule.j", YES);
+objj_executeFile("../../Views/TNSwitch.j", YES);
+objj_executeFile("TNCellLogView.j", YES);
+objj_executeFile("TNCellPartitionView.j", YES);
+objj_executeFile("TNDatasourceChartView.j", YES);
+objj_executeFile("TNDatasourcePieChartView.j", YES);
+objj_executeFile("TNLogEntryObject.j", YES);
+objj_executeFile("TNPartitionObject.j", YES);
+//@global CPLocalizedString
+//@global CPLocalizedStringFromTableInBundle
+var TNArchipelTypeHypervisorHealth = "archipel:hypervisor:health",
     TNArchipelTypeHypervisorHealthInfo = "info",
     TNArchipelTypeHypervisorHealthHistory = "history",
     TNArchipelTypeHypervisorHealthLog = "logs",
@@ -83,15 +312,44 @@ class_addMethods(meta_class, [new objj_method(sel_getUid("logEntryWithLevel:date
 var TNHypervisorHealthControllerVMXImageEnabled,
     TNHypervisorHealthControllerVMXImageDisabled;
 {var the_class = objj_allocateClassPair(TNModule, "TNHypervisorHealthController"),
-meta_class = the_class.isa;class_addIvars(the_class, [new objj_ivar("imageCPULoading"), new objj_ivar("imageDiskLoading"), new objj_ivar("imageLoadLoading"), new objj_ivar("imageMemoryLoading"), new objj_ivar("imageVMX"), new objj_ivar("filterLogField"), new objj_ivar("tableLogs"), new objj_ivar("tablePartitions"), new objj_ivar("tabViewInfos"), new objj_ivar("fieldHalfMemory"), new objj_ivar("fieldPreferencesAutoRefresh"), new objj_ivar("fieldPreferencesMaxItems"), new objj_ivar("fieldPreferencesMaxLogEntries"), new objj_ivar("fieldTotalMemory"), new objj_ivar("healthCPUUsage"), new objj_ivar("healthDiskUsage"), new objj_ivar("healthInfo"), new objj_ivar("healthLibvirtDriverVersion"), new objj_ivar("healthLibvirtVersion"), new objj_ivar("healthLoad"), new objj_ivar("healthMemSwapped"), new objj_ivar("healthMemUsage"), new objj_ivar("healthUptime"), new objj_ivar("viewCharts"), new objj_ivar("viewGraphCPUContainer"), new objj_ivar("viewGraphDiskContainer"), new objj_ivar("viewGraphLoadContainer"), new objj_ivar("viewGraphMemoryContainer"), new objj_ivar("viewGraphNetworkContainer"), new objj_ivar("viewLogs"), new objj_ivar("chartViewCPU"), new objj_ivar("chartViewLoad"), new objj_ivar("chartViewMemory"), new objj_ivar("chartViewNetwork"), new objj_ivar("logDataViewPrototype"), new objj_ivar("partitionDataViewPrototype"), new objj_ivar("switchPreferencesAutoRefresh"), new objj_ivar("_needReloadDataForCharts"), new objj_ivar("_timerStats"), new objj_ivar("_cpuDatasource"), new objj_ivar("_loadDatasource"), new objj_ivar("_memoryDatasource"), new objj_ivar("_networkDatasource"), new objj_ivar("_datasourceLogs"), new objj_ivar("_datasourcePartitions"), new objj_ivar("_logsWorker"), new objj_ivar("_statsHistoryWorker"), new objj_ivar("_statsWorker")]);objj_registerClassPair(the_class);
+meta_class = the_class.isa;class_addIvars(the_class, [new objj_ivar("imageCPULoading"), new objj_ivar("imageDiskLoading"), new objj_ivar("imageLoadLoading"), new objj_ivar("imageMemoryLoading"), new objj_ivar("imageVMX"), new objj_ivar("filterLogField"), new objj_ivar("tableLogs"), new objj_ivar("tablePartitions"), new objj_ivar("tabViewInfos"), new objj_ivar("fieldHalfMemory"), new objj_ivar("fieldPreferencesAutoRefresh"), new objj_ivar("fieldPreferencesMaxItems"), new objj_ivar("fieldPreferencesMaxLogEntries"), new objj_ivar("fieldTotalMemory"), new objj_ivar("healthCPUUsage"), new objj_ivar("healthDiskUsage"), new objj_ivar("healthInfo"), new objj_ivar("healthLibvirtDriverVersion"), new objj_ivar("healthLibvirtVersion"), new objj_ivar("healthLoad"), new objj_ivar("healthMemSwapped"), new objj_ivar("healthMemUsage"), new objj_ivar("healthUptime"), new objj_ivar("viewCharts"), new objj_ivar("viewGraphCPUContainer"), new objj_ivar("viewGraphDiskContainer"), new objj_ivar("viewGraphLoadContainer"), new objj_ivar("viewGraphMemoryContainer"), new objj_ivar("viewGraphNetworkContainer"), new objj_ivar("viewLogs"), new objj_ivar("chartViewCPU"), new objj_ivar("chartViewLoad"), new objj_ivar("chartViewMemory"), new objj_ivar("chartViewNetwork"), new objj_ivar("logDataViewPrototype"), new objj_ivar("partitionDataViewPrototype"), new objj_ivar("switchPreferencesAutoRefresh"), new objj_ivar("_needReloadDataForCharts"), new objj_ivar("_timerStats"), new objj_ivar("_cpuDatasource"), new objj_ivar("_loadDatasource"), new objj_ivar("_memoryDatasource"), new objj_ivar("_networkDatasource"), new objj_ivar("_datasourceLogs"), new objj_ivar("_datasourcePartitions"), new objj_ivar("_logsWorker"), new objj_ivar("_statsHistoryWorker"), new objj_ivar("_statsWorker")]);
+       
+       
+
+
+
+
+       
+       
+
+       
+       
+
+
+       
+       
+
+       
+       
+
+
+
+
+
+
+       
+       
+
+
+objj_registerClassPair(the_class);
 class_addMethods(the_class, [new objj_method(sel_getUid("awakeFromCib"), function $TNHypervisorHealthController__awakeFromCib(self, _cmd)
 {
     var bundle = objj_msgSend(CPBundle, "bundleForClass:", objj_msgSend(self, "class")),
-        spinner = CPImageInBundle("loading.gif", nil, bundle),
+        spinner = objj_msgSend(objj_msgSend(CPImage, "alloc"), "initWithContentsOfFile:", objj_msgSend(bundle, "pathForResource:", "loading.gif")),
         defaults = objj_msgSend(CPUserDefaults, "standardUserDefaults");
-    objj_msgSend(defaults, "registerDefaults:", objj_msgSend(objj_msgSend(CPDictionary, "alloc"), "initWithObjectsAndKeys:", objj_msgSend(bundle, "objectForInfoDictionaryKey:", "TNArchipelHealthRefreshStatsInterval"), "TNArchipelHealthRefreshStatsInterval", objj_msgSend(bundle, "objectForInfoDictionaryKey:", "TNArchipelHealthStatsHistoryCollectionSize"), "TNArchipelHealthStatsHistoryCollectionSize", objj_msgSend(bundle, "objectForInfoDictionaryKey:", "TNArchipelHealthMaxLogEntry"), "TNArchipelHealthMaxLogEntry", objj_msgSend(bundle, "objectForInfoDictionaryKey:", "TNArchipelHealthAutoRefreshStats"), "TNArchipelHealthAutoRefreshStats"));
-    TNHypervisorHealthControllerVMXImageEnabled = CPImageInBundle("vmx-enabled.png", nil, bundle);
-    TNHypervisorHealthControllerVMXImageDisabled = CPImageInBundle("vmx-disabled.png", nil, bundle);
+    objj_msgSend(defaults, "registerDefaults:", objj_msgSend(CPDictionary, "dictionaryWithObjectsAndKeys:", objj_msgSend(bundle, "objectForInfoDictionaryKey:", "TNArchipelHealthRefreshStatsInterval"), "TNArchipelHealthRefreshStatsInterval", objj_msgSend(bundle, "objectForInfoDictionaryKey:", "TNArchipelHealthStatsHistoryCollectionSize"), "TNArchipelHealthStatsHistoryCollectionSize", objj_msgSend(bundle, "objectForInfoDictionaryKey:", "TNArchipelHealthMaxLogEntry"), "TNArchipelHealthMaxLogEntry", objj_msgSend(bundle, "objectForInfoDictionaryKey:", "TNArchipelHealthAutoRefreshStats"), "TNArchipelHealthAutoRefreshStats"));
+    TNHypervisorHealthControllerVMXImageEnabled = objj_msgSend(objj_msgSend(CPImage, "alloc"), "initWithContentsOfFile:", objj_msgSend(bundle, "pathForResource:", "vmx-enabled.png"));
+    TNHypervisorHealthControllerVMXImageDisabled = objj_msgSend(objj_msgSend(CPImage, "alloc"), "initWithContentsOfFile:", objj_msgSend(bundle, "pathForResource:", "vmx-disabled.png"));
     objj_msgSend(self.imageVMX, "setImage:", TNHypervisorHealthControllerVMXImageDisabled);
     objj_msgSend(self.imageCPULoading, "setImage:", spinner);
     objj_msgSend(self.imageMemoryLoading, "setImage:", spinner);
@@ -175,7 +433,7 @@ class_addMethods(the_class, [new objj_method(sel_getUid("awakeFromCib"), functio
         return NO;
     var defaults = objj_msgSend(CPUserDefaults, "standardUserDefaults"),
         key = TNArchipelHealthRefreshBaseKey + objj_msgSend(self._entity, "JID"),
-        shouldBeOn = objj_msgSend(defaults, "boolForKey:", key) === nil ? YES : objj_msgSend(defaults, "boolForKey:", key);
+        shouldBeOn = (objj_msgSend(defaults, "boolForKey:", key) === nil) ? YES : objj_msgSend(defaults, "boolForKey:", key);
     objj_msgSend(objj_msgSend(CPNotificationCenter, "defaultCenter"), "addObserver:selector:name:object:", self, sel_getUid("_didUpdatePresence:"), TNStropheContactPresenceUpdatedNotification, self._entity);
     self._memoryDatasource = objj_msgSend(objj_msgSend(TNDatasourceChartView, "alloc"), "initWithNumberOfSets:", 2);
     self._cpuDatasource = objj_msgSend(objj_msgSend(TNDatasourceChartView, "alloc"), "initWithNumberOfSets:", 1);
@@ -262,7 +520,7 @@ class_addMethods(the_class, [new objj_method(sel_getUid("awakeFromCib"), functio
         nnic++;
     if (!self._networkDatasource)
     {
-        self._networkDatasource = objj_msgSend(objj_msgSend(TNDatasourceChartView, "alloc"), "initWithNumberOfSets:", nnic + 1);
+        self._networkDatasource = objj_msgSend(objj_msgSend(TNDatasourceChartView, "alloc"), "initWithNumberOfSets:", (nnic + 1));
         objj_msgSend(self.chartViewNetwork, "setDataSource:", self._networkDatasource);
     }
     nnic = 0;
@@ -273,7 +531,7 @@ class_addMethods(the_class, [new objj_method(sel_getUid("awakeFromCib"), functio
     }
     var maxMem = Math.round(someData.memoryTotal / 1024 / 1024);
     objj_msgSend(self.fieldTotalMemory, "setStringValue:", maxMem + CPBundleLocalizedString("GB", "GB"));
-    objj_msgSend(self.fieldHalfMemory, "setStringValue:", Math.round(maxMem / 2 * 10) / 10 + CPBundleLocalizedString("GB", "GB"));
+    objj_msgSend(self.fieldHalfMemory, "setStringValue:", Math.round((maxMem / 2) * 10) / 10 + CPBundleLocalizedString("GB", "GB"));
     objj_msgSend(self.chartViewMemory, "setFixedMaxValue:", someData.memoryTotal);
 }
 ,["void","id"]), new objj_method(sel_getUid("_parseStatsWorkerData:"), function $TNHypervisorHealthController___parseStatsWorkerData_(self, _cmd, someData)
@@ -316,7 +574,7 @@ class_addMethods(the_class, [new objj_method(sel_getUid("awakeFromCib"), functio
     objj_msgSend(self.healthMemSwapped, "setStringValue:", swappedMed + CPBundleLocalizedString(" MB", " MB"));
     objj_msgSend(self.healthCPUUsage, "setStringValue:", Math.round(someData.cpu.idle) + "%");
     objj_msgSend(self.fieldTotalMemory, "setStringValue:", maxMem + CPBundleLocalizedString("GB", "GB"));
-    objj_msgSend(self.fieldHalfMemory, "setStringValue:", Math.round(maxMem / 2 * 10) / 10 + CPBundleLocalizedString("GB", "GB"));
+    objj_msgSend(self.fieldHalfMemory, "setStringValue:", Math.round((maxMem / 2) * 10) / 10 + CPBundleLocalizedString("GB", "GB"));
     objj_msgSend(self.chartViewMemory, "setFixedMaxValue:", someData.memory.total);
     objj_msgSend(self.healthDiskUsage, "setStringValue:", totalCapacity);
     objj_msgSend(self.healthLoad, "setStringValue:", someData.load.fifteen);
@@ -372,7 +630,9 @@ class_addMethods(the_class, [new objj_method(sel_getUid("awakeFromCib"), functio
     var stanza = objj_msgSend(TNStropheStanza, "iqWithType:", "get"),
         defaults = objj_msgSend(CPUserDefaults, "standardUserDefaults");
     objj_msgSend(stanza, "addChildWithName:andAttributes:", "query", {"xmlns": TNArchipelTypeHypervisorHealth});
-    objj_msgSend(stanza, "addChildWithName:andAttributes:", "archipel", {"action": TNArchipelTypeHypervisorHealthHistory, "limit": objj_msgSend(defaults, "integerForKey:", "TNArchipelHealthStatsHistoryCollectionSize")});
+    objj_msgSend(stanza, "addChildWithName:andAttributes:", "archipel", {
+        "action": TNArchipelTypeHypervisorHealthHistory,
+        "limit": objj_msgSend(defaults, "integerForKey:", "TNArchipelHealthStatsHistoryCollectionSize")});
     objj_msgSend(self.imageCPULoading, "setHidden:", NO);
     objj_msgSend(self.imageMemoryLoading, "setHidden:", NO);
     objj_msgSend(self.imageLoadLoading, "setHidden:", NO);
@@ -401,7 +661,10 @@ class_addMethods(the_class, [new objj_method(sel_getUid("awakeFromCib"), functio
     var stanza = objj_msgSend(TNStropheStanza, "iqWithType:", "get"),
         defaults = objj_msgSend(CPUserDefaults, "standardUserDefaults");
     objj_msgSend(stanza, "addChildWithName:andAttributes:", "query", {"xmlns": TNArchipelTypeHypervisorHealth});
-    objj_msgSend(stanza, "addChildWithName:andAttributes:", "archipel", {"xmlns": TNArchipelTypeHypervisorHealth, "action": TNArchipelTypeHypervisorHealthLog, "limit": MAX(objj_msgSend(defaults, "integerForKey:", "TNArchipelHealthMaxLogEntry"), 10)});
+    objj_msgSend(stanza, "addChildWithName:andAttributes:", "archipel", {
+        "xmlns": TNArchipelTypeHypervisorHealth,
+        "action": TNArchipelTypeHypervisorHealthLog,
+        "limit": MAX(objj_msgSend(defaults, "integerForKey:", "TNArchipelHealthMaxLogEntry"), 10)});
     objj_msgSend(self, "sendStanza:andRegisterSelector:", stanza, sel_getUid("_didReceiveHypervisorLog:"));
 }
 ,["void"]), new objj_method(sel_getUid("_didReceiveHypervisorLog:"), function $TNHypervisorHealthController___didReceiveHypervisorLog_(self, _cmd, aStanza)
@@ -479,266 +742,129 @@ class_addMethods(the_class, [new objj_method(sel_getUid("awakeFromCib"), functio
     objj_msgSend(self.imageDiskLoading, "setHidden:", YES);
 }
 ,["void","TNWorker","id"])]);
-}CPBundleLocalizedString = function(key, comment)
+}
+CPBundleLocalizedString = function(key, comment)
 {
     return CPLocalizedStringFromTableInBundle(key, nil, objj_msgSend(CPBundle, "bundleForClass:", TNHypervisorHealthController), comment);
-}
-p;23;TNDatasourceChartView.jt;4911;@STATIC;1.0;I;23;Foundation/Foundation.jI;19;LPKit/LPChartView.jt;4840;objj_executeFile("Foundation/Foundation.j", NO);objj_executeFile("LPKit/LPChartView.j", NO);{var the_class = objj_allocateClassPair(CPObject, "TNDatasourceChartView"),
-meta_class = the_class.isa;class_addIvars(the_class, [new objj_ivar("_datas"), new objj_ivar("_maxNumberOfPoints")]);objj_registerClassPair(the_class);
-class_addMethods(the_class, [new objj_method(sel_getUid("initWithNumberOfSets:"), function $TNDatasourceChartView__initWithNumberOfSets_(self, _cmd, numberOfSets)
+}p;18;TNLogEntryObject.jt;3626;@STATIC;1.0;I;23;Foundation/Foundation.jt;3579;objj_executeFile("Foundation/Foundation.j", NO);
+{var the_class = objj_allocateClassPair(CPObject, "TNLogEntry"),
+meta_class = the_class.isa;class_addIvars(the_class, [new objj_ivar("_date"), new objj_ivar("_file"), new objj_ivar("_level"), new objj_ivar("_message"), new objj_ivar("_method")]);
+       
+       
+
+       
+       
+
+objj_registerClassPair(the_class);
+class_addMethods(the_class, [new objj_method(sel_getUid("date"), function $TNLogEntry__date(self, _cmd)
 {
-    if (self = objj_msgSendSuper({ receiver:self, super_class:objj_getClass("TNDatasourceChartView").super_class }, "init"))
-    {
-        self._datas = objj_msgSend(CPArray, "array");
-        for (var i = 0; i < numberOfSets; i++)
-            objj_msgSend(self._datas, "addObject:", objj_msgSend(CPArray, "array"));
-        self._maxNumberOfPoints = 100;
-    }
-    return self;
+return self._date;
 }
-,["void","int"]), new objj_method(sel_getUid("init"), function $TNDatasourceChartView__init(self, _cmd)
+,["CPString"]), new objj_method(sel_getUid("setDate:"), function $TNLogEntry__setDate_(self, _cmd, newValue)
 {
-    return objj_msgSend(self, "initWithSets:", 1);
+self._date = newValue;
 }
-,["void"]), new objj_method(sel_getUid("numberOfSetsInChart:"), function $TNDatasourceChartView__numberOfSetsInChart_(self, _cmd, aCharView)
+,["void","CPString"]), new objj_method(sel_getUid("file"), function $TNLogEntry__file(self, _cmd)
 {
-    return objj_msgSend(self._datas, "count");
+return self._file;
 }
-,["CPNumber","LPChartView"]), new objj_method(sel_getUid("chart:numberOfValuesInSet:"), function $TNDatasourceChartView__chart_numberOfValuesInSet_(self, _cmd, aChartView, setIndex)
+,["CPString"]), new objj_method(sel_getUid("setFile:"), function $TNLogEntry__setFile_(self, _cmd, newValue)
 {
-    return objj_msgSend(objj_msgSend(self._datas, "objectAtIndex:", setIndex), "count");
+self._file = newValue;
 }
-,["CPNumber","LPChartView","CPNumber"]), new objj_method(sel_getUid("chart:valueForIndex:set:"), function $TNDatasourceChartView__chart_valueForIndex_set_(self, _cmd, aChartView, itemIndex, setIndex)
+,["void","CPString"]), new objj_method(sel_getUid("_level"), function $TNLogEntry___level(self, _cmd)
 {
-    if (itemIndex > objj_msgSend(objj_msgSend(self._datas, "objectAtIndex:", setIndex), "count") - 1)
-        return 0;
-    return objj_msgSend(objj_msgSend(self._datas, "objectAtIndex:", setIndex), "objectAtIndex:", itemIndex);
+return self._level;
 }
-,["id","LPChartView","CPNumber","CPNumber"]), new objj_method(sel_getUid("chart:labelValueForIndex:"), function $TNDatasourceChartView__chart_labelValueForIndex_(self, _cmd, aChartView, anIndex)
+,["CPString"]), new objj_method(sel_getUid("setLevel:"), function $TNLogEntry__setLevel_(self, _cmd, newValue)
 {
-    return "";
+self._level = newValue;
 }
-,["CPString","LPChartView","int"]), new objj_method(sel_getUid("pushData:inSet:"), function $TNDatasourceChartView__pushData_inSet_(self, _cmd, data, setIndex)
+,["void","CPString"]), new objj_method(sel_getUid("_message"), function $TNLogEntry___message(self, _cmd)
 {
-    if (setIndex >= objj_msgSend(self._datas, "count"))
-        return;
-    if (objj_msgSend(objj_msgSend(self._datas, "objectAtIndex:", setIndex), "count") >= self._maxNumberOfPoints)
-        objj_msgSend(objj_msgSend(self._datas, "objectAtIndex:", setIndex), "removeObjectAtIndex:", 0);
-    objj_msgSend(self._datas, "objectAtIndex:", setIndex).push(parseFloat(data));
+return self._message;
 }
-,["void","id","CPNumber"]), new objj_method(sel_getUid("setData:inSet:"), function $TNDatasourceChartView__setData_inSet_(self, _cmd, data, setIndex)
+,["CPString"]), new objj_method(sel_getUid("setMessage:"), function $TNLogEntry__setMessage_(self, _cmd, newValue)
 {
-    if (setIndex >= objj_msgSend(self._datas, "count"))
-    {
-        objj_msgSend(CPException, "raise:reason:", "set index too big", "setIndex set to " + setIndex + ". Maximum is " + objj_msgSend(self._datas, "count") - 1);
-    }
-    self._datas[setIndex] = objj_msgSend(CPArray, "arrayWithArray:", data);
+self._message = newValue;
 }
-,["void","CPArray","CPNumber"]), new objj_method(sel_getUid("removeAllObjects"), function $TNDatasourceChartView__removeAllObjects(self, _cmd)
+,["void","CPString"]), new objj_method(sel_getUid("method"), function $TNLogEntry__method(self, _cmd)
 {
-    self._datas = [];
+return self._method;
 }
-,["void"])]);
-}{var the_class = objj_allocateClassPair(LPChartDrawView, "TNChartDrawView"),
-meta_class = the_class.isa;objj_registerClassPair(the_class);
-class_addMethods(the_class, [new objj_method(sel_getUid("drawSetWithFrames:inContext:"), function $TNChartDrawView__drawSetWithFrames_inContext_(self, _cmd, aFramesSet, context)
+,["CPString"]), new objj_method(sel_getUid("setMethod:"), function $TNLogEntry__setMethod_(self, _cmd, newValue)
 {
-    var fillColors = [objj_msgSend(CPColor, "colorWithHexString:", "4379ca"), objj_msgSend(CPColor, "colorWithHexString:", "7fca43"), objj_msgSend(CPColor, "colorWithHexString:", "ca4343"), objj_msgSend(CPColor, "colorWithHexString:", "dcd639"), objj_msgSend(CPColor, "colorWithHexString:", "ca9f43"), objj_msgSend(CPColor, "colorWithHexString:", "af43ca"), objj_msgSend(CPColor, "colorWithHexString:", "43afca")];
-    CGContextSetLineWidth(context, 1.6);
-    for (var setIndex = 0; setIndex < aFramesSet.length; setIndex++)
-    {
-        CGContextSetStrokeColor(context, fillColors[setIndex]);
-        var items = aFramesSet[setIndex];
-        CGContextBeginPath(context);
-        for (var itemIndex = 0; itemIndex < items.length; itemIndex++)
-        {
-            var itemFrame = items[itemIndex],
-                point = CGPointMake(CGRectGetMidX(itemFrame), CGRectGetMinY(itemFrame));
-            if (itemIndex == 0)
-                CGContextMoveToPoint(context, point.x, point.y);
-            else
-                CGContextAddLineToPoint(context, point.x, point.y);
-        }
-        CGContextStrokePath(context);
-        CGContextClosePath(context);
-    }
+self._method = newValue;
 }
-,["void","CPArray","CGContext"])]);
-}p;26;TNDatasourcePieChartView.jt;3415;@STATIC;1.0;I;23;Foundation/Foundation.jI;19;AppKit/CGGradient.jI;22;LPKit/LPPieChartView.jt;3317;objj_executeFile("Foundation/Foundation.j", NO);objj_executeFile("AppKit/CGGradient.j", NO);objj_executeFile("LPKit/LPPieChartView.j", NO);{var the_class = objj_allocateClassPair(CPObject, "TNDatasourcePieChartView"),
-meta_class = the_class.isa;class_addIvars(the_class, [new objj_ivar("_datas")]);objj_registerClassPair(the_class);
-class_addMethods(the_class, [new objj_method(sel_getUid("init"), function $TNDatasourcePieChartView__init(self, _cmd)
+,["void","CPString"]), new objj_method(sel_getUid("stripTerminalColors:"), function $TNLogEntry__stripTerminalColors_(self, _cmd, aString)
 {
-    if (self = objj_msgSendSuper({ receiver:self, super_class:objj_getClass("TNDatasourcePieChartView").super_class }, "init"))
-    {
-        self._datas = objj_msgSend(CPArray, "array");
-    }
-    return self;
+    return aString.replace(new RegExp('\\[[0-9]+m', "g"), "");
 }
-,["void"]), new objj_method(sel_getUid("numberOfItemsInPieChartView:"), function $TNDatasourcePieChartView__numberOfItemsInPieChartView_(self, _cmd, aPieChartView)
+,["CPString","CPString"]), new objj_method(sel_getUid("level"), function $TNLogEntry__level(self, _cmd)
 {
-    return objj_msgSend(self._datas, "count");
+    return objj_msgSend(self, "stripTerminalColors:", self._level).replace(/ /g, "");
 }
-,["int","LPPieChartView"]), new objj_method(sel_getUid("pieChartView:floatValueForIndex:"), function $TNDatasourcePieChartView__pieChartView_floatValueForIndex_(self, _cmd, aPieChartView, anIndex)
+,["CPString"]), new objj_method(sel_getUid("message"), function $TNLogEntry__message(self, _cmd)
 {
-    return self._datas[anIndex];
+    self._message = self._message.replace("DEBUG", "");
+    self._message = self._message.replace("INFO", "");
+    self._message = self._message.replace("WARNING", "");
+    self._message = self._message.replace("ERROR", "");
+    self._message = self._message.replace("CRITICAL", "");
+    self._message = self._message.replace(new RegExp('[0-9]+-[0-9]+-[0-9]+ [0-9]+:[0-9]+:[0-9]+', 'g'), '');
+    self._message = self._message.replace('::::', '');
+    self._message = self._message.replace('::', ' ');
+    self._message = self._message.replace(/(^\s*)|(\s*$)/gi,"");
+    self._message = self._message.replace(/[ ]{2,}/gi,"");
+    self._message = self._message.replace(/\n /,"\n");
+    return objj_msgSend(self, "stripTerminalColors:", self._message);
 }
-,["int","LPPieChartView","int"]), new objj_method(sel_getUid("pushData:"), function $TNDatasourcePieChartView__pushData_(self, _cmd, aData)
+,["CPString"])]);
+class_addMethods(meta_class, [new objj_method(sel_getUid("logEntryWithLevel:date:file:method:message:"), function $TNLogEntry__logEntryWithLevel_date_file_method_message_(self, _cmd, aLevel, aDate, aFile, aMethod, aMessage)
 {
-    objj_msgSend(self._datas, "addObject:", aData);
+    var log = objj_msgSend(objj_msgSend(TNLogEntry, "alloc"), "init");
+    objj_msgSend(log, "setLevel:", aLevel);
+    objj_msgSend(log, "setDate:", aDate);
+    objj_msgSend(log, "setFile:", aFile);
+    objj_msgSend(log, "setMethod:", aMethod);
+    objj_msgSend(log, "setMessage:", aMessage);
+    return log;
 }
-,["void","id"]), new objj_method(sel_getUid("removeAllObjects"), function $TNDatasourcePieChartView__removeAllObjects(self, _cmd)
-{
-    objj_msgSend(self._datas, "removeAllObjects");
-}
-,["void"])]);
-}{var the_class = objj_allocateClassPair(LPPieChartDrawView, "TNPieChartDrawView"),
-meta_class = the_class.isa;objj_registerClassPair(the_class);
-class_addMethods(the_class, [new objj_method(sel_getUid("drawInContext:paths:"), function $TNPieChartDrawView__drawInContext_paths_(self, _cmd, context, paths)
-{
-    CGContextSetLineWidth(context, 1.3);
-    CGContextSetStrokeColor(context, objj_msgSend(CPColor, "whiteColor"));
-    var blueColor = objj_msgSend(CPColor, "colorWithHexString:", "4379ca"),
-        darkBlueColor = objj_msgSend(CPColor, "colorWithHexString:", "3A5FA5"),
-        greenColor = objj_msgSend(CPColor, "colorWithHexString:", "7fca43"),
-        darkGreenColor = objj_msgSend(CPColor, "colorWithHexString:", "758B2C"),
-        fillColors = [[objj_msgSend(blueColor, "redComponent"), objj_msgSend(blueColor, "greenComponent"), objj_msgSend(blueColor, "blueComponent"), 1.0, objj_msgSend(darkBlueColor, "redComponent"), objj_msgSend(darkBlueColor, "greenComponent"), objj_msgSend(darkBlueColor, "blueComponent"), 1.0], [objj_msgSend(greenColor, "redComponent"), objj_msgSend(greenColor, "greenComponent"), objj_msgSend(greenColor, "blueComponent"), 1.0, objj_msgSend(darkGreenColor, "redComponent"), objj_msgSend(darkGreenColor, "greenComponent"), objj_msgSend(darkGreenColor, "blueComponent"), 1.0]];
-    for (var i = 0; i < paths.length; i++)
-    {
-        CGContextBeginPath(context);
-        CGContextAddPath(context, paths[i]);
-        var gradient = CGGradientCreateWithColorComponents(CGColorSpaceCreateDeviceRGB(), fillColors[i], [0, 1], 2);
-        CGContextDrawLinearGradient(context, gradient, objj_msgSend(self, "frame").origin, CGPointMake(0.0, 200.0), 0);
-        CGContextClosePath(context);
-        CGContextStrokePath(context);
-    }
-}
-,["void","CGContext","CPArray"])]);
-}p;21;TNCellPartitionView.jt;3030;@STATIC;1.0;I;23;Foundation/Foundation.jI;25;AppKit/CPLevelIndicator.jI;28;AppKit/CPProgressIndicator.jI;20;AppKit/CPTextField.ji;29;../../Views/TNBasicDataView.jt;2861;objj_executeFile("Foundation/Foundation.j", NO);objj_executeFile("AppKit/CPLevelIndicator.j", NO);objj_executeFile("AppKit/CPProgressIndicator.j", NO);objj_executeFile("AppKit/CPTextField.j", NO);objj_executeFile("../../Views/TNBasicDataView.j", YES);{var the_class = objj_allocateClassPair(TNBasicDataView, "TNCellPartitionView"),
-meta_class = the_class.isa;class_addIvars(the_class, [new objj_ivar("levelIndicator"), new objj_ivar("nameLabel"), new objj_ivar("totalLabel"), new objj_ivar("usedLabel"), new objj_ivar("availableLabel")]);objj_registerClassPair(the_class);
-class_addMethods(the_class, [new objj_method(sel_getUid("setObjectValue:"), function $TNCellPartitionView__setObjectValue_(self, _cmd, aPartition)
-{
-    var capacity = parseInt(objj_msgSend(aPartition, "capacity"));
-    objj_msgSend(self.levelIndicator, "setDoubleValue:", 50 - capacity / 2);
-    objj_msgSend(self.nameLabel, "setStringValue:", objj_msgSend(aPartition, "mount"));
-    objj_msgSend(self.usedLabel, "setStringValue:", CPBundleLocalizedString("Used: ", "Used: ") + objj_msgSend(CPString, "formatByteSize:", objj_msgSend(objj_msgSend(aPartition, "used"), "intValue")));
-    objj_msgSend(self.availableLabel, "setStringValue:", CPBundleLocalizedString("Available: ", "Available: ") + objj_msgSend(CPString, "formatByteSize:", objj_msgSend(objj_msgSend(aPartition, "available"), "intValue")));
-}
-,["void","CPDictionary"]), new objj_method(sel_getUid("initWithCoder:"), function $TNCellPartitionView__initWithCoder_(self, _cmd, aCoder)
-{
-    if (self = objj_msgSendSuper({ receiver:self, super_class:objj_getClass("TNCellPartitionView").super_class }, "initWithCoder:", aCoder))
-    {
-        self.levelIndicator = objj_msgSend(aCoder, "decodeObjectForKey:", "levelIndicator");
-        self.nameLabel = objj_msgSend(aCoder, "decodeObjectForKey:", "nameLabel");
-        self.usedLabel = objj_msgSend(aCoder, "decodeObjectForKey:", "usedLabel");
-        self.availableLabel = objj_msgSend(aCoder, "decodeObjectForKey:", "availableLabel");
-    }
-    return self;
-}
-,["id","CPCoder"]), new objj_method(sel_getUid("encodeWithCoder:"), function $TNCellPartitionView__encodeWithCoder_(self, _cmd, aCoder)
-{
-    objj_msgSendSuper({ receiver:self, super_class:objj_getClass("TNCellPartitionView").super_class }, "encodeWithCoder:", aCoder);
-    objj_msgSend(aCoder, "encodeObject:forKey:", self.nameLabel, "nameLabel");
-    objj_msgSend(aCoder, "encodeObject:forKey:", self.levelIndicator, "levelIndicator");
-    objj_msgSend(aCoder, "encodeObject:forKey:", self.usedLabel, "usedLabel");
-    objj_msgSend(aCoder, "encodeObject:forKey:", self.availableLabel, "availableLabel");
-}
-,["void","CPCoder"])]);
-}CPBundleLocalizedString = function(key, comment)
-{
-    return CPLocalizedStringFromTableInBundle(key, nil, objj_msgSend(CPBundle, "bundleForClass:", TNCellPartitionView), comment);
-}
-p;15;TNCellLogView.jt;4053;@STATIC;1.0;I;23;Foundation/Foundation.jI;25;AppKit/CPLevelIndicator.jI;28;AppKit/CPProgressIndicator.jI;20;AppKit/CPTextField.ji;29;../../Views/TNBasicDataView.jt;3884;objj_executeFile("Foundation/Foundation.j", NO);objj_executeFile("AppKit/CPLevelIndicator.j", NO);objj_executeFile("AppKit/CPProgressIndicator.j", NO);objj_executeFile("AppKit/CPTextField.j", NO);objj_executeFile("../../Views/TNBasicDataView.j", YES);var TNCellLogViewIconError,
-    TNCellLogViewIconWarning,
-    TNCellLogViewIconInfo,
-    TNCellLogViewIconDebug;
-{var the_class = objj_allocateClassPair(TNBasicDataView, "TNCellLogView"),
-meta_class = the_class.isa;class_addIvars(the_class, [new objj_ivar("imageViewIcon"), new objj_ivar("fieldDate"), new objj_ivar("fieldLevel"), new objj_ivar("fieldMessage")]);objj_registerClassPair(the_class);
-class_addMethods(the_class, [new objj_method(sel_getUid("setObjectValue:"), function $TNCellLogView__setObjectValue_(self, _cmd, aLog)
-{
-    objj_msgSend(self.fieldLevel, "setStringValue:", objj_msgSend(aLog, "level"));
-    objj_msgSend(self.fieldDate, "setStringValue:", objj_msgSend(aLog, "date"));
-    objj_msgSend(self.fieldMessage, "setStringValue:", objj_msgSend(aLog, "message"));
-    switch(objj_msgSend(objj_msgSend(aLog, "level"), "lowercaseString")) {
-    case "debug":
-        objj_msgSend(self.fieldLevel, "setTextColor:", objj_msgSend(CPColor, "colorWithHexString:", "4C8AFF"));
-        objj_msgSend(self.imageViewIcon, "setImage:", TNCellLogViewIconDebug);
-        break;
-    case "info":
-        objj_msgSend(self.fieldLevel, "setTextColor:", objj_msgSend(CPColor, "colorWithHexString:", "EAD700"));
-        objj_msgSend(self.imageViewIcon, "setImage:", TNCellLogViewIconInfo);
-        break;
-    case "warn":
-        objj_msgSend(self.fieldLevel, "setTextColor:", objj_msgSend(CPColor, "colorWithHexString:", "EC9C1B"));
-        objj_msgSend(self.imageViewIcon, "setImage:", TNCellLogViewIconWarning);
-        break;
-    case "error":
-        objj_msgSend(self.fieldLevel, "setTextColor:", objj_msgSend(CPColor, "colorWithHexString:", "ED4E44"));
-        objj_msgSend(self.imageViewIcon, "setImage:", TNCellLogViewIconError);
-        break;
-    }
-}
-,["void","TNLogEntryObject"]), new objj_method(sel_getUid("initWithCoder:"), function $TNCellLogView__initWithCoder_(self, _cmd, aCoder)
-{
-    if (self = objj_msgSendSuper({ receiver:self, super_class:objj_getClass("TNCellLogView").super_class }, "initWithCoder:", aCoder))
-    {
-        self.imageViewIcon = objj_msgSend(aCoder, "decodeObjectForKey:", "imageViewIcon");
-        self.fieldDate = objj_msgSend(aCoder, "decodeObjectForKey:", "fieldDate");
-        self.fieldLevel = objj_msgSend(aCoder, "decodeObjectForKey:", "fieldLevel");
-        self.fieldMessage = objj_msgSend(aCoder, "decodeObjectForKey:", "fieldMessage");
-    }
-    return self;
-}
-,["id","CPCoder"]), new objj_method(sel_getUid("encodeWithCoder:"), function $TNCellLogView__encodeWithCoder_(self, _cmd, aCoder)
-{
-    objj_msgSendSuper({ receiver:self, super_class:objj_getClass("TNCellLogView").super_class }, "encodeWithCoder:", aCoder);
-    objj_msgSend(aCoder, "encodeObject:forKey:", self.imageViewIcon, "imageViewIcon");
-    objj_msgSend(aCoder, "encodeObject:forKey:", self.fieldDate, "fieldDate");
-    objj_msgSend(aCoder, "encodeObject:forKey:", self.fieldLevel, "fieldLevel");
-    objj_msgSend(aCoder, "encodeObject:forKey:", self.fieldMessage, "fieldMessage");
-}
-,["void","CPCoder"])]);
-class_addMethods(meta_class, [new objj_method(sel_getUid("initialize"), function $TNCellLogView__initialize(self, _cmd)
-{
-    var bundle = objj_msgSend(CPBundle, "bundleForClass:", TNCellLogView);
-    TNCellLogViewIconError = CPImageInBundle("icon-error.png", CGSizeMake(18.0, 18.0), bundle);
-    TNCellLogViewIconWarning = CPImageInBundle("icon-warning.png", CGSizeMake(18.0, 18.0), bundle);
-    TNCellLogViewIconInfo = CPImageInBundle("icon-info.png", CGSizeMake(18.0, 18.0), bundle);
-    TNCellLogViewIconDebug = CPImageInBundle("icon-debug.png", CGSizeMake(18.0, 18.0), bundle);
-}
-,["void"])]);
-}p;19;TNPartitionObject.jt;1571;@STATIC;1.0;I;23;Foundation/Foundation.jt;1524;objj_executeFile("Foundation/Foundation.j", NO);{var the_class = objj_allocateClassPair(CPObject, "TNPartitionObject"),
+,["TNLogEntry","CPString","CPString","CPString","CPString","CPString"])]);
+}p;19;TNPartitionObject.jt;1540;@STATIC;1.0;I;23;Foundation/Foundation.jt;1493;objj_executeFile("Foundation/Foundation.j", NO);
+{var the_class = objj_allocateClassPair(CPObject, "TNPartitionObject"),
 meta_class = the_class.isa;class_addIvars(the_class, [new objj_ivar("_capacity"), new objj_ivar("_mount"), new objj_ivar("_used"), new objj_ivar("_available")]);objj_registerClassPair(the_class);
 class_addMethods(the_class, [new objj_method(sel_getUid("capacity"), function $TNPartitionObject__capacity(self, _cmd)
 {
-    return self._capacity;
+return self._capacity;
 }
 ,["CPString"]), new objj_method(sel_getUid("setCapacity:"), function $TNPartitionObject__setCapacity_(self, _cmd, newValue)
 {
-    self._capacity = newValue;
+self._capacity = newValue;
 }
 ,["void","CPString"]), new objj_method(sel_getUid("mount"), function $TNPartitionObject__mount(self, _cmd)
 {
-    return self._mount;
+return self._mount;
 }
 ,["CPString"]), new objj_method(sel_getUid("setMount:"), function $TNPartitionObject__setMount_(self, _cmd, newValue)
 {
-    self._mount = newValue;
+self._mount = newValue;
 }
 ,["void","CPString"]), new objj_method(sel_getUid("used"), function $TNPartitionObject__used(self, _cmd)
 {
-    return self._used;
+return self._used;
 }
 ,["CPString"]), new objj_method(sel_getUid("setUsed:"), function $TNPartitionObject__setUsed_(self, _cmd, newValue)
 {
-    self._used = newValue;
+self._used = newValue;
 }
 ,["void","CPString"]), new objj_method(sel_getUid("available"), function $TNPartitionObject__available(self, _cmd)
 {
-    return self._available;
+return self._available;
 }
 ,["CPString"]), new objj_method(sel_getUid("setAvailable:"), function $TNPartitionObject__setAvailable_(self, _cmd, newValue)
 {
-    self._available = newValue;
+self._available = newValue;
 }
 ,["void","CPString"])]);
 }e;

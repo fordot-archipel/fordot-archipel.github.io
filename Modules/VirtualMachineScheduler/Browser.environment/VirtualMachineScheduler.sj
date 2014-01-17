@@ -1,16 +1,48 @@
-@STATIC;1.0;p;23;TNSchedulerController.jt;15597;@STATIC;1.0;I;23;Foundation/Foundation.jI;15;AppKit/CPView.jI;17;AppKit/CPButton.jI;20;AppKit/CPTextField.jI;20;AppKit/CPTableView.jI;22;AppKit/CPTabViewItem.jI;31;GrowlCappuccino/TNGrowlCenter.jI;35;StropheCappuccino/TNStropheStanza.jI;15;TNKit/TNAlert.jI;26;TNKit/TNTextFieldStepper.ji;28;../../Views/TNCalendarView.jt;15270;objj_executeFile("Foundation/Foundation.j", NO);objj_executeFile("AppKit/CPView.j", NO);objj_executeFile("AppKit/CPButton.j", NO);objj_executeFile("AppKit/CPTextField.j", NO);objj_executeFile("AppKit/CPTableView.j", NO);objj_executeFile("AppKit/CPTabViewItem.j", NO);objj_executeFile("GrowlCappuccino/TNGrowlCenter.j", NO);objj_executeFile("StropheCappuccino/TNStropheStanza.j", NO);objj_executeFile("TNKit/TNAlert.j", NO);objj_executeFile("TNKit/TNTextFieldStepper.j", NO);objj_executeFile("../../Views/TNCalendarView.j", YES);var TNArchipelTypeEntitySchedule = "archipel:entity:scheduler",
+@STATIC;1.0;p;23;TNSchedulerController.jt;15441;@STATIC;1.0;I;23;Foundation/Foundation.jI;15;AppKit/CPView.jI;17;AppKit/CPButton.jI;20;AppKit/CPTextField.jI;22;AppKit/CPTabViewItem.jI;31;GrowlCappuccino/TNGrowlCenter.jI;35;StropheCappuccino/TNStropheStanza.jI;15;TNKit/TNAlert.jI;26;TNKit/TNTextFieldStepper.ji;28;../../Views/TNCalendarView.jt;15139;objj_executeFile("Foundation/Foundation.j", NO);
+objj_executeFile("AppKit/CPView.j", NO);
+objj_executeFile("AppKit/CPButton.j", NO);
+objj_executeFile("AppKit/CPTextField.j", NO);
+objj_executeFile("AppKit/CPTabViewItem.j", NO);
+objj_executeFile("GrowlCappuccino/TNGrowlCenter.j", NO);
+objj_executeFile("StropheCappuccino/TNStropheStanza.j", NO);
+objj_executeFile("TNKit/TNAlert.j", NO);
+objj_executeFile("TNKit/TNTextFieldStepper.j", NO);
+objj_executeFile("../../Views/TNCalendarView.j", YES);
+//@global CPLocalizedString
+//@global CPLocalizedStringFromTableInBundle
+var TNArchipelTypeEntitySchedule = "archipel:entity:scheduler",
     TNArchipelTypeEntityScheduleSchedule = "schedule",
     TNArchipelTypeEntityScheduleUnschedule = "unschedule",
     TNArchipelTypeEntityScheduleActions = "actions";
 {var the_class = objj_allocateClassPair(CPObject, "TNSchedulerController"),
-meta_class = the_class.isa;class_addIvars(the_class, [new objj_ivar("buttonNewJobOK"), new objj_ivar("checkBoxEveryDay"), new objj_ivar("checkBoxEveryHour"), new objj_ivar("checkBoxEveryMinute"), new objj_ivar("checkBoxEveryMonth"), new objj_ivar("checkBoxEverySecond"), new objj_ivar("checkBoxEveryYear"), new objj_ivar("buttonNewJobAction"), new objj_ivar("fieldNewJobComment"), new objj_ivar("viewNewJobOneShot"), new objj_ivar("viewNewJobRecurent"), new objj_ivar("calendarViewNewJob"), new objj_ivar("stepperHour"), new objj_ivar("stepperMinute"), new objj_ivar("stepperNewRecurrentJobDay"), new objj_ivar("stepperNewRecurrentJobHour"), new objj_ivar("stepperNewRecurrentJobMinute"), new objj_ivar("stepperNewRecurrentJobMonth"), new objj_ivar("stepperNewRecurrentJobSecond"), new objj_ivar("stepperNewRecurrentJobYear"), new objj_ivar("stepperSecond"), new objj_ivar("tabViewJobSchedule"), new objj_ivar("mainPopover"), new objj_ivar("_delegate"), new objj_ivar("_scheduledDate")]);objj_registerClassPair(the_class);
+meta_class = the_class.isa;class_addIvars(the_class, [new objj_ivar("buttonNewJobOK"), new objj_ivar("checkBoxEveryDay"), new objj_ivar("checkBoxEveryHour"), new objj_ivar("checkBoxEveryMinute"), new objj_ivar("checkBoxEveryMonth"), new objj_ivar("checkBoxEverySecond"), new objj_ivar("checkBoxEveryYear"), new objj_ivar("buttonNewJobAction"), new objj_ivar("fieldNewJobComment"), new objj_ivar("viewNewJobOneShot"), new objj_ivar("viewNewJobRecurent"), new objj_ivar("calendarViewNewJob"), new objj_ivar("stepperHour"), new objj_ivar("stepperMinute"), new objj_ivar("stepperNewRecurrentJobDay"), new objj_ivar("stepperNewRecurrentJobHour"), new objj_ivar("stepperNewRecurrentJobMinute"), new objj_ivar("stepperNewRecurrentJobMonth"), new objj_ivar("stepperNewRecurrentJobSecond"), new objj_ivar("stepperNewRecurrentJobYear"), new objj_ivar("stepperSecond"), new objj_ivar("tabViewJobSchedule"), new objj_ivar("mainPopover"), new objj_ivar("_delegate"), new objj_ivar("_scheduledDate")]);
+       
+       
+
+
+
+
+
+
+       
+       
+
+
+
+
+
+
+
+       
+       
+objj_registerClassPair(the_class);
 class_addMethods(the_class, [new objj_method(sel_getUid("delegate"), function $TNSchedulerController__delegate(self, _cmd)
 {
-    return self._delegate;
+return self._delegate;
 }
 ,["id"]), new objj_method(sel_getUid("setDelegate:"), function $TNSchedulerController__setDelegate_(self, _cmd, newValue)
 {
-    self._delegate = newValue;
+self._delegate = newValue;
 }
 ,["void","id"]), new objj_method(sel_getUid("awakeFromCib"), function $TNSchedulerController__awakeFromCib(self, _cmd)
 {
@@ -40,8 +72,8 @@ class_addMethods(the_class, [new objj_method(sel_getUid("delegate"), function $T
     var date = objj_msgSend(CPDate, "date");
     objj_msgSend(self.buttonNewJobAction, "selectItemAtIndex:", 0);
     objj_msgSend(self.fieldNewJobComment, "setStringValue:", "");
-    objj_msgSend(self.stepperHour, "setDoubleValue:", objj_msgSend(date, "format:", "H"));
-    objj_msgSend(self.stepperMinute, "setDoubleValue:", objj_msgSend(date, "format:", "i"));
+    objj_msgSend(self.stepperHour, "setDoubleValue:", objj_msgSend(date, "format:", "H"))
+    objj_msgSend(self.stepperMinute, "setDoubleValue:", objj_msgSend(date, "format:", "i"))
     objj_msgSend(self.stepperSecond, "setDoubleValue:", 0.0);
     objj_msgSend(self.calendarViewNewJob, "makeSelectionWithDate:end:", date, date);
     objj_msgSend(self.stepperNewRecurrentJobYear, "setDoubleValue:", objj_msgSend(date, "format:", "Y"));
@@ -51,21 +83,13 @@ class_addMethods(the_class, [new objj_method(sel_getUid("delegate"), function $T
     objj_msgSend(self.stepperNewRecurrentJobMinute, "setDoubleValue:", objj_msgSend(date, "format:", "i"));
     objj_msgSend(self.stepperNewRecurrentJobSecond, "setDoubleValue:", 0.0);
     objj_msgSend(self.mainPopover, "close");
-    if (objj_msgSend(aSender, "isKindOfClass:", CPTableView))
-    {
-        var rect = objj_msgSend(aSender, "rectOfRow:", objj_msgSend(aSender, "selectedRow"));
-        rect.origin.y += rect.size.height / 2;
-        rect.origin.x += rect.size.width / 2;
-        objj_msgSend(self.mainPopover, "showRelativeToRect:ofView:preferredEdge:", CGRectMake(rect.origin.x, rect.origin.y, 10, 10), aSender, nil);
-    }
-    else
-        objj_msgSend(self.mainPopover, "showRelativeToRect:ofView:preferredEdge:", nil, aSender, nil);
+    objj_msgSend(self.mainPopover, "showRelativeToRect:ofView:preferredEdge:", nil, aSender, nil);
     objj_msgSend(self.mainPopover, "makeFirstResponder:", self.fieldNewJobComment);
     objj_msgSend(self.mainPopover, "setDefaultButton:", self.buttonNewJobOK);
 }
 ,["id","id"]), new objj_method(sel_getUid("closeWindow:"), function $TNSchedulerController__closeWindow_(self, _cmd, aSender)
 {
-    objj_msgSend(self.mainPopover, "close");
+    objj_msgSend(self.mainPopover, "close")
 }
 ,["id","id"]), new objj_method(sel_getUid("alloc:"), function $TNSchedulerController__alloc_(self, _cmd, aSender)
 {
@@ -83,32 +107,34 @@ class_addMethods(the_class, [new objj_method(sel_getUid("delegate"), function $T
 }
 ,["id","id"]), new objj_method(sel_getUid("checkboxClicked:"), function $TNSchedulerController__checkboxClicked_(self, _cmd, aSender)
 {
-    switch(objj_msgSend(aSender, "tag")) {
-    case 1:
-        objj_msgSend(self.stepperNewRecurrentJobYear, "setEnabled:", !objj_msgSend(aSender, "state"));
-        break;
-    case 2:
-        objj_msgSend(self.stepperNewRecurrentJobMonth, "setEnabled:", !objj_msgSend(aSender, "state"));
-        break;
-    case 3:
-        objj_msgSend(self.stepperNewRecurrentJobDay, "setEnabled:", !objj_msgSend(aSender, "state"));
-        break;
-    case 4:
-        objj_msgSend(self.stepperNewRecurrentJobHour, "setEnabled:", !objj_msgSend(aSender, "state"));
-        break;
-    case 5:
-        objj_msgSend(self.stepperNewRecurrentJobMinute, "setEnabled:", !objj_msgSend(aSender, "state"));
-        break;
-    case 6:
-        objj_msgSend(self.stepperNewRecurrentJobSecond, "setEnabled:", !objj_msgSend(aSender, "state"));
-        break;
+    switch (objj_msgSend(aSender, "tag"))
+    {
+        case 1:
+            objj_msgSend(self.stepperNewRecurrentJobYear, "setEnabled:", !objj_msgSend(aSender, "state"));
+            break;
+        case 2:
+            objj_msgSend(self.stepperNewRecurrentJobMonth, "setEnabled:", !objj_msgSend(aSender, "state"));
+            break;
+        case 3:
+            objj_msgSend(self.stepperNewRecurrentJobDay, "setEnabled:", !objj_msgSend(aSender, "state"));
+            break;
+        case 4:
+            objj_msgSend(self.stepperNewRecurrentJobHour, "setEnabled:", !objj_msgSend(aSender, "state"));
+            break;
+        case 5:
+            objj_msgSend(self.stepperNewRecurrentJobMinute, "setEnabled:", !objj_msgSend(aSender, "state"));
+            break;
+        case 6:
+            objj_msgSend(self.stepperNewRecurrentJobSecond, "setEnabled:", !objj_msgSend(aSender, "state"));
+            break;
     }
 }
 ,["id","id"]), new objj_method(sel_getUid("getActions"), function $TNSchedulerController__getActions(self, _cmd)
 {
     var stanza = objj_msgSend(TNStropheStanza, "iqWithType:", "get");
     objj_msgSend(stanza, "addChildWithName:andAttributes:", "query", {"xmlns": TNArchipelTypeEntitySchedule});
-    objj_msgSend(stanza, "addChildWithName:andAttributes:", "archipel", {"action": TNArchipelTypeEntityScheduleActions});
+    objj_msgSend(stanza, "addChildWithName:andAttributes:", "archipel", {
+        "action": TNArchipelTypeEntityScheduleActions});
     objj_msgSend(objj_msgSend(self._delegate, "entity"), "sendStanza:andRegisterSelector:ofObject:", stanza, sel_getUid("_didReceiveActions:"), self);
 }
 ,["void"]), new objj_method(sel_getUid("_didReceiveActions:"), function $TNSchedulerController___didReceiveActions_(self, _cmd, aStanza)
@@ -151,15 +177,24 @@ class_addMethods(the_class, [new objj_method(sel_getUid("delegate"), function $T
     }
     else if (objj_msgSend(objj_msgSend(self.tabViewJobSchedule, "selectedTabViewItem"), "identifier") == "itemRecurrent")
     {
-        year = !objj_msgSend(self.checkBoxEveryYear, "state") ? objj_msgSend(self.stepperNewRecurrentJobYear, "doubleValue") : "*";
-        month = !objj_msgSend(self.checkBoxEveryMonth, "state") ? objj_msgSend(self.stepperNewRecurrentJobMonth, "doubleValue") : "*";
-        day = !objj_msgSend(self.checkBoxEveryDay, "state") ? objj_msgSend(self.stepperNewRecurrentJobDay, "doubleValue") : "*";
-        hour = !objj_msgSend(self.checkBoxEveryHour, "state") ? objj_msgSend(self.stepperNewRecurrentJobHour, "doubleValue") : "*";
-        minute = !objj_msgSend(self.checkBoxEveryMinute, "state") ? objj_msgSend(self.stepperNewRecurrentJobMinute, "doubleValue") : "*";
-        second = !objj_msgSend(self.checkBoxEverySecond, "state") ? objj_msgSend(self.stepperNewRecurrentJobSecond, "doubleValue") : "*";
+        year = (!objj_msgSend(self.checkBoxEveryYear, "state")) ? objj_msgSend(self.stepperNewRecurrentJobYear, "doubleValue") : "*";
+        month = (!objj_msgSend(self.checkBoxEveryMonth, "state")) ? objj_msgSend(self.stepperNewRecurrentJobMonth, "doubleValue") : "*";
+        day = (!objj_msgSend(self.checkBoxEveryDay, "state")) ? objj_msgSend(self.stepperNewRecurrentJobDay, "doubleValue") : "*";
+        hour = (!objj_msgSend(self.checkBoxEveryHour, "state")) ? objj_msgSend(self.stepperNewRecurrentJobHour, "doubleValue") : "*";
+        minute = (!objj_msgSend(self.checkBoxEveryMinute, "state")) ? objj_msgSend(self.stepperNewRecurrentJobMinute, "doubleValue") : "*";
+        second = (!objj_msgSend(self.checkBoxEverySecond, "state")) ? objj_msgSend(self.stepperNewRecurrentJobSecond, "doubleValue") : "*";
     }
     objj_msgSend(stanza, "addChildWithName:andAttributes:", "query", {"xmlns": TNArchipelTypeEntitySchedule});
-    objj_msgSend(stanza, "addChildWithName:andAttributes:", "archipel", {"action": TNArchipelTypeEntityScheduleSchedule, "comment": objj_msgSend(self.fieldNewJobComment, "stringValue"), "job": objj_msgSend(self.buttonNewJobAction, "title"), "year": year, "month": month, "day": day, "hour": hour, "minute": minute, "second": second});
+    objj_msgSend(stanza, "addChildWithName:andAttributes:", "archipel", {
+        "action": TNArchipelTypeEntityScheduleSchedule,
+        "comment": objj_msgSend(self.fieldNewJobComment, "stringValue"),
+        "job": objj_msgSend(self.buttonNewJobAction, "title"),
+        "year": year,
+        "month": month,
+        "day": day,
+        "hour": hour,
+        "minute": minute,
+        "second": second});
     objj_msgSend(objj_msgSend(self._delegate, "entity"), "sendStanza:andRegisterSelector:ofObject:", stanza, sel_getUid("_didScheduleJob:"), self);
 }
 ,["void"]), new objj_method(sel_getUid("_didScheduleJob:"), function $TNSchedulerController___didScheduleJob_(self, _cmd, aStanza)
@@ -177,10 +212,10 @@ class_addMethods(the_class, [new objj_method(sel_getUid("delegate"), function $T
 ,["BOOL","TNStropheStanza"]), new objj_method(sel_getUid("unschedule"), function $TNSchedulerController__unschedule(self, _cmd)
 {
     var tableJobs = objj_msgSend(self._delegate, "tableJobs");
-    if (objj_msgSend(tableJobs, "numberOfRows") == 0 || objj_msgSend(tableJobs, "numberOfSelectedRows") <= 0)
+    if ((objj_msgSend(tableJobs, "numberOfRows") == 0) || (objj_msgSend(tableJobs, "numberOfSelectedRows") <= 0))
     {
-        objj_msgSend(TNAlert, "showAlertWithMessage:informative:", CPBundleLocalizedString("Error", "Error"), CPBundleLocalizedString("You must select a job", "You must select a job"));
-        return;
+         objj_msgSend(TNAlert, "showAlertWithMessage:informative:", CPBundleLocalizedString("Error", "Error"), CPBundleLocalizedString("You must select a job", "You must select a job"));
+         return;
     }
     var title = CPBundleLocalizedString("Unschedule Jobs", "Unschedule Jobs"),
         msg = CPBundleLocalizedString("Are you sure you want to unschedule these jobs ?", "Are you sure you want to unschedule these jobs ?");
@@ -204,7 +239,9 @@ class_addMethods(the_class, [new objj_method(sel_getUid("delegate"), function $T
         var job = objj_msgSend(objects, "objectAtIndex:", i),
             stanza = objj_msgSend(TNStropheStanza, "iqWithType:", "set");
         objj_msgSend(stanza, "addChildWithName:andAttributes:", "query", {"xmlns": TNArchipelTypeEntitySchedule});
-        objj_msgSend(stanza, "addChildWithName:andAttributes:", "archipel", {"action": TNArchipelTypeEntityScheduleUnschedule, "uid": objj_msgSend(job, "objectForKey:", "uid")});
+        objj_msgSend(stanza, "addChildWithName:andAttributes:", "archipel", {
+            "action": TNArchipelTypeEntityScheduleUnschedule,
+            "uid": objj_msgSend(job, "objectForKey:", "uid")});
         objj_msgSend(objj_msgSend(self._delegate, "entity"), "sendStanza:andRegisterSelector:ofObject:", stanza, sel_getUid("_didUnscheduleJobs:"), self);
     }
 }
@@ -219,20 +256,51 @@ class_addMethods(the_class, [new objj_method(sel_getUid("delegate"), function $T
     self._scheduledDate = aStartDate;
 }
 ,["void","LPCalendarView","CPDate","CPDate"])]);
-}CPBundleLocalizedString = function(key, comment)
+}
+CPBundleLocalizedString = function(key, comment)
 {
     return CPLocalizedStringFromTableInBundle(key, nil, objj_msgSend(CPBundle, "bundleForClass:", TNSchedulerController), comment);
-}
-p;37;TNVirtualMachineSchedulerController.jt;9805;@STATIC;1.0;I;23;Foundation/Foundation.jI;17;AppKit/CPButton.jI;20;AppKit/CPButtonBar.jI;19;AppKit/CPCheckBox.jI;22;AppKit/CPPopUpButton.jI;22;AppKit/CPSearchField.jI;20;AppKit/CPTableView.jI;20;AppKit/CPTextField.jI;15;AppKit/CPView.jI;15;TNKit/TNAlert.jI;29;TNKit/TNTableViewDataSource.ji;22;../../Model/TNModule.ji;23;TNSchedulerController.jt;9454;objj_executeFile("Foundation/Foundation.j", NO);objj_executeFile("AppKit/CPButton.j", NO);objj_executeFile("AppKit/CPButtonBar.j", NO);objj_executeFile("AppKit/CPCheckBox.j", NO);objj_executeFile("AppKit/CPPopUpButton.j", NO);objj_executeFile("AppKit/CPSearchField.j", NO);objj_executeFile("AppKit/CPTableView.j", NO);objj_executeFile("AppKit/CPTextField.j", NO);objj_executeFile("AppKit/CPView.j", NO);objj_executeFile("TNKit/TNAlert.j", NO);objj_executeFile("TNKit/TNTableViewDataSource.j", NO);objj_executeFile("../../Model/TNModule.j", YES);objj_executeFile("TNSchedulerController.j", YES);var TNArchipelPushNotificationScheduler = "archipel:push:scheduler",
+}p;37;TNVirtualMachineSchedulerController.jt;9094;@STATIC;1.0;I;23;Foundation/Foundation.jI;17;AppKit/CPButton.jI;20;AppKit/CPButtonBar.jI;19;AppKit/CPCheckBox.jI;22;AppKit/CPPopUpButton.jI;22;AppKit/CPSearchField.jI;20;AppKit/CPTableView.jI;20;AppKit/CPTextField.jI;15;AppKit/CPView.jI;15;TNKit/TNAlert.jI;29;TNKit/TNTableViewDataSource.ji;22;../../Model/TNModule.ji;23;TNSchedulerController.jt;8743;objj_executeFile("Foundation/Foundation.j", NO);
+objj_executeFile("AppKit/CPButton.j", NO);
+objj_executeFile("AppKit/CPButtonBar.j", NO);
+objj_executeFile("AppKit/CPCheckBox.j", NO);
+objj_executeFile("AppKit/CPPopUpButton.j", NO);
+objj_executeFile("AppKit/CPSearchField.j", NO);
+objj_executeFile("AppKit/CPTableView.j", NO);
+objj_executeFile("AppKit/CPTextField.j", NO);
+objj_executeFile("AppKit/CPView.j", NO);
+objj_executeFile("TNKit/TNAlert.j", NO);
+objj_executeFile("TNKit/TNTableViewDataSource.j", NO);
+objj_executeFile("../../Model/TNModule.j", YES);
+objj_executeFile("TNSchedulerController.j", YES);
+//@global CPLocalizedString
+//@global CPLocalizedStringFromTableInBundle
+var TNArchipelPushNotificationScheduler = "archipel:push:scheduler",
     TNArchipelTypeEntitySchedule = "archipel:entity:scheduler",
     TNArchipelTypeEntityScheduleJobs = "jobs";
-var TNModuleControlForSchedule = "Schedule",
-    TNModuleControlForUnSchedule = "UnSchedule";
 {var the_class = objj_allocateClassPair(TNModule, "TNVirtualMachineScheduler"),
-meta_class = the_class.isa;class_addIvars(the_class, [new objj_ivar("buttonBarJobs"), new objj_ivar("filterFieldJobs"), new objj_ivar("tableJobs"), new objj_ivar("viewTableContainer"), new objj_ivar("schedulerController"), new objj_ivar("_scheduledDate"), new objj_ivar("_datasourceJobs")]);objj_registerClassPair(the_class);
+meta_class = the_class.isa;class_addIvars(the_class, [new objj_ivar("buttonBarJobs"), new objj_ivar("filterFieldJobs"), new objj_ivar("tableJobs"), new objj_ivar("viewTableContainer"), new objj_ivar("schedulerController"), new objj_ivar("_buttonSchedule"), new objj_ivar("_buttonUnschedule"), new objj_ivar("_scheduledDate"), new objj_ivar("_datasourceJobs")]);
+       
+       
+
+
+
+
+
+
+       
+       
+
+       
+       
+
+       
+       
+
+objj_registerClassPair(the_class);
 class_addMethods(the_class, [new objj_method(sel_getUid("tableJobs"), function $TNVirtualMachineScheduler__tableJobs(self, _cmd)
 {
-    return self.tableJobs;
+return self.tableJobs;
 }
 ,["CPTableView"]), new objj_method(sel_getUid("awakeFromCib"), function $TNVirtualMachineScheduler__awakeFromCib(self, _cmd)
 {
@@ -241,11 +309,15 @@ class_addMethods(the_class, [new objj_method(sel_getUid("tableJobs"), function $
     objj_msgSend(self._datasourceJobs, "setTable:", self.tableJobs);
     objj_msgSend(self._datasourceJobs, "setSearchableKeyPaths:", ["comment", "action", "date"]);
     objj_msgSend(self.tableJobs, "setDataSource:", self._datasourceJobs);
-    objj_msgSend(self.tableJobs, "setAllowsMultipleSelection:", YES);
-    objj_msgSend(self.tableJobs, "setDelegate:", self);
-    objj_msgSend(self, "addControlsWithIdentifier:title:target:action:image:", TNModuleControlForSchedule, CPBundleLocalizedString("Add a scheduled action", "Add a scheduled action"), self, sel_getUid("openNewJobWindow:"), CPImageInBundle("IconsButtons/plus.png", nil, objj_msgSend(CPBundle, "mainBundle")));
-    objj_msgSend(self, "addControlsWithIdentifier:title:target:action:image:", TNModuleControlForUnSchedule, CPBundleLocalizedString("Remove the selected scheduled action(s)", "Remove the selected scheduled action(s)"), self.schedulerController, sel_getUid("unschedule:"), CPImageInBundle("IconsButtons/minus.png", nil, objj_msgSend(CPBundle, "mainBundle")));
-    objj_msgSend(self.buttonBarJobs, "setButtons:", [objj_msgSend(self, "buttonWithIdentifier:", TNModuleControlForSchedule), objj_msgSend(self, "buttonWithIdentifier:", TNModuleControlForUnSchedule)]);
+    self._buttonSchedule = objj_msgSend(CPButtonBar, "plusButton");
+    objj_msgSend(self._buttonSchedule, "setImage:", objj_msgSend(objj_msgSend(CPImage, "alloc"), "initWithContentsOfFile:size:", objj_msgSend(objj_msgSend(CPBundle, "mainBundle"), "pathForResource:", "IconsButtons/plus.png"), CGSizeMake(16, 16)));
+    objj_msgSend(self._buttonSchedule, "setTarget:", self);
+    objj_msgSend(self._buttonSchedule, "setAction:", sel_getUid("openNewJobWindow:"));
+    self._buttonUnschedule = objj_msgSend(CPButtonBar, "plusButton");
+    objj_msgSend(self._buttonUnschedule, "setImage:", objj_msgSend(objj_msgSend(CPImage, "alloc"), "initWithContentsOfFile:size:", objj_msgSend(objj_msgSend(CPBundle, "mainBundle"), "pathForResource:", "IconsButtons/minus.png"), CGSizeMake(16, 16)));
+    objj_msgSend(self._buttonUnschedule, "setTarget:", self.schedulerController);
+    objj_msgSend(self._buttonUnschedule, "setAction:", sel_getUid("unschedule:"));
+    objj_msgSend(self.buttonBarJobs, "setButtons:", [self._buttonSchedule, self._buttonUnschedule]);
     objj_msgSend(self.filterFieldJobs, "setTarget:", self._datasourceJobs);
     objj_msgSend(self.filterFieldJobs, "setAction:", sel_getUid("filterObjects:"));
     objj_msgSend(self.schedulerController, "setDelegate:", self);
@@ -264,14 +336,19 @@ class_addMethods(the_class, [new objj_method(sel_getUid("tableJobs"), function $
     objj_msgSend(self.schedulerController, "closeWindow:", nil);
     objj_msgSendSuper({ receiver:self, super_class:objj_getClass("TNVirtualMachineScheduler").super_class }, "willHide");
 }
+,["void"]), new objj_method(sel_getUid("menuReady"), function $TNVirtualMachineScheduler__menuReady(self, _cmd)
+{
+    objj_msgSend(objj_msgSend(self._menu, "addItemWithTitle:action:keyEquivalent:", CPBundleLocalizedString("Schedule new action", "Schedule new action"), sel_getUid("openNewJobWindow:"), ""), "setTarget:", self);
+    objj_msgSend(objj_msgSend(self._menu, "addItemWithTitle:action:keyEquivalent:", CPBundleLocalizedString("Unschedule selected action", "Unschedule selected action"), sel_getUid("unschedule:"), ""), "setTarget:", self.schedulerController);
+}
 ,["void"]), new objj_method(sel_getUid("permissionsChanged"), function $TNVirtualMachineScheduler__permissionsChanged(self, _cmd)
 {
     objj_msgSendSuper({ receiver:self, super_class:objj_getClass("TNVirtualMachineScheduler").super_class }, "permissionsChanged");
 }
 ,["void"]), new objj_method(sel_getUid("setUIAccordingToPermissions"), function $TNVirtualMachineScheduler__setUIAccordingToPermissions(self, _cmd)
 {
-    objj_msgSend(self, "setControl:enabledAccordingToPermission:", objj_msgSend(self, "buttonWithIdentifier:", TNModuleControlForSchedule), "scheduler_schedule");
-    objj_msgSend(self, "setControl:enabledAccordingToPermission:", objj_msgSend(self, "buttonWithIdentifier:", TNModuleControlForUnSchedule), "scheduler_unschedule");
+    objj_msgSend(self, "setControl:enabledAccordingToPermission:", self._buttonSchedule, "scheduler_schedule");
+    objj_msgSend(self, "setControl:enabledAccordingToPermission:", self._buttonUnschedule, "scheduler_unschedule");
     if (!objj_msgSend(self, "currentEntityHasPermission:", "scheduler_schedule"))
         objj_msgSend(self.schedulerController, "closeWindow:", nil);
 }
@@ -294,13 +371,14 @@ class_addMethods(the_class, [new objj_method(sel_getUid("tableJobs"), function $
     objj_msgSend(self, "requestVisible");
     if (!objj_msgSend(self, "isVisible"))
         return;
-    objj_msgSend(self.schedulerController, "openWindow:", objj_msgSend(self, "buttonWithIdentifier:", TNModuleControlForSchedule));
+    objj_msgSend(self.schedulerController, "openWindow:", self._buttonSchedule);
 }
 ,["id","id"]), new objj_method(sel_getUid("getJobs"), function $TNVirtualMachineScheduler__getJobs(self, _cmd)
 {
     var stanza = objj_msgSend(TNStropheStanza, "iqWithType:", "get");
     objj_msgSend(stanza, "addChildWithName:andAttributes:", "query", {"xmlns": TNArchipelTypeEntitySchedule});
-    objj_msgSend(stanza, "addChildWithName:andAttributes:", "archipel", {"action": TNArchipelTypeEntityScheduleJobs});
+    objj_msgSend(stanza, "addChildWithName:andAttributes:", "archipel", {
+        "action": TNArchipelTypeEntityScheduleJobs});
     objj_msgSend(self, "setModuleStatus:", TNArchipelModuleStatusWaiting);
     objj_msgSend(self._entity, "sendStanza:andRegisterSelector:ofObject:", stanza, sel_getUid("_didReceiveJobs:"), self);
 }
@@ -317,7 +395,7 @@ class_addMethods(the_class, [new objj_method(sel_getUid("tableJobs"), function $
                 uid = objj_msgSend(job, "valueForAttribute:", "uid"),
                 comment = objj_msgSend(job, "valueForAttribute:", "comment"),
                 date = objj_msgSend(job, "valueForAttribute:", "date"),
-                newJob = objj_msgSend(objj_msgSend(CPDictionary, "alloc"), "initWithObjectsAndKeys:", action, "action", uid, "uid", comment, "comment", date, "date");
+                newJob = objj_msgSend(CPDictionary, "dictionaryWithObjectsAndKeys:", action, "action", uid, "uid", comment, "comment", date, "date");
             objj_msgSend(self._datasourceJobs, "addObject:", newJob);
         }
         objj_msgSend(self.tableJobs, "reloadData");
@@ -330,31 +408,9 @@ class_addMethods(the_class, [new objj_method(sel_getUid("tableJobs"), function $
     }
     return NO;
 }
-,["BOOL","TNStropheStanza"]), new objj_method(sel_getUid("tableView:menuForTableColumn:row:"), function $TNVirtualMachineScheduler__tableView_menuForTableColumn_row_(self, _cmd, aTableView, aColumn, aRow)
-{
-    objj_msgSend(self._contextualMenu, "removeAllItems");
-    var itemRow = objj_msgSend(self.tableJobs, "rowAtPoint:", aRow);
-    if (objj_msgSend(self.tableJobs, "selectedRow") != aRow)
-        objj_msgSend(self.tableJobs, "selectRowIndexes:byExtendingSelection:", objj_msgSend(CPIndexSet, "indexSetWithIndex:", aRow), NO);
-    if (objj_msgSend(aTableView, "numberOfSelectedRows") == 0 && aTableView == self.tableJobs)
-    {
-        objj_msgSend(self._contextualMenu, "addItem:", objj_msgSend(self, "menuItemWithIdentifier:", TNModuleControlForSchedule));
-    }
-    else
-    {
-        objj_msgSend(self._contextualMenu, "addItem:", objj_msgSend(self, "menuItemWithIdentifier:", TNModuleControlForUnSchedule));
-    }
-    return self._contextualMenu;
+,["BOOL","TNStropheStanza"])]);
 }
-,["CPMenu","CPTableView","CPTableColumn","int"]), new objj_method(sel_getUid("tableViewDeleteKeyPressed:"), function $TNVirtualMachineScheduler__tableViewDeleteKeyPressed_(self, _cmd, aTableView)
-{
-    if (objj_msgSend(aTableView, "numberOfSelectedRows") == 0)
-        return;
-    objj_msgSend(self.schedulerController, "unschedule:", aTableView);
-}
-,["void","CPTableView"])]);
-}CPBundleLocalizedString = function(key, comment)
+CPBundleLocalizedString = function(key, comment)
 {
     return CPLocalizedStringFromTableInBundle(key, nil, objj_msgSend(CPBundle, "bundleForClass:", TNVirtualMachineScheduler), comment);
-}
-e;
+}e;

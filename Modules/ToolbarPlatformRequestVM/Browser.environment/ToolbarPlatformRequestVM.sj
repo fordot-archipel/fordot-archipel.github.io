@@ -1,9 +1,31 @@
-@STATIC;1.0;p;38;TNToolbarPlatformRequestVMController.jt;7993;@STATIC;1.0;I;23;Foundation/Foundation.jI;39;StropheCappuccino/PubSub/TNPubSubNode.jI;39;StropheCappuccino/TNStropheConnection.ji;22;../../Model/TNModule.jt;7831;objj_executeFile("Foundation/Foundation.j", NO);objj_executeFile("StropheCappuccino/PubSub/TNPubSubNode.j", NO);objj_executeFile("StropheCappuccino/TNStropheConnection.j", NO);objj_executeFile("../../Model/TNModule.j", YES);var TNArchipelNSPlatform = "archipel:platform",
+@STATIC;1.0;p;38;TNToolbarPlatformRequestVMController.jt;8058;@STATIC;1.0;I;23;Foundation/Foundation.jI;39;StropheCappuccino/PubSub/TNPubSubNode.jI;39;StropheCappuccino/TNStropheConnection.ji;22;../../Model/TNModule.jt;7896;objj_executeFile("Foundation/Foundation.j", NO);
+objj_executeFile("StropheCappuccino/PubSub/TNPubSubNode.j", NO);
+objj_executeFile("StropheCappuccino/TNStropheConnection.j", NO);
+objj_executeFile("../../Model/TNModule.j", YES);
+var TNArchipelNSPlatform = "archipel:platform",
     TNArchipelActionPlatformAllocVM = "allocvm",
     TNArchipelNodeNamePlatformRequestIn = "/archipel/platform/requests/in",
     TNArchipelNodeNamePlatformRequestOut = "/archipel/platform/requests/out";
 {var the_class = objj_allocateClassPair(TNModule, "TNToolbarPlatformRequestVMController"),
-meta_class = the_class.isa;class_addIvars(the_class, [new objj_ivar("_currentRequests"), new objj_ivar("_pubSubRequestIn"), new objj_ivar("_pubSubRequestOut"), new objj_ivar("_connection")]);objj_registerClassPair(the_class);
+meta_class = the_class.isa;class_addIvars(the_class, [new objj_ivar("_currentRequests"), new objj_ivar("_pubSubRequestIn"), new objj_ivar("_pubSubRequestOut"), new objj_ivar("_connection")]);
+       
+       
+
+       
+       
+
+       
+       
+
+
+       
+       
+
+       
+       
+
+
+objj_registerClassPair(the_class);
 class_addMethods(the_class, [new objj_method(sel_getUid("willLoad"), function $TNToolbarPlatformRequestVMController__willLoad(self, _cmd)
 {
     if (!objj_msgSendSuper({ receiver:self, super_class:objj_getClass("TNToolbarPlatformRequestVMController").super_class }, "willLoad"))
@@ -18,8 +40,8 @@ class_addMethods(the_class, [new objj_method(sel_getUid("willLoad"), function $T
 {
     self._connection = objj_msgSend(objj_msgSend(TNStropheIMClient, "defaultClient"), "connection");
     self._currentRequests = objj_msgSend(CPDictionary, "dictionary");
-    self._pubSubRequestIn = objj_msgSend(TNPubSubNode, "pubSubNodeWithNodeName:connection:pubSubServer:", TNArchipelNodeNamePlatformRequestIn, self._connection, nil);
-    self._pubSubRequestOut = objj_msgSend(TNPubSubNode, "pubSubNodeWithNodeName:connection:pubSubServer:", TNArchipelNodeNamePlatformRequestOut, self._connection, nil);
+    self._pubSubRequestIn = objj_msgSend(TNPubSubNode, "pubSubNodeWithNodeName:connection:pubSubServer:", TNArchipelNodeNamePlatformRequestIn, self._connection, nil)
+    self._pubSubRequestOut = objj_msgSend(TNPubSubNode, "pubSubNodeWithNodeName:connection:pubSubServer:", TNArchipelNodeNamePlatformRequestOut, self._connection, nil)
     objj_msgSend(self._pubSubRequestOut, "setDelegate:", self);
     objj_msgSend(self._pubSubRequestOut, "recoverSubscriptions");
     objj_msgSend(objj_msgSend(self, "UIItem"), "setEnabled:", NO);
@@ -48,11 +70,12 @@ class_addMethods(the_class, [new objj_method(sel_getUid("willLoad"), function $T
 {
     var stanza = objj_msgSend(TNStropheStanza, "iqWithType:", "set"),
         uid = objj_msgSend(self._connection, "getUniqueId"),
-        params = objj_msgSend(objj_msgSend(CPDictionary, "alloc"), "initWithObjectsAndKeys:", uid, "id");
+        params = objj_msgSend(CPDictionary, "dictionaryWithObjectsAndKeys:", uid, "id");
     objj_msgSend(stanza, "setTo:", aJid);
     objj_msgSend(stanza, "setID:", uid);
     objj_msgSend(stanza, "addChildWithName:andAttributes:", "query", {"xmlns": TNArchipelNSPlatform});
-    objj_msgSend(stanza, "addChildWithName:andAttributes:", "archipel", {"action": TNArchipelActionPlatformAllocVM});
+    objj_msgSend(stanza, "addChildWithName:andAttributes:", "archipel", {
+        "action": TNArchipelActionPlatformAllocVM});
     objj_msgSend(self._connection, "registerSelector:ofObject:withDict:", sel_getUid("_didAllocVirtualMachine:"), self, params);
     objj_msgSend(self._connection, "send:", stanza);
 }
@@ -100,7 +123,7 @@ class_addMethods(the_class, [new objj_method(sel_getUid("willLoad"), function $T
         requestUUID = objj_msgSend(answerNode, "valueForAttribute:", "uuid"),
         score = objj_msgSend(objj_msgSend(answerNode, "valueForAttribute:", "score"), "floatValue"),
         publisher = objj_msgSend(objj_msgSend(aStanza, "firstChildWithName:", "item"), "valueForAttribute:", "publisher"),
-        infos = objj_msgSend(objj_msgSend(CPDictionary, "alloc"), "initWithObjectsAndKeys:", publisher, "publisher", score, "score");
+        infos = objj_msgSend(CPDictionary, "dictionaryWithObjectsAndKeys:", publisher, "publisher", score, "score");
     objj_msgSend(objj_msgSend(self._currentRequests, "objectForKey:", requestUUID), "addObject:", infos);
 }
 ,["void","TNPubSubNode","TNSTropheStanza"])]);

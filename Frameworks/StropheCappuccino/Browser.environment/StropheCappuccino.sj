@@ -1,4 +1,2083 @@
-@STATIC;1.0;p;17;TNStropheRoster.jt;31725;@STATIC;1.0;I;23;Foundation/Foundation.ji;28;Resources/Strophe/strophe.jsi;25;Resources/Strophe/sha1.jsi;14;TNStropheJID.ji;21;TNStropheRosterBase.jt;31569;objj_executeFile("Foundation/Foundation.j", NO);
+@STATIC;1.0;p;19;StropheCappuccino.jt;1674;@STATIC;1.0;i;22;MUC/TNStropheMUCRoom.ji;25;Resources/Strophe/sha1.jsi;28;Resources/Strophe/strophe.jsi;10;TNPubSub.ji;17;TNStropheClient.ji;21;TNStropheConnection.ji;18;TNStropheContact.ji;16;TNStropheGroup.ji;19;TNStropheIMClient.ji;14;TNStropheJID.ji;25;TNStrophePrivateStorage.ji;17;TNStropheRoster.ji;31;TNStropheServerAdministration.ji;17;TNStropheStanza.ji;16;TNStropheVCard.jt;1284;objj_executeFile("MUC/TNStropheMUCRoom.j", YES);
+objj_executeFile("Resources/Strophe/sha1.js", YES);
+objj_executeFile("Resources/Strophe/strophe.js", YES);
+objj_executeFile("TNPubSub.j", YES);
+objj_executeFile("TNStropheClient.j", YES);
+objj_executeFile("TNStropheConnection.j", YES);
+objj_executeFile("TNStropheContact.j", YES);
+objj_executeFile("TNStropheGroup.j", YES);
+objj_executeFile("TNStropheIMClient.j", YES);
+objj_executeFile("TNStropheJID.j", YES);
+objj_executeFile("TNStrophePrivateStorage.j", YES);
+objj_executeFile("TNStropheRoster.j", YES);
+objj_executeFile("TNStropheServerAdministration.j", YES);
+objj_executeFile("TNStropheStanza.j", YES);
+objj_executeFile("TNStropheVCard.j", YES);
+objj_msgSend(TNStropheClient, "addNamespaceWithName:value:", "CAPS", "http://jabber.org/protocol/caps");
+objj_msgSend(TNStropheClient, "addNamespaceWithName:value:", "DELAY", "urn:xmpp:delay");
+objj_msgSend(TNStropheClient, "addNamespaceWithName:value:", "X_DATA", "jabber:x:data");
+objj_msgSend(TNStropheClient, "addNamespaceWithName:value:", "PING", "urn:xmpp:ping");
+objj_msgSend(TNStropheClient, "addNamespaceWithName:value:", "PRIVATE_STORAGE", "jabber:iq:private");
+objj_msgSend(TNStropheClient, "addNamespaceWithName:value:", "COMMAND", "http://jabber.org/protocol/commands");p;10;TNPubSub.jt;1027;@STATIC;1.0;i;21;TNStropheConnection.ji;21;PubSub/TNPubSubNode.ji;27;PubSub/TNPubSubController.jt;925;objj_executeFile("TNStropheConnection.j", YES);
+objj_executeFile("PubSub/TNPubSubNode.j", YES);
+objj_executeFile("PubSub/TNPubSubController.j", YES);
+objj_msgSend(TNStropheConnection, "addNamespaceWithName:value:", "PUBSUB", "http://jabber.org/protocol/pubsub");
+objj_msgSend(TNStropheConnection, "addNamespaceWithName:value:", "PUBSUB_EVENT", "http://jabber.org/protocol/pubsub#event");
+objj_msgSend(TNStropheConnection, "addNamespaceWithName:value:", "PUBSUB_OWNER", "http://jabber.org/protocol/pubsub#owner");
+objj_msgSend(TNStropheConnection, "addNamespaceWithName:value:", "PUBSUB_NODE_CONFIG", "http://jabber.org/protocol/pubsub#node_config");
+objj_msgSend(TNStropheConnection, "addNamespaceWithName:value:", "PUBSUB_NOTIFY", "http://jabber.org/protocol/pubsub+notify");
+objj_msgSend(TNStropheConnection, "addNamespaceWithName:value:", "PUBSUB_SUBSCRIBE OPTIONS", "http://jabber.org/protocol/pubsub#subscribe_options");p;17;TNStropheClient.jt;23302;@STATIC;1.0;I;23;Foundation/Foundation.jI;16;AppKit/CPImage.ji;28;Resources/Strophe/strophe.jsi;25;Resources/Strophe/sha1.jsi;21;TNStropheConnection.ji;14;TNStropheJID.ji;17;TNStropheStanza.ji;11;TNXMLNode.ji;16;TNStropheVCard.jt;23066;objj_executeFile("Foundation/Foundation.j", NO);
+objj_executeFile("AppKit/CPImage.j", NO);
+objj_executeFile("Resources/Strophe/strophe.js", YES);
+objj_executeFile("Resources/Strophe/sha1.js", YES);
+objj_executeFile("TNStropheConnection.j", YES);
+objj_executeFile("TNStropheJID.j", YES);
+objj_executeFile("TNStropheStanza.j", YES);
+objj_executeFile("TNXMLNode.j", YES);
+objj_executeFile("TNStropheVCard.j", YES);
+//@global TNStropheContactStatusOffline
+//@global TNStropheContactStatusOnline
+TNStropheClientPasswordChangedNotification = "TNStropheClientPasswordChangedNotification";
+TNStropheClientPasswordChangeErrorNotification = "TNStropheClientPasswordChangeErrorNotification";
+TNStropheClientPresenceUpdatedNotification = "TNStropheClientPresenceUpdatedNotification";
+TNStropheClientVCardReceivedNotification = "TNStropheClientVCardReceivedNotification";
+{var the_class = objj_allocateClassPair(CPObject, "TNStropheClient"),
+meta_class = the_class.isa;class_addIvars(the_class, [new objj_ivar("_features"), new objj_ivar("_clientNode"), new objj_ivar("_identityCategory"), new objj_ivar("_identityName"), new objj_ivar("_identityType"), new objj_ivar("_password"), new objj_ivar("_delegate"), new objj_ivar("_connection"), new objj_ivar("_JID"), new objj_ivar("_vCard"), new objj_ivar("_avatar"), new objj_ivar("_userPresenceShow"), new objj_ivar("_userPresenceStatus")]);
+
+
+       
+       
+
+
+       
+       
+
+
+
+
+
+
+
+
+
+
+
+       
+       
+
+
+
+
+
+
+
+
+
+       
+       
+
+
+       
+       
+
+
+
+
+
+       
+       
+
+objj_registerClassPair(the_class);
+class_addMethods(the_class, [new objj_method(sel_getUid("_features"), function $TNStropheClient___features(self, _cmd)
+{
+return self._features;
+}
+,["CPArray"]), new objj_method(sel_getUid("clientNode"), function $TNStropheClient__clientNode(self, _cmd)
+{
+return self._clientNode;
+}
+,["CPString"]), new objj_method(sel_getUid("setClientNode:"), function $TNStropheClient__setClientNode_(self, _cmd, newValue)
+{
+self._clientNode = newValue;
+}
+,["void","CPString"]), new objj_method(sel_getUid("identityCategory"), function $TNStropheClient__identityCategory(self, _cmd)
+{
+return self._identityCategory;
+}
+,["CPString"]), new objj_method(sel_getUid("setIdentityCategory:"), function $TNStropheClient__setIdentityCategory_(self, _cmd, newValue)
+{
+self._identityCategory = newValue;
+}
+,["void","CPString"]), new objj_method(sel_getUid("identityName"), function $TNStropheClient__identityName(self, _cmd)
+{
+return self._identityName;
+}
+,["CPString"]), new objj_method(sel_getUid("setIdentityName:"), function $TNStropheClient__setIdentityName_(self, _cmd, newValue)
+{
+self._identityName = newValue;
+}
+,["void","CPString"]), new objj_method(sel_getUid("identityType"), function $TNStropheClient__identityType(self, _cmd)
+{
+return self._identityType;
+}
+,["CPString"]), new objj_method(sel_getUid("setIdentityType:"), function $TNStropheClient__setIdentityType_(self, _cmd, newValue)
+{
+self._identityType = newValue;
+}
+,["void","CPString"]), new objj_method(sel_getUid("password"), function $TNStropheClient__password(self, _cmd)
+{
+return self._password;
+}
+,["CPString"]), new objj_method(sel_getUid("setPassword:"), function $TNStropheClient__setPassword_(self, _cmd, newValue)
+{
+self._password = newValue;
+}
+,["void","CPString"]), new objj_method(sel_getUid("delegate"), function $TNStropheClient__delegate(self, _cmd)
+{
+return self._delegate;
+}
+,["id"]), new objj_method(sel_getUid("setDelegate:"), function $TNStropheClient__setDelegate_(self, _cmd, newValue)
+{
+self._delegate = newValue;
+}
+,["void","id"]), new objj_method(sel_getUid("connection"), function $TNStropheClient__connection(self, _cmd)
+{
+return self._connection;
+}
+,["TNStropheConnection"]), new objj_method(sel_getUid("setConnection:"), function $TNStropheClient__setConnection_(self, _cmd, newValue)
+{
+self._connection = newValue;
+}
+,["void","TNStropheConnection"]), new objj_method(sel_getUid("JID"), function $TNStropheClient__JID(self, _cmd)
+{
+return self._JID;
+}
+,["TNStropheJID"]), new objj_method(sel_getUid("setJID:"), function $TNStropheClient__setJID_(self, _cmd, newValue)
+{
+self._JID = newValue;
+}
+,["void","TNStropheJID"]), new objj_method(sel_getUid("vCard"), function $TNStropheClient__vCard(self, _cmd)
+{
+return self._vCard;
+}
+,["TNStropheVCard"]), new objj_method(sel_getUid("setVCard:"), function $TNStropheClient__setVCard_(self, _cmd, newValue)
+{
+self._vCard = newValue;
+}
+,["void","TNStropheVCard"]), new objj_method(sel_getUid("avatar"), function $TNStropheClient__avatar(self, _cmd)
+{
+return self._avatar;
+}
+,["CPImage"]), new objj_method(sel_getUid("_setAvatar:"), function $TNStropheClient___setAvatar_(self, _cmd, newValue)
+{
+self._avatar = newValue;
+}
+,["void","CPImage"]), new objj_method(sel_getUid("initWithService:"), function $TNStropheClient__initWithService_(self, _cmd, aService)
+{
+    if (self = objj_msgSendSuper({ receiver:self, super_class:objj_getClass("TNStropheClient").super_class }, "init"))
+    {
+        self._connection = objj_msgSend(TNStropheConnection, "connectionWithService:andDelegate:", aService, self);
+        self._userPresenceShow = TNStropheContactStatusOffline;
+        self._userPresenceStatus = "";
+        self._clientNode = "http://cappuccino.org";
+        self._identityCategory = "client";
+        self._identityName = "StropheCappuccino";
+        self._identityType = "web";
+        self._features = [Strophe.NS.CAPS, Strophe.NS.DISCO_INFO, Strophe.NS.DISCO_ITEMS];
+    }
+    return self;
+}
+,["id","CPString"]), new objj_method(sel_getUid("initWithService:JID:password:"), function $TNStropheClient__initWithService_JID_password_(self, _cmd, aService, aJID, aPassword)
+{
+    if (self = objj_msgSend(self, "initWithService:", aService))
+    {
+        self._JID = aJID;
+        self._password = aPassword;
+    }
+    return self;
+}
+,["id","CPString","TNStropheJID","CPString"]), new objj_method(sel_getUid("connect"), function $TNStropheClient__connect(self, _cmd)
+{
+    var pingDict = objj_msgSend(CPDictionary, "dictionaryWithObjectsAndKeys:", "iq", "name", "get", "type");
+    objj_msgSend(self._connection, "registerSelector:ofObject:withDict:", sel_getUid("_didReceivePing:"), self, pingDict);
+    objj_msgSend(self._connection, "connectWithJID:andPassword:", self._JID, self._password);
+}
+,["void"]), new objj_method(sel_getUid("disconnect"), function $TNStropheClient__disconnect(self, _cmd)
+{
+    objj_msgSend(self._connection, "disconnect");
+}
+,["void"]), new objj_method(sel_getUid("onStropheConnecting:"), function $TNStropheClient__onStropheConnecting_(self, _cmd, aConnection)
+{
+    if (objj_msgSend(self._delegate, "respondsToSelector:", sel_getUid("onStropheConnecting:")))
+        objj_msgSend(self._delegate, "onStropheConnecting:", self);
+}
+,["void","TNStropheConnection"]), new objj_method(sel_getUid("onStropheConnected:"), function $TNStropheClient__onStropheConnected_(self, _cmd, aConnection)
+{
+    objj_msgSend(self, "_sendCAPS");
+    if (objj_msgSend(self._delegate, "respondsToSelector:", sel_getUid("onStropheConnected:")))
+        objj_msgSend(self._delegate, "onStropheConnected:", self);
+}
+,["void","TNStropheConnection"]), new objj_method(sel_getUid("onStropheConnectFail:"), function $TNStropheClient__onStropheConnectFail_(self, _cmd, aConnection)
+{
+    if (objj_msgSend(self._delegate, "respondsToSelector:", sel_getUid("onStropheConnectFail:")))
+        objj_msgSend(self._delegate, "onStropheConnectFail:", self);
+}
+,["void","TNStropheConnection"]), new objj_method(sel_getUid("onStropheDisconnecting:"), function $TNStropheClient__onStropheDisconnecting_(self, _cmd, aConnection)
+{
+    if (objj_msgSend(self._delegate, "respondsToSelector:", sel_getUid("onStropheDisconnecting:")))
+        objj_msgSend(self._delegate, "onStropheDisconnecting:", self);
+}
+,["void","TNStropheConnection"]), new objj_method(sel_getUid("onStropheDisconnected:"), function $TNStropheClient__onStropheDisconnected_(self, _cmd, aConnection)
+{
+    self._userPresenceShow = TNStropheContactStatusOffline;
+    self._userPresenceStatus = "";
+    if (objj_msgSend(self._delegate, "respondsToSelector:", sel_getUid("onStropheDisconnected:")))
+        objj_msgSend(self._delegate, "onStropheDisconnected:", self);
+}
+,["void","TNStropheConnection"]), new objj_method(sel_getUid("onStropheAuthenticating:"), function $TNStropheClient__onStropheAuthenticating_(self, _cmd, aConnection)
+{
+    if (objj_msgSend(self._delegate, "respondsToSelector:", sel_getUid("onStropheAuthenticating:")))
+        objj_msgSend(self._delegate, "onStropheAuthenticating:", self);
+}
+,["void","TNStropheConnection"]), new objj_method(sel_getUid("onStropheAuthFail:"), function $TNStropheClient__onStropheAuthFail_(self, _cmd, aConnection)
+{
+    if (objj_msgSend(self._delegate, "respondsToSelector:", sel_getUid("onStropheAuthFail:")))
+        objj_msgSend(self._delegate, "onStropheAuthFail:", self);
+}
+,["void","TNStropheConnection"]), new objj_method(sel_getUid("onStropheError:"), function $TNStropheClient__onStropheError_(self, _cmd, aConnection)
+{
+    if (objj_msgSend(self._delegate, "respondsToSelector:", sel_getUid("onStropheError:")))
+        objj_msgSend(self._delegate, "onStropheError:", self);
+}
+,["void","TNStropheConnection"]), new objj_method(sel_getUid("connection:errorCondition:"), function $TNStropheClient__connection_errorCondition_(self, _cmd, aConnection, anErrorCondition)
+{
+    if (objj_msgSend(self._delegate, "respondsToSelector:", sel_getUid("client:errorCondition:")))
+        objj_msgSend(self._delegate, "client:errorCondition:", self, anErrorCondition);
+}
+,["void","TNStropheConnection","CPString"]), new objj_method(sel_getUid("_sendInitialPresence"), function $TNStropheClient___sendInitialPresence(self, _cmd)
+{
+    var presenceHandleParams = objj_msgSend(CPDictionary, "dictionaryWithObjectsAndKeys:", "presence", "name", objj_msgSend(self._JID, "bare"), "from", {"matchBare": true}, "options");
+    objj_msgSend(self._connection, "registerSelector:ofObject:withDict:", sel_getUid("_didPresenceUpdate:"), self, presenceHandleParams);
+    objj_msgSend(self, "setPresenceShow:status:", TNStropheContactStatusOnline, "");
+}
+,["void"]), new objj_method(sel_getUid("_didReceivePing:"), function $TNStropheClient___didReceivePing_(self, _cmd, aStanza)
+{
+    if (objj_msgSend(aStanza, "containsChildrenWithName:", "ping") && objj_msgSend(objj_msgSend(aStanza, "firstChildWithName:", "ping"), "namespace") == Strophe.NS.PING)
+    {
+        CPLog.debug("Ping received. Sending pong.");
+        objj_msgSend(self._connection, "send:", objj_msgSend(TNStropheStanza, "iqWithAttributes:", {'to': objj_msgSend(objj_msgSend(aStanza, "from"), "bare"), 'id': objj_msgSend(aStanza, "ID"), 'type': 'result'}));
+    }
+    return YES;
+}
+,["BOOL","TNStropheStanza"]), new objj_method(sel_getUid("addFeature:"), function $TNStropheClient__addFeature_(self, _cmd, aFeatureNamespace)
+{
+    objj_msgSend(self._features, "addObject:", aFeatureNamespace);
+}
+,["void","CPString"]), new objj_method(sel_getUid("removeFeature:"), function $TNStropheClient__removeFeature_(self, _cmd, aFeatureNamespace)
+{
+    objj_msgSend(self._features, "removeObjectIdenticalTo:", aFeatureNamespace);
+}
+,["void","CPString"]), new objj_method(sel_getUid("_clientVer"), function $TNStropheClient___clientVer(self, _cmd)
+{
+    return SHA1.b64_sha1(self._features.join());
+}
+,["CPString"]), new objj_method(sel_getUid("_sendCAPS"), function $TNStropheClient___sendCAPS(self, _cmd)
+{
+    var caps = objj_msgSend(TNStropheStanza, "presence");
+    objj_msgSend(caps, "addChildWithName:andAttributes:", "c", { "xmlns":Strophe.NS.CAPS, "node":self._clientNode, "hash":"sha-1", "ver":objj_msgSend(self, "_clientVer") });
+    objj_msgSend(self._connection, "registerSelector:ofObject:withDict:", sel_getUid("handleFeaturesDisco:"), self, objj_msgSend(CPDictionary, "dictionaryWithObjectsAndKeys:", "iq", "name", "get", "type", Strophe.NS.DISCO_INFO, "namespace"));
+    objj_msgSend(self._connection, "send:", caps);
+}
+,["void"]), new objj_method(sel_getUid("handleFeaturesDisco:"), function $TNStropheClient__handleFeaturesDisco_(self, _cmd, aStanza)
+{
+    var resp = objj_msgSend(TNStropheStanza, "iqWithAttributes:", {"id":objj_msgSend(self._connection, "getUniqueId"), "type":"result"});
+    objj_msgSend(resp, "setTo:", objj_msgSend(aStanza, "from"));
+    objj_msgSend(resp, "addChildWithName:andAttributes:", "query", {"xmlns":Strophe.NS.DISCO_INFO, "node":(self._clientNode + '#' + objj_msgSend(self, "_clientVer"))});
+    objj_msgSend(resp, "addChildWithName:andAttributes:", "identity", {"category":self._identityCategory, "name":self._identityName, "type":self._identityType});
+    objj_msgSend(resp, "up");
+    for (var i = 0; i < objj_msgSend(self._features, "count"); i++)
+    {
+        objj_msgSend(resp, "addChildWithName:andAttributes:", "feature", {"var":objj_msgSend(self._features, "objectAtIndex:", i)});
+        objj_msgSend(resp, "up");
+    }
+    objj_msgSend(self._connection, "send:", resp);
+    return YES;
+}
+,["BOOL","TNStropheStanza"]), new objj_method(sel_getUid("publishPEPPayload:toNode:"), function $TNStropheClient__publishPEPPayload_toNode_(self, _cmd, aPayload, aNode)
+{
+    var uid = objj_msgSend(self._connection, "getUniqueId"),
+        stanza = objj_msgSend(TNStropheStanza, "iqWithAttributes:", {"type":"set", "id":uid}),
+        params = objj_msgSend(CPDictionary, "dictionaryWithObject:forKey:", uid, "id");
+    objj_msgSend(stanza, "addChildWithName:andAttributes:", "pubsub", {"xmlns":Strophe.NS.PUBSUB})
+    objj_msgSend(stanza, "addChildWithName:andAttributes:", "publish", {"node":aNode});
+    objj_msgSend(stanza, "addChildWithName:", "item");
+    objj_msgSend(stanza, "addNode:", aPayload);
+    objj_msgSend(self._connection, "registerSelector:ofObject:withDict:", sel_getUid("_didPublishPEP:"), self, params);
+    objj_msgSend(self._connection, "send:", stanza);
+}
+,["void","TNXMLNode","CPString"]), new objj_method(sel_getUid("_didPublishPEP:"), function $TNStropheClient___didPublishPEP_(self, _cmd, aStanza)
+{
+    if (objj_msgSend(aStanza, "type") == "result")
+        CPLog.debug("Publish succeeded!");
+    else
+        CPLog.error("Cannot publish the pubsub item:" + objj_msgSend(aStanza, "stringValue"));
+    return NO;
+}
+,["void","TNStropheStanza"]), new objj_method(sel_getUid("setPresenceShow:status:"), function $TNStropheClient__setPresenceShow_status_(self, _cmd, aPresenceShow, aStatus)
+{
+    if (aPresenceShow === self._userPresenceShow && aStatus === self._userPresenceStatus)
+        return;
+    var presence = objj_msgSend(TNStropheStanza, "presence");
+    self._userPresenceShow = aPresenceShow || self._userPresenceShow;
+    self._userPresenceStatus = aStatus || self._userPresenceStatus;
+    objj_msgSend(presence, "addChildWithName:", "status");
+    objj_msgSend(presence, "addTextNode:", self._userPresenceStatus);
+    objj_msgSend(presence, "up");
+    objj_msgSend(presence, "addChildWithName:", "show");
+    objj_msgSend(presence, "addTextNode:", self._userPresenceShow);
+    objj_msgSend(self._connection, "send:", presence);
+}
+,["void","CPString","CPString"]), new objj_method(sel_getUid("_didPresenceUpdate:"), function $TNStropheClient___didPresenceUpdate_(self, _cmd, aStanza)
+{
+    var shouldNotify = NO;
+    if (objj_msgSend(aStanza, "firstChildWithName:", "show"))
+    {
+        self._userPresenceShow = objj_msgSend(objj_msgSend(aStanza, "firstChildWithName:", "show"), "text");
+        shouldNotify = YES;
+    }
+    if (objj_msgSend(aStanza, "firstChildWithName:", "status"))
+    {
+        self._userPresenceStatus = objj_msgSend(objj_msgSend(aStanza, "firstChildWithName:", "status"), "text");
+        shouldNotify = YES;
+    }
+    if (shouldNotify)
+    {
+        var presenceInformation = objj_msgSend(CPDictionary, "dictionaryWithObjectsAndKeys:", self._userPresenceShow, "show", self._userPresenceStatus, "status");
+        objj_msgSend(objj_msgSend(CPNotificationCenter, "defaultCenter"), "postNotificationName:object:userInfo:", TNStropheClientPresenceUpdatedNotification, self, presenceInformation);
+    }
+    return YES;
+}
+,["BOOL","TNStropheStanza"]), new objj_method(sel_getUid("getVCard"), function $TNStropheClient__getVCard(self, _cmd)
+{
+    var uid = objj_msgSend(self._connection, "getUniqueId"),
+        vcardStanza = objj_msgSend(TNStropheStanza, "iqWithAttributes:", {"type": "get", "id": uid}),
+        params = objj_msgSend(CPDictionary, "dictionaryWithObjectsAndKeys:", uid, "id");
+    objj_msgSend(vcardStanza, "addChildWithName:andAttributes:", "vCard", {"xmlns": "vcard-temp"});
+    objj_msgSend(self._connection, "registerSelector:ofObject:withDict:", sel_getUid("_didReceiveCurrentUserVCard:"), self, params);
+    objj_msgSend(self._connection, "send:", vcardStanza);
+}
+,["void"]), new objj_method(sel_getUid("_didReceiveCurrentUserVCard:"), function $TNStropheClient___didReceiveCurrentUserVCard_(self, _cmd, aStanza)
+{
+    if (objj_msgSend(aStanza, "type") == "result")
+    {
+        self._vCard = objj_msgSend(objj_msgSend(TNStropheVCard, "alloc"), "initWithXMLNode:", objj_msgSend(aStanza, "firstChildWithName:", "vCard"));
+        self._avatar = objj_msgSend(self._vCard, "photo");
+    }
+    objj_msgSend(objj_msgSend(CPNotificationCenter, "defaultCenter"), "postNotificationName:object:userInfo:", TNStropheClientVCardReceivedNotification, self, aStanza);
+    return YES;
+}
+,["BOOL","TNStropheStanza"]), new objj_method(sel_getUid("setVCard:object:selector:userInfo:"), function $TNStropheClient__setVCard_object_selector_userInfo_(self, _cmd, aVCard, anObject, aSelector, someUserInfo)
+{
+    var uid = objj_msgSend(self._connection, "getUniqueId"),
+        stanza = objj_msgSend(TNStropheStanza, "iqWithAttributes:", {"id": uid, "type": "set"}),
+        params = objj_msgSend(CPDictionary, "dictionaryWithObjectsAndKeys:", uid, "id");
+    self._vCard = aVCard;
+    objj_msgSend(stanza, "addNode:", objj_msgSend(aVCard, "XMLNode"));
+    objj_msgSend(self._connection, "registerSelector:ofObject:withDict:", sel_getUid("notifyVCardUpdate:"), self, params);
+    objj_msgSend(self._connection, "registerSelector:ofObject:withDict:userInfo:", aSelector, anObject, params, someUserInfo);
+    objj_msgSend(self._connection, "send:", stanza);
+}
+,["void","TNXMLNode","CPObject","SEL","id"]), new objj_method(sel_getUid("notifyVCardUpdate:"), function $TNStropheClient__notifyVCardUpdate_(self, _cmd, aStanza)
+{
+    var uid = objj_msgSend(self._connection, "getUniqueId"),
+        stanza = objj_msgSend(TNStropheStanza, "presenceWithAttributes:", {"id": uid}),
+        params = objj_msgSend(CPDictionary, "dictionaryWithObjectsAndKeys:", uid, "id");
+    objj_msgSend(stanza, "addChildWithName:", "status");
+    objj_msgSend(stanza, "addTextNode:", self._userPresenceStatus);
+    objj_msgSend(stanza, "up")
+    objj_msgSend(stanza, "addChildWithName:", "show");
+    objj_msgSend(stanza, "addTextNode:", self._userPresenceShow);
+    objj_msgSend(stanza, "up")
+    objj_msgSend(stanza, "addChildWithName:andAttributes:", "x", {"xmlns": "vcard-temp:x:update"});
+    objj_msgSend(self._connection, "send:", stanza);
+}
+,["void","TNStropheStanza"]), new objj_method(sel_getUid("_didNotifyVCardUpdate:"), function $TNStropheClient___didNotifyVCardUpdate_(self, _cmd, aStanza)
+{
+    CPLog.trace(objj_msgSend(aStanza, "stringValue"));
+}
+,["void","TNStropheStanza"]), new objj_method(sel_getUid("changePassword:"), function $TNStropheClient__changePassword_(self, _cmd, aPassword)
+{
+    var uid = objj_msgSend(self._connection, "getUniqueId"),
+        stanza = objj_msgSend(TNStropheStanza, "iqWithAttributes:", {"id": uid, "type": "set"}),
+        params = objj_msgSend(CPDictionary, "dictionaryWithObjectsAndKeys:", uid, "id");
+    objj_msgSend(stanza, "addChildWithName:andAttributes:", "query", {"xmlns": "jabber:iq:register"});
+    objj_msgSend(stanza, "addChildWithName:", "username");
+    objj_msgSend(stanza, "addTextNode:", objj_msgSend(objj_msgSend(self._connection, "JID"), "node"));
+    objj_msgSend(stanza, "up")
+    objj_msgSend(stanza, "addChildWithName:", "password");
+    objj_msgSend(stanza, "addTextNode:", aPassword);
+    objj_msgSend(stanza, "up")
+    objj_msgSend(self._connection, "registerSelector:ofObject:withDict:", sel_getUid("_didChangePassword:"), self, params);
+    objj_msgSend(self._connection, "send:", stanza);
+}
+,["void","CPString"]), new objj_method(sel_getUid("_didChangePassword:"), function $TNStropheClient___didChangePassword_(self, _cmd, aStanza)
+{
+    if (objj_msgSend(aStanza, "type") == "result")
+        objj_msgSend(objj_msgSend(CPNotificationCenter, "defaultCenter"), "postNotificationName:object:userInfo:", TNStropheClientPasswordChangedNotification, self, aStanza);
+    else
+        objj_msgSend(objj_msgSend(CPNotificationCenter, "defaultCenter"), "postNotificationName:object:userInfo:", TNStropheClientPasswordChangeErrorNotification, self, aStanza);
+}
+,["void","TNStropheStanza"])]);
+class_addMethods(meta_class, [new objj_method(sel_getUid("addNamespaceWithName:value:"), function $TNStropheClient__addNamespaceWithName_value_(self, _cmd, aName, aValue)
+{
+    Strophe.addNamespace(aName, aValue);
+}
+,["void","CPString","CPString"]), new objj_method(sel_getUid("clientWithService:"), function $TNStropheClient__clientWithService_(self, _cmd, aService)
+{
+    return objj_msgSend(objj_msgSend(TNStropheClient, "alloc"), "initWithService:", aService);
+}
+,["TNStropheClient","CPString"]), new objj_method(sel_getUid("clientWithService:JID:password:"), function $TNStropheClient__clientWithService_JID_password_(self, _cmd, aService, aJID, aPassword)
+{
+    return objj_msgSend(objj_msgSend(TNStropheClient, "alloc"), "initWithService:JID:password:", aService, aJID, aPassword);
+}
+,["TNStropheClient","CPString","TNStropheJID","CPString"])]);
+}
+{
+var the_class = objj_getClass("TNStropheClient")
+if(!the_class) throw new SyntaxError("*** Could not find definition for class \"TNStropheClient\"");
+var meta_class = the_class.isa;
+class_addMethods(the_class, [new objj_method(sel_getUid("initWithCoder:"), function $TNStropheClient__initWithCoder_(self, _cmd, aCoder)
+{
+    self = objj_msgSendSuper({ receiver:self, super_class:objj_getClass("TNStropheClient").super_class }, "initWithCoder:", aCoder);
+    if (self)
+    {
+        self._JID = objj_msgSend(aCoder, "decodeObjectForKey:", "_JID");
+        self._password = objj_msgSend(aCoder, "decodeObjectForKey:", "_password");
+        self._delegate = objj_msgSend(aCoder, "decodeObjectForKey:", "_delegate");
+        self._connection = objj_msgSend(aCoder, "decodeObjectForKey:", "_connection");
+    }
+    return self;
+}
+,["id","CPCoder"]), new objj_method(sel_getUid("encodeWithCoder:"), function $TNStropheClient__encodeWithCoder_(self, _cmd, aCoder)
+{
+    objj_msgSendSuper({ receiver:self, super_class:objj_getClass("TNStropheClient").super_class }, "encodeWithCoder:", aCoder);
+    objj_msgSend(aCoder, "encodeObject:forKey:", self._JID, "_JID");
+    objj_msgSend(aCoder, "encodeObject:forKey:", self._password, "_password");
+    objj_msgSend(aCoder, "encodeObject:forKey:", self._connection, "_connection");
+}
+,["void","CPCoder"])]);
+}p;21;TNStropheConnection.jt;24052;@STATIC;1.0;I;23;Foundation/Foundation.ji;28;Resources/Strophe/strophe.jsi;25;Resources/Strophe/sha1.jsi;14;TNStropheJID.ji;17;TNStropheStanza.jt;23900;objj_executeFile("Foundation/Foundation.j", NO);
+objj_executeFile("Resources/Strophe/strophe.js", YES);
+objj_executeFile("Resources/Strophe/sha1.js", YES);
+objj_executeFile("TNStropheJID.j", YES);
+objj_executeFile("TNStropheStanza.j", YES);
+TNStropheConnectionStatusAuthenticatingNotification = "TNStropheConnectionStatusAuthenticatingNotification"
+TNStropheConnectionStatusAuthFailureNotification = "TNStropheConnectionStatusAuthFailureNotification";
+TNStropheConnectionStatusConnectedNotification = "TNStropheConnectionStatusConnectedNotification";
+TNStropheConnectionStatusConnectingNotification = "TNStropheConnectionStatusConnectingNotification";
+TNStropheConnectionStatusConnectionFailureNotification = "TNStropheConnectionStatusConnectionFailureNotification";
+TNStropheConnectionStatusDisconnectedNotification = "TNStropheConnectionStatusDisconnectedNotification";
+TNStropheConnectionStatusDisconnectingNotification = "TNStropheConnectionStatusDisconnectingNotification";
+TNStropheConnectionStatusErrorNotification = "TNStropheConnectionStatusErrorNotification";
+TNStropheConnectionStatusWillDisconnectNotification = "TNStropheConnectionStatusWillDisconnectNotification";
+var TNStropheTimerRunLoopMode = "TNStropheTimerRunLoopMode";
+{var the_class = objj_allocateClassPair(CPObject, "TNStropheConnection"),
+meta_class = the_class.isa;class_addIvars(the_class, [new objj_ivar("_connected"), new objj_ivar("_password"), new objj_ivar("_giveupTimeout"), new objj_ivar("_currentStatus"), new objj_ivar("_delegate"), new objj_ivar("_connectionTimeout"), new objj_ivar("_maxConnections"), new objj_ivar("_registeredHandlers"), new objj_ivar("_registeredTimedHandlers"), new objj_ivar("_timersIds"), new objj_ivar("_boshService"), new objj_ivar("_userPresenceShow"), new objj_ivar("_userPresenceStatus"), new objj_ivar("_giveUpTimer"), new objj_ivar("_stropheJSRunloopInterval"), new objj_ivar("_connection"), new objj_ivar("_JID")]);
+
+       
+       
+
+       
+       
+
+       
+       
+
+
+
+
+
+
+
+
+       
+       
+
+
+
+
+       
+       
+
+
+
+
+
+
+
+
+
+
+
+objj_registerClassPair(the_class);
+class_addMethods(the_class, [new objj_method(sel_getUid("isConnected"), function $TNStropheConnection__isConnected(self, _cmd)
+{
+return self._connected;
+}
+,["BOOL"]), new objj_method(sel_getUid("_setConnected:"), function $TNStropheConnection___setConnected_(self, _cmd, newValue)
+{
+self._connected = newValue;
+}
+,["void","BOOL"]), new objj_method(sel_getUid("password"), function $TNStropheConnection__password(self, _cmd)
+{
+return self._password;
+}
+,["CPString"]), new objj_method(sel_getUid("setPassword:"), function $TNStropheConnection__setPassword_(self, _cmd, newValue)
+{
+self._password = newValue;
+}
+,["void","CPString"]), new objj_method(sel_getUid("giveupTimeout"), function $TNStropheConnection__giveupTimeout(self, _cmd)
+{
+return self._giveupTimeout;
+}
+,["float"]), new objj_method(sel_getUid("setGiveupTimeout:"), function $TNStropheConnection__setGiveupTimeout_(self, _cmd, newValue)
+{
+self._giveupTimeout = newValue;
+}
+,["void","float"]), new objj_method(sel_getUid("currentStatus"), function $TNStropheConnection__currentStatus(self, _cmd)
+{
+return self._currentStatus;
+}
+,["id"]), new objj_method(sel_getUid("_setCurrentStatus:"), function $TNStropheConnection___setCurrentStatus_(self, _cmd, newValue)
+{
+self._currentStatus = newValue;
+}
+,["void","id"]), new objj_method(sel_getUid("delegate"), function $TNStropheConnection__delegate(self, _cmd)
+{
+return self._delegate;
+}
+,["id"]), new objj_method(sel_getUid("_setDelegate:"), function $TNStropheConnection___setDelegate_(self, _cmd, newValue)
+{
+self._delegate = newValue;
+}
+,["void","id"]), new objj_method(sel_getUid("connectionTimeout"), function $TNStropheConnection__connectionTimeout(self, _cmd)
+{
+return self._connectionTimeout;
+}
+,["int"]), new objj_method(sel_getUid("setConnectionTimeout:"), function $TNStropheConnection__setConnectionTimeout_(self, _cmd, newValue)
+{
+self._connectionTimeout = newValue;
+}
+,["void","int"]), new objj_method(sel_getUid("maxConnections"), function $TNStropheConnection__maxConnections(self, _cmd)
+{
+return self._maxConnections;
+}
+,["int"]), new objj_method(sel_getUid("setMaxConnections:"), function $TNStropheConnection__setMaxConnections_(self, _cmd, newValue)
+{
+self._maxConnections = newValue;
+}
+,["void","int"]), new objj_method(sel_getUid("initWithService:andDelegate:"), function $TNStropheConnection__initWithService_andDelegate_(self, _cmd, aService, aDelegate)
+{
+    if (self = objj_msgSendSuper({ receiver:self, super_class:objj_getClass("TNStropheConnection").super_class }, "init"))
+    {
+        var bundle = objj_msgSend(CPBundle, "bundleForClass:", objj_msgSend(self, "class"));
+        self._registeredHandlers = objj_msgSend(CPArray, "array");
+        self._registeredTimedHandlers = objj_msgSend(CPArray, "array");
+        self._connected = NO;
+        self._maxConnections = objj_msgSend(bundle, "objectForInfoDictionaryKey:", "TNStropheConnectionMaxConnection");
+        self._connectionTimeout = objj_msgSend(bundle, "objectForInfoDictionaryKey:", "TNStropheConnectionTimeout");
+        self._giveupTimeout = objj_msgSend(bundle, "objectForInfoDictionaryKey:", "TNStropheConnectionGiveUpTimer");
+        self._currentStatus = Strophe.Status.DISCONNECTED;
+        self._boshService = aService;
+        self._connection = new Strophe.Connection(self._boshService);
+        self._delegate = aDelegate;
+        self._timersIds = objj_msgSend(CPDictionary, "dictionary");
+        self._stropheJSRunloopInterval = objj_msgSend(bundle, "objectForInfoDictionaryKey:", "TNStropheJSRunLoopInterval");
+        if (objj_msgSend(bundle, "objectForInfoDictionaryKey:", "TNStropheJSUseCappuccinoRunLoop") == 1)
+        {
+            CPLog.info("StropheCappuccino has been compiled to use the Cappuccino runloop. unsing interval of " + self._stropheJSRunloopInterval);
+            Strophe.setTimeout = function(f, delay)
+            {
+                objj_msgSend(objj_msgSend(CPRunLoop, "currentRunLoop"), "limitDateForMode:", CPDefaultRunLoopMode);
+                var timerID = objj_msgSend(self, "getUniqueId"),
+                    timer = objj_msgSend(CPTimer, "timerWithTimeInterval:target:selector:userInfo:repeats:", self._stropheJSRunloopInterval, self, sel_getUid("triggerStropheTimer:"), {"function": f, "id": timerID}, NO);
+                objj_msgSend(objj_msgSend(CPRunLoop, "currentRunLoop"), "addTimer:forMode:", timer, CPDefaultRunLoopMode);
+                objj_msgSend(self._timersIds, "setObject:forKey:", timer, timerID);
+                return timerID;
+            }
+            Strophe.clearTimeout = function(tid)
+            {
+                objj_msgSend(objj_msgSend(CPRunLoop, "currentRunLoop"), "limitDateForMode:", CPDefaultRunLoopMode);
+                var timer = objj_msgSend(self._timersIds, "objectForKey:", tid);
+                objj_msgSend(timer, "invalidate");
+                objj_msgSend(self._timersIds, "removeObjectForKey:", tid);
+            }
+        }
+    }
+    return self;
+}
+,["id","CPString","id"]), new objj_method(sel_getUid("triggerStropheTimer:"), function $TNStropheConnection__triggerStropheTimer_(self, _cmd, aTimer)
+{
+    objj_msgSend(self._timersIds, "removeObjectForKey:", objj_msgSend(aTimer, "userInfo")["id"]);
+    objj_msgSend(aTimer, "userInfo")["function"]();
+    objj_msgSend(aTimer, "invalidate");
+}
+,["void","CPTimer"]), new objj_method(sel_getUid("JID"), function $TNStropheConnection__JID(self, _cmd)
+{
+    if (objj_msgSend(self._delegate, "respondsToSelector:", sel_getUid("JID")))
+        return objj_msgSend(self._delegate, "JID");
+    else
+        return self._JID;
+}
+,["TNStropheJID"]), new objj_method(sel_getUid("connectWithJID:andPassword:"), function $TNStropheConnection__connectWithJID_andPassword_(self, _cmd, aJID, aPassword)
+{
+    if (self._currentStatus !== Strophe.Status.DISCONNECTED)
+        return;
+    self._JID = aJID;
+    self._connection.connect(objj_msgSend(aJID, "full"), aPassword, function (status, errorCond)
+    {
+        objj_msgSend(objj_msgSend(CPRunLoop, "currentRunLoop"), "limitDateForMode:", CPDefaultRunLoopMode);
+        var selector,
+            notificationName;
+        self._currentStatus = status;
+        if (errorCond)
+        {
+            self._currentStatus = Strophe.Status.DISCONNECTED;
+            if (objj_msgSend(self._delegate, "respondsToSelector:", sel_getUid("connection:errorCondition:")))
+                objj_msgSend(self._delegate, "connection:errorCondition:", self, errorCond);
+        }
+        else
+        {
+            switch (status)
+            {
+                case Strophe.Status.ERROR:
+                    selector = sel_getUid("onStropheError:");
+                    notificationName = TNStropheConnectionStatusErrorNotification;
+                    break;
+                case Strophe.Status.CONNECTING:
+                    selector = sel_getUid("onStropheConnecting:");
+                    notificationName = TNStropheConnectionStatusConnectingNotification;
+                    self._giveUpTimer = objj_msgSend(CPTimer, "scheduledTimerWithTimeInterval:callback:repeats:", self._giveupTimeout, function(aTimer) {
+                            self._currentStatus = Strophe.Status.DISCONNECTED;
+                            self._giveUpTimer = nil;
+                            objj_msgSend(self, "reset")
+                            if ((self._currentStatus === Strophe.Status.CONNECTING) && objj_msgSend(self._delegate, "respondsToSelector:", sel_getUid("connection:errorCondition:")))
+                                objj_msgSend(self._delegate, "connection:errorCondition:", self, "Cannot connect");
+                        }, NO);
+                    break;
+                case Strophe.Status.CONNFAIL:
+                    selector = sel_getUid("onStropheConnectFail:");
+                    notificationName = TNStropheConnectionStatusConnectionFailureNotification;
+                    self._connected = NO;
+                    break;
+                case Strophe.Status.AUTHENTICATING:
+                    selector = sel_getUid("onStropheAuthenticating:");
+                    notificationName = TNStropheConnectionStatusAuthenticatingNotification;
+                    self._connected = NO;
+                    break;
+                case Strophe.Status.AUTHFAIL:
+                    selector = sel_getUid("onStropheAuthFail:");
+                    notificationName = TNStropheConnectionStatusAuthFailureNotification;
+                    self._connected = NO;
+                    break;
+                case Strophe.Status.DISCONNECTING:
+                    selector = sel_getUid("onStropheDisconnecting:");
+                    notificationName = TNStropheConnectionStatusDisconnectingNotification;
+                    self._connected = YES;
+                    break;
+                case Strophe.Status.DISCONNECTED:
+                    objj_msgSend(self, "deleteAllRegisteredSelectors");
+                    selector = sel_getUid("onStropheDisconnected:");
+                    notificationName = TNStropheConnectionStatusDisconnectedNotification;
+                    self._connected = NO;
+                    break;
+                case Strophe.Status.CONNECTED:
+                    selector = sel_getUid("onStropheConnected:");
+                    notificationName = TNStropheConnectionStatusConnectedNotification;
+                    self._connected = YES;
+                    if (self._giveUpTimer)
+                        objj_msgSend(self._giveUpTimer, "invalidate");
+                    break;
+            }
+        }
+        if (selector && objj_msgSend(self._delegate, "respondsToSelector:", selector))
+            objj_msgSend(self._delegate, "performSelector:withObject:", selector, self);
+        if (notificationName)
+            objj_msgSend(objj_msgSend(CPNotificationCenter, "defaultCenter"), "postNotificationName:object:", notificationName, self);
+    }, self._connectionTimeout, self._maxConnections);
+}
+,["void","TNStropheJID","CPString"]), new objj_method(sel_getUid("disconnect"), function $TNStropheConnection__disconnect(self, _cmd)
+{
+    if (self._currentStatus === Strophe.Status.DISCONNECTED)
+        return;
+    objj_msgSend(objj_msgSend(CPNotificationCenter, "defaultCenter"), "postNotificationName:object:", TNStropheConnectionStatusWillDisconnectNotification, self);
+    self._connection.disconnect();
+}
+,["void"]), new objj_method(sel_getUid("reset"), function $TNStropheConnection__reset(self, _cmd)
+{
+    if (self._connection)
+        self._connection.reset();
+}
+,["void"]), new objj_method(sel_getUid("pause"), function $TNStropheConnection__pause(self, _cmd)
+{
+    if (self._connection)
+        self._connection.pause();
+}
+,["void"]), new objj_method(sel_getUid("resume"), function $TNStropheConnection__resume(self, _cmd)
+{
+    if (self._connection)
+        self._connection.pause();
+}
+,["void"]), new objj_method(sel_getUid("flush"), function $TNStropheConnection__flush(self, _cmd)
+{
+    self._connection.flush();
+}
+,["void"]), new objj_method(sel_getUid("JID"), function $TNStropheConnection__JID(self, _cmd)
+{
+    return objj_msgSend(self._delegate, "JID");
+}
+,["TNStropheJID"]), new objj_method(sel_getUid("send:"), function $TNStropheConnection__send_(self, _cmd, aStanza)
+{
+    if (self._currentStatus == Strophe.Status.CONNECTED)
+    {
+        CPLog.trace("StropheCappuccino Stanza Send:")
+        CPLog.trace(aStanza);
+        objj_msgSend(objj_msgSend(CPRunLoop, "currentRunLoop"), "performSelector:target:argument:order:modes:", sel_getUid("performSend:"), self, aStanza, 0, [CPDefaultRunLoopMode]);
+    }
+}
+,["void","TNStropheStanza"]), new objj_method(sel_getUid("performSend:"), function $TNStropheConnection__performSend_(self, _cmd, aStanza)
+{
+    self._connection.send(objj_msgSend(aStanza, "tree"));
+}
+,["void","TNStropheStanza"]), new objj_method(sel_getUid("getUniqueId"), function $TNStropheConnection__getUniqueId(self, _cmd)
+{
+    return objj_msgSend(self, "getUniqueIdWithSuffix:", null);
+}
+,["CPString"]), new objj_method(sel_getUid("getUniqueIdWithSuffix:"), function $TNStropheConnection__getUniqueIdWithSuffix_(self, _cmd, suffix)
+{
+    return self._connection.getUniqueId(suffix);
+}
+,["CPString","CPString"]), new objj_method(sel_getUid("registerSelector:ofObject:withDict:userInfo:handlerDelegate:"), function $TNStropheConnection__registerSelector_ofObject_withDict_userInfo_handlerDelegate_(self, _cmd, aSelector, anObject, aDict, someUserInfo, aHandlerDelegate)
+{
+    var from = objj_msgSend(objj_msgSend(aDict, "valueForKey:", "from"), "isKindOfClass:", CPString) ? objj_msgSend(aDict, "valueForKey:", "from") : objj_msgSend(objj_msgSend(aDict, "valueForKey:", "from"), "stringValue"),
+        handlerId = self._connection.addHandler(function(stanza)
+        {
+            objj_msgSend(objj_msgSend(CPRunLoop, "currentRunLoop"), "limitDateForMode:", CPDefaultRunLoopMode);
+            var stanzaObject = objj_msgSend(TNStropheStanza, "stanzaWithStanza:", stanza),
+                ret;
+            if (someUserInfo)
+                ret = objj_msgSend(anObject, "performSelector:withObject:withObject:", aSelector, stanzaObject, someUserInfo);
+            else
+                ret = objj_msgSend(anObject, "performSelector:withObject:", aSelector, stanzaObject);
+            CPLog.trace("StropheCappuccino stanza received that trigger selector : " + objj_msgSend(anObject, "class") + "." + aSelector);
+            CPLog.trace(stanzaObject);
+            delete aDict.options;
+            delete someUserInfo;
+            if (aHandlerDelegate && objj_msgSend(aHandlerDelegate, "respondsToSelector:", sel_getUid("stropheConnection:performedHandlerId:")))
+                objj_msgSend(aHandlerDelegate, "stropheConnection:performedHandlerId:", self, handlerId)
+            someUserInfo = nil;
+            objj_msgSend(self._registeredHandlers, "removeObject:", handlerId);
+            return ret;
+        },
+        objj_msgSend(aDict, "valueForKey:", "namespace"),
+        objj_msgSend(aDict, "valueForKey:", "name"),
+        objj_msgSend(aDict, "valueForKey:", "type"),
+        objj_msgSend(aDict, "valueForKey:", "id"),
+        from,
+        objj_msgSend(aDict, "valueForKey:", "options"));
+    objj_msgSend(self._registeredHandlers, "addObject:", handlerId);
+    return handlerId;
+}
+,["id","SEL","CPObject","id","id","id"]), new objj_method(sel_getUid("registerSelector:ofObject:withDict:handlerDelegate:"), function $TNStropheConnection__registerSelector_ofObject_withDict_handlerDelegate_(self, _cmd, aSelector, anObject, aDict, aHandlerDelegate)
+{
+    return objj_msgSend(self, "registerSelector:ofObject:withDict:userInfo:handlerDelegate:", aSelector, anObject, aDict, nil, aHandlerDelegate);
+}
+,["id","SEL","CPObject","id","id"]), new objj_method(sel_getUid("registerSelector:ofObject:withDict:userInfo:"), function $TNStropheConnection__registerSelector_ofObject_withDict_userInfo_(self, _cmd, aSelector, anObject, aDict, someUserInfo)
+{
+    return objj_msgSend(self, "registerSelector:ofObject:withDict:userInfo:handlerDelegate:", aSelector, anObject, aDict, someUserInfo, nil);
+}
+,["id","SEL","CPObject","id","id"]), new objj_method(sel_getUid("registerSelector:ofObject:withDict:"), function $TNStropheConnection__registerSelector_ofObject_withDict_(self, _cmd, aSelector, anObject, aDict)
+{
+    return objj_msgSend(self, "registerSelector:ofObject:withDict:userInfo:handlerDelegate:", aSelector, anObject, aDict, nil, nil);
+}
+,["id","SEL","CPObject","id"]), new objj_method(sel_getUid("registerTimeoutSelector:ofObject:withDict:forTimeout:"), function $TNStropheConnection__registerTimeoutSelector_ofObject_withDict_forTimeout_(self, _cmd, aTimeoutSelector, anObject, aDict, aTimeout)
+{
+    var from = objj_msgSend(objj_msgSend(aDict, "valueForKey:", "from"), "isKindOfClass:", CPString) ? objj_msgSend(aDict, "valueForKey:", "from") : objj_msgSend(objj_msgSend(aDict, "valueForKey:", "from"), "stringValue"),
+        handlerId = self._connection.addTimedHandler(aTimeout, function(stanza) {
+                if (!stanza)
+                {
+                    objj_msgSend(objj_msgSend(CPRunLoop, "currentRunLoop"), "limitDateForMode:", CPDefaultRunLoopMode);
+                    var ret = objj_msgSend(anObject, "performSelector:", aTimeoutSelector);
+                    CPLog.trace("StropheCappuccino stanza timeout that trigger selector : " + objj_msgSend(anObject, "class") + "." + aTimeoutSelector);
+                    delete aDict.options;
+                    return ret;
+                }
+                objj_msgSend(self._registeredTimedHandlers, "removeObject:", handlerId);
+                return NO;
+            },
+            objj_msgSend(aDict, "valueForKey:", "namespace"),
+            objj_msgSend(aDict, "valueForKey:", "name"),
+            objj_msgSend(aDict, "valueForKey:", "type"),
+            objj_msgSend(aDict, "valueForKey:", "id"),
+            from,
+            objj_msgSend(aDict, "valueForKey:", "options"));
+    objj_msgSend(self._registeredTimedHandlers, "addObject:", handlerId);
+    return handlerId;
+}
+,["id","SEL","CPObject","id","float"]), new objj_method(sel_getUid("deleteRegisteredSelector:"), function $TNStropheConnection__deleteRegisteredSelector_(self, _cmd, aHandlerId)
+{
+    self._connection.deleteHandler(aHandlerId);
+    objj_msgSend(self._registeredHandlers, "removeObject:", aHandlerId);
+}
+,["void","id"]), new objj_method(sel_getUid("deleteRegisteredTimedSelector:"), function $TNStropheConnection__deleteRegisteredTimedSelector_(self, _cmd, aTimedHandlerId)
+{
+    self._connection.deleteTimedHandler(aTimedHandlerId);
+    objj_msgSend(self._registeredTimedHandlers, "removeObject:", aTimedHandlerId);
+}
+,["void","id"]), new objj_method(sel_getUid("deleteAllRegisteredSelectors"), function $TNStropheConnection__deleteAllRegisteredSelectors(self, _cmd)
+{
+    for (var i = 0; i < objj_msgSend(self._registeredHandlers, "count"); i++)
+        objj_msgSend(self, "deleteRegisteredSelector:", objj_msgSend(self._registeredHandlers, "objectAtIndex:", i));
+    for (var i = 0; i < objj_msgSend(self._registeredTimedHandlers, "count"); i++)
+        objj_msgSend(self, "deleteRegisteredTimedSelector:", objj_msgSend(self._registeredTimedHandlers, "objectAtIndex:", i));
+    objj_msgSend(self._registeredHandlers, "removeAllObjects");
+    objj_msgSend(self._registeredTimedHandlers, "removeAllObjects");
+}
+,["void"]), new objj_method(sel_getUid("rawInputRegisterSelector:ofObject:"), function $TNStropheConnection__rawInputRegisterSelector_ofObject_(self, _cmd, aSelector, anObject)
+{
+    self._connection.xmlInput = function(elem) {
+        objj_msgSend(objj_msgSend(CPRunLoop, "currentRunLoop"), "limitDateForMode:", CPDefaultRunLoopMode);
+        objj_msgSend(anObject, "performSelector:withObject:", aSelector, objj_msgSend(TNStropheStanza, "nodeWithXMLNode:", elem));
+    }
+}
+,["void","SEL","id"]), new objj_method(sel_getUid("removeRawInputSelector"), function $TNStropheConnection__removeRawInputSelector(self, _cmd)
+{
+    self._connection.xmlInput = function(elem){
+        return;
+    };
+}
+,["void"]), new objj_method(sel_getUid("rawOutputRegisterSelector:ofObject:"), function $TNStropheConnection__rawOutputRegisterSelector_ofObject_(self, _cmd, aSelector, anObject)
+{
+    self._connection.xmlOutput = function(elem) {
+        objj_msgSend(objj_msgSend(CPRunLoop, "currentRunLoop"), "limitDateForMode:", CPDefaultRunLoopMode);
+        objj_msgSend(anObject, "performSelector:withObject:", aSelector, objj_msgSend(TNStropheStanza, "nodeWithXMLNode:", elem));
+    }
+}
+,["void","SEL","id"]), new objj_method(sel_getUid("removeRawOutputSelector"), function $TNStropheConnection__removeRawOutputSelector(self, _cmd)
+{
+    self._connection.xmlOutput = function(elem){
+        return;
+    };
+}
+,["void"])]);
+class_addMethods(meta_class, [new objj_method(sel_getUid("addNamespaceWithName:value:"), function $TNStropheConnection__addNamespaceWithName_value_(self, _cmd, aName, aValue)
+{
+    Strophe.addNamespace(aName, aValue);
+}
+,["void","CPString","CPString"]), new objj_method(sel_getUid("connectionWithService:andDelegate:"), function $TNStropheConnection__connectionWithService_andDelegate_(self, _cmd, aService, aDelegate)
+{
+    return objj_msgSend(objj_msgSend(TNStropheConnection, "alloc"), "initWithService:andDelegate:", aService, aDelegate);
+}
+,["TNStropheConnection","CPString","id"])]);
+}
+{
+var the_class = objj_getClass("TNStropheConnection")
+if(!the_class) throw new SyntaxError("*** Could not find definition for class \"TNStropheConnection\"");
+var meta_class = the_class.isa;
+class_addMethods(the_class, [new objj_method(sel_getUid("initWithCoder:"), function $TNStropheConnection__initWithCoder_(self, _cmd, aCoder)
+{
+    self = objj_msgSendSuper({ receiver:self, super_class:objj_getClass("TNStropheConnection").super_class }, "initWithCoder:", aCoder);
+    if (self)
+    {
+        self._delegate = objj_msgSend(aCoder, "decodeObjectForKey:", "_delegate");
+        self._boshService = objj_msgSend(aCoder, "decodeObjectForKey:", "_boshService");
+        self._connection = objj_msgSend(aCoder, "decodeObjectForKey:", "_connection");
+        self._registeredHandlers = objj_msgSend(aCoder, "decodeObjectForKey:", "_registeredHandlers");
+        self._registeredTimedHandlers = objj_msgSend(aCoder, "decodeObjectForKey:", "_registeredTimedHandlers");
+    }
+    return self;
+}
+,["id","CPCoder"]), new objj_method(sel_getUid("encodeWithCoder:"), function $TNStropheConnection__encodeWithCoder_(self, _cmd, aCoder)
+{
+    objj_msgSend(aCoder, "encodeObject:forKey:", self._boshService, "_boshService");
+    objj_msgSend(aCoder, "encodeObject:forKey:", self._connection, "_connection");
+    objj_msgSend(aCoder, "encodeObject:forKey:", self._registeredHandlers, "_registeredHandlers");
+    objj_msgSend(aCoder, "encodeObject:forKey:", self._registeredTimedHandlers, "_registeredTimedHandlers");
+}
+,["void","CPCoder"])]);
+}p;18;TNStropheContact.jt;32259;@STATIC;1.0;I;23;Foundation/Foundation.jI;16;AppKit/CPImage.ji;21;TNStropheConnection.ji;16;TNStropheGroup.ji;14;TNStropheJID.ji;16;TNStropheVCard.jt;32103;objj_executeFile("Foundation/Foundation.j", NO);
+objj_executeFile("AppKit/CPImage.j", NO);
+objj_executeFile("TNStropheConnection.j", YES);
+objj_executeFile("TNStropheGroup.j", YES);
+objj_executeFile("TNStropheJID.j", YES);
+objj_executeFile("TNStropheVCard.j", YES);
+TNStropheContactStatusAway = "away";
+TNStropheContactStatusBusy = "xa";
+TNStropheContactStatusDND = "dnd";
+TNStropheContactStatusOffline = "offline";
+TNStropheContactStatusOnline = "online";
+TNStropheContactGroupUpdatedNotification = "TNStropheContactGroupUpdatedNotification";
+TNStropheContactMessageActiveNotification = "TNStropheContactMessageActiveNotification";
+TNStropheContactMessageComposingNotification = "TNStropheContactMessageComposingNotification";
+TNStropheContactMessageGoneNotification = "TNStropheContactMessageGoneNotification";
+TNStropheContactMessageInactiveNotification = "TNStropheContactMessageInactiveNotification";
+TNStropheContactMessagePausedNotification = "TNStropheContactMessagePausedNotification";
+TNStropheContactMessageReceivedNotification = "TNStropheContactMessageReceivedNotification";
+TNStropheContactMessageSentNotification = "TNStropheContactMessageSentNotification";
+TNStropheContactMessageTreatedNotification = "TNStropheContactMessageTreatedNotification";
+TNStropheContactNicknameUpdatedNotification = "TNStropheContactNicknameUpdatedNotification";
+TNStropheContactPresenceUpdatedNotification = "TNStropheContactPresenceUpdatedNotification";
+TNStropheContactStanzaSentNotification = "TNStropheContactStanzaSentNotification"
+TNStropheContactSubscriptionUpdatedNotification = "TNStropheContactSubscriptionUpdatedNotification";
+TNStropheContactVCardReceivedNotification = "TNStropheContactVCardReceivedNotification";
+var TNStropheContactDelegate_avatarForContact_ = 1 << 0;
+TNStropheContactImageOffline = nil;
+TNStropheContactImageOnline = nil;
+TNStropheContactImageBusy = nil;
+TNStropheContactImageAway = nil;
+TNStropheContactImageDND = nil;
+TNStropheContactImageNewMessage = nil;
+TNStropheContactImageNewError = nil;
+{var the_class = objj_allocateClassPair(CPObject, "TNStropheContact"),
+meta_class = the_class.isa;class_addIvars(the_class, [new objj_ivar("_groups"), new objj_ivar("_messagesQueue"), new objj_ivar("_resources"), new objj_ivar("_avatar"), new objj_ivar("_statusIcon"), new objj_ivar("_numberOfEvents"), new objj_ivar("_nickname"), new objj_ivar("_nodeName"), new objj_ivar("_subscription"), new objj_ivar("_type"), new objj_ivar("_XMPPShow"), new objj_ivar("_XMPPStatus"), new objj_ivar("_delegate"), new objj_ivar("_connection"), new objj_ivar("_JID"), new objj_ivar("_vCard"), new objj_ivar("_askingVCard"), new objj_ivar("_isComposing"), new objj_ivar("_statusReminder"), new objj_ivar("_implementedDelegateMethods")]);
+       
+       
+
+
+       
+       
+
+
+       
+       
+
+
+
+
+
+       
+       
+
+
+
+
+       
+       
+
+
+
+       
+       
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+       
+       
+objj_registerClassPair(the_class);
+class_addMethods(the_class, [new objj_method(sel_getUid("groups"), function $TNStropheContact__groups(self, _cmd)
+{
+return self._groups;
+}
+,["CPArray"]), new objj_method(sel_getUid("setGroups:"), function $TNStropheContact__setGroups_(self, _cmd, newValue)
+{
+self._groups = newValue;
+}
+,["void","CPArray"]), new objj_method(sel_getUid("messagesQueue"), function $TNStropheContact__messagesQueue(self, _cmd)
+{
+return self._messagesQueue;
+}
+,["CPArray"]), new objj_method(sel_getUid("setMessagesQueue:"), function $TNStropheContact__setMessagesQueue_(self, _cmd, newValue)
+{
+self._messagesQueue = newValue;
+}
+,["void","CPArray"]), new objj_method(sel_getUid("resources"), function $TNStropheContact__resources(self, _cmd)
+{
+return self._resources;
+}
+,["CPArray"]), new objj_method(sel_getUid("setResources:"), function $TNStropheContact__setResources_(self, _cmd, newValue)
+{
+self._resources = newValue;
+}
+,["void","CPArray"]), new objj_method(sel_getUid("avatar"), function $TNStropheContact__avatar(self, _cmd)
+{
+return self._avatar;
+}
+,["CPImage"]), new objj_method(sel_getUid("setAvatar:"), function $TNStropheContact__setAvatar_(self, _cmd, newValue)
+{
+self._avatar = newValue;
+}
+,["void","CPImage"]), new objj_method(sel_getUid("statusIcon"), function $TNStropheContact__statusIcon(self, _cmd)
+{
+return self._statusIcon;
+}
+,["CPImage"]), new objj_method(sel_getUid("setStatusIcon:"), function $TNStropheContact__setStatusIcon_(self, _cmd, newValue)
+{
+self._statusIcon = newValue;
+}
+,["void","CPImage"]), new objj_method(sel_getUid("numberOfEvents"), function $TNStropheContact__numberOfEvents(self, _cmd)
+{
+return self._numberOfEvents;
+}
+,["CPNumber"]), new objj_method(sel_getUid("setNumberOfEvents:"), function $TNStropheContact__setNumberOfEvents_(self, _cmd, newValue)
+{
+self._numberOfEvents = newValue;
+}
+,["void","CPNumber"]), new objj_method(sel_getUid("nickname"), function $TNStropheContact__nickname(self, _cmd)
+{
+return self._nickname;
+}
+,["CPString"]), new objj_method(sel_getUid("setNickname:"), function $TNStropheContact__setNickname_(self, _cmd, newValue)
+{
+self._nickname = newValue;
+}
+,["void","CPString"]), new objj_method(sel_getUid("nodeName"), function $TNStropheContact__nodeName(self, _cmd)
+{
+return self._nodeName;
+}
+,["CPString"]), new objj_method(sel_getUid("setNodeName:"), function $TNStropheContact__setNodeName_(self, _cmd, newValue)
+{
+self._nodeName = newValue;
+}
+,["void","CPString"]), new objj_method(sel_getUid("subscription"), function $TNStropheContact__subscription(self, _cmd)
+{
+return self._subscription;
+}
+,["CPString"]), new objj_method(sel_getUid("setSubscription:"), function $TNStropheContact__setSubscription_(self, _cmd, newValue)
+{
+self._subscription = newValue;
+}
+,["void","CPString"]), new objj_method(sel_getUid("type"), function $TNStropheContact__type(self, _cmd)
+{
+return self._type;
+}
+,["CPString"]), new objj_method(sel_getUid("setType:"), function $TNStropheContact__setType_(self, _cmd, newValue)
+{
+self._type = newValue;
+}
+,["void","CPString"]), new objj_method(sel_getUid("XMPPShow"), function $TNStropheContact__XMPPShow(self, _cmd)
+{
+return self._XMPPShow;
+}
+,["CPString"]), new objj_method(sel_getUid("setXMPPShow:"), function $TNStropheContact__setXMPPShow_(self, _cmd, newValue)
+{
+self._XMPPShow = newValue;
+}
+,["void","CPString"]), new objj_method(sel_getUid("XMPPStatus"), function $TNStropheContact__XMPPStatus(self, _cmd)
+{
+return self._XMPPStatus;
+}
+,["CPString"]), new objj_method(sel_getUid("setXMPPStatus:"), function $TNStropheContact__setXMPPStatus_(self, _cmd, newValue)
+{
+self._XMPPStatus = newValue;
+}
+,["void","CPString"]), new objj_method(sel_getUid("delegate"), function $TNStropheContact__delegate(self, _cmd)
+{
+return self._delegate;
+}
+,["id"]), new objj_method(sel_getUid("_setDelegate:"), function $TNStropheContact___setDelegate_(self, _cmd, newValue)
+{
+self._delegate = newValue;
+}
+,["void","id"]), new objj_method(sel_getUid("connection"), function $TNStropheContact__connection(self, _cmd)
+{
+return self._connection;
+}
+,["TNStropheConnection"]), new objj_method(sel_getUid("setConnection:"), function $TNStropheContact__setConnection_(self, _cmd, newValue)
+{
+self._connection = newValue;
+}
+,["void","TNStropheConnection"]), new objj_method(sel_getUid("JID"), function $TNStropheContact__JID(self, _cmd)
+{
+return self._JID;
+}
+,["TNStropheJID"]), new objj_method(sel_getUid("setJID:"), function $TNStropheContact__setJID_(self, _cmd, newValue)
+{
+self._JID = newValue;
+}
+,["void","TNStropheJID"]), new objj_method(sel_getUid("vCard"), function $TNStropheContact__vCard(self, _cmd)
+{
+return self._vCard;
+}
+,["TNStropheVCard"]), new objj_method(sel_getUid("setVCard:"), function $TNStropheContact__setVCard_(self, _cmd, newValue)
+{
+self._vCard = newValue;
+}
+,["void","TNStropheVCard"]), new objj_method(sel_getUid("initWithConnection:JID:group:"), function $TNStropheContact__initWithConnection_JID_group_(self, _cmd, aConnection, aJID, aGroup)
+{
+    if (self = objj_msgSendSuper({ receiver:self, super_class:objj_getClass("TNStropheContact").super_class }, "init"))
+    {
+        self._type = "contact";
+        self._connection = aConnection;
+        self._messagesQueue = objj_msgSend(CPArray, "array");
+        self._numberOfEvents = 0;
+        self._isComposing = NO;
+        self._askingVCard = NO;
+        self._resources = objj_msgSend(CPArray, "array");
+        self._groups = objj_msgSend(CPArray, "array");
+        objj_msgSend(self, "setNickname:", objj_msgSend(self._JID, "bare"));
+        objj_msgSend(self, "setJID:", aJID);
+        objj_msgSend(self, "setXMPPStatus:", "Offline");
+        objj_msgSend(self, "setXMPPShow:", TNStropheContactStatusOffline);
+        objj_msgSend(self, "setStatusIcon:", TNStropheContactImageOffline);
+        if (aGroup)
+            objj_msgSend(self._groups, "addObject:", aGroup);
+    }
+    return self;
+}
+,["id","TNStropheConnection","TNStropheJID","TNStropheGroup"]), new objj_method(sel_getUid("setDelegate:"), function $TNStropheContact__setDelegate_(self, _cmd, aDelegate)
+{
+    if (aDelegate == self._delegate)
+        return;
+    self._delegate = aDelegate;
+    self._implementedDelegateMethods = 0;
+    if (objj_msgSend(self._delegate, "respondsToSelector:", sel_getUid("avatarForContact:")))
+        self._implementedDelegateMethods |= TNStropheContactDelegate_avatarForContact_;
+}
+,["void","id"]), new objj_method(sel_getUid("name"), function $TNStropheContact__name(self, _cmd)
+{
+    return objj_msgSend(self._vCard, "fullName") || self._nickname;
+}
+,["CPString"]), new objj_method(sel_getUid("_didReceivePresence:"), function $TNStropheContact___didReceivePresence_(self, _cmd, aStanza)
+{
+    var resource = objj_msgSend(aStanza, "fromResource"),
+        presenceStatus = objj_msgSend(aStanza, "firstChildWithName:", "status");
+    if (resource && (typeof(resource) != "undefined") && resource != "")
+    {
+        if (!objj_msgSend(self._resources, "containsObject:", resource))
+            objj_msgSend(self._resources, "addObject:", resource);
+        objj_msgSend(self._JID, "setResource:", resource);
+    }
+    switch (objj_msgSend(aStanza, "type"))
+    {
+        case "error":
+            var errorCode = objj_msgSend(objj_msgSend(aStanza, "firstChildWithName:", "error"), "valueForAttribute:", "code");
+            objj_msgSend(self, "setXMPPShow:", TNStropheContactStatusOffline);
+            objj_msgSend(self, "setXMPPStatus:", "Error code: " + errorCode);
+            objj_msgSend(self, "setStatusIcon:", TNStropheContactImageNewError);
+            self._statusReminder = TNStropheContactImageNewError;
+            return NO;
+        case "unavailable":
+            objj_msgSend(self._resources, "removeObject:", resource);
+            CPLogConsole("contact become unavailable from resource: " + resource + ". Resources left : " + self._resources + "("+ objj_msgSend(self._resources, "count") + ")");
+            if (objj_msgSend(self._resources, "count") == 0)
+            {
+                objj_msgSend(self, "setXMPPShow:", TNStropheContactStatusOffline);
+                objj_msgSend(self, "setStatusIcon:", TNStropheContactImageOffline);
+                self._statusReminder = TNStropheContactImageOffline;
+                if (presenceStatus)
+                    objj_msgSend(self, "setXMPPStatus:", objj_msgSend(presenceStatus, "text"));
+                else
+                    objj_msgSend(self, "setXMPPStatus:", "Offline");
+            }
+            else
+                objj_msgSend(self._JID, "setResource:", objj_msgSend(self._resources, "lastObject"));
+            break;
+        case "subscribe":
+            objj_msgSend(self, "setXMPPStatus:", "Asking subscribtion");
+            objj_msgSend(self, "setSubscription:", objj_msgSend(aStanza, "type"));
+            break;
+        case "subscribed":
+            objj_msgSend(self, "setSubscription:", objj_msgSend(aStanza, "type"));
+            break;
+        case "unsubscribe":
+            objj_msgSend(self, "setSubscription:", objj_msgSend(aStanza, "type"));
+            break;
+        case "unsubscribed":
+            objj_msgSend(self, "setSubscription:", objj_msgSend(aStanza, "type"));
+            objj_msgSend(self, "setXMPPStatus:", "Unauthorized");
+            break;
+        default:
+            objj_msgSend(self, "setXMPPShow:", TNStropheContactStatusOnline);
+            objj_msgSend(self, "setStatusIcon:", TNStropheContactImageOnline);
+            objj_msgSend(self, "setSubscription:", "subscribed");
+            self._statusReminder = TNStropheContactImageOnline;
+            if (objj_msgSend(aStanza, "firstChildWithName:", "show"))
+            {
+                objj_msgSend(self, "setXMPPShow:", objj_msgSend(objj_msgSend(aStanza, "firstChildWithName:", "show"), "text"));
+                switch (self._XMPPShow)
+                {
+                    case TNStropheContactStatusBusy:
+                        objj_msgSend(self, "setStatusIcon:", TNStropheContactImageBusy);
+                        self._statusReminder = TNStropheContactImageBusy;
+                        break;
+                    case TNStropheContactStatusAway:
+                        objj_msgSend(self, "setStatusIcon:", TNStropheContactImageAway);
+                        self._statusReminder = TNStropheContactImageAway;
+                        break;
+                    case TNStropheContactStatusDND:
+                        objj_msgSend(self, "setStatusIcon:", TNStropheContactImageDND);
+                        self._statusReminder = TNStropheContactImageDND;
+                        break;
+                }
+            }
+            if (self._numberOfEvents > 0)
+                objj_msgSend(self, "setStatusIcon:", TNStropheContactImageNewMessage);
+            if (presenceStatus)
+                objj_msgSend(self, "setXMPPStatus:", objj_msgSend(presenceStatus, "text"));
+            else
+                objj_msgSend(self, "setXMPPStatus:", "Online");
+            if (objj_msgSend(aStanza, "firstChildWithName:", "x")
+                && objj_msgSend(objj_msgSend(aStanza, "firstChildWithName:", "x"), "valueForAttribute:", "xmlns") == "vcard-temp:x:update"
+                && !objj_msgSend(aStanza, "firstChildWithName:", "delay"))
+            {
+                objj_msgSend(self, "getVCard");
+            }
+            break;
+    }
+    if (!(objj_msgSend(aStanza, "firstChildWithName:", "x") && objj_msgSend(objj_msgSend(aStanza, "firstChildWithName:", "x"), "valueForAttribute:", "xmlns") == "vcard-temp:x:update"))
+        objj_msgSend(objj_msgSend(CPNotificationCenter, "defaultCenter"), "postNotificationName:object:", TNStropheContactPresenceUpdatedNotification, self);
+    return YES;
+}
+,["BOOL","TNStropheStanza"]), new objj_method(sel_getUid("sendStatus:"), function $TNStropheContact__sendStatus_(self, _cmd, aStatus)
+{
+    var statusStanza = objj_msgSend(TNStropheStanza, "messageTo:withAttributes:", self._JID, {"type": "chat"});
+    objj_msgSend(statusStanza, "addChildWithName:andAttributes:", aStatus, {"xmlns": "http://jabber.org/protocol/chatstates"});
+    objj_msgSend(self, "sendStanza:andRegisterSelector:ofObject:", statusStanza, sel_getUid("_didSendStatus:"), self);
+}
+,["void","CPString"]), new objj_method(sel_getUid("_didSendStatus:"), function $TNStropheContact___didSendStatus_(self, _cmd, aStanza)
+{
+    if (objj_msgSend(aStanza, "type") == "error")
+        CPLog.error("Unable to send status. Resp is: " + aStanza);
+}
+,["void","TNStropheStanza"]), new objj_method(sel_getUid("sendComposing"), function $TNStropheContact__sendComposing(self, _cmd)
+{
+    if (self._isComposing)
+        return;
+    objj_msgSend(self, "sendStatus:", "composing");
+    self._isComposing = YES;
+}
+,["void"]), new objj_method(sel_getUid("sendComposePaused"), function $TNStropheContact__sendComposePaused(self, _cmd)
+{
+    objj_msgSend(self, "sendStatus:", "paused");
+    self._isComposing = NO;
+}
+,["void"]), new objj_method(sel_getUid("subscribe"), function $TNStropheContact__subscribe(self, _cmd)
+{
+    objj_msgSend(self._connection, "send:", objj_msgSend(TNStropheStanza, "presenceTo:withAttributes:bare:", self._JID, {"type": "subscribed"}, YES));
+}
+,["void"]), new objj_method(sel_getUid("unsubscribe"), function $TNStropheContact__unsubscribe(self, _cmd)
+{
+    objj_msgSend(self._connection, "send:", objj_msgSend(TNStropheStanza, "presenceTo:withAttributes:bare:", self._JID, {"type": "unsubscribed"}, YES));
+}
+,["void"]), new objj_method(sel_getUid("askSubscription"), function $TNStropheContact__askSubscription(self, _cmd)
+{
+    objj_msgSend(self._connection, "send:", objj_msgSend(TNStropheStanza, "presenceTo:withAttributes:bare:", self._JID, {"type": "subscribe"}, YES));
+}
+,["void"]), new objj_method(sel_getUid("setSubscription:"), function $TNStropheContact__setSubscription_(self, _cmd, aSubscription)
+{
+    objj_msgSend(self, "willChangeValueForKey:", "subscription");
+    self._subscription = aSubscription;
+    objj_msgSend(objj_msgSend(CPNotificationCenter, "defaultCenter"), "postNotificationName:object:", TNStropheContactSubscriptionUpdatedNotification, self);
+    objj_msgSend(self, "didChangeValueForKey:", "subscription");
+}
+,["void","CPString"]), new objj_method(sel_getUid("description"), function $TNStropheContact__description(self, _cmd)
+{
+    return self._nickname;
+}
+,["CPString"]), new objj_method(sel_getUid("getVCard"), function $TNStropheContact__getVCard(self, _cmd)
+{
+    var uid = objj_msgSend(self._connection, "getUniqueId"),
+        vcardStanza = objj_msgSend(TNStropheStanza, "iqTo:withAttributes:bare:", self._JID, {"type": "get", "id": uid}, YES),
+        params = objj_msgSend(CPDictionary, "dictionaryWithObjectsAndKeys:", uid, "id");
+    objj_msgSend(vcardStanza, "addChildWithName:andAttributes:", "vCard", {"xmlns": "vcard-temp"});
+    self._askingVCard = YES;
+    objj_msgSend(self._connection, "registerSelector:ofObject:withDict:", sel_getUid("_didReceiveVCard:"), self, params);
+    objj_msgSend(self._connection, "send:", vcardStanza);
+}
+,["void"]), new objj_method(sel_getUid("_didReceiveVCard:"), function $TNStropheContact___didReceiveVCard_(self, _cmd, aStanza)
+{
+    var aVCard = objj_msgSend(aStanza, "firstChildWithName:", "vCard");
+    self._askingVCard = NO;
+    self._avatar = nil;
+    if (aVCard)
+    {
+        var VCARD = objj_msgSend(objj_msgSend(TNStropheVCard, "alloc"), "initWithXMLNode:", aVCard);
+        if (!self._nickname || (self._nickname == objj_msgSend(self._JID, "bare")) || (self._nickname == objj_msgSend(self._JID, "node")))
+            objj_msgSend(self, "setNickname:", objj_msgSend(VCARD, "fullName") || objj_msgSend(self._JID, "node"))
+        if (objj_msgSend(VCARD, "photo"))
+            objj_msgSend(self, "setAvatar:", objj_msgSend(VCARD, "photo"));
+        else if (self._implementedDelegateMethods & TNStropheContactDelegate_avatarForContact_)
+            objj_msgSend(self, "setAvatar:", objj_msgSend(self._delegate, "avatarForContact:", self));
+        objj_msgSend(self, "willChangeValueForKey:", "name");
+        objj_msgSend(self, "setVCard:", VCARD);
+        objj_msgSend(self, "didChangeValueForKey:", "name");
+        objj_msgSend(objj_msgSend(CPNotificationCenter, "defaultCenter"), "postNotificationName:object:", TNStropheContactVCardReceivedNotification, self);
+    }
+    return NO;
+}
+,["BOOL","TNStropheStanza"]), new objj_method(sel_getUid("sendStanza:"), function $TNStropheContact__sendStanza_(self, _cmd, aStanza)
+{
+    objj_msgSend(self, "sendStanza:withUserInfo:", aStanza, nil);
+}
+,["void","TNStropheStanza"]), new objj_method(sel_getUid("sendStanza:withUserInfo:"), function $TNStropheContact__sendStanza_withUserInfo_(self, _cmd, aStanza, userInfo)
+{
+    objj_msgSend(aStanza, "setTo:", self._JID);
+    objj_msgSend(self._connection, "send:", aStanza);
+    objj_msgSend(objj_msgSend(CPNotificationCenter, "defaultCenter"), "postNotificationName:object:userInfo:", TNStropheContactStanzaSentNotification, self, userInfo);
+}
+,["void","TNStropheStanza","CPDictionary"]), new objj_method(sel_getUid("sendStanza:andRegisterSelector:ofObject:withSpecificID:userInfo:handlerDelegate:"), function $TNStropheContact__sendStanza_andRegisterSelector_ofObject_withSpecificID_userInfo_handlerDelegate_(self, _cmd, aStanza, aSelector, anObject, anId, someUserInfo, aDelegate)
+{
+    var params = objj_msgSend(CPDictionary, "dictionaryWithObjectsAndKeys:", anId, "id"),
+        userInfo = objj_msgSend(CPDictionary, "dictionaryWithObjectsAndKeys:", aStanza, "stanza", anId, "id"),
+        ret;
+    objj_msgSend(aStanza, "setID:", anId);
+    if (aSelector && someUserInfo && aDelegate)
+        ret = objj_msgSend(self._connection, "registerSelector:ofObject:withDict:userInfo:handlerDelegate:", aSelector, anObject, params, someUserInfo, aDelegate);
+    else if (aSelector && !someUserInfo && aDelegate)
+        ret = objj_msgSend(self._connection, "registerSelector:ofObject:withDict:handlerDelegate:", aSelector, anObject, params, aDelegate);
+    else if (aSelector && someUserInfo && !aDelegate)
+        ret = objj_msgSend(self._connection, "registerSelector:ofObject:withDict:userInfo:", aSelector, anObject, params, someUserInfo);
+    else if (aSelector && !someUserInfo && !aDelegate)
+        ret = objj_msgSend(self._connection, "registerSelector:ofObject:withDict:", aSelector, anObject, params);
+    objj_msgSend(self, "sendStanza:withUserInfo:", aStanza, userInfo);
+    return ret;
+}
+,["id","TNStropheStanza","SEL","id","id","id","id"]), new objj_method(sel_getUid("sendStanza:andRegisterSelector:ofObject:"), function $TNStropheContact__sendStanza_andRegisterSelector_ofObject_(self, _cmd, aStanza, aSelector, anObject)
+{
+    return objj_msgSend(self, "sendStanza:andRegisterSelector:ofObject:withSpecificID:userInfo:handlerDelegate:", aStanza, aSelector, anObject, objj_msgSend(self._connection, "getUniqueId"), nil, nil);
+}
+,["id","TNStropheStanza","SEL","id"]), new objj_method(sel_getUid("sendStanza:andRegisterSelector:ofObject:withSpecificID:"), function $TNStropheContact__sendStanza_andRegisterSelector_ofObject_withSpecificID_(self, _cmd, aStanza, aSelector, anObject, anId)
+{
+    return objj_msgSend(self, "sendStanza:andRegisterSelector:ofObject:withSpecificID:userInfo:handlerDelegate:", aStanza, aSelector, anObject, anId, nil, nil);
+}
+,["id","TNStropheStanza","SEL","id","int"]), new objj_method(sel_getUid("sendStanza:andRegisterSelector:ofObject:userInfo:"), function $TNStropheContact__sendStanza_andRegisterSelector_ofObject_userInfo_(self, _cmd, aStanza, aSelector, anObject, someUserInfo)
+{
+    return objj_msgSend(self, "sendStanza:andRegisterSelector:ofObject:withSpecificID:userInfo:handlerDelegate:", aStanza, aSelector, anObject, objj_msgSend(self._connection, "getUniqueId"), someUserInfo, nil);
+}
+,["id","TNStropheStanza","SEL","id","id"]), new objj_method(sel_getUid("sendStanza:andRegisterSelector:ofObject:handlerDelegate:"), function $TNStropheContact__sendStanza_andRegisterSelector_ofObject_handlerDelegate_(self, _cmd, aStanza, aSelector, anObject, aDelegate)
+{
+    return objj_msgSend(self, "sendStanza:andRegisterSelector:ofObject:withSpecificID:userInfo:handlerDelegate:", aStanza, aSelector, anObject, objj_msgSend(self._connection, "getUniqueId"), nil, aDelegate);
+}
+,["id","TNStropheStanza","SEL","id","id"]), new objj_method(sel_getUid("getMessages"), function $TNStropheContact__getMessages(self, _cmd)
+{
+    var params = objj_msgSend(CPDictionary, "dictionaryWithObjectsAndKeys:", "message", "name", objj_msgSend(self._JID, "bare"), "from", {matchBare: true}, "options");
+    objj_msgSend(self._connection, "registerSelector:ofObject:withDict:", sel_getUid("_didReceiveMessage:"), self, params);
+}
+,["void"]), new objj_method(sel_getUid("_didReceiveMessage:"), function $TNStropheContact___didReceiveMessage_(self, _cmd, aStanza)
+{
+    var center = objj_msgSend(CPNotificationCenter, "defaultCenter"),
+        userInfo = objj_msgSend(CPDictionary, "dictionaryWithObjectsAndKeys:", aStanza, "stanza", objj_msgSend(CPDate, "date"), "date");
+    if (objj_msgSend(aStanza, "containsChildrenWithName:", "composing"))
+        objj_msgSend(center, "postNotificationName:object:userInfo:", TNStropheContactMessageComposingNotification, self, userInfo);
+    if (objj_msgSend(aStanza, "containsChildrenWithName:", "paused"))
+        objj_msgSend(center, "postNotificationName:object:userInfo:", TNStropheContactMessagePausedNotification, self, userInfo);
+    if (objj_msgSend(aStanza, "containsChildrenWithName:", "active"))
+        objj_msgSend(center, "postNotificationName:object:userInfo:", TNStropheContactMessageActiveNotification, self, userInfo);
+    if (objj_msgSend(aStanza, "containsChildrenWithName:", "inactive"))
+        objj_msgSend(center, "postNotificationName:object:userInfo:", TNStropheContactMessageInactiveNotification, self, userInfo);
+    if (objj_msgSend(aStanza, "containsChildrenWithName:", "gone"))
+        objj_msgSend(center, "postNotificationName:object:userInfo:", TNStropheContactMessageGoneNotification, self, userInfo);
+    if (objj_msgSend(aStanza, "containsChildrenWithName:", "body"))
+    {
+        self._statusIcon = TNStropheContactImageNewMessage;
+        objj_msgSend(self._messagesQueue, "addObject:", aStanza);
+        self._numberOfEvents++;
+        objj_msgSend(center, "postNotificationName:object:userInfo:", TNStropheContactMessageReceivedNotification, self, userInfo);
+    }
+    return YES;
+}
+,["BOOL","id"]), new objj_method(sel_getUid("sendMessage:"), function $TNStropheContact__sendMessage_(self, _cmd, aMessage)
+{
+    objj_msgSend(self, "sendMessage:withType:", aMessage, "chat");
+}
+,["void","CPString"]), new objj_method(sel_getUid("sendMessage:withType:"), function $TNStropheContact__sendMessage_withType_(self, _cmd, aMessage, aType)
+{
+    var messageStanza = objj_msgSend(TNStropheStanza, "messageWithAttributes:", {"type":aType});
+    objj_msgSend(messageStanza, "addChildWithName:", "body");
+    objj_msgSend(messageStanza, "addTextNode:", aMessage);
+    objj_msgSend(self, "sendStanza:andRegisterSelector:ofObject:", messageStanza, sel_getUid("_didSendMessage:"), self);
+}
+,["void","CPString","CPString"]), new objj_method(sel_getUid("_didSendMessage:"), function $TNStropheContact___didSendMessage_(self, _cmd, aStanza)
+{
+    if (objj_msgSend(aStanza, "type") == "error")
+        CPLog.error("Unable to send message. Resp is: " + aStanza);
+}
+,["void","TNStropheStanza"]), new objj_method(sel_getUid("popMessagesQueue"), function $TNStropheContact__popMessagesQueue(self, _cmd)
+{
+    if (objj_msgSend(self._messagesQueue, "count") == 0)
+        return;
+    var message = objj_msgSend(self._messagesQueue, "objectAtIndex:", 0);
+    self._numberOfEvents--;
+    if (self._numberOfEvents === 0)
+        self._statusIcon = self._statusReminder;
+    objj_msgSend(self._messagesQueue, "removeObjectAtIndex:", 0);
+    objj_msgSend(objj_msgSend(CPNotificationCenter, "defaultCenter"), "postNotificationName:object:", TNStropheContactMessageTreatedNotification, self);
+    return message;
+}
+,["TNStropheStanza"]), new objj_method(sel_getUid("freeMessagesQueue"), function $TNStropheContact__freeMessagesQueue(self, _cmd)
+{
+    self._numberOfEvents = 0;
+    objj_msgSend(self, "setStatusIcon:", self._statusReminder);
+    objj_msgSend(self._messagesQueue, "removeAllObjects");
+    objj_msgSend(objj_msgSend(CPNotificationCenter, "defaultCenter"), "postNotificationName:object:", TNStropheContactMessageTreatedNotification, self);
+}
+,["void"]), new objj_method(sel_getUid("imageDidLoad:"), function $TNStropheContact__imageDidLoad_(self, _cmd, anImage)
+{
+    objj_msgSend(anImage, "setDelegate:", nil);
+    objj_msgSend(objj_msgSend(CPNotificationCenter, "defaultCenter"), "postNotificationName:object:", TNStropheContactVCardReceivedNotification, self);
+}
+,["void","CPImage"])]);
+class_addMethods(meta_class, [new objj_method(sel_getUid("contactWithConnection:JID:group:"), function $TNStropheContact__contactWithConnection_JID_group_(self, _cmd, aConnection, aJID, aGroup)
+{
+    return objj_msgSend(objj_msgSend(TNStropheContact, "alloc"), "initWithConnection:JID:group:", aConnection, aJID, aGroup);
+}
+,["TNStropheContact","TNStropheConnection","TNStropheJID","TNStropheGroup"]), new objj_method(sel_getUid("initialize"), function $TNStropheContact__initialize(self, _cmd)
+{
+    var bundle = objj_msgSend(CPBundle, "bundleForClass:", TNStropheContact);
+    TNStropheContactImageOffline = objj_msgSend(objj_msgSend(CPImage, "alloc"), "initWithContentsOfFile:size:", objj_msgSend(bundle, "pathForResource:", "gray.png"), CGSizeMake(8.0, 8.0));
+    TNStropheContactImageOnline = objj_msgSend(objj_msgSend(CPImage, "alloc"), "initWithContentsOfFile:size:", objj_msgSend(bundle, "pathForResource:", "green.png"), CGSizeMake(8.0, 8.0));
+    TNStropheContactImageBusy = objj_msgSend(objj_msgSend(CPImage, "alloc"), "initWithContentsOfFile:size:", objj_msgSend(bundle, "pathForResource:", "red.png"), CGSizeMake(8.0, 8.0));
+    TNStropheContactImageAway = objj_msgSend(objj_msgSend(CPImage, "alloc"), "initWithContentsOfFile:size:", objj_msgSend(bundle, "pathForResource:", "orange.png"), CGSizeMake(8.0, 8.0));
+    TNStropheContactImageDND = objj_msgSend(objj_msgSend(CPImage, "alloc"), "initWithContentsOfFile:size:", objj_msgSend(bundle, "pathForResource:", "black.png"), CGSizeMake(8.0, 8.0));
+    TNStropheContactImageNewMessage = objj_msgSend(objj_msgSend(CPImage, "alloc"), "initWithContentsOfFile:size:", objj_msgSend(bundle, "pathForResource:", "blue.png"), CGSizeMake(8.0, 8.0));
+    TNStropheContactImageNewError = objj_msgSend(objj_msgSend(CPImage, "alloc"), "initWithContentsOfFile:size:", objj_msgSend(bundle, "pathForResource:", "error.png"), CGSizeMake(8.0, 8.0));
+}
+,["void"])]);
+}
+{
+var the_class = objj_getClass("TNStropheContact")
+if(!the_class) throw new SyntaxError("*** Could not find definition for class \"TNStropheContact\"");
+var meta_class = the_class.isa;
+class_addMethods(the_class, [new objj_method(sel_getUid("initWithCoder:"), function $TNStropheContact__initWithCoder_(self, _cmd, aCoder)
+{
+    if (self = objj_msgSendSuper({ receiver:self, super_class:objj_getClass("TNStropheContact").super_class }, "init"))
+    {
+        self._JID = objj_msgSend(aCoder, "decodeObjectForKey:", "_JID");
+        self._nodeName = objj_msgSend(aCoder, "decodeObjectForKey:", "_nodeName");
+        self._groups = objj_msgSend(aCoder, "decodeObjectForKey:", "_groups");
+        self._nickname = objj_msgSend(aCoder, "decodeObjectForKey:", "_nickname");
+        self._XMPPStatus = objj_msgSend(aCoder, "decodeObjectForKey:", "_XMPPStatus");
+        self._resources = objj_msgSend(aCoder, "decodeObjectForKey:", "_resources");
+        self._XMPPShow = objj_msgSend(aCoder, "decodeObjectForKey:", "_XMPPShow");
+        self._statusIcon = objj_msgSend(aCoder, "decodeObjectForKey:", "_statusIcon");
+        self._type = objj_msgSend(aCoder, "decodeObjectForKey:", "_type");
+        self._vCard = objj_msgSend(aCoder, "decodeObjectForKey:", "_vCard");
+        self._numberOfEvents = objj_msgSend(aCoder, "decodeObjectForKey:", "_numberOfEvents");
+    }
+    return self;
+}
+,["id","CPCoder"]), new objj_method(sel_getUid("encodeWithCoder:"), function $TNStropheContact__encodeWithCoder_(self, _cmd, aCoder)
+{
+    objj_msgSend(aCoder, "encodeObject:forKey:", self._JID, "_JID");
+    objj_msgSend(aCoder, "encodeObject:forKey:", self._nodeName, "_nodeName");
+    objj_msgSend(aCoder, "encodeObject:forKey:", self._groups, "_groups");
+    objj_msgSend(aCoder, "encodeObject:forKey:", self._nickname, "_nickname");
+    objj_msgSend(aCoder, "encodeObject:forKey:", self._XMPPStatus, "_XMPPStatus");
+    objj_msgSend(aCoder, "encodeObject:forKey:", self._XMPPShow, "_XMPPShow");
+    objj_msgSend(aCoder, "encodeObject:forKey:", self._type, "_type");
+    objj_msgSend(aCoder, "encodeObject:forKey:", self._statusIcon, "_statusIcon");
+    objj_msgSend(aCoder, "encodeObject:forKey:", self._messagesQueue, "_messagesQueue");
+    objj_msgSend(aCoder, "encodeObject:forKey:", self._numberOfEvents, "_numberOfEvents");
+    if (self._resources)
+        objj_msgSend(aCoder, "encodeObject:forKey:", self._resources, "_resources");
+    if (self._vCard)
+        objj_msgSend(aCoder, "encodeObject:forKey:", self._vCard, "_vCard");
+}
+,["void","CPCoder"])]);
+}p;16;TNStropheGroup.jt;7658;@STATIC;1.0;I;23;Foundation/Foundation.jt;7611;objj_executeFile("Foundation/Foundation.j", NO);
+//@global TNStropheRosterRosterDelimiter
+TNStropheGroupRemovedNotification = "TNStropheGroupRemoved";
+{var the_class = objj_allocateClassPair(CPObject, "TNStropheGroup"),
+meta_class = the_class.isa;class_addIvars(the_class, [new objj_ivar("_subGroups"), new objj_ivar("_contacts"), new objj_ivar("_name"), new objj_ivar("_parentGroup")]);
+
+       
+       
+
+       
+       
+
+       
+       
+
+
+
+
+
+       
+       
+
+
+
+
+objj_registerClassPair(the_class);
+class_addMethods(the_class, [new objj_method(sel_getUid("subGroups"), function $TNStropheGroup__subGroups(self, _cmd)
+{
+return self._subGroups;
+}
+,["CPArray"]), new objj_method(sel_getUid("_setSubGroups:"), function $TNStropheGroup___setSubGroups_(self, _cmd, newValue)
+{
+self._subGroups = newValue;
+}
+,["void","CPArray"]), new objj_method(sel_getUid("contacts"), function $TNStropheGroup__contacts(self, _cmd)
+{
+return self._contacts;
+}
+,["CPArray"]), new objj_method(sel_getUid("setContacts:"), function $TNStropheGroup__setContacts_(self, _cmd, newValue)
+{
+self._contacts = newValue;
+}
+,["void","CPArray"]), new objj_method(sel_getUid("name"), function $TNStropheGroup__name(self, _cmd)
+{
+return self._name;
+}
+,["CPString"]), new objj_method(sel_getUid("setName:"), function $TNStropheGroup__setName_(self, _cmd, newValue)
+{
+self._name = newValue;
+}
+,["void","CPString"]), new objj_method(sel_getUid("parentGroup"), function $TNStropheGroup__parentGroup(self, _cmd)
+{
+return self._parentGroup;
+}
+,["TNStropheGroup"]), new objj_method(sel_getUid("setParentGroup:"), function $TNStropheGroup__setParentGroup_(self, _cmd, newValue)
+{
+self._parentGroup = newValue;
+}
+,["void","TNStropheGroup"]), new objj_method(sel_getUid("initWithName:"), function $TNStropheGroup__initWithName_(self, _cmd, aName)
+{
+    if (self = objj_msgSendSuper({ receiver:self, super_class:objj_getClass("TNStropheGroup").super_class }, "init"))
+    {
+        self._contacts = objj_msgSend(CPArray, "array");
+        self._subGroups = objj_msgSend(CPArray, "array");
+        self._name = aName;
+        self._parentGroup = nil;
+    }
+    return self;
+}
+,["TNStropheGroup","CPString"]), new objj_method(sel_getUid("description"), function $TNStropheGroup__description(self, _cmd)
+{
+    return self._name;
+}
+,["CPString"]), new objj_method(sel_getUid("contactWithJID:matchBare:"), function $TNStropheGroup__contactWithJID_matchBare_(self, _cmd, aJID, matchBare)
+{
+    for (var i = 0; i < objj_msgSend(self._contacts, "count"); i++)
+    {
+        if (matchBare)
+        {
+            if (objj_msgSend(objj_msgSend(objj_msgSend(self._contacts, "objectAtIndex:", i), "JID"), "bareEquals:", aJID))
+                return objj_msgSend(self._contacts, "objectAtIndex:", i);
+        }
+        else
+        {
+            if (objj_msgSend(objj_msgSend(objj_msgSend(self._contacts, "objectAtIndex:", i), "JID"), "fullEquals:", aJID))
+                return objj_msgSend(self._contacts, "objectAtIndex:", i);
+        }
+    }
+    return nil;
+}
+,["TNStropheContact","TNStropheJID","BOOL"]), new objj_method(sel_getUid("addSubGroup:"), function $TNStropheGroup__addSubGroup_(self, _cmd, aGroup)
+{
+    if (!objj_msgSend(aGroup, "isKindOfClass:", TNStropheGroup))
+        objj_msgSend(CPException, "raise:reason:", "Invalid Object", "addSubGroup only supports to add TNStropheGroups");
+    objj_msgSend(aGroup, "setParentGroup:", self);
+    objj_msgSend(self._subGroups, "addObject:", aGroup);
+}
+,["void","TNStropheGroup"]), new objj_method(sel_getUid("removeSubGroup:"), function $TNStropheGroup__removeSubGroup_(self, _cmd, aGroup)
+{
+    if (!objj_msgSend(self._subGroups, "containsObject:", aGroup))
+        return;
+    objj_msgSend(aGroup, "setParentGroup:", nil);
+    objj_msgSend(self._subGroups, "removeObject:", aGroup);
+}
+,["void","TNStropheGroup"]), new objj_method(sel_getUid("removeSubGroups"), function $TNStropheGroup__removeSubGroups(self, _cmd)
+{
+    for (var i = 0; i < objj_msgSend(self, "subGroupsCount"); i++)
+    {
+        var subGroup = objj_msgSend(self._subGroups, "objectAtIndex:", i);
+        objj_msgSend(self, "removeSubGroup:", subGroup);
+    }
+    objj_msgSend(self._subGroups, "removeAllObjects");
+}
+,["void"]), new objj_method(sel_getUid("subGroupWithName:"), function $TNStropheGroup__subGroupWithName_(self, _cmd, aName)
+{
+    for (var i = 0; i < objj_msgSend(self, "subGroupsCount"); i++)
+        if (objj_msgSend(objj_msgSend(objj_msgSend(self._subGroups, "objectAtIndex:", i), "name"), "uppercaseString") == objj_msgSend(aName, "uppercaseString"))
+            return objj_msgSend(self._subGroups, "objectAtIndex:", i);
+    return nil;
+}
+,["TNStropheGroup","CPString"]), new objj_method(sel_getUid("path"), function $TNStropheGroup__path(self, _cmd)
+{
+    var path = [objj_msgSend(self, "name")],
+        currentGroup = self;
+    while (currentGroup)
+    {
+        currentGroup = objj_msgSend(currentGroup, "parentGroup");
+        if (currentGroup)
+            objj_msgSend(path, "addObject:", objj_msgSend(objj_msgSend(currentGroup, "name"), "uppercaseString"));
+    }
+    return path.reverse().join(TNStropheRosterRosterDelimiter);
+}
+,["CPString"]), new objj_method(sel_getUid("flush"), function $TNStropheGroup__flush(self, _cmd)
+{
+    objj_msgSend(self, "removeSubGroups");
+    objj_msgSend(self._contacts, "removeAllObjects");
+}
+,["void"]), new objj_method(sel_getUid("subGroupsCount"), function $TNStropheGroup__subGroupsCount(self, _cmd)
+{
+    return objj_msgSend(self._subGroups, "count");
+}
+,["int"]), new objj_method(sel_getUid("contactCount"), function $TNStropheGroup__contactCount(self, _cmd)
+{
+    return objj_msgSend(self._contacts, "count");
+}
+,["int"]), new objj_method(sel_getUid("count"), function $TNStropheGroup__count(self, _cmd)
+{
+    return objj_msgSend(self, "subGroupsCount") + objj_msgSend(self, "contactCount");
+}
+,["int"]), new objj_method(sel_getUid("content"), function $TNStropheGroup__content(self, _cmd)
+{
+    return objj_msgSend(self._subGroups.sort(), "arrayByAddingObjectsFromArray:", self._contacts.sort());
+}
+,["CPArray"])]);
+class_addMethods(meta_class, [new objj_method(sel_getUid("stropheGroupWithName:"), function $TNStropheGroup__stropheGroupWithName_(self, _cmd, aName)
+{
+    return objj_msgSend(objj_msgSend(TNStropheGroup, "alloc"), "initWithName:", aName);
+}
+,["TNStropheGroup","CPString"])]);
+}
+{
+var the_class = objj_getClass("TNStropheGroup")
+if(!the_class) throw new SyntaxError("*** Could not find definition for class \"TNStropheGroup\"");
+var meta_class = the_class.isa;
+class_addMethods(the_class, [new objj_method(sel_getUid("initWithCoder:"), function $TNStropheGroup__initWithCoder_(self, _cmd, aCoder)
+{
+    if (self = objj_msgSendSuper({ receiver:self, super_class:objj_getClass("TNStropheGroup").super_class }, "init"))
+    {
+        self._contacts = objj_msgSend(aCoder, "decodeObjectForKey:", "_contacts");
+        self._name = objj_msgSend(aCoder, "decodeObjectForKey:", "_name");
+        self._parentGroup = objj_msgSend(aCoder, "decodeObjectForKey:", "_parentGroup");
+        self._subGroups = objj_msgSend(aCoder, "decodeObjectForKey:", "_subGroups");
+    }
+    return self;
+}
+,["id","CPCoder"]), new objj_method(sel_getUid("encodeWithCoder:"), function $TNStropheGroup__encodeWithCoder_(self, _cmd, aCoder)
+{
+    objj_msgSend(aCoder, "encodeObject:forKey:", self._contacts, "_contacts");
+    objj_msgSend(aCoder, "encodeObject:forKey:", self._name, "_name");
+    objj_msgSend(aCoder, "encodeObject:forKey:", self._parentGroup, "_parentGroup");
+    objj_msgSend(aCoder, "encodeObject:forKey:", self._subGroups, "_subGroups");
+}
+,["void","CPCoder"])]);
+}p;19;TNStropheIMClient.jt;5992;@STATIC;1.0;I;23;Foundation/Foundation.ji;25;Resources/Strophe/sha1.jsi;17;TNStropheClient.ji;21;TNStropheConnection.ji;14;TNStropheJID.ji;17;TNStropheRoster.ji;17;TNStropheStanza.jt;5804;objj_executeFile("Foundation/Foundation.j", NO);
+objj_executeFile("Resources/Strophe/sha1.js", YES);
+objj_executeFile("TNStropheClient.j", YES);
+objj_executeFile("TNStropheConnection.j", YES);
+objj_executeFile("TNStropheJID.j", YES);
+objj_executeFile("TNStropheRoster.j", YES);
+objj_executeFile("TNStropheStanza.j", YES);
+{var the_class = objj_allocateClassPair(TNStropheClient, "TNStropheIMClient"),
+meta_class = the_class.isa;class_addIvars(the_class, [new objj_ivar("_roster")]);
+
+
+
+       
+       
+
+
+       
+       
+
+       
+       
+
+
+
+
+
+objj_registerClassPair(the_class);
+class_addMethods(the_class, [new objj_method(sel_getUid("roster"), function $TNStropheIMClient__roster(self, _cmd)
+{
+return self._roster;
+}
+,["TNStropheRoster"]), new objj_method(sel_getUid("_setRoster:"), function $TNStropheIMClient___setRoster_(self, _cmd, newValue)
+{
+self._roster = newValue;
+}
+,["void","TNStropheRoster"]), new objj_method(sel_getUid("initWithService:rosterClass:"), function $TNStropheIMClient__initWithService_rosterClass_(self, _cmd, aService, aRosterClass)
+{
+    if (self = objj_msgSendSuper({ receiver:self, super_class:objj_getClass("TNStropheIMClient").super_class }, "initWithService:", aService))
+    {
+        if (!aRosterClass)
+            aRosterClass = TNStropheRoster;
+        self._roster = objj_msgSend(aRosterClass, "rosterWithConnection:", self._connection);
+    }
+    return self;
+}
+,["id","CPString","id"]), new objj_method(sel_getUid("initWithService:JID:password:rosterClass:"), function $TNStropheIMClient__initWithService_JID_password_rosterClass_(self, _cmd, aService, aJID, aPassword, aRosterClass)
+{
+    if (self = objj_msgSend(self, "initWithService:rosterClass:", aService, aRosterClass))
+    {
+        self._JID = aJID;
+        self._password = aPassword;
+        objj_msgSend(objj_msgSend(CPNotificationCenter, "defaultCenter"), "addObserver:selector:name:object:", self, sel_getUid("_didReceiveRoster:"), TNStropheRosterRetrievedNotification, nil);
+    }
+    return self;
+}
+,["id","CPString","TNStropheJID","CPString","id"]), new objj_method(sel_getUid("_didReceiveRoster:"), function $TNStropheIMClient___didReceiveRoster_(self, _cmd, aNotification)
+{
+    objj_msgSend(self, "_sendInitialPresence");
+    objj_msgSendSuper({ receiver:self, super_class:objj_getClass("TNStropheIMClient").super_class }, "onStropheConnected:", self._connection);
+}
+,["void","CPNotification"]), new objj_method(sel_getUid("onStropheConnected:"), function $TNStropheIMClient__onStropheConnected_(self, _cmd, aConnection)
+{
+    objj_msgSend(self._roster, "getSubGroupDelimiter");
+}
+,["void","TNStropheConnection"]), new objj_method(sel_getUid("onStropheConnectFail:"), function $TNStropheIMClient__onStropheConnectFail_(self, _cmd, aConnection)
+{
+    objj_msgSend(self._roster, "clear");
+    objj_msgSendSuper({ receiver:self, super_class:objj_getClass("TNStropheIMClient").super_class }, "onStropheConnectFail:", aConnection);
+}
+,["void","TNStropheConnection"]), new objj_method(sel_getUid("onStropheDisconnected:"), function $TNStropheIMClient__onStropheDisconnected_(self, _cmd, aConnection)
+{
+    objj_msgSend(self._roster, "clear");
+    objj_msgSendSuper({ receiver:self, super_class:objj_getClass("TNStropheIMClient").super_class }, "onStropheDisconnected:", aConnection);
+}
+,["void","TNStropheConnection"]), new objj_method(sel_getUid("onStropheError:"), function $TNStropheIMClient__onStropheError_(self, _cmd, aConnection)
+{
+    objj_msgSend(self._roster, "clear");
+    objj_msgSendSuper({ receiver:self, super_class:objj_getClass("TNStropheIMClient").super_class }, "onStropheError:", aConnection);
+}
+,["void","TNStropheConnection"]), new objj_method(sel_getUid("initWithCoder:"), function $TNStropheIMClient__initWithCoder_(self, _cmd, aCoder)
+{
+    self = objj_msgSendSuper({ receiver:self, super_class:objj_getClass("TNStropheIMClient").super_class }, "initWithCoder:", aCoder);
+    if (self)
+    {
+        self._roster = objj_msgSend(aCoder, "decodeObjectForKey:", "_roster");
+    }
+    return self;
+}
+,["id","CPCoder"]), new objj_method(sel_getUid("encodeWithCoder:"), function $TNStropheIMClient__encodeWithCoder_(self, _cmd, aCoder)
+{
+    objj_msgSendSuper({ receiver:self, super_class:objj_getClass("TNStropheIMClient").super_class }, "encodeWithCoder:", aCoder);
+    objj_msgSend(aCoder, "encodeObject:forKey:", self._roster, "_roster");
+}
+,["void","CPCoder"])]);
+class_addMethods(meta_class, [new objj_method(sel_getUid("IMClientWithService:"), function $TNStropheIMClient__IMClientWithService_(self, _cmd, aService)
+{
+    return objj_msgSend(objj_msgSend(TNStropheIMClient, "alloc"), "initWithService:", aService);
+}
+,["TNStropheIMClient","CPString"]), new objj_method(sel_getUid("IMClientWithService:rosterClass:"), function $TNStropheIMClient__IMClientWithService_rosterClass_(self, _cmd, aService, aRosterClass)
+{
+    return objj_msgSend(objj_msgSend(TNStropheIMClient, "alloc"), "initWithService:rosterClass:", aService, aRosterClass);
+}
+,["TNStropheIMClient","CPString","id"]), new objj_method(sel_getUid("IMClientWithService:JID:password:"), function $TNStropheIMClient__IMClientWithService_JID_password_(self, _cmd, aService, aJID, aPassword)
+{
+    return objj_msgSend(objj_msgSend(TNStropheIMClient, "alloc"), "initWithService:JID:password:", aService, aJID, aPassword);
+}
+,["TNStropheIMClient","CPString","TNStropheJID","CPString"]), new objj_method(sel_getUid("IMClientWithService:JID:password:rosterClass:"), function $TNStropheIMClient__IMClientWithService_JID_password_rosterClass_(self, _cmd, aService, aJID, aPassword, aRosterClass)
+{
+    return objj_msgSend(objj_msgSend(TNStropheIMClient, "alloc"), "initWithService:JID:password:rosterClass:", aService, aJID, aPassword, aRosterClass);
+}
+,["TNStropheIMClient","CPString","TNStropheJID","CPString","id"])]);
+}p;14;TNStropheJID.jt;8895;@STATIC;1.0;I;23;Foundation/Foundation.jt;8848;objj_executeFile("Foundation/Foundation.j", NO);
+TNStropheJIDExceptionJID = "TNStropheJIDExceptionJID";
+{var the_class = objj_allocateClassPair(CPObject, "TNStropheJID"),
+meta_class = the_class.isa;class_addIvars(the_class, [new objj_ivar("_isServer"), new objj_ivar("_domain"), new objj_ivar("_node"), new objj_ivar("_resource")]);
+
+
+
+       
+       
+
+
+
+       
+       
+
+
+
+
+
+
+
+
+       
+       
+
+
+
+objj_registerClassPair(the_class);
+class_addMethods(the_class, [new objj_method(sel_getUid("isServer"), function $TNStropheJID__isServer(self, _cmd)
+{
+return self._isServer;
+}
+,["BOOL"]), new objj_method(sel_getUid("_setIsServer:"), function $TNStropheJID___setIsServer_(self, _cmd, newValue)
+{
+self._isServer = newValue;
+}
+,["void","BOOL"]), new objj_method(sel_getUid("domain"), function $TNStropheJID__domain(self, _cmd)
+{
+return self._domain;
+}
+,["CPString"]), new objj_method(sel_getUid("setDomain:"), function $TNStropheJID__setDomain_(self, _cmd, newValue)
+{
+self._domain = newValue;
+}
+,["void","CPString"]), new objj_method(sel_getUid("node"), function $TNStropheJID__node(self, _cmd)
+{
+return self._node;
+}
+,["CPString"]), new objj_method(sel_getUid("setNode:"), function $TNStropheJID__setNode_(self, _cmd, newValue)
+{
+self._node = newValue;
+}
+,["void","CPString"]), new objj_method(sel_getUid("resource"), function $TNStropheJID__resource(self, _cmd)
+{
+return self._resource;
+}
+,["CPString"]), new objj_method(sel_getUid("setResource:"), function $TNStropheJID__setResource_(self, _cmd, newValue)
+{
+self._resource = newValue;
+}
+,["void","CPString"]), new objj_method(sel_getUid("initWithNode:domain:resource:"), function $TNStropheJID__initWithNode_domain_resource_(self, _cmd, aNode, aDomain, aResource)
+{
+    if (self = objj_msgSendSuper({ receiver:self, super_class:objj_getClass("TNStropheJID").super_class }, "init"))
+    {
+        objj_msgSend(self, "setNode:", aNode);
+        objj_msgSend(self, "setDomain:", aDomain);
+        objj_msgSend(self, "setResource:", aResource);
+        self._isServer = (!aDomain && !aResource);
+        if ((self._node && self._node.indexOf(" ") != -1) || (self._domain && self._domain.indexOf(" ") != -1) || (self._resource && self._resource.indexOf(" ") != -1))
+            objj_msgSend(CPException, "raise:reason:", TNStropheJIDExceptionJID, "Given information are not a valid JID.");
+    }
+    return self;
+}
+,["TNStropheJID","CPString","CPString","CPString"]), new objj_method(sel_getUid("initWithNode:domain:"), function $TNStropheJID__initWithNode_domain_(self, _cmd, aNode, aDomain)
+{
+    return objj_msgSend(self, "initWithNode:domain:resource:", aNode, aDomain, nil);
+}
+,["TNStropheJID","CPString","CPString"]), new objj_method(sel_getUid("initWithString:"), function $TNStropheJID__initWithString_(self, _cmd, aStringJID)
+{
+    if (!aStringJID)
+        return;
+    var node = aStringJID.split("@")[0],
+        domain,
+        resource;
+    if (aStringJID.indexOf("@") != -1)
+    {
+        domain = aStringJID.split("@")[1].split("/")[0],
+        resource = aStringJID.split("/")[1];
+    }
+    if (!node)
+        objj_msgSend(CPException, "raise:reason:", TNStropheJIDExceptionJID, aStringJID + " is not a valid JID");
+    return objj_msgSend(self, "initWithNode:domain:resource:", node, domain, resource);
+}
+,["TNStropheJID","CPString"]), new objj_method(sel_getUid("bare"), function $TNStropheJID__bare(self, _cmd)
+{
+    if (self._domain)
+        return self._node + "@" + self._domain;
+    else
+        return self._node;
+}
+,["CPString"]), new objj_method(sel_getUid("setBare:"), function $TNStropheJID__setBare_(self, _cmd, aBareJID)
+{
+    var node = aBareJID.split("@")[0],
+        domain = aBareJID.split("@")[1].split("/")[0];
+    if (!node || !domain)
+        objj_msgSend(CPException, "raise:reason:", TNStropheJIDExceptionJID, aBareJID + " is not a valid JID");
+    objj_msgSend(self, "setNode:", node);
+    objj_msgSend(self, "setDomain:", domain);
+}
+,["void","CPString"]), new objj_method(sel_getUid("full"), function $TNStropheJID__full(self, _cmd)
+{
+    if (self._resource)
+        return objj_msgSend(self, "bare") + "/" + self._resource;
+    else
+        return objj_msgSend(self, "bare");
+}
+,["CPString"]), new objj_method(sel_getUid("setFull:"), function $TNStropheJID__setFull_(self, _cmd, aFullJID)
+{
+    objj_msgSend(self, "setBare:", aFullJID);
+    var resource = aFullJID.split("/")[1];
+    if (!resource)
+        objj_msgSend(CPException, "raise:reason:", TNStropheJIDExceptionJID, aFullJID + " is not a valid JID");
+    objj_msgSend(self, "setResource:", resource)
+}
+,["void","CPString"]), new objj_method(sel_getUid("description"), function $TNStropheJID__description(self, _cmd)
+{
+    return objj_msgSend(self, "stringValue");
+}
+,["CPString"]), new objj_method(sel_getUid("stringValue"), function $TNStropheJID__stringValue(self, _cmd)
+{
+    return objj_msgSend(self, "full");
+}
+,["CPString"]), new objj_method(sel_getUid("uppercaseString"), function $TNStropheJID__uppercaseString(self, _cmd)
+{
+    return objj_msgSend(objj_msgSend(self, "stringValue"), "uppercaseString");
+}
+,["CPString"]), new objj_method(sel_getUid("lowercaseString"), function $TNStropheJID__lowercaseString(self, _cmd)
+{
+    return objj_msgSend(objj_msgSend(self, "stringValue"), "lowercaseString");
+}
+,["CPString"]), new objj_method(sel_getUid("equals:"), function $TNStropheJID__equals_(self, _cmd, anotherJID)
+{
+    return objj_msgSend(self, "fullEquals:", anotherJID);
+}
+,["BOOL","TNStropheJID"]), new objj_method(sel_getUid("fullEquals:"), function $TNStropheJID__fullEquals_(self, _cmd, anotherJID)
+{
+    return (objj_msgSend(self, "bareEquals:", anotherJID) && (objj_msgSend(objj_msgSend(anotherJID, "resource"), "uppercaseString") === objj_msgSend(objj_msgSend(self, "resource"), "uppercaseString")))
+}
+,["BOOL","TNStropheJID"]), new objj_method(sel_getUid("bareEquals:"), function $TNStropheJID__bareEquals_(self, _cmd, anotherJID)
+{
+    return ((objj_msgSend(objj_msgSend(anotherJID, "node"), "uppercaseString") === objj_msgSend(objj_msgSend(self, "node"), "uppercaseString")) && (objj_msgSend(objj_msgSend(anotherJID, "domain"), "uppercaseString") === objj_msgSend(objj_msgSend(self, "domain"), "uppercaseString")));
+}
+,["BOOL","TNStropheJID"]), new objj_method(sel_getUid("compare:"), function $TNStropheJID__compare_(self, _cmd, anotherJID)
+{
+    var stringRepA = objj_msgSend(self, "stringValue"),
+        stringRepB = objj_msgSend(anotherJID, "stringValue");
+    return objj_msgSend(stringRepA, "compare:", stringRepB);
+}
+,["CPComparisonResult","TNStropheJID"])]);
+class_addMethods(meta_class, [new objj_method(sel_getUid("initialize"), function $TNStropheJID__initialize(self, _cmd)
+{
+    objj_msgSend(self, "exposeBinding:", "domain");
+    objj_msgSend(self, "exposeBinding:", "node");
+    objj_msgSend(self, "exposeBinding:", "resource");
+}
+,["void"]), new objj_method(sel_getUid("stropheJIDWithNode:domain:resource:"), function $TNStropheJID__stropheJIDWithNode_domain_resource_(self, _cmd, aNode, aDomain, aResource)
+{
+    return objj_msgSend(objj_msgSend(TNStropheJID, "alloc"), "initWithNode:domain:resource:", aNode, aDomain, aResource);
+}
+,["TNStropheJID","CPString","CPString","CPString"]), new objj_method(sel_getUid("stropheJIDWithNode:domain:"), function $TNStropheJID__stropheJIDWithNode_domain_(self, _cmd, aNode, aDomain)
+{
+    return objj_msgSend(objj_msgSend(TNStropheJID, "alloc"), "initWithNode:domain:", aNode, aDomain);
+}
+,["TNStropheJID","CPString","CPString"]), new objj_method(sel_getUid("stropheJIDWithString:"), function $TNStropheJID__stropheJIDWithString_(self, _cmd, aStringJID)
+{
+    return objj_msgSend(objj_msgSend(TNStropheJID, "alloc"), "initWithString:", aStringJID);
+}
+,["TNStropheJID","CPString"])]);
+}
+{
+var the_class = objj_getClass("TNStropheJID")
+if(!the_class) throw new SyntaxError("*** Could not find definition for class \"TNStropheJID\"");
+var meta_class = the_class.isa;
+class_addMethods(the_class, [new objj_method(sel_getUid("initWithCoder:"), function $TNStropheJID__initWithCoder_(self, _cmd, aCoder)
+{
+    if (self = objj_msgSendSuper({ receiver:self, super_class:objj_getClass("TNStropheJID").super_class }, "init"))
+    {
+        self._node = objj_msgSend(aCoder, "decodeObjectForKey:", "_node");
+        self._domain = objj_msgSend(aCoder, "decodeObjectForKey:", "_domain");
+        self._resource = objj_msgSend(aCoder, "decodeObjectForKey:", "_resource");
+    }
+    return self;
+}
+,["id","CPCoder"]), new objj_method(sel_getUid("encodeWithCoder:"), function $TNStropheJID__encodeWithCoder_(self, _cmd, aCoder)
+{
+    objj_msgSend(aCoder, "encodeObject:forKey:", self._node, "_node");
+    if (self._domain)
+        objj_msgSend(aCoder, "encodeObject:forKey:", self._domain, "_domain");
+    if (self._resource)
+        objj_msgSend(aCoder, "encodeObject:forKey:", self._resource, "_resource");
+}
+,["void","CPCoder"])]);
+}p;25;TNStrophePrivateStorage.jt;5852;@STATIC;1.0;i;28;Resources/Strophe/strophe.jsi;25;Resources/Strophe/sha1.jsi;21;TNStropheConnection.ji;16;TNStropheUtils.jt;5723;objj_executeFile("Resources/Strophe/strophe.js", YES);
+objj_executeFile("Resources/Strophe/sha1.js", YES);
+objj_executeFile("TNStropheConnection.j", YES);
+objj_executeFile("TNStropheUtils.j", YES);
+TNStrophePrivateStorageGetErrorNotification = "TNStrophePrivateStorageGetErrorNotification";
+TNStrophePrivateStorageSetErrorNotification = "TNStrophePrivateStorageSetErrorNotification";
+TNStrophePrivateStorageSetNotification = "TNStrophePrivateStorageSetNotification";
+{var the_class = objj_allocateClassPair(CPObject, "TNStrophePrivateStorage"),
+meta_class = the_class.isa;class_addIvars(the_class, [new objj_ivar("_namespace"), new objj_ivar("_connection")]);
+
+       
+       
+
+
+
+objj_registerClassPair(the_class);
+class_addMethods(the_class, [new objj_method(sel_getUid("namespace"), function $TNStrophePrivateStorage__namespace(self, _cmd)
+{
+return self._namespace;
+}
+,["CPString"]), new objj_method(sel_getUid("setNamespace:"), function $TNStrophePrivateStorage__setNamespace_(self, _cmd, newValue)
+{
+self._namespace = newValue;
+}
+,["void","CPString"]), new objj_method(sel_getUid("connection"), function $TNStrophePrivateStorage__connection(self, _cmd)
+{
+return self._connection;
+}
+,["TNStropheConnection"]), new objj_method(sel_getUid("setConnection:"), function $TNStrophePrivateStorage__setConnection_(self, _cmd, newValue)
+{
+self._connection = newValue;
+}
+,["void","TNStropheConnection"]), new objj_method(sel_getUid("initWithConnection:namespace:"), function $TNStrophePrivateStorage__initWithConnection_namespace_(self, _cmd, aConnection, aNamespace)
+{
+    if (self = objj_msgSendSuper({ receiver:self, super_class:objj_getClass("TNStrophePrivateStorage").super_class }, "init"))
+    {
+        self._connection = aConnection;
+        self._namespace = aNamespace
+    }
+    return self;
+}
+,["TNStropheConnection","TNStropheConnection","CPString"]), new objj_method(sel_getUid("setObject:forKey:"), function $TNStrophePrivateStorage__setObject_forKey_(self, _cmd, anObject, aKey)
+{
+    var data = objj_msgSend(CPKeyedArchiver, "archivedDataWithRootObject:", anObject),
+        uid = objj_msgSend(self._connection, "getUniqueId"),
+        stanza = objj_msgSend(TNStropheStanza, "iqWithAttributes:", {"id": uid, "type": "set"}),
+        params = objj_msgSend(CPDictionary, "dictionaryWithObjectsAndKeys:", uid, "id");
+    objj_msgSend(stanza, "addChildWithName:andAttributes:", "query", {"xmlns": Strophe.NS.PRIVATE_STORAGE});
+    objj_msgSend(stanza, "addChildWithName:andAttributes:", aKey, {"xmlns": self._namespace});
+    objj_msgSend(stanza, "addTextNode:", objj_msgSend(data, "rawString"));
+    objj_msgSend(self._connection, "registerSelector:ofObject:withDict:userInfo:", sel_getUid("_didSetObject:object:"), self, params, anObject);
+    objj_msgSend(self._connection, "send:", stanza);
+}
+,["void","id","CPString"]), new objj_method(sel_getUid("_didSetObject:object:"), function $TNStrophePrivateStorage___didSetObject_object_(self, _cmd, aStanza, anObject)
+{
+    if (objj_msgSend(aStanza, "type") == "result")
+        objj_msgSend(objj_msgSend(CPNotificationCenter, "defaultCenter"), "postNotificationName:object:userInfo:", TNStrophePrivateStorageSetNotification, self, anObject);
+    else
+        objj_msgSend(objj_msgSend(CPNotificationCenter, "defaultCenter"), "postNotificationName:object:userInfo:", TNStrophePrivateStorageSetErrorNotification, self, aStanza);
+    return NO;
+}
+,["BOOL","TNStropheStanza","id"]), new objj_method(sel_getUid("objectForKey:target:selector:"), function $TNStrophePrivateStorage__objectForKey_target_selector_(self, _cmd, aKey, aTarget, aSelector)
+{
+    var uid = objj_msgSend(self._connection, "getUniqueId"),
+        stanza = objj_msgSend(TNStropheStanza, "iqWithAttributes:", {"id": uid, "type": "get"}),
+        params = objj_msgSend(CPDictionary, "dictionaryWithObjectsAndKeys:", uid, "id"),
+        listener = {"target": aTarget, "selector": aSelector, "key": aKey};
+    objj_msgSend(stanza, "addChildWithName:andAttributes:", "query", {"xmlns": Strophe.NS.PRIVATE_STORAGE});
+    objj_msgSend(stanza, "addChildWithName:andAttributes:", aKey, {"xmlns": self._namespace});
+    objj_msgSend(self._connection, "registerSelector:ofObject:withDict:userInfo:", sel_getUid("_didReceiveObject:userInfo:"), self, params, listener);
+    objj_msgSend(self._connection, "send:", stanza);
+}
+,["id","CPString","id","SEL"]), new objj_method(sel_getUid("_didReceiveObject:userInfo:"), function $TNStrophePrivateStorage___didReceiveObject_userInfo_(self, _cmd, aStanza, listener)
+{
+    if (objj_msgSend(aStanza, "type") == "result")
+    {
+        var dataString = objj_msgSend(objj_msgSend(aStanza, "firstChildWithName:", listener.key), "text");
+        try
+        {
+            if (dataString)
+                var obj = objj_msgSend(CPKeyedUnarchiver, "unarchiveObjectWithData:", objj_msgSend(CPData, "dataWithRawString:", TNStropheStripHTMLCharCode(dataString)));
+        }
+        catch(ex)
+        {
+            objj_msgSend(objj_msgSend(CPNotificationCenter, "defaultCenter"), "postNotificationName:object:userInfo:", TNStrophePrivateStorageGetErrorNotification, self, ex);
+        }
+    }
+    objj_msgSend(listener.target, "performSelector:withObject:withObject:", listener.selector, aStanza, obj);
+    return NO;
+}
+,["BOOL","TNStropheStanza","id"])]);
+class_addMethods(meta_class, [new objj_method(sel_getUid("strophePrivateStorageWithConnection:namespace:"), function $TNStrophePrivateStorage__strophePrivateStorageWithConnection_namespace_(self, _cmd, aConnection, aNamespace)
+{
+    return objj_msgSend(objj_msgSend(TNStrophePrivateStorage, "alloc"), "initWithConnection:namespace:", aConnection, aNamespace);
+}
+,["TNStropheConnection","TNStropheConnection","CPString"])]);
+}p;17;TNStropheRoster.jt;31445;@STATIC;1.0;I;23;Foundation/Foundation.ji;28;Resources/Strophe/strophe.jsi;25;Resources/Strophe/sha1.jsi;14;TNStropheJID.ji;21;TNStropheRosterBase.jt;31289;objj_executeFile("Foundation/Foundation.j", NO);
 objj_executeFile("Resources/Strophe/strophe.js", YES);
 objj_executeFile("Resources/Strophe/sha1.js", YES);
 objj_executeFile("TNStropheJID.j", YES);
@@ -16,21 +2095,19 @@ TNStropheRosterPushUpdatedContactNotification = "TNStropheRosterPushUpdatedConta
 TNStropheRosterRetrievedNotification = "TNStropheRosterRetrievedNotification";
 TNStropheRosterSubGroupDelimiterReceivedNotification = "TNStropheRosterSubGroupDelimiterReceivedNotification";
 {var the_class = objj_allocateClassPair(TNStropheRosterBase, "TNStropheRoster"),
-meta_class = the_class.isa;class_addIvars(the_class, [new objj_ivar("_pendingPresence"), new objj_ivar("_rosterRetrieved")]);//#pragma mark -
-//#pragma mark Class methods
-
-//#pragma mark -
-//#pragma mark Initialization
+meta_class = the_class.isa;class_addIvars(the_class, [new objj_ivar("_pendingPresence"), new objj_ivar("_rosterRetrieved")]);
+       
+       
 
 
-//#pragma mark -
-//#pragma mark Nested roster groups
+       
+       
 
 
 
 
-//#pragma mark -
-//#pragma mark Fetch / Push
+       
+       
 
 
 
@@ -39,34 +2116,34 @@ meta_class = the_class.isa;class_addIvars(the_class, [new objj_ivar("_pendingPre
 
 
 
-//#pragma mark -
-//#pragma mark Presence
+       
+       
 
-//#pragma mark -
-//#pragma mark Groups
-
-
+       
+       
 
 
 
 
 
 
-//#pragma mark -
-//#pragma mark Contacts
+
+
+       
+       
 
 
 
 
 
-//#pragma mark -
-//#pragma mark Group assignation
+       
+       
 
 
 
 
-//#pragma mark -
-//#pragma mark Subscriptions
+       
+       
 
 
 
@@ -581,889 +2658,21 @@ class_addMethods(meta_class, [new objj_method(sel_getUid("rosterWithConnection:"
     return objj_msgSend(objj_msgSend(TNStropheRoster, "alloc"), "initWithConnection:", aConnection);
 }
 ,["TNStropheRoster","TNStropheConnection"])]);
-}p;17;TNStropheClient.jt;23521;@STATIC;1.0;I;23;Foundation/Foundation.jI;16;AppKit/CPImage.ji;28;Resources/Strophe/strophe.jsi;25;Resources/Strophe/sha1.jsi;21;TNStropheConnection.ji;14;TNStropheJID.ji;17;TNStropheStanza.ji;11;TNXMLNode.ji;16;TNStropheVCard.jt;23285;objj_executeFile("Foundation/Foundation.j", NO);
-objj_executeFile("AppKit/CPImage.j", NO);
-objj_executeFile("Resources/Strophe/strophe.js", YES);
-objj_executeFile("Resources/Strophe/sha1.js", YES);
-objj_executeFile("TNStropheConnection.j", YES);
-objj_executeFile("TNStropheJID.j", YES);
-objj_executeFile("TNStropheStanza.j", YES);
-objj_executeFile("TNXMLNode.j", YES);
-objj_executeFile("TNStropheVCard.j", YES);
-//@global TNStropheContactStatusOffline
-//@global TNStropheContactStatusOnline
-TNStropheClientPasswordChangedNotification = "TNStropheClientPasswordChangedNotification";
-TNStropheClientPasswordChangeErrorNotification = "TNStropheClientPasswordChangeErrorNotification";
-TNStropheClientPresenceUpdatedNotification = "TNStropheClientPresenceUpdatedNotification";
-TNStropheClientVCardReceivedNotification = "TNStropheClientVCardReceivedNotification";
-{var the_class = objj_allocateClassPair(CPObject, "TNStropheClient"),
-meta_class = the_class.isa;class_addIvars(the_class, [new objj_ivar("_features"), new objj_ivar("_clientNode"), new objj_ivar("_identityCategory"), new objj_ivar("_identityName"), new objj_ivar("_identityType"), new objj_ivar("_password"), new objj_ivar("_delegate"), new objj_ivar("_connection"), new objj_ivar("_JID"), new objj_ivar("_vCard"), new objj_ivar("_avatar"), new objj_ivar("_userPresenceShow"), new objj_ivar("_userPresenceStatus")]);//#pragma mark -
-//#pragma mark Class methods
-
-
-
-//#pragma mark -
-//#pragma mark Initialization
-
-
-//#pragma mark -
-//#pragma mark Connection
-
-
-
-
-
-
-
-
-
-
-
-//#pragma mark -
-//#pragma mark Features
-
-
-
-
-
-
-
-
-
-//#pragma mark -
-//#pragma mark Presence
-
-
-//#pragma mark -
-//#pragma mark vCard
-
-
-
-
-
-//#pragma mark -
-//#pragma mark Password management
-
-objj_registerClassPair(the_class);
-class_addMethods(the_class, [new objj_method(sel_getUid("_features"), function $TNStropheClient___features(self, _cmd)
-{
-return self._features;
-}
-,["CPArray"]), new objj_method(sel_getUid("clientNode"), function $TNStropheClient__clientNode(self, _cmd)
-{
-return self._clientNode;
-}
-,["CPString"]), new objj_method(sel_getUid("setClientNode:"), function $TNStropheClient__setClientNode_(self, _cmd, newValue)
-{
-self._clientNode = newValue;
-}
-,["void","CPString"]), new objj_method(sel_getUid("identityCategory"), function $TNStropheClient__identityCategory(self, _cmd)
-{
-return self._identityCategory;
-}
-,["CPString"]), new objj_method(sel_getUid("setIdentityCategory:"), function $TNStropheClient__setIdentityCategory_(self, _cmd, newValue)
-{
-self._identityCategory = newValue;
-}
-,["void","CPString"]), new objj_method(sel_getUid("identityName"), function $TNStropheClient__identityName(self, _cmd)
-{
-return self._identityName;
-}
-,["CPString"]), new objj_method(sel_getUid("setIdentityName:"), function $TNStropheClient__setIdentityName_(self, _cmd, newValue)
-{
-self._identityName = newValue;
-}
-,["void","CPString"]), new objj_method(sel_getUid("identityType"), function $TNStropheClient__identityType(self, _cmd)
-{
-return self._identityType;
-}
-,["CPString"]), new objj_method(sel_getUid("setIdentityType:"), function $TNStropheClient__setIdentityType_(self, _cmd, newValue)
-{
-self._identityType = newValue;
-}
-,["void","CPString"]), new objj_method(sel_getUid("password"), function $TNStropheClient__password(self, _cmd)
-{
-return self._password;
-}
-,["CPString"]), new objj_method(sel_getUid("setPassword:"), function $TNStropheClient__setPassword_(self, _cmd, newValue)
-{
-self._password = newValue;
-}
-,["void","CPString"]), new objj_method(sel_getUid("delegate"), function $TNStropheClient__delegate(self, _cmd)
-{
-return self._delegate;
-}
-,["id"]), new objj_method(sel_getUid("setDelegate:"), function $TNStropheClient__setDelegate_(self, _cmd, newValue)
-{
-self._delegate = newValue;
-}
-,["void","id"]), new objj_method(sel_getUid("connection"), function $TNStropheClient__connection(self, _cmd)
-{
-return self._connection;
-}
-,["TNStropheConnection"]), new objj_method(sel_getUid("setConnection:"), function $TNStropheClient__setConnection_(self, _cmd, newValue)
-{
-self._connection = newValue;
-}
-,["void","TNStropheConnection"]), new objj_method(sel_getUid("JID"), function $TNStropheClient__JID(self, _cmd)
-{
-return self._JID;
-}
-,["TNStropheJID"]), new objj_method(sel_getUid("setJID:"), function $TNStropheClient__setJID_(self, _cmd, newValue)
-{
-self._JID = newValue;
-}
-,["void","TNStropheJID"]), new objj_method(sel_getUid("vCard"), function $TNStropheClient__vCard(self, _cmd)
-{
-return self._vCard;
-}
-,["TNStropheVCard"]), new objj_method(sel_getUid("_setVCard:"), function $TNStropheClient___setVCard_(self, _cmd, newValue)
-{
-self._vCard = newValue;
-}
-,["void","TNStropheVCard"]), new objj_method(sel_getUid("avatar"), function $TNStropheClient__avatar(self, _cmd)
-{
-return self._avatar;
-}
-,["CPImage"]), new objj_method(sel_getUid("_setAvatar:"), function $TNStropheClient___setAvatar_(self, _cmd, newValue)
-{
-self._avatar = newValue;
-}
-,["void","CPImage"]), new objj_method(sel_getUid("initWithService:"), function $TNStropheClient__initWithService_(self, _cmd, aService)
-{
-    if (self = objj_msgSendSuper({ receiver:self, super_class:objj_getClass("TNStropheClient").super_class }, "init"))
-    {
-        self._connection = objj_msgSend(TNStropheConnection, "connectionWithService:andDelegate:", aService, self);
-        self._userPresenceShow = TNStropheContactStatusOffline;
-        self._userPresenceStatus = "";
-        self._clientNode = "http://cappuccino.org";
-        self._identityCategory = "client";
-        self._identityName = "StropheCappuccino";
-        self._identityType = "web";
-        self._features = [Strophe.NS.CAPS, Strophe.NS.DISCO_INFO, Strophe.NS.DISCO_ITEMS];
-    }
-    return self;
-}
-,["id","CPString"]), new objj_method(sel_getUid("initWithService:JID:password:"), function $TNStropheClient__initWithService_JID_password_(self, _cmd, aService, aJID, aPassword)
-{
-    if (self = objj_msgSend(self, "initWithService:", aService))
-    {
-        self._JID = aJID;
-        self._password = aPassword;
-    }
-    return self;
-}
-,["id","CPString","TNStropheJID","CPString"]), new objj_method(sel_getUid("connect"), function $TNStropheClient__connect(self, _cmd)
-{
-    var pingDict = objj_msgSend(CPDictionary, "dictionaryWithObjectsAndKeys:", "iq", "name", "get", "type");
-    objj_msgSend(self._connection, "registerSelector:ofObject:withDict:", sel_getUid("_didReceivePing:"), self, pingDict);
-    objj_msgSend(self._connection, "connectWithJID:andPassword:", self._JID, self._password);
-}
-,["void"]), new objj_method(sel_getUid("disconnect"), function $TNStropheClient__disconnect(self, _cmd)
-{
-    objj_msgSend(self._connection, "disconnect");
-}
-,["void"]), new objj_method(sel_getUid("onStropheConnecting:"), function $TNStropheClient__onStropheConnecting_(self, _cmd, aConnection)
-{
-    if (objj_msgSend(self._delegate, "respondsToSelector:", sel_getUid("onStropheConnecting:")))
-        objj_msgSend(self._delegate, "onStropheConnecting:", self);
-}
-,["void","TNStropheConnection"]), new objj_method(sel_getUid("onStropheConnected:"), function $TNStropheClient__onStropheConnected_(self, _cmd, aConnection)
-{
-    objj_msgSend(self, "_sendCAPS");
-    if (objj_msgSend(self._delegate, "respondsToSelector:", sel_getUid("onStropheConnected:")))
-        objj_msgSend(self._delegate, "onStropheConnected:", self);
-}
-,["void","TNStropheConnection"]), new objj_method(sel_getUid("onStropheConnectFail:"), function $TNStropheClient__onStropheConnectFail_(self, _cmd, aConnection)
-{
-    if (objj_msgSend(self._delegate, "respondsToSelector:", sel_getUid("onStropheConnectFail:")))
-        objj_msgSend(self._delegate, "onStropheConnectFail:", self);
-}
-,["void","TNStropheConnection"]), new objj_method(sel_getUid("onStropheDisconnecting:"), function $TNStropheClient__onStropheDisconnecting_(self, _cmd, aConnection)
-{
-    if (objj_msgSend(self._delegate, "respondsToSelector:", sel_getUid("onStropheDisconnecting:")))
-        objj_msgSend(self._delegate, "onStropheDisconnecting:", self);
-}
-,["void","TNStropheConnection"]), new objj_method(sel_getUid("onStropheDisconnected:"), function $TNStropheClient__onStropheDisconnected_(self, _cmd, aConnection)
-{
-    self._userPresenceShow = TNStropheContactStatusOffline;
-    self._userPresenceStatus = "";
-    if (objj_msgSend(self._delegate, "respondsToSelector:", sel_getUid("onStropheDisconnected:")))
-        objj_msgSend(self._delegate, "onStropheDisconnected:", self);
-}
-,["void","TNStropheConnection"]), new objj_method(sel_getUid("onStropheAuthenticating:"), function $TNStropheClient__onStropheAuthenticating_(self, _cmd, aConnection)
-{
-    if (objj_msgSend(self._delegate, "respondsToSelector:", sel_getUid("onStropheAuthenticating:")))
-        objj_msgSend(self._delegate, "onStropheAuthenticating:", self);
-}
-,["void","TNStropheConnection"]), new objj_method(sel_getUid("onStropheAuthFail:"), function $TNStropheClient__onStropheAuthFail_(self, _cmd, aConnection)
-{
-    if (objj_msgSend(self._delegate, "respondsToSelector:", sel_getUid("onStropheAuthFail:")))
-        objj_msgSend(self._delegate, "onStropheAuthFail:", self);
-}
-,["void","TNStropheConnection"]), new objj_method(sel_getUid("onStropheError:"), function $TNStropheClient__onStropheError_(self, _cmd, aConnection)
-{
-    if (objj_msgSend(self._delegate, "respondsToSelector:", sel_getUid("onStropheError:")))
-        objj_msgSend(self._delegate, "onStropheError:", self);
-}
-,["void","TNStropheConnection"]), new objj_method(sel_getUid("connection:errorCondition:"), function $TNStropheClient__connection_errorCondition_(self, _cmd, aConnection, anErrorCondition)
-{
-    if (objj_msgSend(self._delegate, "respondsToSelector:", sel_getUid("client:errorCondition:")))
-        objj_msgSend(self._delegate, "client:errorCondition:", self, anErrorCondition);
-}
-,["void","TNStropheConnection","CPString"]), new objj_method(sel_getUid("_sendInitialPresence"), function $TNStropheClient___sendInitialPresence(self, _cmd)
-{
-    var presenceHandleParams = objj_msgSend(CPDictionary, "dictionaryWithObjectsAndKeys:", "presence", "name", objj_msgSend(self._JID, "bare"), "from", {"matchBare": true}, "options");
-    objj_msgSend(self._connection, "registerSelector:ofObject:withDict:", sel_getUid("_didPresenceUpdate:"), self, presenceHandleParams);
-    objj_msgSend(self, "setPresenceShow:status:", TNStropheContactStatusOnline, "");
-}
-,["void"]), new objj_method(sel_getUid("_didReceivePing:"), function $TNStropheClient___didReceivePing_(self, _cmd, aStanza)
-{
-    if (objj_msgSend(aStanza, "containsChildrenWithName:", "ping") && objj_msgSend(objj_msgSend(aStanza, "firstChildWithName:", "ping"), "namespace") == Strophe.NS.PING)
-    {
-        CPLog.debug("Ping received. Sending pong.");
-        objj_msgSend(self._connection, "send:", objj_msgSend(TNStropheStanza, "iqWithAttributes:", {'to': objj_msgSend(objj_msgSend(aStanza, "from"), "bare"), 'id': objj_msgSend(aStanza, "ID"), 'type': 'result'}));
-    }
-    return YES;
-}
-,["BOOL","TNStropheStanza"]), new objj_method(sel_getUid("addFeature:"), function $TNStropheClient__addFeature_(self, _cmd, aFeatureNamespace)
-{
-    objj_msgSend(self._features, "addObject:", aFeatureNamespace);
-}
-,["void","CPString"]), new objj_method(sel_getUid("removeFeature:"), function $TNStropheClient__removeFeature_(self, _cmd, aFeatureNamespace)
-{
-    objj_msgSend(self._features, "removeObjectIdenticalTo:", aFeatureNamespace);
-}
-,["void","CPString"]), new objj_method(sel_getUid("_clientVer"), function $TNStropheClient___clientVer(self, _cmd)
-{
-    return SHA1.b64_sha1(self._features.join());
-}
-,["CPString"]), new objj_method(sel_getUid("_sendCAPS"), function $TNStropheClient___sendCAPS(self, _cmd)
-{
-    var caps = objj_msgSend(TNStropheStanza, "presence");
-    objj_msgSend(caps, "addChildWithName:andAttributes:", "c", { "xmlns":Strophe.NS.CAPS, "node":self._clientNode, "hash":"sha-1", "ver":objj_msgSend(self, "_clientVer") });
-    objj_msgSend(self._connection, "registerSelector:ofObject:withDict:", sel_getUid("handleFeaturesDisco:"), self, objj_msgSend(CPDictionary, "dictionaryWithObjectsAndKeys:", "iq", "name", "get", "type", Strophe.NS.DISCO_INFO, "namespace"));
-    objj_msgSend(self._connection, "send:", caps);
-}
-,["void"]), new objj_method(sel_getUid("handleFeaturesDisco:"), function $TNStropheClient__handleFeaturesDisco_(self, _cmd, aStanza)
-{
-    var resp = objj_msgSend(TNStropheStanza, "iqWithAttributes:", {"id":objj_msgSend(self._connection, "getUniqueId"), "type":"result"});
-    objj_msgSend(resp, "setTo:", objj_msgSend(aStanza, "from"));
-    objj_msgSend(resp, "addChildWithName:andAttributes:", "query", {"xmlns":Strophe.NS.DISCO_INFO, "node":(self._clientNode + '#' + objj_msgSend(self, "_clientVer"))});
-    objj_msgSend(resp, "addChildWithName:andAttributes:", "identity", {"category":self._identityCategory, "name":self._identityName, "type":self._identityType});
-    objj_msgSend(resp, "up");
-    for (var i = 0; i < objj_msgSend(self._features, "count"); i++)
-    {
-        objj_msgSend(resp, "addChildWithName:andAttributes:", "feature", {"var":objj_msgSend(self._features, "objectAtIndex:", i)});
-        objj_msgSend(resp, "up");
-    }
-    objj_msgSend(self._connection, "send:", resp);
-    return YES;
-}
-,["BOOL","TNStropheStanza"]), new objj_method(sel_getUid("publishPEPPayload:toNode:"), function $TNStropheClient__publishPEPPayload_toNode_(self, _cmd, aPayload, aNode)
-{
-    var uid = objj_msgSend(self._connection, "getUniqueId"),
-        stanza = objj_msgSend(TNStropheStanza, "iqWithAttributes:", {"type":"set", "id":uid}),
-        params = objj_msgSend(CPDictionary, "dictionaryWithObject:forKey:", uid, "id");
-    objj_msgSend(stanza, "addChildWithName:andAttributes:", "pubsub", {"xmlns":Strophe.NS.PUBSUB})
-    objj_msgSend(stanza, "addChildWithName:andAttributes:", "publish", {"node":aNode});
-    objj_msgSend(stanza, "addChildWithName:", "item");
-    objj_msgSend(stanza, "addNode:", aPayload);
-    objj_msgSend(self._connection, "registerSelector:ofObject:withDict:", sel_getUid("_didPublishPEP:"), self, params);
-    objj_msgSend(self._connection, "send:", stanza);
-}
-,["void","TNXMLNode","CPString"]), new objj_method(sel_getUid("_didPublishPEP:"), function $TNStropheClient___didPublishPEP_(self, _cmd, aStanza)
-{
-    if (objj_msgSend(aStanza, "type") == "result")
-        CPLog.debug("Publish succeeded!");
-    else
-        CPLog.error("Cannot publish the pubsub item:" + objj_msgSend(aStanza, "stringValue"));
-    return NO;
-}
-,["void","TNStropheStanza"]), new objj_method(sel_getUid("setPresenceShow:status:"), function $TNStropheClient__setPresenceShow_status_(self, _cmd, aPresenceShow, aStatus)
-{
-    if (aPresenceShow === self._userPresenceShow && aStatus === self._userPresenceStatus)
-        return;
-    var presence = objj_msgSend(TNStropheStanza, "presence");
-    self._userPresenceShow = aPresenceShow || self._userPresenceShow;
-    self._userPresenceStatus = aStatus || self._userPresenceStatus;
-    objj_msgSend(presence, "addChildWithName:", "status");
-    objj_msgSend(presence, "addTextNode:", self._userPresenceStatus);
-    objj_msgSend(presence, "up");
-    objj_msgSend(presence, "addChildWithName:", "show");
-    objj_msgSend(presence, "addTextNode:", self._userPresenceShow);
-    objj_msgSend(self._connection, "send:", presence);
-}
-,["void","CPString","CPString"]), new objj_method(sel_getUid("_didPresenceUpdate:"), function $TNStropheClient___didPresenceUpdate_(self, _cmd, aStanza)
-{
-    var shouldNotify = NO;
-    if (objj_msgSend(aStanza, "firstChildWithName:", "show"))
-    {
-        self._userPresenceShow = objj_msgSend(objj_msgSend(aStanza, "firstChildWithName:", "show"), "text");
-        shouldNotify = YES;
-    }
-    if (objj_msgSend(aStanza, "firstChildWithName:", "status"))
-    {
-        self._userPresenceStatus = objj_msgSend(objj_msgSend(aStanza, "firstChildWithName:", "status"), "text");
-        shouldNotify = YES;
-    }
-    if (shouldNotify)
-    {
-        var presenceInformation = objj_msgSend(CPDictionary, "dictionaryWithObjectsAndKeys:", self._userPresenceShow, "show", self._userPresenceStatus, "status");
-        objj_msgSend(objj_msgSend(CPNotificationCenter, "defaultCenter"), "postNotificationName:object:userInfo:", TNStropheClientPresenceUpdatedNotification, self, presenceInformation);
-    }
-    return YES;
-}
-,["BOOL","TNStropheStanza"]), new objj_method(sel_getUid("getVCard"), function $TNStropheClient__getVCard(self, _cmd)
-{
-    var uid = objj_msgSend(self._connection, "getUniqueId"),
-        vcardStanza = objj_msgSend(TNStropheStanza, "iqWithAttributes:", {"type": "get", "id": uid}),
-        params = objj_msgSend(CPDictionary, "dictionaryWithObjectsAndKeys:", uid, "id");
-    objj_msgSend(vcardStanza, "addChildWithName:andAttributes:", "vCard", {"xmlns": "vcard-temp"});
-    objj_msgSend(self._connection, "registerSelector:ofObject:withDict:", sel_getUid("_didReceiveCurrentUserVCard:"), self, params);
-    objj_msgSend(self._connection, "send:", vcardStanza);
-}
-,["void"]), new objj_method(sel_getUid("_didReceiveCurrentUserVCard:"), function $TNStropheClient___didReceiveCurrentUserVCard_(self, _cmd, aStanza)
-{
-    if (objj_msgSend(aStanza, "type") == "result")
-    {
-        self._vCard = objj_msgSend(objj_msgSend(TNStropheVCard, "alloc"), "initWithXMLNode:", objj_msgSend(aStanza, "firstChildWithName:", "vCard"));
-        self._avatar = objj_msgSend(self._vCard, "photo");
-    }
-    objj_msgSend(objj_msgSend(CPNotificationCenter, "defaultCenter"), "postNotificationName:object:userInfo:", TNStropheClientVCardReceivedNotification, self, aStanza);
-    return YES;
-}
-,["BOOL","TNStropheStanza"]), new objj_method(sel_getUid("setVCard:object:selector:userInfo:"), function $TNStropheClient__setVCard_object_selector_userInfo_(self, _cmd, aVCard, anObject, aSelector, someUserInfo)
-{
-    var uid = objj_msgSend(self._connection, "getUniqueId"),
-        stanza = objj_msgSend(TNStropheStanza, "iqWithAttributes:", {"id": uid, "type": "set"}),
-        params = objj_msgSend(CPDictionary, "dictionaryWithObjectsAndKeys:", uid, "id");
-    self._vCard = aVCard;
-    objj_msgSend(stanza, "addNode:", objj_msgSend(self._vCard, "XMLNode"));
-    objj_msgSend(self._connection, "registerSelector:ofObject:withDict:", sel_getUid("notifyVCardUpdate:"), self, params);
-    objj_msgSend(self._connection, "registerSelector:ofObject:withDict:userInfo:", aSelector, anObject, params, someUserInfo);
-    objj_msgSend(self._connection, "send:", stanza);
-}
-,["void","TNXMLNode","CPObject","SEL","id"]), new objj_method(sel_getUid("notifyVCardUpdate:"), function $TNStropheClient__notifyVCardUpdate_(self, _cmd, aStanza)
-{
-    var uid = objj_msgSend(self._connection, "getUniqueId"),
-        stanza = objj_msgSend(TNStropheStanza, "presenceWithAttributes:", {"id": uid}),
-        params = objj_msgSend(CPDictionary, "dictionaryWithObjectsAndKeys:", uid, "id");
-    objj_msgSend(stanza, "addChildWithName:", "status");
-    objj_msgSend(stanza, "addTextNode:", self._userPresenceStatus);
-    objj_msgSend(stanza, "up")
-    objj_msgSend(stanza, "addChildWithName:", "show");
-    objj_msgSend(stanza, "addTextNode:", self._userPresenceShow);
-    objj_msgSend(stanza, "up")
-    objj_msgSend(stanza, "addChildWithName:andAttributes:", "x", {"xmlns": "vcard-temp:x:update"});
-    objj_msgSend(self._connection, "send:", stanza);
-}
-,["void","TNStropheStanza"]), new objj_method(sel_getUid("_didNotifyVCardUpdate:"), function $TNStropheClient___didNotifyVCardUpdate_(self, _cmd, aStanza)
-{
-    CPLog.trace(objj_msgSend(aStanza, "stringValue"));
-}
-,["void","TNStropheStanza"]), new objj_method(sel_getUid("changePassword:"), function $TNStropheClient__changePassword_(self, _cmd, aPassword)
-{
-    var uid = objj_msgSend(self._connection, "getUniqueId"),
-        stanza = objj_msgSend(TNStropheStanza, "iqWithAttributes:", {"id": uid, "type": "set"}),
-        params = objj_msgSend(CPDictionary, "dictionaryWithObjectsAndKeys:", uid, "id");
-    objj_msgSend(stanza, "addChildWithName:andAttributes:", "query", {"xmlns": "jabber:iq:register"});
-    objj_msgSend(stanza, "addChildWithName:", "username");
-    objj_msgSend(stanza, "addTextNode:", objj_msgSend(objj_msgSend(self._connection, "JID"), "node"));
-    objj_msgSend(stanza, "up")
-    objj_msgSend(stanza, "addChildWithName:", "password");
-    objj_msgSend(stanza, "addTextNode:", aPassword);
-    objj_msgSend(stanza, "up")
-    objj_msgSend(self._connection, "registerSelector:ofObject:withDict:", sel_getUid("_didChangePassword:"), self, params);
-    objj_msgSend(self._connection, "send:", stanza);
-}
-,["void","CPString"]), new objj_method(sel_getUid("_didChangePassword:"), function $TNStropheClient___didChangePassword_(self, _cmd, aStanza)
-{
-    if (objj_msgSend(aStanza, "type") == "result")
-        objj_msgSend(objj_msgSend(CPNotificationCenter, "defaultCenter"), "postNotificationName:object:userInfo:", TNStropheClientPasswordChangedNotification, self, aStanza);
-    else
-        objj_msgSend(objj_msgSend(CPNotificationCenter, "defaultCenter"), "postNotificationName:object:userInfo:", TNStropheClientPasswordChangeErrorNotification, self, aStanza);
-}
-,["void","TNStropheStanza"])]);
-class_addMethods(meta_class, [new objj_method(sel_getUid("addNamespaceWithName:value:"), function $TNStropheClient__addNamespaceWithName_value_(self, _cmd, aName, aValue)
-{
-    Strophe.addNamespace(aName, aValue);
-}
-,["void","CPString","CPString"]), new objj_method(sel_getUid("clientWithService:"), function $TNStropheClient__clientWithService_(self, _cmd, aService)
-{
-    return objj_msgSend(objj_msgSend(TNStropheClient, "alloc"), "initWithService:", aService);
-}
-,["TNStropheClient","CPString"]), new objj_method(sel_getUid("clientWithService:JID:password:"), function $TNStropheClient__clientWithService_JID_password_(self, _cmd, aService, aJID, aPassword)
-{
-    return objj_msgSend(objj_msgSend(TNStropheClient, "alloc"), "initWithService:JID:password:", aService, aJID, aPassword);
-}
-,["TNStropheClient","CPString","TNStropheJID","CPString"])]);
-}
-{
-var the_class = objj_getClass("TNStropheClient")
-if(!the_class) throw new SyntaxError("*** Could not find definition for class \"TNStropheClient\"");
-var meta_class = the_class.isa;
-class_addMethods(the_class, [new objj_method(sel_getUid("initWithCoder:"), function $TNStropheClient__initWithCoder_(self, _cmd, aCoder)
-{
-    self = objj_msgSendSuper({ receiver:self, super_class:objj_getClass("TNStropheClient").super_class }, "initWithCoder:", aCoder);
-    if (self)
-    {
-        self._JID = objj_msgSend(aCoder, "decodeObjectForKey:", "_JID");
-        self._password = objj_msgSend(aCoder, "decodeObjectForKey:", "_password");
-        self._delegate = objj_msgSend(aCoder, "decodeObjectForKey:", "_delegate");
-        self._connection = objj_msgSend(aCoder, "decodeObjectForKey:", "_connection");
-    }
-    return self;
-}
-,["id","CPCoder"]), new objj_method(sel_getUid("encodeWithCoder:"), function $TNStropheClient__encodeWithCoder_(self, _cmd, aCoder)
-{
-    objj_msgSendSuper({ receiver:self, super_class:objj_getClass("TNStropheClient").super_class }, "encodeWithCoder:", aCoder);
-    objj_msgSend(aCoder, "encodeObject:forKey:", self._JID, "_JID");
-    objj_msgSend(aCoder, "encodeObject:forKey:", self._password, "_password");
-    objj_msgSend(aCoder, "encodeObject:forKey:", self._connection, "_connection");
-}
-,["void","CPCoder"])]);
-}p;17;TNStropheStanza.jt;10793;@STATIC;1.0;I;23;Foundation/Foundation.ji;28;Resources/Strophe/strophe.jsi;25;Resources/Strophe/sha1.jsi;14;TNStropheJID.ji;11;TNXMLNode.jt;10647;objj_executeFile("Foundation/Foundation.j", NO);
-objj_executeFile("Resources/Strophe/strophe.js", YES);
-objj_executeFile("Resources/Strophe/sha1.js", YES);
-objj_executeFile("TNStropheJID.j", YES);
-objj_executeFile("TNXMLNode.j", YES);
-{var the_class = objj_allocateClassPair(TNXMLNode, "TNStropheStanza"),
-meta_class = the_class.isa;//#pragma mark -
-//#pragma mark Class methods
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//#pragma mark -
-//#pragma mark Initialization
-
-//#pragma mark -
-//#pragma mark Attributes
-
-
-
-
-
-
-
-
-
-
-
-
-objj_registerClassPair(the_class);
-class_addMethods(the_class, [new objj_method(sel_getUid("initWithName:to:attributes:bare:"), function $TNStropheStanza__initWithName_to_attributes_bare_(self, _cmd, aName, aJID, someAttributes, sendToBareJID)
-{
-    if (aJID && !someAttributes)
-        someAttributes = {};
-    if (someAttributes)
-    {
-        if (someAttributes.isa)
-            objj_msgSend(someAttributes, "setValue:forKey:", ((sendToBareJID) ? objj_msgSend(aJID, "bare") : aJID), "to");
-        else
-            someAttributes.to = ((sendToBareJID) ? objj_msgSend(aJID, "bare") : objj_msgSend(aJID, "full"));
-    }
-    return objj_msgSendSuper({ receiver:self, super_class:objj_getClass("TNStropheStanza").super_class }, "initWithName:andAttributes:", aName, someAttributes);
-}
-,["TNStropheStanza","CPString","TNStropheJID","CPDictionary","BOOL"]), new objj_method(sel_getUid("from"), function $TNStropheStanza__from(self, _cmd)
-{
-    while (objj_msgSend(self, "up"));
-    return objj_msgSend(TNStropheJID, "stropheJIDWithString:", objj_msgSend(self, "valueForAttribute:", "from"));
-}
-,["CPString"]), new objj_method(sel_getUid("setFrom:"), function $TNStropheStanza__setFrom_(self, _cmd, aFrom)
-{
-    if (objj_msgSend(aFrom, "isKindOfClass:", CPString))
-        aFrom = objj_msgSend(TNStropheJID, "stropheJIDWithString:", aFrom);
-    while (objj_msgSend(self, "up"));
-    objj_msgSend(self, "setValue:forAttribute:", objj_msgSend(aFrom, "full"), "from");
-}
-,["void","id"]), new objj_method(sel_getUid("fromBare"), function $TNStropheStanza__fromBare(self, _cmd)
-{
-    return objj_msgSend(objj_msgSend(self, "from"), "bare");
-}
-,["CPString"]), new objj_method(sel_getUid("fromUser"), function $TNStropheStanza__fromUser(self, _cmd)
-{
-    return objj_msgSend(objj_msgSend(self, "from"), "node");
-}
-,["CPString"]), new objj_method(sel_getUid("fromDomain"), function $TNStropheStanza__fromDomain(self, _cmd)
-{
-    return objj_msgSend(objj_msgSend(self, "from"), "domain");
-}
-,["CPString"]), new objj_method(sel_getUid("fromResource"), function $TNStropheStanza__fromResource(self, _cmd)
-{
-    return objj_msgSend(objj_msgSend(self, "from"), "resource");
-}
-,["CPString"]), new objj_method(sel_getUid("to"), function $TNStropheStanza__to(self, _cmd)
-{
-    while (objj_msgSend(self, "up"));
-    return objj_msgSend(TNStropheJID, "stropheJIDWithString:", objj_msgSend(self, "valueForAttribute:", "to"));
-}
-,["CPString"]), new objj_method(sel_getUid("setTo:"), function $TNStropheStanza__setTo_(self, _cmd, aTo)
-{
-    if (objj_msgSend(aTo, "isKindOfClass:", CPString))
-        aTo = objj_msgSend(TNStropheJID, "stropheJIDWithString:", aTo);
-    while (objj_msgSend(self, "up"));
-    objj_msgSend(self, "setValue:forAttribute:", objj_msgSend(aTo, "full"), "to");
-}
-,["void","id"]), new objj_method(sel_getUid("type"), function $TNStropheStanza__type(self, _cmd)
-{
-    return objj_msgSend(self, "valueForAttribute:", "type");
-}
-,["CPString"]), new objj_method(sel_getUid("setType:"), function $TNStropheStanza__setType_(self, _cmd, aType)
-{
-    objj_msgSend(self, "setValue:forAttribute:", aType, "type");
-}
-,["void","CPString"]), new objj_method(sel_getUid("ID"), function $TNStropheStanza__ID(self, _cmd)
-{
-    return objj_msgSend(self, "valueForAttribute:", "id");
-}
-,["CPString"]), new objj_method(sel_getUid("setID:"), function $TNStropheStanza__setID_(self, _cmd, anID)
-{
-    while (objj_msgSend(self, "up"));
-    objj_msgSend(self, "setValue:forAttribute:", anID, "id");
-}
-,["void","CPString"]), new objj_method(sel_getUid("delayTime"), function $TNStropheStanza__delayTime(self, _cmd)
-{
-    if (objj_msgSend(self, "containsChildrenWithName:", "delay") && objj_msgSend(objj_msgSend(self, "firstChildWithName:", "delay"), "namespace") == Strophe.NS.DELAY)
-    {
-        var messageDelay = objj_msgSend(objj_msgSend(self, "firstChildWithName:", "delay"), "valueForAttribute:", "stamp"),
-            match = messageDelay.match(new RegExp(/(\d{4}-\d{2}-\d{2})T(\d{2}:\d{2}:\d{2})Z/));
-        if (!match || match.length != 3)
-            objj_msgSend(CPException, "raise:reason:", CPInvalidArgumentException, "delayTime: the string must be of YYYY-MM-DDTHH:MM:SSZ format");
-        return objj_msgSend(objj_msgSend(CPDate, "alloc"), "initWithString:", (match[1] + " " + match[2] + " +0000"));
-    }
-    return objj_msgSend(CPDate, "dateWithTimeIntervalSinceNow:", 0);
-}
-,["CPDate"])]);
-class_addMethods(meta_class, [new objj_method(sel_getUid("stanzaWithStanza:"), function $TNStropheStanza__stanzaWithStanza_(self, _cmd, aStanza)
-{
-    return objj_msgSend(objj_msgSend(TNStropheStanza, "alloc"), "initWithNode:", aStanza);
-}
-,["TNStropheStanza","id"]), new objj_method(sel_getUid("stanzaWithName:andAttributes:"), function $TNStropheStanza__stanzaWithName_andAttributes_(self, _cmd, aName, attributes)
-{
-    return objj_msgSend(objj_msgSend(TNStropheStanza, "alloc"), "initWithName:andAttributes:", aName, attributes);
-}
-,["TNStropheStanza","CPString","CPDictionary"]), new objj_method(sel_getUid("stanzaWithName:to:attributes:"), function $TNStropheStanza__stanzaWithName_to_attributes_(self, _cmd, aName, aJID, attributes)
-{
-    return objj_msgSend(objj_msgSend(TNStropheStanza, "alloc"), "initWithName:to:attributes:bare:", aName, aJID, attributes, NO);
-}
-,["TNStropheStanza","CPString","TNStropheJID","CPDictionary"]), new objj_method(sel_getUid("stanzaWithName:to:attributes:bare:"), function $TNStropheStanza__stanzaWithName_to_attributes_bare_(self, _cmd, aName, aJID, attributes, sendToBareJID)
-{
-    return objj_msgSend(objj_msgSend(TNStropheStanza, "alloc"), "initWithName:to:attributes:bare:", aName, aJID, attributes, sendToBareJID);
-}
-,["TNStropheStanza","CPString","TNStropheJID","CPDictionary","BOOL"]), new objj_method(sel_getUid("iqWithAttributes:"), function $TNStropheStanza__iqWithAttributes_(self, _cmd, attributes)
-{
-    return objj_msgSend(TNStropheStanza, "stanzaWithName:andAttributes:", "iq", attributes);
-}
-,["TNStropheStanza","CPDictionary"]), new objj_method(sel_getUid("iq"), function $TNStropheStanza__iq(self, _cmd)
-{
-    return objj_msgSend(TNStropheStanza, "iqWithAttributes:", nil);
-}
-,["TNStropheStanza"]), new objj_method(sel_getUid("iqTo:"), function $TNStropheStanza__iqTo_(self, _cmd, aJID)
-{
-    return objj_msgSend(TNStropheStanza, "iqTo:withAttributes:", aJID, nil);
-}
-,["TNStropheStanza","TNStropheJID"]), new objj_method(sel_getUid("iqWithType:"), function $TNStropheStanza__iqWithType_(self, _cmd, aType)
-{
-    return objj_msgSend(TNStropheStanza, "iqWithAttributes:", {"type": aType});
-}
-,["TNStropheStanza","CPString"]), new objj_method(sel_getUid("iqTo:withType:"), function $TNStropheStanza__iqTo_withType_(self, _cmd, aJID, aType)
-{
-    return objj_msgSend(TNStropheStanza, "iqTo:withAttributes:", aJID, {"type": aType});
-}
-,["TNStropheStanza","TNStropheJID","CPString"]), new objj_method(sel_getUid("iqTo:withAttributes:"), function $TNStropheStanza__iqTo_withAttributes_(self, _cmd, aJID, attributes)
-{
-    return objj_msgSend(TNStropheStanza, "stanzaWithName:to:attributes:bare:", "iq", aJID, attributes, NO);
-}
-,["TNStropheStanza","TNStropheJID","CPDictionary"]), new objj_method(sel_getUid("iqTo:withAttributes:bare:"), function $TNStropheStanza__iqTo_withAttributes_bare_(self, _cmd, aJID, attributes, sendToBareJID)
-{
-    return objj_msgSend(TNStropheStanza, "stanzaWithName:to:attributes:bare:", "iq", aJID, attributes, sendToBareJID);
-}
-,["TNStropheStanza","TNStropheJID","CPDictionary","BOOL"]), new objj_method(sel_getUid("presenceWithAttributes:"), function $TNStropheStanza__presenceWithAttributes_(self, _cmd, attributes)
-{
-    return objj_msgSend(TNStropheStanza, "stanzaWithName:andAttributes:", "presence", attributes);
-}
-,["TNStropheStanza","CPDictionary"]), new objj_method(sel_getUid("presence"), function $TNStropheStanza__presence(self, _cmd)
-{
-    return objj_msgSend(TNStropheStanza, "presenceWithAttributes:", nil);
-}
-,["TNStropheStanza"]), new objj_method(sel_getUid("presenceTo:"), function $TNStropheStanza__presenceTo_(self, _cmd, aJID)
-{
-    return objj_msgSend(TNStropheStanza, "presenceTo:withAttributes:", aJID, nil);
-}
-,["TNStropheStanza","TNStropheJID"]), new objj_method(sel_getUid("presenceTo:withAttributes:"), function $TNStropheStanza__presenceTo_withAttributes_(self, _cmd, aJID, attributes)
-{
-    return objj_msgSend(TNStropheStanza, "stanzaWithName:to:attributes:bare:", "presence", aJID, attributes, NO);
-}
-,["TNStropheStanza","TNStropheJID","CPDictionary"]), new objj_method(sel_getUid("presenceTo:withAttributes:bare:"), function $TNStropheStanza__presenceTo_withAttributes_bare_(self, _cmd, aJID, attributes, sendToBareJID)
-{
-    return objj_msgSend(TNStropheStanza, "stanzaWithName:to:attributes:bare:", "presence", aJID, attributes, sendToBareJID);
-}
-,["TNStropheStanza","TNStropheJID","CPDictionary","BOOL"]), new objj_method(sel_getUid("messageWithAttributes:"), function $TNStropheStanza__messageWithAttributes_(self, _cmd, attributes)
-{
-    return objj_msgSend(TNStropheStanza, "stanzaWithName:andAttributes:", "message", attributes);
-}
-,["TNStropheStanza","CPDictionary"]), new objj_method(sel_getUid("message"), function $TNStropheStanza__message(self, _cmd)
-{
-    return objj_msgSend(TNStropheStanza, "messageWithAttributes:", nil);
-}
-,["TNStropheStanza"]), new objj_method(sel_getUid("messageTo:"), function $TNStropheStanza__messageTo_(self, _cmd, aJID)
-{
-    return objj_msgSend(TNStropheStanza, "messageTo:withAttributes:", aJID, nil);
-}
-,["TNStropheStanza","TNStropheJID"]), new objj_method(sel_getUid("messageTo:withAttributes:"), function $TNStropheStanza__messageTo_withAttributes_(self, _cmd, aJID, attributes)
-{
-    return objj_msgSend(TNStropheStanza, "stanzaWithName:to:attributes:", "message", aJID, attributes);
-}
-,["TNStropheStanza","TNStropheJID","CPDictionary"]), new objj_method(sel_getUid("messageTo:withAttributes:bare:"), function $TNStropheStanza__messageTo_withAttributes_bare_(self, _cmd, aJID, attributes, sendToBareJID)
-{
-    return objj_msgSend(TNStropheStanza, "stanzaWithName:to:attributes:bare:", "message", aJID, attributes, sendToBareJID);
-}
-,["TNStropheStanza","TNStropheJID","CPDictionary","BOOL"])]);
-}p;10;TNPubSub.jt;1027;@STATIC;1.0;i;21;TNStropheConnection.ji;21;PubSub/TNPubSubNode.ji;27;PubSub/TNPubSubController.jt;925;objj_executeFile("TNStropheConnection.j", YES);
-objj_executeFile("PubSub/TNPubSubNode.j", YES);
-objj_executeFile("PubSub/TNPubSubController.j", YES);
-objj_msgSend(TNStropheConnection, "addNamespaceWithName:value:", "PUBSUB", "http://jabber.org/protocol/pubsub");
-objj_msgSend(TNStropheConnection, "addNamespaceWithName:value:", "PUBSUB_EVENT", "http://jabber.org/protocol/pubsub#event");
-objj_msgSend(TNStropheConnection, "addNamespaceWithName:value:", "PUBSUB_OWNER", "http://jabber.org/protocol/pubsub#owner");
-objj_msgSend(TNStropheConnection, "addNamespaceWithName:value:", "PUBSUB_NODE_CONFIG", "http://jabber.org/protocol/pubsub#node_config");
-objj_msgSend(TNStropheConnection, "addNamespaceWithName:value:", "PUBSUB_NOTIFY", "http://jabber.org/protocol/pubsub+notify");
-objj_msgSend(TNStropheConnection, "addNamespaceWithName:value:", "PUBSUB_SUBSCRIBE OPTIONS", "http://jabber.org/protocol/pubsub#subscribe_options");p;11;TNXMLNode.jt;7738;@STATIC;1.0;I;23;Foundation/Foundation.ji;28;Resources/Strophe/strophe.jsi;25;Resources/Strophe/sha1.jsi;16;TNStropheUtils.jt;7607;objj_executeFile("Foundation/Foundation.j", NO);
-objj_executeFile("Resources/Strophe/strophe.js", YES);
-objj_executeFile("Resources/Strophe/sha1.js", YES);
-objj_executeFile("TNStropheUtils.j", YES);
-{var the_class = objj_allocateClassPair(CPObject, "TNXMLNode"),
-meta_class = the_class.isa;class_addIvars(the_class, [new objj_ivar("_xmlNode")]);//#pragma mark -
-//#pragma mark Class methods
-
-
-
-//#pragma mark -
-//#pragma mark Initialization
-
-
-//#pragma mark -
-//#pragma mark Representation & Navigation
-
-
-
-
-
-
-
-
-//#pragma mark -
-//#pragma mark Attributes
-
-
-
-
-
-//#pragma mark -
-//#pragma mark Children
-
-
-
-
-
-
-objj_registerClassPair(the_class);
-class_addMethods(the_class, [new objj_method(sel_getUid("xmlNode"), function $TNXMLNode__xmlNode(self, _cmd)
-{
-return self._xmlNode;
-}
-,["XMLElement"]), new objj_method(sel_getUid("initWithNode:"), function $TNXMLNode__initWithNode_(self, _cmd, aNode)
-{
-    if (self = objj_msgSendSuper({ receiver:self, super_class:objj_getClass("TNXMLNode").super_class }, "init"))
-    {
-        if ((aNode.c) && (aNode.c) != undefined)
-        {
-            self._xmlNode = aNode;
-        }
-        else
-        {
-            self._xmlNode = new Strophe.Builder('msg');
-            self._xmlNode.nodeTree = aNode;
-            self._xmlNode.node = aNode;
-        }
-    }
-    return self;
-}
-,["TNXMLNode","id"]), new objj_method(sel_getUid("initWithName:andAttributes:"), function $TNXMLNode__initWithName_andAttributes_(self, _cmd, aName, attributes)
-{
-    if (self = objj_msgSendSuper({ receiver:self, super_class:objj_getClass("TNXMLNode").super_class }, "init"))
-    {
-        self._xmlNode = new Strophe.Builder(aName, attributes);
-    }
-    return self;
-}
-,["TNXMLNode","CPString","CPDictionary"]), new objj_method(sel_getUid("copy"), function $TNXMLNode__copy(self, _cmd)
-{
-    return objj_msgSend(TNXMLNode, "nodeWithXMLNode:", Strophe.copyElement(objj_msgSend(self, "tree")));
-}
-,["TNXMLNode"]), new objj_method(sel_getUid("addNode:"), function $TNXMLNode__addNode_(self, _cmd, aNode)
-{
-    if (!aNode)
-        return;
-    self._xmlNode.cnode(objj_msgSend(aNode, "tree"));
-}
-,["void","TNXMLNode"]), new objj_method(sel_getUid("addTextNode:"), function $TNXMLNode__addTextNode_(self, _cmd, aText)
-{
-    self._xmlNode = self._xmlNode.t(aText);
-}
-,["void","CPString"]), new objj_method(sel_getUid("text"), function $TNXMLNode__text(self, _cmd)
-{
-    return TNStropheStripHTMLCharCode(Strophe.getText(objj_msgSend(self, "tree")));
-}
-,["CPString"]), new objj_method(sel_getUid("tree"), function $TNXMLNode__tree(self, _cmd)
-{
-    return self._xmlNode.tree();
-}
-,["id"]), new objj_method(sel_getUid("up"), function $TNXMLNode__up(self, _cmd)
-{
-    if (self._xmlNode.node && self._xmlNode.node.parentNode)
-    {
-        self._xmlNode.up();
-        return YES;
-    }
-    return NO;
-}
-,["BOOL"]), new objj_method(sel_getUid("stringValue"), function $TNXMLNode__stringValue(self, _cmd)
-{
-    return Strophe.serialize(self._xmlNode);
-}
-,["CPString"]), new objj_method(sel_getUid("description"), function $TNXMLNode__description(self, _cmd)
-{
-    return objj_msgSend(self, "stringValue");
-}
-,["CPString"]), new objj_method(sel_getUid("valueForAttribute:"), function $TNXMLNode__valueForAttribute_(self, _cmd, anAttribute)
-{
-    return objj_msgSend(self, "tree").getAttribute(anAttribute);
-}
-,["CPString","CPString"]), new objj_method(sel_getUid("setValue:forAttribute:"), function $TNXMLNode__setValue_forAttribute_(self, _cmd, aValue, anAttribute)
-{
-    var attr = {};
-    attr[anAttribute] = aValue;
-    self._xmlNode.attrs(attr);
-}
-,["void","CPString","CPString"]), new objj_method(sel_getUid("name"), function $TNXMLNode__name(self, _cmd)
-{
-    return objj_msgSend(self, "tree").tagName;
-}
-,["CPString"]), new objj_method(sel_getUid("namespace"), function $TNXMLNode__namespace(self, _cmd)
-{
-    return objj_msgSend(self, "valueForAttribute:", "xmlns");
-}
-,["CPString"]), new objj_method(sel_getUid("setNamespace:"), function $TNXMLNode__setNamespace_(self, _cmd, aNamespace)
-{
-    objj_msgSend(self, "setValue:forAttribute:", aNamespace, "xmlns");
-}
-,["void","CPString"]), new objj_method(sel_getUid("addChildWithName:andAttributes:"), function $TNXMLNode__addChildWithName_andAttributes_(self, _cmd, aTagName, attributes)
-{
-    self._xmlNode = self._xmlNode.c(aTagName, attributes);
-}
-,["void","CPString","CPDictionary"]), new objj_method(sel_getUid("addChildWithName:"), function $TNXMLNode__addChildWithName_(self, _cmd, aTagName)
-{
-    objj_msgSend(self, "addChildWithName:andAttributes:", aTagName, {});
-}
-,["void","CPString"]), new objj_method(sel_getUid("childrenWithName:"), function $TNXMLNode__childrenWithName_(self, _cmd, aName)
-{
-    var nodes = objj_msgSend(CPArray, "array"),
-        elements = objj_msgSend(self, "tree").getElementsByTagName(aName);
-    for (var i = 0; i < elements.length; i++)
-        objj_msgSend(nodes, "addObject:", objj_msgSend(TNXMLNode, "nodeWithXMLNode:", elements[i]))
-    return nodes;
-}
-,["CPArray","CPString"]), new objj_method(sel_getUid("ownChildrenWithName:"), function $TNXMLNode__ownChildrenWithName_(self, _cmd, aName)
-{
-    var nodes = objj_msgSend(CPArray, "array"),
-        elements = objj_msgSend(self, "tree").childNodes;
-    for (var i = 0; i < elements.length; i++)
-        if ((aName === nil) || (aName && elements [i].tagName == aName))
-            objj_msgSend(nodes, "addObject:", objj_msgSend(TNXMLNode, "nodeWithXMLNode:", elements[i]))
-    return nodes;
-}
-,["CPArray","CPString"]), new objj_method(sel_getUid("firstChildWithName:"), function $TNXMLNode__firstChildWithName_(self, _cmd, aName)
-{
-    var elements = objj_msgSend(self, "tree").getElementsByTagName(aName);
-    if (elements && (elements.length > 0))
-        return objj_msgSend(TNXMLNode, "nodeWithXMLNode:", elements[0]);
-    else
-        return;
-}
-,["TNXMLNode","CPString"]), new objj_method(sel_getUid("children"), function $TNXMLNode__children(self, _cmd)
-{
-    return objj_msgSend(self, "ownChildrenWithName:", nil);
-}
-,["CPArray"]), new objj_method(sel_getUid("containsChildrenWithName:"), function $TNXMLNode__containsChildrenWithName_(self, _cmd, aName)
-{
-    return objj_msgSend(self, "firstChildWithName:", aName) ? YES : NO;
-}
-,["BOOL","CPString"])]);
-class_addMethods(meta_class, [new objj_method(sel_getUid("nodeWithXMLNode:"), function $TNXMLNode__nodeWithXMLNode_(self, _cmd, aNode)
-{
-    return objj_msgSend(objj_msgSend(TNXMLNode, "alloc"), "initWithNode:", aNode);
-}
-,["TNXMLNode","id"]), new objj_method(sel_getUid("nodeWithName:"), function $TNXMLNode__nodeWithName_(self, _cmd, aName)
-{
-    return objj_msgSend(objj_msgSend(TNXMLNode, "alloc"), "initWithName:andAttributes:", aName, nil);
-}
-,["TNXMLNode","CPString"]), new objj_method(sel_getUid("nodeWithName:andAttributes:"), function $TNXMLNode__nodeWithName_andAttributes_(self, _cmd, aName, someAttributes)
-{
-    return objj_msgSend(objj_msgSend(TNXMLNode, "alloc"), "initWithName:andAttributes:", aName, someAttributes);
-}
-,["TNXMLNode","CPString","CPDictionary"])]);
-}
-{
-var the_class = objj_getClass("TNXMLNode")
-if(!the_class) throw new SyntaxError("*** Could not find definition for class \"TNXMLNode\"");
-var meta_class = the_class.isa;
-class_addMethods(the_class, [new objj_method(sel_getUid("initWithCoder:"), function $TNXMLNode__initWithCoder_(self, _cmd, aCoder)
-{
-    if (self = objj_msgSendSuper({ receiver:self, super_class:objj_getClass("TNXMLNode").super_class }, "init"))
-    {
-    }
-    return self;
-}
-,["id","CPCoder"]), new objj_method(sel_getUid("encodeWithCoder:"), function $TNXMLNode__encodeWithCoder_(self, _cmd, aCoder)
-{
-}
-,["void","CPCoder"])]);
-}p;21;TNStropheRosterBase.jt;6775;@STATIC;1.0;I;23;Foundation/Foundation.ji;21;TNStropheConnection.ji;18;TNStropheContact.ji;16;TNStropheGroup.ji;14;TNStropheJID.ji;17;TNStropheStanza.jt;6617;objj_executeFile("Foundation/Foundation.j", NO);
+}p;21;TNStropheRosterBase.jt;6673;@STATIC;1.0;I;23;Foundation/Foundation.ji;21;TNStropheConnection.ji;18;TNStropheContact.ji;16;TNStropheGroup.ji;14;TNStropheJID.ji;17;TNStropheStanza.jt;6515;objj_executeFile("Foundation/Foundation.j", NO);
 objj_executeFile("TNStropheConnection.j", YES);
 objj_executeFile("TNStropheContact.j", YES);
 objj_executeFile("TNStropheGroup.j", YES);
 objj_executeFile("TNStropheJID.j", YES);
 objj_executeFile("TNStropheStanza.j", YES);
 {var the_class = objj_allocateClassPair(CPObject, "TNStropheRosterBase"),
-meta_class = the_class.isa;class_addIvars(the_class, [new objj_ivar("_contactCache"), new objj_ivar("_groupCache"), new objj_ivar("_content"), new objj_ivar("_delegate"), new objj_ivar("_connection")]);//#pragma mark -
-//#pragma mark Class methods
-
-//#pragma mark -
-//#pragma mark Initialization
+meta_class = the_class.isa;class_addIvars(the_class, [new objj_ivar("_contactCache"), new objj_ivar("_groupCache"), new objj_ivar("_content"), new objj_ivar("_delegate"), new objj_ivar("_connection")]);
+       
+       
 
 
 
-//#pragma mark -
-//#pragma mark Contacts
+       
+       
 
 
 
@@ -1593,1880 +2802,7 @@ class_addMethods(meta_class, [new objj_method(sel_getUid("rosterWithConnection:"
     return objj_msgSend(objj_msgSend(TNStropheRosterBase, "alloc"), "initWithConnection:", aConnection);
 }
 ,["TNStropheRosterBase","TNStropheConnection"])]);
-}p;21;TNStropheConnection.jt;24252;@STATIC;1.0;I;23;Foundation/Foundation.ji;28;Resources/Strophe/strophe.jsi;25;Resources/Strophe/sha1.jsi;14;TNStropheJID.ji;17;TNStropheStanza.jt;24100;objj_executeFile("Foundation/Foundation.j", NO);
-objj_executeFile("Resources/Strophe/strophe.js", YES);
-objj_executeFile("Resources/Strophe/sha1.js", YES);
-objj_executeFile("TNStropheJID.j", YES);
-objj_executeFile("TNStropheStanza.j", YES);
-TNStropheConnectionStatusAuthenticatingNotification = "TNStropheConnectionStatusAuthenticatingNotification"
-TNStropheConnectionStatusAuthFailureNotification = "TNStropheConnectionStatusAuthFailureNotification";
-TNStropheConnectionStatusConnectedNotification = "TNStropheConnectionStatusConnectedNotification";
-TNStropheConnectionStatusConnectingNotification = "TNStropheConnectionStatusConnectingNotification";
-TNStropheConnectionStatusConnectionFailureNotification = "TNStropheConnectionStatusConnectionFailureNotification";
-TNStropheConnectionStatusDisconnectedNotification = "TNStropheConnectionStatusDisconnectedNotification";
-TNStropheConnectionStatusDisconnectingNotification = "TNStropheConnectionStatusDisconnectingNotification";
-TNStropheConnectionStatusErrorNotification = "TNStropheConnectionStatusErrorNotification";
-TNStropheConnectionStatusWillDisconnectNotification = "TNStropheConnectionStatusWillDisconnectNotification";
-var TNStropheTimerRunLoopMode = "TNStropheTimerRunLoopMode";
-{var the_class = objj_allocateClassPair(CPObject, "TNStropheConnection"),
-meta_class = the_class.isa;class_addIvars(the_class, [new objj_ivar("_connected"), new objj_ivar("_password"), new objj_ivar("_giveupTimeout"), new objj_ivar("_currentStatus"), new objj_ivar("_delegate"), new objj_ivar("_connectionTimeout"), new objj_ivar("_maxConnections"), new objj_ivar("_registeredHandlers"), new objj_ivar("_registeredTimedHandlers"), new objj_ivar("_timersIds"), new objj_ivar("_boshService"), new objj_ivar("_userPresenceShow"), new objj_ivar("_userPresenceStatus"), new objj_ivar("_giveUpTimer"), new objj_ivar("_stropheJSRunloopInterval"), new objj_ivar("_connection"), new objj_ivar("_JID")]);//#pragma mark -
-//#pragma mark Class methods
-
-
-//#pragma mark -
-//#pragma mark Initialization
-
-//#pragma mark -
-//#pragma mark Cappuccino's stropheJS runloop
-
-//#pragma mark -
-//#pragma mark Connection
-
-
-
-
-
-
-
-
-//#pragma mark -
-//#pragma mark Sending
-
-
-
-
-//#pragma mark -
-//#pragma mark Handlers
-
-
-
-
-
-
-
-
-
-
-
-objj_registerClassPair(the_class);
-class_addMethods(the_class, [new objj_method(sel_getUid("isConnected"), function $TNStropheConnection__isConnected(self, _cmd)
-{
-return self._connected;
-}
-,["BOOL"]), new objj_method(sel_getUid("_setConnected:"), function $TNStropheConnection___setConnected_(self, _cmd, newValue)
-{
-self._connected = newValue;
-}
-,["void","BOOL"]), new objj_method(sel_getUid("password"), function $TNStropheConnection__password(self, _cmd)
-{
-return self._password;
-}
-,["CPString"]), new objj_method(sel_getUid("setPassword:"), function $TNStropheConnection__setPassword_(self, _cmd, newValue)
-{
-self._password = newValue;
-}
-,["void","CPString"]), new objj_method(sel_getUid("giveupTimeout"), function $TNStropheConnection__giveupTimeout(self, _cmd)
-{
-return self._giveupTimeout;
-}
-,["float"]), new objj_method(sel_getUid("setGiveupTimeout:"), function $TNStropheConnection__setGiveupTimeout_(self, _cmd, newValue)
-{
-self._giveupTimeout = newValue;
-}
-,["void","float"]), new objj_method(sel_getUid("currentStatus"), function $TNStropheConnection__currentStatus(self, _cmd)
-{
-return self._currentStatus;
-}
-,["id"]), new objj_method(sel_getUid("_setCurrentStatus:"), function $TNStropheConnection___setCurrentStatus_(self, _cmd, newValue)
-{
-self._currentStatus = newValue;
-}
-,["void","id"]), new objj_method(sel_getUid("delegate"), function $TNStropheConnection__delegate(self, _cmd)
-{
-return self._delegate;
-}
-,["id"]), new objj_method(sel_getUid("_setDelegate:"), function $TNStropheConnection___setDelegate_(self, _cmd, newValue)
-{
-self._delegate = newValue;
-}
-,["void","id"]), new objj_method(sel_getUid("connectionTimeout"), function $TNStropheConnection__connectionTimeout(self, _cmd)
-{
-return self._connectionTimeout;
-}
-,["int"]), new objj_method(sel_getUid("setConnectionTimeout:"), function $TNStropheConnection__setConnectionTimeout_(self, _cmd, newValue)
-{
-self._connectionTimeout = newValue;
-}
-,["void","int"]), new objj_method(sel_getUid("maxConnections"), function $TNStropheConnection__maxConnections(self, _cmd)
-{
-return self._maxConnections;
-}
-,["int"]), new objj_method(sel_getUid("setMaxConnections:"), function $TNStropheConnection__setMaxConnections_(self, _cmd, newValue)
-{
-self._maxConnections = newValue;
-}
-,["void","int"]), new objj_method(sel_getUid("initWithService:andDelegate:"), function $TNStropheConnection__initWithService_andDelegate_(self, _cmd, aService, aDelegate)
-{
-    if (self = objj_msgSendSuper({ receiver:self, super_class:objj_getClass("TNStropheConnection").super_class }, "init"))
-    {
-        var bundle = objj_msgSend(CPBundle, "bundleForClass:", objj_msgSend(self, "class"));
-        self._registeredHandlers = objj_msgSend(CPArray, "array");
-        self._registeredTimedHandlers = objj_msgSend(CPArray, "array");
-        self._connected = NO;
-        self._maxConnections = objj_msgSend(bundle, "objectForInfoDictionaryKey:", "TNStropheConnectionMaxConnection");
-        self._connectionTimeout = objj_msgSend(bundle, "objectForInfoDictionaryKey:", "TNStropheConnectionTimeout");
-        self._giveupTimeout = objj_msgSend(bundle, "objectForInfoDictionaryKey:", "TNStropheConnectionGiveUpTimer");
-        self._currentStatus = Strophe.Status.DISCONNECTED;
-        self._boshService = aService;
-        self._connection = new Strophe.Connection(self._boshService);
-        self._delegate = aDelegate;
-        self._timersIds = objj_msgSend(CPDictionary, "dictionary");
-        self._stropheJSRunloopInterval = objj_msgSend(bundle, "objectForInfoDictionaryKey:", "TNStropheJSRunLoopInterval");
-        if (objj_msgSend(bundle, "objectForInfoDictionaryKey:", "TNStropheJSUseCappuccinoRunLoop") == 1)
-        {
-            CPLog.info("StropheCappuccino has been compiled to use the Cappuccino runloop. unsing interval of " + self._stropheJSRunloopInterval);
-            Strophe.setTimeout = function(f, delay)
-            {
-                objj_msgSend(objj_msgSend(CPRunLoop, "currentRunLoop"), "limitDateForMode:", CPDefaultRunLoopMode);
-                var timerID = objj_msgSend(self, "getUniqueId"),
-                    timer = objj_msgSend(CPTimer, "timerWithTimeInterval:target:selector:userInfo:repeats:", self._stropheJSRunloopInterval, self, sel_getUid("triggerStropheTimer:"), {"function": f, "id": timerID}, NO);
-                objj_msgSend(objj_msgSend(CPRunLoop, "currentRunLoop"), "addTimer:forMode:", timer, CPDefaultRunLoopMode);
-                objj_msgSend(self._timersIds, "setObject:forKey:", timer, timerID);
-                return timerID;
-            }
-            Strophe.clearTimeout = function(tid)
-            {
-                objj_msgSend(objj_msgSend(CPRunLoop, "currentRunLoop"), "limitDateForMode:", CPDefaultRunLoopMode);
-                var timer = objj_msgSend(self._timersIds, "objectForKey:", tid);
-                objj_msgSend(timer, "invalidate");
-                objj_msgSend(self._timersIds, "removeObjectForKey:", tid);
-            }
-        }
-    }
-    return self;
-}
-,["id","CPString","id"]), new objj_method(sel_getUid("triggerStropheTimer:"), function $TNStropheConnection__triggerStropheTimer_(self, _cmd, aTimer)
-{
-    objj_msgSend(self._timersIds, "removeObjectForKey:", objj_msgSend(aTimer, "userInfo")["id"]);
-    objj_msgSend(aTimer, "userInfo")["function"]();
-    objj_msgSend(aTimer, "invalidate");
-}
-,["void","CPTimer"]), new objj_method(sel_getUid("JID"), function $TNStropheConnection__JID(self, _cmd)
-{
-    if (objj_msgSend(self._delegate, "respondsToSelector:", sel_getUid("JID")))
-        return objj_msgSend(self._delegate, "JID");
-    else
-        return self._JID;
-}
-,["TNStropheJID"]), new objj_method(sel_getUid("connectWithJID:andPassword:"), function $TNStropheConnection__connectWithJID_andPassword_(self, _cmd, aJID, aPassword)
-{
-    if (self._currentStatus !== Strophe.Status.DISCONNECTED)
-        return;
-    self._JID = aJID;
-    self._connection.connect(objj_msgSend(aJID, "full"), aPassword, function (status, errorCond)
-    {
-        objj_msgSend(objj_msgSend(CPRunLoop, "currentRunLoop"), "limitDateForMode:", CPDefaultRunLoopMode);
-        var selector,
-            notificationName;
-        self._currentStatus = status;
-        if (errorCond)
-        {
-            self._currentStatus = Strophe.Status.DISCONNECTED;
-            if (objj_msgSend(self._delegate, "respondsToSelector:", sel_getUid("connection:errorCondition:")))
-                objj_msgSend(self._delegate, "connection:errorCondition:", self, errorCond);
-        }
-        else
-        {
-            switch (status)
-            {
-                case Strophe.Status.ERROR:
-                    selector = sel_getUid("onStropheError:");
-                    notificationName = TNStropheConnectionStatusErrorNotification;
-                    break;
-                case Strophe.Status.CONNECTING:
-                    selector = sel_getUid("onStropheConnecting:");
-                    notificationName = TNStropheConnectionStatusConnectingNotification;
-                    self._giveUpTimer = objj_msgSend(CPTimer, "scheduledTimerWithTimeInterval:callback:repeats:", self._giveupTimeout, function(aTimer) {
-                            self._currentStatus = Strophe.Status.DISCONNECTED;
-                            self._giveUpTimer = nil;
-                            objj_msgSend(self, "reset")
-                            if ((self._currentStatus === Strophe.Status.CONNECTING) && objj_msgSend(self._delegate, "respondsToSelector:", sel_getUid("connection:errorCondition:")))
-                                objj_msgSend(self._delegate, "connection:errorCondition:", self, "Cannot connect");
-                        }, NO);
-                    break;
-                case Strophe.Status.CONNFAIL:
-                    selector = sel_getUid("onStropheConnectFail:");
-                    notificationName = TNStropheConnectionStatusConnectionFailureNotification;
-                    self._connected = NO;
-                    break;
-                case Strophe.Status.AUTHENTICATING:
-                    selector = sel_getUid("onStropheAuthenticating:");
-                    notificationName = TNStropheConnectionStatusAuthenticatingNotification;
-                    self._connected = NO;
-                    break;
-                case Strophe.Status.AUTHFAIL:
-                    selector = sel_getUid("onStropheAuthFail:");
-                    notificationName = TNStropheConnectionStatusAuthFailureNotification;
-                    self._connected = NO;
-                    break;
-                case Strophe.Status.DISCONNECTING:
-                    selector = sel_getUid("onStropheDisconnecting:");
-                    notificationName = TNStropheConnectionStatusDisconnectingNotification;
-                    self._connected = YES;
-                    break;
-                case Strophe.Status.DISCONNECTED:
-                    objj_msgSend(self, "deleteAllRegisteredSelectors");
-                    selector = sel_getUid("onStropheDisconnected:");
-                    notificationName = TNStropheConnectionStatusDisconnectedNotification;
-                    self._connected = NO;
-                    break;
-                case Strophe.Status.CONNECTED:
-                    selector = sel_getUid("onStropheConnected:");
-                    notificationName = TNStropheConnectionStatusConnectedNotification;
-                    self._connected = YES;
-                    if (self._giveUpTimer)
-                        objj_msgSend(self._giveUpTimer, "invalidate");
-                    break;
-            }
-        }
-        if (selector && objj_msgSend(self._delegate, "respondsToSelector:", selector))
-            objj_msgSend(self._delegate, "performSelector:withObject:", selector, self);
-        if (notificationName)
-            objj_msgSend(objj_msgSend(CPNotificationCenter, "defaultCenter"), "postNotificationName:object:", notificationName, self);
-    }, self._connectionTimeout, self._maxConnections);
-}
-,["void","TNStropheJID","CPString"]), new objj_method(sel_getUid("disconnect"), function $TNStropheConnection__disconnect(self, _cmd)
-{
-    if (self._currentStatus === Strophe.Status.DISCONNECTED)
-        return;
-    objj_msgSend(objj_msgSend(CPNotificationCenter, "defaultCenter"), "postNotificationName:object:", TNStropheConnectionStatusWillDisconnectNotification, self);
-    self._connection.disconnect();
-}
-,["void"]), new objj_method(sel_getUid("reset"), function $TNStropheConnection__reset(self, _cmd)
-{
-    if (self._connection)
-        self._connection.reset();
-}
-,["void"]), new objj_method(sel_getUid("pause"), function $TNStropheConnection__pause(self, _cmd)
-{
-    if (self._connection)
-        self._connection.pause();
-}
-,["void"]), new objj_method(sel_getUid("resume"), function $TNStropheConnection__resume(self, _cmd)
-{
-    if (self._connection)
-        self._connection.pause();
-}
-,["void"]), new objj_method(sel_getUid("flush"), function $TNStropheConnection__flush(self, _cmd)
-{
-    self._connection.flush();
-}
-,["void"]), new objj_method(sel_getUid("JID"), function $TNStropheConnection__JID(self, _cmd)
-{
-    return objj_msgSend(self._delegate, "JID");
-}
-,["TNStropheJID"]), new objj_method(sel_getUid("send:"), function $TNStropheConnection__send_(self, _cmd, aStanza)
-{
-    if (self._currentStatus == Strophe.Status.CONNECTED)
-    {
-        CPLog.trace("StropheCappuccino Stanza Send:")
-        CPLog.trace(aStanza);
-        objj_msgSend(objj_msgSend(CPRunLoop, "currentRunLoop"), "performSelector:target:argument:order:modes:", sel_getUid("performSend:"), self, aStanza, 0, [CPDefaultRunLoopMode]);
-    }
-}
-,["void","TNStropheStanza"]), new objj_method(sel_getUid("performSend:"), function $TNStropheConnection__performSend_(self, _cmd, aStanza)
-{
-    self._connection.send(objj_msgSend(aStanza, "tree"));
-}
-,["void","TNStropheStanza"]), new objj_method(sel_getUid("getUniqueId"), function $TNStropheConnection__getUniqueId(self, _cmd)
-{
-    return objj_msgSend(self, "getUniqueIdWithSuffix:", null);
-}
-,["CPString"]), new objj_method(sel_getUid("getUniqueIdWithSuffix:"), function $TNStropheConnection__getUniqueIdWithSuffix_(self, _cmd, suffix)
-{
-    return self._connection.getUniqueId(suffix);
-}
-,["CPString","CPString"]), new objj_method(sel_getUid("registerSelector:ofObject:withDict:userInfo:handlerDelegate:"), function $TNStropheConnection__registerSelector_ofObject_withDict_userInfo_handlerDelegate_(self, _cmd, aSelector, anObject, aDict, someUserInfo, aHandlerDelegate)
-{
-    var from = objj_msgSend(objj_msgSend(aDict, "valueForKey:", "from"), "isKindOfClass:", CPString) ? objj_msgSend(aDict, "valueForKey:", "from") : objj_msgSend(objj_msgSend(aDict, "valueForKey:", "from"), "stringValue"),
-        handlerId = self._connection.addHandler(function(stanza)
-        {
-            objj_msgSend(objj_msgSend(CPRunLoop, "currentRunLoop"), "limitDateForMode:", CPDefaultRunLoopMode);
-            var stanzaObject = objj_msgSend(TNStropheStanza, "stanzaWithStanza:", stanza),
-                ret;
-            if (someUserInfo)
-                ret = objj_msgSend(anObject, "performSelector:withObject:withObject:", aSelector, stanzaObject, someUserInfo);
-            else
-                ret = objj_msgSend(anObject, "performSelector:withObject:", aSelector, stanzaObject);
-            CPLog.trace("StropheCappuccino stanza received that trigger selector : " + objj_msgSend(anObject, "class") + "." + aSelector);
-            CPLog.trace(stanzaObject);
-            delete aDict.options;
-            delete someUserInfo;
-            if (aHandlerDelegate && objj_msgSend(aHandlerDelegate, "respondsToSelector:", sel_getUid("stropheConnection:performedHandlerId:")))
-                objj_msgSend(aHandlerDelegate, "stropheConnection:performedHandlerId:", self, handlerId)
-            someUserInfo = nil;
-            objj_msgSend(self._registeredHandlers, "removeObject:", handlerId);
-            return ret;
-        },
-        objj_msgSend(aDict, "valueForKey:", "namespace"),
-        objj_msgSend(aDict, "valueForKey:", "name"),
-        objj_msgSend(aDict, "valueForKey:", "type"),
-        objj_msgSend(aDict, "valueForKey:", "id"),
-        from,
-        objj_msgSend(aDict, "valueForKey:", "options"));
-    objj_msgSend(self._registeredHandlers, "addObject:", handlerId);
-    return handlerId;
-}
-,["id","SEL","CPObject","id","id","id"]), new objj_method(sel_getUid("registerSelector:ofObject:withDict:handlerDelegate:"), function $TNStropheConnection__registerSelector_ofObject_withDict_handlerDelegate_(self, _cmd, aSelector, anObject, aDict, aHandlerDelegate)
-{
-    return objj_msgSend(self, "registerSelector:ofObject:withDict:userInfo:handlerDelegate:", aSelector, anObject, aDict, nil, aHandlerDelegate);
-}
-,["id","SEL","CPObject","id","id"]), new objj_method(sel_getUid("registerSelector:ofObject:withDict:userInfo:"), function $TNStropheConnection__registerSelector_ofObject_withDict_userInfo_(self, _cmd, aSelector, anObject, aDict, someUserInfo)
-{
-    return objj_msgSend(self, "registerSelector:ofObject:withDict:userInfo:handlerDelegate:", aSelector, anObject, aDict, someUserInfo, nil);
-}
-,["id","SEL","CPObject","id","id"]), new objj_method(sel_getUid("registerSelector:ofObject:withDict:"), function $TNStropheConnection__registerSelector_ofObject_withDict_(self, _cmd, aSelector, anObject, aDict)
-{
-    return objj_msgSend(self, "registerSelector:ofObject:withDict:userInfo:handlerDelegate:", aSelector, anObject, aDict, nil, nil);
-}
-,["id","SEL","CPObject","id"]), new objj_method(sel_getUid("registerTimeoutSelector:ofObject:withDict:forTimeout:"), function $TNStropheConnection__registerTimeoutSelector_ofObject_withDict_forTimeout_(self, _cmd, aTimeoutSelector, anObject, aDict, aTimeout)
-{
-    var from = objj_msgSend(objj_msgSend(aDict, "valueForKey:", "from"), "isKindOfClass:", CPString) ? objj_msgSend(aDict, "valueForKey:", "from") : objj_msgSend(objj_msgSend(aDict, "valueForKey:", "from"), "stringValue"),
-        handlerId = self._connection.addTimedHandler(aTimeout, function(stanza) {
-                if (!stanza)
-                {
-                    objj_msgSend(objj_msgSend(CPRunLoop, "currentRunLoop"), "limitDateForMode:", CPDefaultRunLoopMode);
-                    var ret = objj_msgSend(anObject, "performSelector:", aTimeoutSelector);
-                    CPLog.trace("StropheCappuccino stanza timeout that trigger selector : " + objj_msgSend(anObject, "class") + "." + aTimeoutSelector);
-                    delete aDict.options;
-                    return ret;
-                }
-                objj_msgSend(self._registeredTimedHandlers, "removeObject:", handlerId);
-                return NO;
-            },
-            objj_msgSend(aDict, "valueForKey:", "namespace"),
-            objj_msgSend(aDict, "valueForKey:", "name"),
-            objj_msgSend(aDict, "valueForKey:", "type"),
-            objj_msgSend(aDict, "valueForKey:", "id"),
-            from,
-            objj_msgSend(aDict, "valueForKey:", "options"));
-    objj_msgSend(self._registeredTimedHandlers, "addObject:", handlerId);
-    return handlerId;
-}
-,["id","SEL","CPObject","id","float"]), new objj_method(sel_getUid("deleteRegisteredSelector:"), function $TNStropheConnection__deleteRegisteredSelector_(self, _cmd, aHandlerId)
-{
-    self._connection.deleteHandler(aHandlerId);
-    objj_msgSend(self._registeredHandlers, "removeObject:", aHandlerId);
-}
-,["void","id"]), new objj_method(sel_getUid("deleteRegisteredTimedSelector:"), function $TNStropheConnection__deleteRegisteredTimedSelector_(self, _cmd, aTimedHandlerId)
-{
-    self._connection.deleteTimedHandler(aTimedHandlerId);
-    objj_msgSend(self._registeredTimedHandlers, "removeObject:", aTimedHandlerId);
-}
-,["void","id"]), new objj_method(sel_getUid("deleteAllRegisteredSelectors"), function $TNStropheConnection__deleteAllRegisteredSelectors(self, _cmd)
-{
-    for (var i = 0; i < objj_msgSend(self._registeredHandlers, "count"); i++)
-        objj_msgSend(self, "deleteRegisteredSelector:", objj_msgSend(self._registeredHandlers, "objectAtIndex:", i));
-    for (var i = 0; i < objj_msgSend(self._registeredTimedHandlers, "count"); i++)
-        objj_msgSend(self, "deleteRegisteredTimedSelector:", objj_msgSend(self._registeredTimedHandlers, "objectAtIndex:", i));
-    objj_msgSend(self._registeredHandlers, "removeAllObjects");
-    objj_msgSend(self._registeredTimedHandlers, "removeAllObjects");
-}
-,["void"]), new objj_method(sel_getUid("rawInputRegisterSelector:ofObject:"), function $TNStropheConnection__rawInputRegisterSelector_ofObject_(self, _cmd, aSelector, anObject)
-{
-    self._connection.xmlInput = function(elem) {
-        objj_msgSend(objj_msgSend(CPRunLoop, "currentRunLoop"), "limitDateForMode:", CPDefaultRunLoopMode);
-        objj_msgSend(anObject, "performSelector:withObject:", aSelector, objj_msgSend(TNStropheStanza, "nodeWithXMLNode:", elem));
-    }
-}
-,["void","SEL","id"]), new objj_method(sel_getUid("removeRawInputSelector"), function $TNStropheConnection__removeRawInputSelector(self, _cmd)
-{
-    self._connection.xmlInput = function(elem){
-        return;
-    };
-}
-,["void"]), new objj_method(sel_getUid("rawOutputRegisterSelector:ofObject:"), function $TNStropheConnection__rawOutputRegisterSelector_ofObject_(self, _cmd, aSelector, anObject)
-{
-    self._connection.xmlOutput = function(elem) {
-        objj_msgSend(objj_msgSend(CPRunLoop, "currentRunLoop"), "limitDateForMode:", CPDefaultRunLoopMode);
-        objj_msgSend(anObject, "performSelector:withObject:", aSelector, objj_msgSend(TNStropheStanza, "nodeWithXMLNode:", elem));
-    }
-}
-,["void","SEL","id"]), new objj_method(sel_getUid("removeRawOutputSelector"), function $TNStropheConnection__removeRawOutputSelector(self, _cmd)
-{
-    self._connection.xmlOutput = function(elem){
-        return;
-    };
-}
-,["void"])]);
-class_addMethods(meta_class, [new objj_method(sel_getUid("addNamespaceWithName:value:"), function $TNStropheConnection__addNamespaceWithName_value_(self, _cmd, aName, aValue)
-{
-    Strophe.addNamespace(aName, aValue);
-}
-,["void","CPString","CPString"]), new objj_method(sel_getUid("connectionWithService:andDelegate:"), function $TNStropheConnection__connectionWithService_andDelegate_(self, _cmd, aService, aDelegate)
-{
-    return objj_msgSend(objj_msgSend(TNStropheConnection, "alloc"), "initWithService:andDelegate:", aService, aDelegate);
-}
-,["TNStropheConnection","CPString","id"])]);
-}
-{
-var the_class = objj_getClass("TNStropheConnection")
-if(!the_class) throw new SyntaxError("*** Could not find definition for class \"TNStropheConnection\"");
-var meta_class = the_class.isa;
-class_addMethods(the_class, [new objj_method(sel_getUid("initWithCoder:"), function $TNStropheConnection__initWithCoder_(self, _cmd, aCoder)
-{
-    self = objj_msgSendSuper({ receiver:self, super_class:objj_getClass("TNStropheConnection").super_class }, "initWithCoder:", aCoder);
-    if (self)
-    {
-        self._delegate = objj_msgSend(aCoder, "decodeObjectForKey:", "_delegate");
-        self._boshService = objj_msgSend(aCoder, "decodeObjectForKey:", "_boshService");
-        self._connection = objj_msgSend(aCoder, "decodeObjectForKey:", "_connection");
-        self._registeredHandlers = objj_msgSend(aCoder, "decodeObjectForKey:", "_registeredHandlers");
-        self._registeredTimedHandlers = objj_msgSend(aCoder, "decodeObjectForKey:", "_registeredTimedHandlers");
-    }
-    return self;
-}
-,["id","CPCoder"]), new objj_method(sel_getUid("encodeWithCoder:"), function $TNStropheConnection__encodeWithCoder_(self, _cmd, aCoder)
-{
-    objj_msgSend(aCoder, "encodeObject:forKey:", self._boshService, "_boshService");
-    objj_msgSend(aCoder, "encodeObject:forKey:", self._connection, "_connection");
-    objj_msgSend(aCoder, "encodeObject:forKey:", self._registeredHandlers, "_registeredHandlers");
-    objj_msgSend(aCoder, "encodeObject:forKey:", self._registeredTimedHandlers, "_registeredTimedHandlers");
-}
-,["void","CPCoder"])]);
-}p;19;TNStropheIMClient.jt;6133;@STATIC;1.0;I;23;Foundation/Foundation.ji;25;Resources/Strophe/sha1.jsi;17;TNStropheClient.ji;21;TNStropheConnection.ji;14;TNStropheJID.ji;17;TNStropheRoster.ji;17;TNStropheStanza.jt;5945;objj_executeFile("Foundation/Foundation.j", NO);
-objj_executeFile("Resources/Strophe/sha1.js", YES);
-objj_executeFile("TNStropheClient.j", YES);
-objj_executeFile("TNStropheConnection.j", YES);
-objj_executeFile("TNStropheJID.j", YES);
-objj_executeFile("TNStropheRoster.j", YES);
-objj_executeFile("TNStropheStanza.j", YES);
-{var the_class = objj_allocateClassPair(TNStropheClient, "TNStropheIMClient"),
-meta_class = the_class.isa;class_addIvars(the_class, [new objj_ivar("_roster")]);//#pragma mark -
-//#pragma mark Class methods
-
-
-
-
-//#pragma mark -
-//#pragma mark Initialization
-
-
-//#pragma mark -
-//#pragma mark Notification handler
-
-//#pragma mark -
-//#pragma mark Connection
-
-
-
-
-
-objj_registerClassPair(the_class);
-class_addMethods(the_class, [new objj_method(sel_getUid("roster"), function $TNStropheIMClient__roster(self, _cmd)
-{
-return self._roster;
-}
-,["TNStropheRoster"]), new objj_method(sel_getUid("_setRoster:"), function $TNStropheIMClient___setRoster_(self, _cmd, newValue)
-{
-self._roster = newValue;
-}
-,["void","TNStropheRoster"]), new objj_method(sel_getUid("initWithService:rosterClass:"), function $TNStropheIMClient__initWithService_rosterClass_(self, _cmd, aService, aRosterClass)
-{
-    if (self = objj_msgSendSuper({ receiver:self, super_class:objj_getClass("TNStropheIMClient").super_class }, "initWithService:", aService))
-    {
-        if (!aRosterClass)
-            aRosterClass = TNStropheRoster;
-        self._roster = objj_msgSend(aRosterClass, "rosterWithConnection:", self._connection);
-    }
-    return self;
-}
-,["id","CPString","id"]), new objj_method(sel_getUid("initWithService:JID:password:rosterClass:"), function $TNStropheIMClient__initWithService_JID_password_rosterClass_(self, _cmd, aService, aJID, aPassword, aRosterClass)
-{
-    if (self = objj_msgSend(self, "initWithService:rosterClass:", aService, aRosterClass))
-    {
-        self._JID = aJID;
-        self._password = aPassword;
-        objj_msgSend(objj_msgSend(CPNotificationCenter, "defaultCenter"), "addObserver:selector:name:object:", self, sel_getUid("_didReceiveRoster:"), TNStropheRosterRetrievedNotification, nil);
-    }
-    return self;
-}
-,["id","CPString","TNStropheJID","CPString","id"]), new objj_method(sel_getUid("_didReceiveRoster:"), function $TNStropheIMClient___didReceiveRoster_(self, _cmd, aNotification)
-{
-    objj_msgSend(self, "_sendInitialPresence");
-    objj_msgSendSuper({ receiver:self, super_class:objj_getClass("TNStropheIMClient").super_class }, "onStropheConnected:", self._connection);
-}
-,["void","CPNotification"]), new objj_method(sel_getUid("onStropheConnected:"), function $TNStropheIMClient__onStropheConnected_(self, _cmd, aConnection)
-{
-    objj_msgSend(self._roster, "getSubGroupDelimiter");
-}
-,["void","TNStropheConnection"]), new objj_method(sel_getUid("onStropheConnectFail:"), function $TNStropheIMClient__onStropheConnectFail_(self, _cmd, aConnection)
-{
-    objj_msgSend(self._roster, "clear");
-    objj_msgSendSuper({ receiver:self, super_class:objj_getClass("TNStropheIMClient").super_class }, "onStropheConnectFail:", aConnection);
-}
-,["void","TNStropheConnection"]), new objj_method(sel_getUid("onStropheDisconnected:"), function $TNStropheIMClient__onStropheDisconnected_(self, _cmd, aConnection)
-{
-    objj_msgSend(self._roster, "clear");
-    objj_msgSendSuper({ receiver:self, super_class:objj_getClass("TNStropheIMClient").super_class }, "onStropheDisconnected:", aConnection);
-}
-,["void","TNStropheConnection"]), new objj_method(sel_getUid("onStropheError:"), function $TNStropheIMClient__onStropheError_(self, _cmd, aConnection)
-{
-    objj_msgSend(self._roster, "clear");
-    objj_msgSendSuper({ receiver:self, super_class:objj_getClass("TNStropheIMClient").super_class }, "onStropheError:", aConnection);
-}
-,["void","TNStropheConnection"]), new objj_method(sel_getUid("initWithCoder:"), function $TNStropheIMClient__initWithCoder_(self, _cmd, aCoder)
-{
-    self = objj_msgSendSuper({ receiver:self, super_class:objj_getClass("TNStropheIMClient").super_class }, "initWithCoder:", aCoder);
-    if (self)
-    {
-        self._roster = objj_msgSend(aCoder, "decodeObjectForKey:", "_roster");
-    }
-    return self;
-}
-,["id","CPCoder"]), new objj_method(sel_getUid("encodeWithCoder:"), function $TNStropheIMClient__encodeWithCoder_(self, _cmd, aCoder)
-{
-    objj_msgSendSuper({ receiver:self, super_class:objj_getClass("TNStropheIMClient").super_class }, "encodeWithCoder:", aCoder);
-    objj_msgSend(aCoder, "encodeObject:forKey:", self._roster, "_roster");
-}
-,["void","CPCoder"])]);
-class_addMethods(meta_class, [new objj_method(sel_getUid("IMClientWithService:"), function $TNStropheIMClient__IMClientWithService_(self, _cmd, aService)
-{
-    return objj_msgSend(objj_msgSend(TNStropheIMClient, "alloc"), "initWithService:", aService);
-}
-,["TNStropheIMClient","CPString"]), new objj_method(sel_getUid("IMClientWithService:rosterClass:"), function $TNStropheIMClient__IMClientWithService_rosterClass_(self, _cmd, aService, aRosterClass)
-{
-    return objj_msgSend(objj_msgSend(TNStropheIMClient, "alloc"), "initWithService:rosterClass:", aService, aRosterClass);
-}
-,["TNStropheIMClient","CPString","id"]), new objj_method(sel_getUid("IMClientWithService:JID:password:"), function $TNStropheIMClient__IMClientWithService_JID_password_(self, _cmd, aService, aJID, aPassword)
-{
-    return objj_msgSend(objj_msgSend(TNStropheIMClient, "alloc"), "initWithService:JID:password:", aService, aJID, aPassword);
-}
-,["TNStropheIMClient","CPString","TNStropheJID","CPString"]), new objj_method(sel_getUid("IMClientWithService:JID:password:rosterClass:"), function $TNStropheIMClient__IMClientWithService_JID_password_rosterClass_(self, _cmd, aService, aJID, aPassword, aRosterClass)
-{
-    return objj_msgSend(objj_msgSend(TNStropheIMClient, "alloc"), "initWithService:JID:password:rosterClass:", aService, aJID, aPassword, aRosterClass);
-}
-,["TNStropheIMClient","CPString","TNStropheJID","CPString","id"])]);
-}p;16;TNStropheGroup.jt;7806;@STATIC;1.0;I;23;Foundation/Foundation.jt;7759;objj_executeFile("Foundation/Foundation.j", NO);
-//@global TNStropheRosterRosterDelimiter
-TNStropheGroupRemovedNotification = "TNStropheGroupRemoved";
-{var the_class = objj_allocateClassPair(CPObject, "TNStropheGroup"),
-meta_class = the_class.isa;class_addIvars(the_class, [new objj_ivar("_subGroups"), new objj_ivar("_contacts"), new objj_ivar("_name"), new objj_ivar("_parentGroup")]);//#pragma mark -
-//#pragma mark Initialization
-
-
-//#pragma mark -
-//#pragma mark Overides
-
-//#pragma mark -
-//#pragma mark Contacts
-
-//#pragma mark -
-//#pragma mark Subgroups
-
-
-
-
-
-//#pragma mark -
-//#pragma mark Counting
-
-
-
-
-objj_registerClassPair(the_class);
-class_addMethods(the_class, [new objj_method(sel_getUid("subGroups"), function $TNStropheGroup__subGroups(self, _cmd)
-{
-return self._subGroups;
-}
-,["CPArray"]), new objj_method(sel_getUid("_setSubGroups:"), function $TNStropheGroup___setSubGroups_(self, _cmd, newValue)
-{
-self._subGroups = newValue;
-}
-,["void","CPArray"]), new objj_method(sel_getUid("contacts"), function $TNStropheGroup__contacts(self, _cmd)
-{
-return self._contacts;
-}
-,["CPArray"]), new objj_method(sel_getUid("setContacts:"), function $TNStropheGroup__setContacts_(self, _cmd, newValue)
-{
-self._contacts = newValue;
-}
-,["void","CPArray"]), new objj_method(sel_getUid("name"), function $TNStropheGroup__name(self, _cmd)
-{
-return self._name;
-}
-,["CPString"]), new objj_method(sel_getUid("setName:"), function $TNStropheGroup__setName_(self, _cmd, newValue)
-{
-self._name = newValue;
-}
-,["void","CPString"]), new objj_method(sel_getUid("parentGroup"), function $TNStropheGroup__parentGroup(self, _cmd)
-{
-return self._parentGroup;
-}
-,["TNStropheGroup"]), new objj_method(sel_getUid("setParentGroup:"), function $TNStropheGroup__setParentGroup_(self, _cmd, newValue)
-{
-self._parentGroup = newValue;
-}
-,["void","TNStropheGroup"]), new objj_method(sel_getUid("initWithName:"), function $TNStropheGroup__initWithName_(self, _cmd, aName)
-{
-    if (self = objj_msgSendSuper({ receiver:self, super_class:objj_getClass("TNStropheGroup").super_class }, "init"))
-    {
-        self._contacts = objj_msgSend(CPArray, "array");
-        self._subGroups = objj_msgSend(CPArray, "array");
-        self._name = aName;
-        self._parentGroup = nil;
-    }
-    return self;
-}
-,["TNStropheGroup","CPString"]), new objj_method(sel_getUid("description"), function $TNStropheGroup__description(self, _cmd)
-{
-    return self._name;
-}
-,["CPString"]), new objj_method(sel_getUid("contactWithJID:matchBare:"), function $TNStropheGroup__contactWithJID_matchBare_(self, _cmd, aJID, matchBare)
-{
-    for (var i = 0; i < objj_msgSend(self._contacts, "count"); i++)
-    {
-        if (matchBare)
-        {
-            if (objj_msgSend(objj_msgSend(objj_msgSend(self._contacts, "objectAtIndex:", i), "JID"), "bareEquals:", aJID))
-                return objj_msgSend(self._contacts, "objectAtIndex:", i);
-        }
-        else
-        {
-            if (objj_msgSend(objj_msgSend(objj_msgSend(self._contacts, "objectAtIndex:", i), "JID"), "fullEquals:", aJID))
-                return objj_msgSend(self._contacts, "objectAtIndex:", i);
-        }
-    }
-    return nil;
-}
-,["TNStropheContact","TNStropheJID","BOOL"]), new objj_method(sel_getUid("addSubGroup:"), function $TNStropheGroup__addSubGroup_(self, _cmd, aGroup)
-{
-    if (!objj_msgSend(aGroup, "isKindOfClass:", TNStropheGroup))
-        objj_msgSend(CPException, "raise:reason:", "Invalid Object", "addSubGroup only supports to add TNStropheGroups");
-    objj_msgSend(aGroup, "setParentGroup:", self);
-    objj_msgSend(self._subGroups, "addObject:", aGroup);
-}
-,["void","TNStropheGroup"]), new objj_method(sel_getUid("removeSubGroup:"), function $TNStropheGroup__removeSubGroup_(self, _cmd, aGroup)
-{
-    if (!objj_msgSend(self._subGroups, "containsObject:", aGroup))
-        return;
-    objj_msgSend(aGroup, "setParentGroup:", nil);
-    objj_msgSend(self._subGroups, "removeObject:", aGroup);
-}
-,["void","TNStropheGroup"]), new objj_method(sel_getUid("removeSubGroups"), function $TNStropheGroup__removeSubGroups(self, _cmd)
-{
-    for (var i = 0; i < objj_msgSend(self, "subGroupsCount"); i++)
-    {
-        var subGroup = objj_msgSend(self._subGroups, "objectAtIndex:", i);
-        objj_msgSend(self, "removeSubGroup:", subGroup);
-    }
-    objj_msgSend(self._subGroups, "removeAllObjects");
-}
-,["void"]), new objj_method(sel_getUid("subGroupWithName:"), function $TNStropheGroup__subGroupWithName_(self, _cmd, aName)
-{
-    for (var i = 0; i < objj_msgSend(self, "subGroupsCount"); i++)
-        if (objj_msgSend(objj_msgSend(objj_msgSend(self._subGroups, "objectAtIndex:", i), "name"), "uppercaseString") == objj_msgSend(aName, "uppercaseString"))
-            return objj_msgSend(self._subGroups, "objectAtIndex:", i);
-    return nil;
-}
-,["TNStropheGroup","CPString"]), new objj_method(sel_getUid("path"), function $TNStropheGroup__path(self, _cmd)
-{
-    var path = [objj_msgSend(self, "name")],
-        currentGroup = self;
-    while (currentGroup)
-    {
-        currentGroup = objj_msgSend(currentGroup, "parentGroup");
-        if (currentGroup)
-            objj_msgSend(path, "addObject:", objj_msgSend(objj_msgSend(currentGroup, "name"), "uppercaseString"));
-    }
-    return path.reverse().join(TNStropheRosterRosterDelimiter);
-}
-,["CPString"]), new objj_method(sel_getUid("flush"), function $TNStropheGroup__flush(self, _cmd)
-{
-    objj_msgSend(self, "removeSubGroups");
-    objj_msgSend(self._contacts, "removeAllObjects");
-}
-,["void"]), new objj_method(sel_getUid("subGroupsCount"), function $TNStropheGroup__subGroupsCount(self, _cmd)
-{
-    return objj_msgSend(self._subGroups, "count");
-}
-,["int"]), new objj_method(sel_getUid("contactCount"), function $TNStropheGroup__contactCount(self, _cmd)
-{
-    return objj_msgSend(self._contacts, "count");
-}
-,["int"]), new objj_method(sel_getUid("count"), function $TNStropheGroup__count(self, _cmd)
-{
-    return objj_msgSend(self, "subGroupsCount") + objj_msgSend(self, "contactCount");
-}
-,["int"]), new objj_method(sel_getUid("content"), function $TNStropheGroup__content(self, _cmd)
-{
-    return objj_msgSend(self._subGroups.sort(), "arrayByAddingObjectsFromArray:", self._contacts.sort());
-}
-,["CPArray"])]);
-class_addMethods(meta_class, [new objj_method(sel_getUid("stropheGroupWithName:"), function $TNStropheGroup__stropheGroupWithName_(self, _cmd, aName)
-{
-    return objj_msgSend(objj_msgSend(TNStropheGroup, "alloc"), "initWithName:", aName);
-}
-,["TNStropheGroup","CPString"])]);
-}
-{
-var the_class = objj_getClass("TNStropheGroup")
-if(!the_class) throw new SyntaxError("*** Could not find definition for class \"TNStropheGroup\"");
-var meta_class = the_class.isa;
-class_addMethods(the_class, [new objj_method(sel_getUid("initWithCoder:"), function $TNStropheGroup__initWithCoder_(self, _cmd, aCoder)
-{
-    if (self = objj_msgSendSuper({ receiver:self, super_class:objj_getClass("TNStropheGroup").super_class }, "init"))
-    {
-        self._contacts = objj_msgSend(aCoder, "decodeObjectForKey:", "_contacts");
-        self._name = objj_msgSend(aCoder, "decodeObjectForKey:", "_name");
-        self._parentGroup = objj_msgSend(aCoder, "decodeObjectForKey:", "_parentGroup");
-        self._subGroups = objj_msgSend(aCoder, "decodeObjectForKey:", "_subGroups");
-    }
-    return self;
-}
-,["id","CPCoder"]), new objj_method(sel_getUid("encodeWithCoder:"), function $TNStropheGroup__encodeWithCoder_(self, _cmd, aCoder)
-{
-    objj_msgSend(aCoder, "encodeObject:forKey:", self._contacts, "_contacts");
-    objj_msgSend(aCoder, "encodeObject:forKey:", self._name, "_name");
-    objj_msgSend(aCoder, "encodeObject:forKey:", self._parentGroup, "_parentGroup");
-    objj_msgSend(aCoder, "encodeObject:forKey:", self._subGroups, "_subGroups");
-}
-,["void","CPCoder"])]);
-}p;16;TNStropheVCard.jt;9767;@STATIC;1.0;I;23;Foundation/Foundation.jI;16;AppKit/CPImage.ji;11;TNXMLNode.jt;9683;objj_executeFile("Foundation/Foundation.j", NO);
-objj_executeFile("AppKit/CPImage.j", NO);
-objj_executeFile("TNXMLNode.j", YES);
-{var the_class = objj_allocateClassPair(CPObject, "TNStropheVCard"),
-meta_class = the_class.isa;class_addIvars(the_class, [new objj_ivar("_photo"), new objj_ivar("_categories"), new objj_ivar("_fullName"), new objj_ivar("_locality"), new objj_ivar("_organizationName"), new objj_ivar("_organizationUnit"), new objj_ivar("_role"), new objj_ivar("_title"), new objj_ivar("_type"), new objj_ivar("_userID")]);//#pragma mark -
-//#pragma mark Initialization
-
-//#pragma mark -
-//#pragma mark VCard generation
-objj_registerClassPair(the_class);
-class_addMethods(the_class, [new objj_method(sel_getUid("photo"), function $TNStropheVCard__photo(self, _cmd)
-{
-return self._photo;
-}
-,["CPImage"]), new objj_method(sel_getUid("setPhoto:"), function $TNStropheVCard__setPhoto_(self, _cmd, newValue)
-{
-self._photo = newValue;
-}
-,["void","CPImage"]), new objj_method(sel_getUid("categories"), function $TNStropheVCard__categories(self, _cmd)
-{
-return self._categories;
-}
-,["CPString"]), new objj_method(sel_getUid("setCategories:"), function $TNStropheVCard__setCategories_(self, _cmd, newValue)
-{
-self._categories = newValue;
-}
-,["void","CPString"]), new objj_method(sel_getUid("fullName"), function $TNStropheVCard__fullName(self, _cmd)
-{
-return self._fullName;
-}
-,["CPString"]), new objj_method(sel_getUid("setFullName:"), function $TNStropheVCard__setFullName_(self, _cmd, newValue)
-{
-self._fullName = newValue;
-}
-,["void","CPString"]), new objj_method(sel_getUid("locality"), function $TNStropheVCard__locality(self, _cmd)
-{
-return self._locality;
-}
-,["CPString"]), new objj_method(sel_getUid("setLocality:"), function $TNStropheVCard__setLocality_(self, _cmd, newValue)
-{
-self._locality = newValue;
-}
-,["void","CPString"]), new objj_method(sel_getUid("organizationName"), function $TNStropheVCard__organizationName(self, _cmd)
-{
-return self._organizationName;
-}
-,["CPString"]), new objj_method(sel_getUid("setOrganizationName:"), function $TNStropheVCard__setOrganizationName_(self, _cmd, newValue)
-{
-self._organizationName = newValue;
-}
-,["void","CPString"]), new objj_method(sel_getUid("organizationUnit"), function $TNStropheVCard__organizationUnit(self, _cmd)
-{
-return self._organizationUnit;
-}
-,["CPString"]), new objj_method(sel_getUid("setOrganizationUnit:"), function $TNStropheVCard__setOrganizationUnit_(self, _cmd, newValue)
-{
-self._organizationUnit = newValue;
-}
-,["void","CPString"]), new objj_method(sel_getUid("role"), function $TNStropheVCard__role(self, _cmd)
-{
-return self._role;
-}
-,["CPString"]), new objj_method(sel_getUid("setRole:"), function $TNStropheVCard__setRole_(self, _cmd, newValue)
-{
-self._role = newValue;
-}
-,["void","CPString"]), new objj_method(sel_getUid("title"), function $TNStropheVCard__title(self, _cmd)
-{
-return self._title;
-}
-,["CPString"]), new objj_method(sel_getUid("setTitle:"), function $TNStropheVCard__setTitle_(self, _cmd, newValue)
-{
-self._title = newValue;
-}
-,["void","CPString"]), new objj_method(sel_getUid("type"), function $TNStropheVCard__type(self, _cmd)
-{
-return self._type;
-}
-,["CPString"]), new objj_method(sel_getUid("setType:"), function $TNStropheVCard__setType_(self, _cmd, newValue)
-{
-self._type = newValue;
-}
-,["void","CPString"]), new objj_method(sel_getUid("userID"), function $TNStropheVCard__userID(self, _cmd)
-{
-return self._userID;
-}
-,["CPString"]), new objj_method(sel_getUid("setUserID:"), function $TNStropheVCard__setUserID_(self, _cmd, newValue)
-{
-self._userID = newValue;
-}
-,["void","CPString"]), new objj_method(sel_getUid("initWithXMLNode:"), function $TNStropheVCard__initWithXMLNode_(self, _cmd, aNode)
-{
-    if (self = objj_msgSendSuper({ receiver:self, super_class:objj_getClass("TNStropheVCard").super_class }, "init"))
-    {
-        self._categories = objj_msgSend(objj_msgSend(aNode, "firstChildWithName:", "CATEGORIES"), "text");
-        self._fullName = objj_msgSend(objj_msgSend(aNode, "firstChildWithName:", "FN"), "text");
-        self._locality = objj_msgSend(objj_msgSend(aNode, "firstChildWithName:", "LOCALITY"), "text");
-        self._organizationName = objj_msgSend(objj_msgSend(aNode, "firstChildWithName:", "ORGNAME"), "text");
-        self._organizationUnit = objj_msgSend(objj_msgSend(aNode, "firstChildWithName:", "ORGUNIT"), "text");
-        self._role = objj_msgSend(objj_msgSend(aNode, "firstChildWithName:", "ROLE"), "text");
-        self._title = objj_msgSend(objj_msgSend(aNode, "firstChildWithName:", "TITLE"), "text");
-        self._type = objj_msgSend(objj_msgSend(aNode, "firstChildWithName:", "TYPE"), "text");
-        self._userID = objj_msgSend(objj_msgSend(aNode, "firstChildWithName:", "USERID"), "text");
-        var photoNode;
-        if (photoNode = objj_msgSend(aNode, "firstChildWithName:", "PHOTO"))
-        {
-            var data = objj_msgSend(objj_msgSend(photoNode, "firstChildWithName:", "BINVAL"), "text");
-            self._photo = objj_msgSend(objj_msgSend(CPImage, "alloc"), "initWithData:", objj_msgSend(CPData, "dataWithBase64:", data));
-        }
-    }
-    return self;
-}
-,["void","TNXMLNode"]), new objj_method(sel_getUid("XMLNode"), function $TNStropheVCard__XMLNode(self, _cmd)
-{
-    var node = objj_msgSend(TNXMLNode, "nodeWithName:andAttributes:", "vCard", {"xmlns": "vcard-temp"});
-    if (self._fullName)
-    {
-        objj_msgSend(node, "addChildWithName:", "FN");
-        objj_msgSend(node, "addTextNode:", self._fullName);
-        objj_msgSend(node, "up");
-    }
-    if (self._title)
-    {
-        objj_msgSend(node, "addChildWithName:", "TITLE");
-        objj_msgSend(node, "addTextNode:", self._title);
-        objj_msgSend(node, "up");
-    }
-    if (self._organizationName)
-    {
-        objj_msgSend(node, "addChildWithName:", "ORGNAME");
-        objj_msgSend(node, "addTextNode:", self._organizationName);
-        objj_msgSend(node, "up");
-    }
-    if (self._organizationUnit)
-    {
-        objj_msgSend(node, "addChildWithName:", "ORGUNIT");
-        objj_msgSend(node, "addTextNode:", self._organizationUnit);
-        objj_msgSend(node, "up");
-    }
-    if (self._userID)
-    {
-        objj_msgSend(node, "addChildWithName:", "USERID");
-        objj_msgSend(node, "addTextNode:", self._userID);
-        objj_msgSend(node, "up");
-    }
-    if (self._locality)
-    {
-        objj_msgSend(node, "addChildWithName:", "LOCALITY");
-        objj_msgSend(node, "addTextNode:", self._locality);
-        objj_msgSend(node, "up");
-    }
-    if (self._categories)
-    {
-        objj_msgSend(node, "addChildWithName:", "CATEGORIES");
-        objj_msgSend(node, "addTextNode:", self._categories);
-        objj_msgSend(node, "up");
-    }
-    if (self._type)
-    {
-        objj_msgSend(node, "addChildWithName:", "TYPE");
-        objj_msgSend(node, "addTextNode:", self._type);
-        objj_msgSend(node, "up");
-    }
-    if (self._role)
-    {
-        objj_msgSend(node, "addChildWithName:", "ROLE");
-        objj_msgSend(node, "addTextNode:", self._role);
-        objj_msgSend(node, "up");
-    }
-    if (self._photo)
-    {
-        objj_msgSend(node, "addChildWithName:", "PHOTO");
-        objj_msgSend(node, "addChildWithName:", "BINVAL");
-        objj_msgSend(node, "addTextNode:", objj_msgSend(objj_msgSend(self._photo, "data"), "base64"));
-        objj_msgSend(node, "up");
-        objj_msgSend(node, "up");
-    }
-    return node;
-}
-,["TNXMLNode"])]);
-}
-{
-var the_class = objj_getClass("TNStropheVCard")
-if(!the_class) throw new SyntaxError("*** Could not find definition for class \"TNStropheVCard\"");
-var meta_class = the_class.isa;
-class_addMethods(the_class, [new objj_method(sel_getUid("initWithCoder:"), function $TNStropheVCard__initWithCoder_(self, _cmd, aCoder)
-{
-    if (self = objj_msgSendSuper({ receiver:self, super_class:objj_getClass("TNStropheVCard").super_class }, "init"))
-    {
-         self._fullName = objj_msgSend(aCoder, "decodeObjectForKey:", "_fullName");
-         self._organizationName = objj_msgSend(aCoder, "decodeObjectForKey:", "_organizationName");
-         self._organizationUnit = objj_msgSend(aCoder, "decodeObjectForKey:", "_organizationUnit");
-         self._userID = objj_msgSend(aCoder, "decodeObjectForKey:", "_userID");
-         self._locality = objj_msgSend(aCoder, "decodeObjectForKey:", "_locality");
-         self._categories = objj_msgSend(aCoder, "decodeObjectForKey:", "_categories");
-         self._type = objj_msgSend(aCoder, "decodeObjectForKey:", "_type");
-         self._role = objj_msgSend(aCoder, "decodeObjectForKey:", "_role");
-         self._title = objj_msgSend(aCoder, "decodeObjectForKey:", "_title");
-         self._photo = objj_msgSend(aCoder, "decodeObjectForKey:", "_photo");
-    }
-    return self;
-}
-,["id","CPCoder"]), new objj_method(sel_getUid("encodeWithCoder:"), function $TNStropheVCard__encodeWithCoder_(self, _cmd, aCoder)
-{
-    objj_msgSend(aCoder, "encodeObject:forKey:", self._fullName, "_fullName");
-    objj_msgSend(aCoder, "encodeObject:forKey:", self._organizationName, "_organizationName");
-    objj_msgSend(aCoder, "encodeObject:forKey:", self._organizationUnit, "_organizationUnit");
-    objj_msgSend(aCoder, "encodeObject:forKey:", self._userID, "_userID");
-    objj_msgSend(aCoder, "encodeObject:forKey:", self._locality, "_locality");
-    objj_msgSend(aCoder, "encodeObject:forKey:", self._categories, "_categories");
-    objj_msgSend(aCoder, "encodeObject:forKey:", self._type, "_type");
-    objj_msgSend(aCoder, "encodeObject:forKey:", self._role, "_role");
-    objj_msgSend(aCoder, "encodeObject:forKey:", self._title, "_title");
-    objj_msgSend(aCoder, "encodeObject:forKey:", self._photo, "_photo");
-}
-,["void","CPCoder"])]);
-}p;25;TNStrophePrivateStorage.jt;5923;@STATIC;1.0;i;28;Resources/Strophe/strophe.jsi;25;Resources/Strophe/sha1.jsi;21;TNStropheConnection.ji;16;TNStropheUtils.jt;5794;objj_executeFile("Resources/Strophe/strophe.js", YES);
-objj_executeFile("Resources/Strophe/sha1.js", YES);
-objj_executeFile("TNStropheConnection.j", YES);
-objj_executeFile("TNStropheUtils.j", YES);
-TNStrophePrivateStorageGetErrorNotification = "TNStrophePrivateStorageGetErrorNotification";
-TNStrophePrivateStorageSetErrorNotification = "TNStrophePrivateStorageSetErrorNotification";
-TNStrophePrivateStorageSetNotification = "TNStrophePrivateStorageSetNotification";
-{var the_class = objj_allocateClassPair(CPObject, "TNStrophePrivateStorage"),
-meta_class = the_class.isa;class_addIvars(the_class, [new objj_ivar("_namespace"), new objj_ivar("_connection")]);//#pragma mark -
-//#pragma mark Initialization
-
-
-//#pragma mark -
-//#pragma mark Storage
-
-
-
-objj_registerClassPair(the_class);
-class_addMethods(the_class, [new objj_method(sel_getUid("namespace"), function $TNStrophePrivateStorage__namespace(self, _cmd)
-{
-return self._namespace;
-}
-,["CPString"]), new objj_method(sel_getUid("setNamespace:"), function $TNStrophePrivateStorage__setNamespace_(self, _cmd, newValue)
-{
-self._namespace = newValue;
-}
-,["void","CPString"]), new objj_method(sel_getUid("connection"), function $TNStrophePrivateStorage__connection(self, _cmd)
-{
-return self._connection;
-}
-,["TNStropheConnection"]), new objj_method(sel_getUid("setConnection:"), function $TNStrophePrivateStorage__setConnection_(self, _cmd, newValue)
-{
-self._connection = newValue;
-}
-,["void","TNStropheConnection"]), new objj_method(sel_getUid("initWithConnection:namespace:"), function $TNStrophePrivateStorage__initWithConnection_namespace_(self, _cmd, aConnection, aNamespace)
-{
-    if (self = objj_msgSendSuper({ receiver:self, super_class:objj_getClass("TNStrophePrivateStorage").super_class }, "init"))
-    {
-        self._connection = aConnection;
-        self._namespace = aNamespace
-    }
-    return self;
-}
-,["TNStropheConnection","TNStropheConnection","CPString"]), new objj_method(sel_getUid("setObject:forKey:"), function $TNStrophePrivateStorage__setObject_forKey_(self, _cmd, anObject, aKey)
-{
-    var data = objj_msgSend(CPKeyedArchiver, "archivedDataWithRootObject:", anObject),
-        uid = objj_msgSend(self._connection, "getUniqueId"),
-        stanza = objj_msgSend(TNStropheStanza, "iqWithAttributes:", {"id": uid, "type": "set"}),
-        params = objj_msgSend(CPDictionary, "dictionaryWithObjectsAndKeys:", uid, "id");
-    objj_msgSend(stanza, "addChildWithName:andAttributes:", "query", {"xmlns": Strophe.NS.PRIVATE_STORAGE});
-    objj_msgSend(stanza, "addChildWithName:andAttributes:", aKey, {"xmlns": self._namespace});
-    objj_msgSend(stanza, "addTextNode:", objj_msgSend(data, "rawString"));
-    objj_msgSend(self._connection, "registerSelector:ofObject:withDict:userInfo:", sel_getUid("_didSetObject:object:"), self, params, anObject);
-    objj_msgSend(self._connection, "send:", stanza);
-}
-,["void","id","CPString"]), new objj_method(sel_getUid("_didSetObject:object:"), function $TNStrophePrivateStorage___didSetObject_object_(self, _cmd, aStanza, anObject)
-{
-    if (objj_msgSend(aStanza, "type") == "result")
-        objj_msgSend(objj_msgSend(CPNotificationCenter, "defaultCenter"), "postNotificationName:object:userInfo:", TNStrophePrivateStorageSetNotification, self, anObject);
-    else
-        objj_msgSend(objj_msgSend(CPNotificationCenter, "defaultCenter"), "postNotificationName:object:userInfo:", TNStrophePrivateStorageSetErrorNotification, self, aStanza);
-    return NO;
-}
-,["BOOL","TNStropheStanza","id"]), new objj_method(sel_getUid("objectForKey:target:selector:"), function $TNStrophePrivateStorage__objectForKey_target_selector_(self, _cmd, aKey, aTarget, aSelector)
-{
-    var uid = objj_msgSend(self._connection, "getUniqueId"),
-        stanza = objj_msgSend(TNStropheStanza, "iqWithAttributes:", {"id": uid, "type": "get"}),
-        params = objj_msgSend(CPDictionary, "dictionaryWithObjectsAndKeys:", uid, "id"),
-        listener = {"target": aTarget, "selector": aSelector, "key": aKey};
-    objj_msgSend(stanza, "addChildWithName:andAttributes:", "query", {"xmlns": Strophe.NS.PRIVATE_STORAGE});
-    objj_msgSend(stanza, "addChildWithName:andAttributes:", aKey, {"xmlns": self._namespace});
-    objj_msgSend(self._connection, "registerSelector:ofObject:withDict:userInfo:", sel_getUid("_didReceiveObject:userInfo:"), self, params, listener);
-    objj_msgSend(self._connection, "send:", stanza);
-}
-,["id","CPString","id","SEL"]), new objj_method(sel_getUid("_didReceiveObject:userInfo:"), function $TNStrophePrivateStorage___didReceiveObject_userInfo_(self, _cmd, aStanza, listener)
-{
-    if (objj_msgSend(aStanza, "type") == "result")
-    {
-        var dataString = objj_msgSend(objj_msgSend(aStanza, "firstChildWithName:", listener.key), "text");
-        try
-        {
-            if (dataString)
-                var obj = objj_msgSend(CPKeyedUnarchiver, "unarchiveObjectWithData:", objj_msgSend(CPData, "dataWithRawString:", TNStropheStripHTMLCharCode(dataString)));
-        }
-        catch(ex)
-        {
-            objj_msgSend(objj_msgSend(CPNotificationCenter, "defaultCenter"), "postNotificationName:object:userInfo:", TNStrophePrivateStorageGetErrorNotification, self, ex);
-        }
-    }
-    objj_msgSend(listener.target, "performSelector:withObject:withObject:", listener.selector, aStanza, obj);
-    return NO;
-}
-,["BOOL","TNStropheStanza","id"])]);
-class_addMethods(meta_class, [new objj_method(sel_getUid("strophePrivateStorageWithConnection:namespace:"), function $TNStrophePrivateStorage__strophePrivateStorageWithConnection_namespace_(self, _cmd, aConnection, aNamespace)
-{
-    return objj_msgSend(objj_msgSend(TNStrophePrivateStorage, "alloc"), "initWithConnection:namespace:", aConnection, aNamespace);
-}
-,["TNStropheConnection","TNStropheConnection","CPString"])]);
-}p;16;TNStropheUtils.jt;516;@STATIC;1.0;t;498;TNStropheStripHTMLCharCode = function(str)
-{
-    str = str.replace(/&amp;/g, '&');
-    str = str.replace(/&nbsp;/g, ' ');
-    str = str.replace(/&quote;/g, '\"');
-    str = str.replace(/&apos;/g, '\'');
-    str = str.replace(/&lt;/g, '<');
-    str = str.replace(/&gt;/g, '>');
-    str = str.replace(/&agrave;/g, 'à');
-    str = str.replace(/&ccedil;/g, 'ç');
-    str = str.replace(/&egrave;/g, 'è');
-    str = str.replace(/&eacute;/g, 'é');
-    str = str.replace(/&ecirc;/g, 'ê');
-    return str;
-}p;18;TNStropheContact.jt;32505;@STATIC;1.0;I;23;Foundation/Foundation.jI;16;AppKit/CPImage.ji;21;TNStropheConnection.ji;16;TNStropheGroup.ji;14;TNStropheJID.ji;16;TNStropheVCard.jt;32349;objj_executeFile("Foundation/Foundation.j", NO);
-objj_executeFile("AppKit/CPImage.j", NO);
-objj_executeFile("TNStropheConnection.j", YES);
-objj_executeFile("TNStropheGroup.j", YES);
-objj_executeFile("TNStropheJID.j", YES);
-objj_executeFile("TNStropheVCard.j", YES);
-TNStropheContactStatusAway = "away";
-TNStropheContactStatusBusy = "xa";
-TNStropheContactStatusDND = "dnd";
-TNStropheContactStatusOffline = "offline";
-TNStropheContactStatusOnline = "online";
-TNStropheContactGroupUpdatedNotification = "TNStropheContactGroupUpdatedNotification";
-TNStropheContactMessageActiveNotification = "TNStropheContactMessageActiveNotification";
-TNStropheContactMessageComposingNotification = "TNStropheContactMessageComposingNotification";
-TNStropheContactMessageGoneNotification = "TNStropheContactMessageGoneNotification";
-TNStropheContactMessageInactiveNotification = "TNStropheContactMessageInactiveNotification";
-TNStropheContactMessagePausedNotification = "TNStropheContactMessagePausedNotification";
-TNStropheContactMessageReceivedNotification = "TNStropheContactMessageReceivedNotification";
-TNStropheContactMessageSentNotification = "TNStropheContactMessageSentNotification";
-TNStropheContactMessageTreatedNotification = "TNStropheContactMessageTreatedNotification";
-TNStropheContactNicknameUpdatedNotification = "TNStropheContactNicknameUpdatedNotification";
-TNStropheContactPresenceUpdatedNotification = "TNStropheContactPresenceUpdatedNotification";
-TNStropheContactStanzaSentNotification = "TNStropheContactStanzaSentNotification"
-TNStropheContactSubscriptionUpdatedNotification = "TNStropheContactSubscriptionUpdatedNotification";
-TNStropheContactVCardReceivedNotification = "TNStropheContactVCardReceivedNotification";
-var TNStropheContactDelegate_avatarForContact_ = 1 << 0;
-TNStropheContactImageOffline = nil;
-TNStropheContactImageOnline = nil;
-TNStropheContactImageBusy = nil;
-TNStropheContactImageAway = nil;
-TNStropheContactImageDND = nil;
-TNStropheContactImageNewMessage = nil;
-TNStropheContactImageNewError = nil;
-{var the_class = objj_allocateClassPair(CPObject, "TNStropheContact"),
-meta_class = the_class.isa;class_addIvars(the_class, [new objj_ivar("_groups"), new objj_ivar("_messagesQueue"), new objj_ivar("_resources"), new objj_ivar("_avatar"), new objj_ivar("_statusIcon"), new objj_ivar("_numberOfEvents"), new objj_ivar("_nickname"), new objj_ivar("_nodeName"), new objj_ivar("_subscription"), new objj_ivar("_type"), new objj_ivar("_XMPPShow"), new objj_ivar("_XMPPStatus"), new objj_ivar("_delegate"), new objj_ivar("_connection"), new objj_ivar("_JID"), new objj_ivar("_vCard"), new objj_ivar("_askingVCard"), new objj_ivar("_isComposing"), new objj_ivar("_statusReminder"), new objj_ivar("_implementedDelegateMethods")]);//#pragma mark -
-//#pragma mark Class methods
-
-//#pragma mark -
-//#pragma mark Initialization
-
-
-//#pragma mark -
-//#pragma mark Setters and Getters
-
-
-//#pragma mark -
-//#pragma mark Status
-
-
-
-
-
-//#pragma mark -
-//#pragma mark Subscription
-
-
-
-
-//#pragma mark -
-//#pragma mark MetaData
-
-
-
-//#pragma mark -
-//#pragma mark Communicating
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//#pragma mark -
-//#pragma mark Delegates
-objj_registerClassPair(the_class);
-class_addMethods(the_class, [new objj_method(sel_getUid("groups"), function $TNStropheContact__groups(self, _cmd)
-{
-return self._groups;
-}
-,["CPArray"]), new objj_method(sel_getUid("setGroups:"), function $TNStropheContact__setGroups_(self, _cmd, newValue)
-{
-self._groups = newValue;
-}
-,["void","CPArray"]), new objj_method(sel_getUid("messagesQueue"), function $TNStropheContact__messagesQueue(self, _cmd)
-{
-return self._messagesQueue;
-}
-,["CPArray"]), new objj_method(sel_getUid("setMessagesQueue:"), function $TNStropheContact__setMessagesQueue_(self, _cmd, newValue)
-{
-self._messagesQueue = newValue;
-}
-,["void","CPArray"]), new objj_method(sel_getUid("resources"), function $TNStropheContact__resources(self, _cmd)
-{
-return self._resources;
-}
-,["CPArray"]), new objj_method(sel_getUid("setResources:"), function $TNStropheContact__setResources_(self, _cmd, newValue)
-{
-self._resources = newValue;
-}
-,["void","CPArray"]), new objj_method(sel_getUid("avatar"), function $TNStropheContact__avatar(self, _cmd)
-{
-return self._avatar;
-}
-,["CPImage"]), new objj_method(sel_getUid("setAvatar:"), function $TNStropheContact__setAvatar_(self, _cmd, newValue)
-{
-self._avatar = newValue;
-}
-,["void","CPImage"]), new objj_method(sel_getUid("statusIcon"), function $TNStropheContact__statusIcon(self, _cmd)
-{
-return self._statusIcon;
-}
-,["CPImage"]), new objj_method(sel_getUid("setStatusIcon:"), function $TNStropheContact__setStatusIcon_(self, _cmd, newValue)
-{
-self._statusIcon = newValue;
-}
-,["void","CPImage"]), new objj_method(sel_getUid("numberOfEvents"), function $TNStropheContact__numberOfEvents(self, _cmd)
-{
-return self._numberOfEvents;
-}
-,["CPNumber"]), new objj_method(sel_getUid("setNumberOfEvents:"), function $TNStropheContact__setNumberOfEvents_(self, _cmd, newValue)
-{
-self._numberOfEvents = newValue;
-}
-,["void","CPNumber"]), new objj_method(sel_getUid("nickname"), function $TNStropheContact__nickname(self, _cmd)
-{
-return self._nickname;
-}
-,["CPString"]), new objj_method(sel_getUid("setNickname:"), function $TNStropheContact__setNickname_(self, _cmd, newValue)
-{
-self._nickname = newValue;
-}
-,["void","CPString"]), new objj_method(sel_getUid("nodeName"), function $TNStropheContact__nodeName(self, _cmd)
-{
-return self._nodeName;
-}
-,["CPString"]), new objj_method(sel_getUid("setNodeName:"), function $TNStropheContact__setNodeName_(self, _cmd, newValue)
-{
-self._nodeName = newValue;
-}
-,["void","CPString"]), new objj_method(sel_getUid("subscription"), function $TNStropheContact__subscription(self, _cmd)
-{
-return self._subscription;
-}
-,["CPString"]), new objj_method(sel_getUid("setSubscription:"), function $TNStropheContact__setSubscription_(self, _cmd, newValue)
-{
-self._subscription = newValue;
-}
-,["void","CPString"]), new objj_method(sel_getUid("type"), function $TNStropheContact__type(self, _cmd)
-{
-return self._type;
-}
-,["CPString"]), new objj_method(sel_getUid("setType:"), function $TNStropheContact__setType_(self, _cmd, newValue)
-{
-self._type = newValue;
-}
-,["void","CPString"]), new objj_method(sel_getUid("XMPPShow"), function $TNStropheContact__XMPPShow(self, _cmd)
-{
-return self._XMPPShow;
-}
-,["CPString"]), new objj_method(sel_getUid("setXMPPShow:"), function $TNStropheContact__setXMPPShow_(self, _cmd, newValue)
-{
-self._XMPPShow = newValue;
-}
-,["void","CPString"]), new objj_method(sel_getUid("XMPPStatus"), function $TNStropheContact__XMPPStatus(self, _cmd)
-{
-return self._XMPPStatus;
-}
-,["CPString"]), new objj_method(sel_getUid("setXMPPStatus:"), function $TNStropheContact__setXMPPStatus_(self, _cmd, newValue)
-{
-self._XMPPStatus = newValue;
-}
-,["void","CPString"]), new objj_method(sel_getUid("delegate"), function $TNStropheContact__delegate(self, _cmd)
-{
-return self._delegate;
-}
-,["id"]), new objj_method(sel_getUid("_setDelegate:"), function $TNStropheContact___setDelegate_(self, _cmd, newValue)
-{
-self._delegate = newValue;
-}
-,["void","id"]), new objj_method(sel_getUid("connection"), function $TNStropheContact__connection(self, _cmd)
-{
-return self._connection;
-}
-,["TNStropheConnection"]), new objj_method(sel_getUid("setConnection:"), function $TNStropheContact__setConnection_(self, _cmd, newValue)
-{
-self._connection = newValue;
-}
-,["void","TNStropheConnection"]), new objj_method(sel_getUid("JID"), function $TNStropheContact__JID(self, _cmd)
-{
-return self._JID;
-}
-,["TNStropheJID"]), new objj_method(sel_getUid("setJID:"), function $TNStropheContact__setJID_(self, _cmd, newValue)
-{
-self._JID = newValue;
-}
-,["void","TNStropheJID"]), new objj_method(sel_getUid("vCard"), function $TNStropheContact__vCard(self, _cmd)
-{
-return self._vCard;
-}
-,["TNStropheVCard"]), new objj_method(sel_getUid("setVCard:"), function $TNStropheContact__setVCard_(self, _cmd, newValue)
-{
-self._vCard = newValue;
-}
-,["void","TNStropheVCard"]), new objj_method(sel_getUid("initWithConnection:JID:group:"), function $TNStropheContact__initWithConnection_JID_group_(self, _cmd, aConnection, aJID, aGroup)
-{
-    if (self = objj_msgSendSuper({ receiver:self, super_class:objj_getClass("TNStropheContact").super_class }, "init"))
-    {
-        self._type = "contact";
-        self._connection = aConnection;
-        self._messagesQueue = objj_msgSend(CPArray, "array");
-        self._numberOfEvents = 0;
-        self._isComposing = NO;
-        self._askingVCard = NO;
-        self._resources = objj_msgSend(CPArray, "array");
-        self._groups = objj_msgSend(CPArray, "array");
-        objj_msgSend(self, "setNickname:", objj_msgSend(self._JID, "bare"));
-        objj_msgSend(self, "setJID:", aJID);
-        objj_msgSend(self, "setXMPPStatus:", "Offline");
-        objj_msgSend(self, "setXMPPShow:", TNStropheContactStatusOffline);
-        objj_msgSend(self, "setStatusIcon:", TNStropheContactImageOffline);
-        if (aGroup)
-            objj_msgSend(self._groups, "addObject:", aGroup);
-    }
-    return self;
-}
-,["id","TNStropheConnection","TNStropheJID","TNStropheGroup"]), new objj_method(sel_getUid("setDelegate:"), function $TNStropheContact__setDelegate_(self, _cmd, aDelegate)
-{
-    if (aDelegate == self._delegate)
-        return;
-    self._delegate = aDelegate;
-    self._implementedDelegateMethods = 0;
-    if (objj_msgSend(self._delegate, "respondsToSelector:", sel_getUid("avatarForContact:")))
-        self._implementedDelegateMethods |= TNStropheContactDelegate_avatarForContact_;
-}
-,["void","id"]), new objj_method(sel_getUid("name"), function $TNStropheContact__name(self, _cmd)
-{
-    return objj_msgSend(self._vCard, "fullName") || self._nickname;
-}
-,["CPString"]), new objj_method(sel_getUid("_didReceivePresence:"), function $TNStropheContact___didReceivePresence_(self, _cmd, aStanza)
-{
-    var resource = objj_msgSend(aStanza, "fromResource"),
-        presenceStatus = objj_msgSend(aStanza, "firstChildWithName:", "status");
-    if (resource && (typeof(resource) != "undefined") && resource != "")
-    {
-        if (!objj_msgSend(self._resources, "containsObject:", resource))
-            objj_msgSend(self._resources, "addObject:", resource);
-        objj_msgSend(self._JID, "setResource:", resource);
-    }
-    switch (objj_msgSend(aStanza, "type"))
-    {
-        case "error":
-            var errorCode = objj_msgSend(objj_msgSend(aStanza, "firstChildWithName:", "error"), "valueForAttribute:", "code");
-            objj_msgSend(self, "setXMPPShow:", TNStropheContactStatusOffline);
-            objj_msgSend(self, "setXMPPStatus:", "Error code: " + errorCode);
-            objj_msgSend(self, "setStatusIcon:", TNStropheContactImageNewError);
-            self._statusReminder = TNStropheContactImageNewError;
-            return NO;
-        case "unavailable":
-            objj_msgSend(self._resources, "removeObject:", resource);
-            CPLogConsole("contact become unavailable from resource: " + resource + ". Resources left : " + self._resources + "("+ objj_msgSend(self._resources, "count") + ")");
-            if (objj_msgSend(self._resources, "count") == 0)
-            {
-                objj_msgSend(self, "setXMPPShow:", TNStropheContactStatusOffline);
-                objj_msgSend(self, "setStatusIcon:", TNStropheContactImageOffline);
-                self._statusReminder = TNStropheContactImageOffline;
-                if (presenceStatus)
-                    objj_msgSend(self, "setXMPPStatus:", objj_msgSend(presenceStatus, "text"));
-                else
-                    objj_msgSend(self, "setXMPPStatus:", "Offline");
-            }
-            else
-                objj_msgSend(self._JID, "setResource:", objj_msgSend(self._resources, "lastObject"));
-            break;
-        case "subscribe":
-            objj_msgSend(self, "setXMPPStatus:", "Asking subscribtion");
-            objj_msgSend(self, "setSubscription:", objj_msgSend(aStanza, "type"));
-            break;
-        case "subscribed":
-            objj_msgSend(self, "setSubscription:", objj_msgSend(aStanza, "type"));
-            break;
-        case "unsubscribe":
-            objj_msgSend(self, "setSubscription:", objj_msgSend(aStanza, "type"));
-            break;
-        case "unsubscribed":
-            objj_msgSend(self, "setSubscription:", objj_msgSend(aStanza, "type"));
-            objj_msgSend(self, "setXMPPStatus:", "Unauthorized");
-            break;
-        default:
-            objj_msgSend(self, "setXMPPShow:", TNStropheContactStatusOnline);
-            objj_msgSend(self, "setStatusIcon:", TNStropheContactImageOnline);
-            objj_msgSend(self, "setSubscription:", "subscribed");
-            self._statusReminder = TNStropheContactImageOnline;
-            if (objj_msgSend(aStanza, "firstChildWithName:", "show"))
-            {
-                objj_msgSend(self, "setXMPPShow:", objj_msgSend(objj_msgSend(aStanza, "firstChildWithName:", "show"), "text"));
-                switch (self._XMPPShow)
-                {
-                    case TNStropheContactStatusBusy:
-                        objj_msgSend(self, "setStatusIcon:", TNStropheContactImageBusy);
-                        self._statusReminder = TNStropheContactImageBusy;
-                        break;
-                    case TNStropheContactStatusAway:
-                        objj_msgSend(self, "setStatusIcon:", TNStropheContactImageAway);
-                        self._statusReminder = TNStropheContactImageAway;
-                        break;
-                    case TNStropheContactStatusDND:
-                        objj_msgSend(self, "setStatusIcon:", TNStropheContactImageDND);
-                        self._statusReminder = TNStropheContactImageDND;
-                        break;
-                }
-            }
-            if (self._numberOfEvents > 0)
-                objj_msgSend(self, "setStatusIcon:", TNStropheContactImageNewMessage);
-            if (presenceStatus)
-                objj_msgSend(self, "setXMPPStatus:", objj_msgSend(presenceStatus, "text"));
-            else
-                objj_msgSend(self, "setXMPPStatus:", "Online");
-            if (objj_msgSend(aStanza, "firstChildWithName:", "x")
-                && objj_msgSend(objj_msgSend(aStanza, "firstChildWithName:", "x"), "valueForAttribute:", "xmlns") == "vcard-temp:x:update"
-                && !objj_msgSend(aStanza, "firstChildWithName:", "delay"))
-            {
-                objj_msgSend(self, "getVCard");
-            }
-            break;
-    }
-    if (!(objj_msgSend(aStanza, "firstChildWithName:", "x") && objj_msgSend(objj_msgSend(aStanza, "firstChildWithName:", "x"), "valueForAttribute:", "xmlns") == "vcard-temp:x:update"))
-        objj_msgSend(objj_msgSend(CPNotificationCenter, "defaultCenter"), "postNotificationName:object:", TNStropheContactPresenceUpdatedNotification, self);
-    return YES;
-}
-,["BOOL","TNStropheStanza"]), new objj_method(sel_getUid("sendStatus:"), function $TNStropheContact__sendStatus_(self, _cmd, aStatus)
-{
-    var statusStanza = objj_msgSend(TNStropheStanza, "messageTo:withAttributes:", self._JID, {"type": "chat"});
-    objj_msgSend(statusStanza, "addChildWithName:andAttributes:", aStatus, {"xmlns": "http://jabber.org/protocol/chatstates"});
-    objj_msgSend(self, "sendStanza:andRegisterSelector:ofObject:", statusStanza, sel_getUid("_didSendStatus:"), self);
-}
-,["void","CPString"]), new objj_method(sel_getUid("_didSendStatus:"), function $TNStropheContact___didSendStatus_(self, _cmd, aStanza)
-{
-    if (objj_msgSend(aStanza, "type") == "error")
-        CPLog.error("Unable to send status. Resp is: " + aStanza);
-}
-,["void","TNStropheStanza"]), new objj_method(sel_getUid("sendComposing"), function $TNStropheContact__sendComposing(self, _cmd)
-{
-    if (self._isComposing)
-        return;
-    objj_msgSend(self, "sendStatus:", "composing");
-    self._isComposing = YES;
-}
-,["void"]), new objj_method(sel_getUid("sendComposePaused"), function $TNStropheContact__sendComposePaused(self, _cmd)
-{
-    objj_msgSend(self, "sendStatus:", "paused");
-    self._isComposing = NO;
-}
-,["void"]), new objj_method(sel_getUid("subscribe"), function $TNStropheContact__subscribe(self, _cmd)
-{
-    objj_msgSend(self._connection, "send:", objj_msgSend(TNStropheStanza, "presenceTo:withAttributes:bare:", self._JID, {"type": "subscribed"}, YES));
-}
-,["void"]), new objj_method(sel_getUid("unsubscribe"), function $TNStropheContact__unsubscribe(self, _cmd)
-{
-    objj_msgSend(self._connection, "send:", objj_msgSend(TNStropheStanza, "presenceTo:withAttributes:bare:", self._JID, {"type": "unsubscribed"}, YES));
-}
-,["void"]), new objj_method(sel_getUid("askSubscription"), function $TNStropheContact__askSubscription(self, _cmd)
-{
-    objj_msgSend(self._connection, "send:", objj_msgSend(TNStropheStanza, "presenceTo:withAttributes:bare:", self._JID, {"type": "subscribe"}, YES));
-}
-,["void"]), new objj_method(sel_getUid("setSubscription:"), function $TNStropheContact__setSubscription_(self, _cmd, aSubscription)
-{
-    objj_msgSend(self, "willChangeValueForKey:", "subscription");
-    self._subscription = aSubscription;
-    objj_msgSend(objj_msgSend(CPNotificationCenter, "defaultCenter"), "postNotificationName:object:", TNStropheContactSubscriptionUpdatedNotification, self);
-    objj_msgSend(self, "didChangeValueForKey:", "subscription");
-}
-,["void","CPString"]), new objj_method(sel_getUid("description"), function $TNStropheContact__description(self, _cmd)
-{
-    return self._nickname;
-}
-,["CPString"]), new objj_method(sel_getUid("getVCard"), function $TNStropheContact__getVCard(self, _cmd)
-{
-    var uid = objj_msgSend(self._connection, "getUniqueId"),
-        vcardStanza = objj_msgSend(TNStropheStanza, "iqTo:withAttributes:bare:", self._JID, {"type": "get", "id": uid}, YES),
-        params = objj_msgSend(CPDictionary, "dictionaryWithObjectsAndKeys:", uid, "id");
-    objj_msgSend(vcardStanza, "addChildWithName:andAttributes:", "vCard", {"xmlns": "vcard-temp"});
-    self._askingVCard = YES;
-    objj_msgSend(self._connection, "registerSelector:ofObject:withDict:", sel_getUid("_didReceiveVCard:"), self, params);
-    objj_msgSend(self._connection, "send:", vcardStanza);
-}
-,["void"]), new objj_method(sel_getUid("_didReceiveVCard:"), function $TNStropheContact___didReceiveVCard_(self, _cmd, aStanza)
-{
-    var aVCard = objj_msgSend(aStanza, "firstChildWithName:", "vCard");
-    self._askingVCard = NO;
-    self._avatar = nil;
-    if (aVCard)
-    {
-        var VCARD = objj_msgSend(objj_msgSend(TNStropheVCard, "alloc"), "initWithXMLNode:", aVCard);
-        if (!self._nickname || (self._nickname == objj_msgSend(self._JID, "bare")) || (self._nickname == objj_msgSend(self._JID, "node")))
-            objj_msgSend(self, "setNickname:", objj_msgSend(VCARD, "fullName") || objj_msgSend(self._JID, "node"))
-        if (objj_msgSend(VCARD, "photo"))
-            objj_msgSend(self, "setAvatar:", objj_msgSend(VCARD, "photo"));
-        else if (self._implementedDelegateMethods & TNStropheContactDelegate_avatarForContact_)
-            objj_msgSend(self, "setAvatar:", objj_msgSend(self._delegate, "avatarForContact:", self));
-        objj_msgSend(self, "willChangeValueForKey:", "name");
-        objj_msgSend(self, "setVCard:", VCARD);
-        objj_msgSend(self, "didChangeValueForKey:", "name");
-        objj_msgSend(objj_msgSend(CPNotificationCenter, "defaultCenter"), "postNotificationName:object:", TNStropheContactVCardReceivedNotification, self);
-    }
-    return NO;
-}
-,["BOOL","TNStropheStanza"]), new objj_method(sel_getUid("sendStanza:"), function $TNStropheContact__sendStanza_(self, _cmd, aStanza)
-{
-    objj_msgSend(self, "sendStanza:withUserInfo:", aStanza, nil);
-}
-,["void","TNStropheStanza"]), new objj_method(sel_getUid("sendStanza:withUserInfo:"), function $TNStropheContact__sendStanza_withUserInfo_(self, _cmd, aStanza, userInfo)
-{
-    objj_msgSend(aStanza, "setTo:", self._JID);
-    objj_msgSend(self._connection, "send:", aStanza);
-    objj_msgSend(objj_msgSend(CPNotificationCenter, "defaultCenter"), "postNotificationName:object:userInfo:", TNStropheContactStanzaSentNotification, self, userInfo);
-}
-,["void","TNStropheStanza","CPDictionary"]), new objj_method(sel_getUid("sendStanza:andRegisterSelector:ofObject:withSpecificID:userInfo:handlerDelegate:"), function $TNStropheContact__sendStanza_andRegisterSelector_ofObject_withSpecificID_userInfo_handlerDelegate_(self, _cmd, aStanza, aSelector, anObject, anId, someUserInfo, aDelegate)
-{
-    var params = objj_msgSend(CPDictionary, "dictionaryWithObjectsAndKeys:", anId, "id"),
-        userInfo = objj_msgSend(CPDictionary, "dictionaryWithObjectsAndKeys:", aStanza, "stanza", anId, "id"),
-        ret;
-    objj_msgSend(aStanza, "setID:", anId);
-    if (aSelector && someUserInfo && aDelegate)
-        ret = objj_msgSend(self._connection, "registerSelector:ofObject:withDict:userInfo:handlerDelegate:", aSelector, anObject, params, someUserInfo, aDelegate);
-    else if (aSelector && !someUserInfo && aDelegate)
-        ret = objj_msgSend(self._connection, "registerSelector:ofObject:withDict:handlerDelegate:", aSelector, anObject, params, aDelegate);
-    else if (aSelector && someUserInfo && !aDelegate)
-        ret = objj_msgSend(self._connection, "registerSelector:ofObject:withDict:userInfo:", aSelector, anObject, params, someUserInfo);
-    else if (aSelector && !someUserInfo && !aDelegate)
-        ret = objj_msgSend(self._connection, "registerSelector:ofObject:withDict:", aSelector, anObject, params);
-    objj_msgSend(self, "sendStanza:withUserInfo:", aStanza, userInfo);
-    return ret;
-}
-,["id","TNStropheStanza","SEL","id","id","id","id"]), new objj_method(sel_getUid("sendStanza:andRegisterSelector:ofObject:"), function $TNStropheContact__sendStanza_andRegisterSelector_ofObject_(self, _cmd, aStanza, aSelector, anObject)
-{
-    return objj_msgSend(self, "sendStanza:andRegisterSelector:ofObject:withSpecificID:userInfo:handlerDelegate:", aStanza, aSelector, anObject, objj_msgSend(self._connection, "getUniqueId"), nil, nil);
-}
-,["id","TNStropheStanza","SEL","id"]), new objj_method(sel_getUid("sendStanza:andRegisterSelector:ofObject:withSpecificID:"), function $TNStropheContact__sendStanza_andRegisterSelector_ofObject_withSpecificID_(self, _cmd, aStanza, aSelector, anObject, anId)
-{
-    return objj_msgSend(self, "sendStanza:andRegisterSelector:ofObject:withSpecificID:userInfo:handlerDelegate:", aStanza, aSelector, anObject, anId, nil, nil);
-}
-,["id","TNStropheStanza","SEL","id","int"]), new objj_method(sel_getUid("sendStanza:andRegisterSelector:ofObject:userInfo:"), function $TNStropheContact__sendStanza_andRegisterSelector_ofObject_userInfo_(self, _cmd, aStanza, aSelector, anObject, someUserInfo)
-{
-    return objj_msgSend(self, "sendStanza:andRegisterSelector:ofObject:withSpecificID:userInfo:handlerDelegate:", aStanza, aSelector, anObject, objj_msgSend(self._connection, "getUniqueId"), someUserInfo, nil);
-}
-,["id","TNStropheStanza","SEL","id","id"]), new objj_method(sel_getUid("sendStanza:andRegisterSelector:ofObject:handlerDelegate:"), function $TNStropheContact__sendStanza_andRegisterSelector_ofObject_handlerDelegate_(self, _cmd, aStanza, aSelector, anObject, aDelegate)
-{
-    return objj_msgSend(self, "sendStanza:andRegisterSelector:ofObject:withSpecificID:userInfo:handlerDelegate:", aStanza, aSelector, anObject, objj_msgSend(self._connection, "getUniqueId"), nil, aDelegate);
-}
-,["id","TNStropheStanza","SEL","id","id"]), new objj_method(sel_getUid("getMessages"), function $TNStropheContact__getMessages(self, _cmd)
-{
-    var params = objj_msgSend(CPDictionary, "dictionaryWithObjectsAndKeys:", "message", "name", objj_msgSend(self._JID, "bare"), "from", {matchBare: true}, "options");
-    objj_msgSend(self._connection, "registerSelector:ofObject:withDict:", sel_getUid("_didReceiveMessage:"), self, params);
-}
-,["void"]), new objj_method(sel_getUid("_didReceiveMessage:"), function $TNStropheContact___didReceiveMessage_(self, _cmd, aStanza)
-{
-    var center = objj_msgSend(CPNotificationCenter, "defaultCenter"),
-        userInfo = objj_msgSend(CPDictionary, "dictionaryWithObjectsAndKeys:", aStanza, "stanza", objj_msgSend(CPDate, "date"), "date");
-    if (objj_msgSend(aStanza, "containsChildrenWithName:", "composing"))
-        objj_msgSend(center, "postNotificationName:object:userInfo:", TNStropheContactMessageComposingNotification, self, userInfo);
-    if (objj_msgSend(aStanza, "containsChildrenWithName:", "paused"))
-        objj_msgSend(center, "postNotificationName:object:userInfo:", TNStropheContactMessagePausedNotification, self, userInfo);
-    if (objj_msgSend(aStanza, "containsChildrenWithName:", "active"))
-        objj_msgSend(center, "postNotificationName:object:userInfo:", TNStropheContactMessageActiveNotification, self, userInfo);
-    if (objj_msgSend(aStanza, "containsChildrenWithName:", "inactive"))
-        objj_msgSend(center, "postNotificationName:object:userInfo:", TNStropheContactMessageInactiveNotification, self, userInfo);
-    if (objj_msgSend(aStanza, "containsChildrenWithName:", "gone"))
-        objj_msgSend(center, "postNotificationName:object:userInfo:", TNStropheContactMessageGoneNotification, self, userInfo);
-    if (objj_msgSend(aStanza, "containsChildrenWithName:", "body"))
-    {
-        self._statusIcon = TNStropheContactImageNewMessage;
-        objj_msgSend(self._messagesQueue, "addObject:", aStanza);
-        self._numberOfEvents++;
-        objj_msgSend(center, "postNotificationName:object:userInfo:", TNStropheContactMessageReceivedNotification, self, userInfo);
-    }
-    return YES;
-}
-,["BOOL","id"]), new objj_method(sel_getUid("sendMessage:"), function $TNStropheContact__sendMessage_(self, _cmd, aMessage)
-{
-    objj_msgSend(self, "sendMessage:withType:", aMessage, "chat");
-}
-,["void","CPString"]), new objj_method(sel_getUid("sendMessage:withType:"), function $TNStropheContact__sendMessage_withType_(self, _cmd, aMessage, aType)
-{
-    var messageStanza = objj_msgSend(TNStropheStanza, "messageWithAttributes:", {"type":aType});
-    objj_msgSend(messageStanza, "addChildWithName:", "body");
-    objj_msgSend(messageStanza, "addTextNode:", aMessage);
-    objj_msgSend(self, "sendStanza:andRegisterSelector:ofObject:", messageStanza, sel_getUid("_didSendMessage:"), self);
-}
-,["void","CPString","CPString"]), new objj_method(sel_getUid("_didSendMessage:"), function $TNStropheContact___didSendMessage_(self, _cmd, aStanza)
-{
-    if (objj_msgSend(aStanza, "type") == "error")
-        CPLog.error("Unable to send message. Resp is: " + aStanza);
-}
-,["void","TNStropheStanza"]), new objj_method(sel_getUid("popMessagesQueue"), function $TNStropheContact__popMessagesQueue(self, _cmd)
-{
-    if (objj_msgSend(self._messagesQueue, "count") == 0)
-        return;
-    var message = objj_msgSend(self._messagesQueue, "objectAtIndex:", 0);
-    self._numberOfEvents--;
-    if (self._numberOfEvents === 0)
-        self._statusIcon = self._statusReminder;
-    objj_msgSend(self._messagesQueue, "removeObjectAtIndex:", 0);
-    objj_msgSend(objj_msgSend(CPNotificationCenter, "defaultCenter"), "postNotificationName:object:", TNStropheContactMessageTreatedNotification, self);
-    return message;
-}
-,["TNStropheStanza"]), new objj_method(sel_getUid("freeMessagesQueue"), function $TNStropheContact__freeMessagesQueue(self, _cmd)
-{
-    self._numberOfEvents = 0;
-    objj_msgSend(self, "setStatusIcon:", self._statusReminder);
-    objj_msgSend(self._messagesQueue, "removeAllObjects");
-    objj_msgSend(objj_msgSend(CPNotificationCenter, "defaultCenter"), "postNotificationName:object:", TNStropheContactMessageTreatedNotification, self);
-}
-,["void"]), new objj_method(sel_getUid("imageDidLoad:"), function $TNStropheContact__imageDidLoad_(self, _cmd, anImage)
-{
-    objj_msgSend(anImage, "setDelegate:", nil);
-    objj_msgSend(objj_msgSend(CPNotificationCenter, "defaultCenter"), "postNotificationName:object:", TNStropheContactVCardReceivedNotification, self);
-}
-,["void","CPImage"])]);
-class_addMethods(meta_class, [new objj_method(sel_getUid("contactWithConnection:JID:group:"), function $TNStropheContact__contactWithConnection_JID_group_(self, _cmd, aConnection, aJID, aGroup)
-{
-    return objj_msgSend(objj_msgSend(TNStropheContact, "alloc"), "initWithConnection:JID:group:", aConnection, aJID, aGroup);
-}
-,["TNStropheContact","TNStropheConnection","TNStropheJID","TNStropheGroup"]), new objj_method(sel_getUid("initialize"), function $TNStropheContact__initialize(self, _cmd)
-{
-    var bundle = objj_msgSend(CPBundle, "bundleForClass:", TNStropheContact);
-    TNStropheContactImageOffline = objj_msgSend(objj_msgSend(CPImage, "alloc"), "initWithContentsOfFile:size:", objj_msgSend(bundle, "pathForResource:", "gray.png"), CGSizeMake(8.0, 8.0));
-    TNStropheContactImageOnline = objj_msgSend(objj_msgSend(CPImage, "alloc"), "initWithContentsOfFile:size:", objj_msgSend(bundle, "pathForResource:", "green.png"), CGSizeMake(8.0, 8.0));
-    TNStropheContactImageBusy = objj_msgSend(objj_msgSend(CPImage, "alloc"), "initWithContentsOfFile:size:", objj_msgSend(bundle, "pathForResource:", "red.png"), CGSizeMake(8.0, 8.0));
-    TNStropheContactImageAway = objj_msgSend(objj_msgSend(CPImage, "alloc"), "initWithContentsOfFile:size:", objj_msgSend(bundle, "pathForResource:", "orange.png"), CGSizeMake(8.0, 8.0));
-    TNStropheContactImageDND = objj_msgSend(objj_msgSend(CPImage, "alloc"), "initWithContentsOfFile:size:", objj_msgSend(bundle, "pathForResource:", "black.png"), CGSizeMake(8.0, 8.0));
-    TNStropheContactImageNewMessage = objj_msgSend(objj_msgSend(CPImage, "alloc"), "initWithContentsOfFile:size:", objj_msgSend(bundle, "pathForResource:", "blue.png"), CGSizeMake(8.0, 8.0));
-    TNStropheContactImageNewError = objj_msgSend(objj_msgSend(CPImage, "alloc"), "initWithContentsOfFile:size:", objj_msgSend(bundle, "pathForResource:", "error.png"), CGSizeMake(8.0, 8.0));
-}
-,["void"])]);
-}
-{
-var the_class = objj_getClass("TNStropheContact")
-if(!the_class) throw new SyntaxError("*** Could not find definition for class \"TNStropheContact\"");
-var meta_class = the_class.isa;
-class_addMethods(the_class, [new objj_method(sel_getUid("initWithCoder:"), function $TNStropheContact__initWithCoder_(self, _cmd, aCoder)
-{
-    if (self = objj_msgSendSuper({ receiver:self, super_class:objj_getClass("TNStropheContact").super_class }, "init"))
-    {
-        self._JID = objj_msgSend(aCoder, "decodeObjectForKey:", "_JID");
-        self._nodeName = objj_msgSend(aCoder, "decodeObjectForKey:", "_nodeName");
-        self._groups = objj_msgSend(aCoder, "decodeObjectForKey:", "_groups");
-        self._nickname = objj_msgSend(aCoder, "decodeObjectForKey:", "_nickname");
-        self._XMPPStatus = objj_msgSend(aCoder, "decodeObjectForKey:", "_XMPPStatus");
-        self._resources = objj_msgSend(aCoder, "decodeObjectForKey:", "_resources");
-        self._XMPPShow = objj_msgSend(aCoder, "decodeObjectForKey:", "_XMPPShow");
-        self._statusIcon = objj_msgSend(aCoder, "decodeObjectForKey:", "_statusIcon");
-        self._type = objj_msgSend(aCoder, "decodeObjectForKey:", "_type");
-        self._vCard = objj_msgSend(aCoder, "decodeObjectForKey:", "_vCard");
-        self._numberOfEvents = objj_msgSend(aCoder, "decodeObjectForKey:", "_numberOfEvents");
-    }
-    return self;
-}
-,["id","CPCoder"]), new objj_method(sel_getUid("encodeWithCoder:"), function $TNStropheContact__encodeWithCoder_(self, _cmd, aCoder)
-{
-    objj_msgSend(aCoder, "encodeObject:forKey:", self._JID, "_JID");
-    objj_msgSend(aCoder, "encodeObject:forKey:", self._nodeName, "_nodeName");
-    objj_msgSend(aCoder, "encodeObject:forKey:", self._groups, "_groups");
-    objj_msgSend(aCoder, "encodeObject:forKey:", self._nickname, "_nickname");
-    objj_msgSend(aCoder, "encodeObject:forKey:", self._XMPPStatus, "_XMPPStatus");
-    objj_msgSend(aCoder, "encodeObject:forKey:", self._XMPPShow, "_XMPPShow");
-    objj_msgSend(aCoder, "encodeObject:forKey:", self._type, "_type");
-    objj_msgSend(aCoder, "encodeObject:forKey:", self._statusIcon, "_statusIcon");
-    objj_msgSend(aCoder, "encodeObject:forKey:", self._messagesQueue, "_messagesQueue");
-    objj_msgSend(aCoder, "encodeObject:forKey:", self._numberOfEvents, "_numberOfEvents");
-    if (self._resources)
-        objj_msgSend(aCoder, "encodeObject:forKey:", self._resources, "_resources");
-    if (self._vCard)
-        objj_msgSend(aCoder, "encodeObject:forKey:", self._vCard, "_vCard");
-}
-,["void","CPCoder"])]);
-}p;14;TNStropheJID.jt;9035;@STATIC;1.0;I;23;Foundation/Foundation.jt;8988;objj_executeFile("Foundation/Foundation.j", NO);
-TNStropheJIDExceptionJID = "TNStropheJIDExceptionJID";
-{var the_class = objj_allocateClassPair(CPObject, "TNStropheJID"),
-meta_class = the_class.isa;class_addIvars(the_class, [new objj_ivar("_isServer"), new objj_ivar("_domain"), new objj_ivar("_node"), new objj_ivar("_resource")]);//#pragma mark -
-//#pragma mark Class methods
-
-
-
-
-//#pragma mark -
-//#pragma mark Initialization
-
-
-
-//#pragma mark -
-//#pragma mark Setters and Getters
-
-
-
-
-
-
-
-
-//#pragma mark -
-//#pragma mark Operations
-
-
-
-objj_registerClassPair(the_class);
-class_addMethods(the_class, [new objj_method(sel_getUid("isServer"), function $TNStropheJID__isServer(self, _cmd)
-{
-return self._isServer;
-}
-,["BOOL"]), new objj_method(sel_getUid("_setIsServer:"), function $TNStropheJID___setIsServer_(self, _cmd, newValue)
-{
-self._isServer = newValue;
-}
-,["void","BOOL"]), new objj_method(sel_getUid("domain"), function $TNStropheJID__domain(self, _cmd)
-{
-return self._domain;
-}
-,["CPString"]), new objj_method(sel_getUid("setDomain:"), function $TNStropheJID__setDomain_(self, _cmd, newValue)
-{
-self._domain = newValue;
-}
-,["void","CPString"]), new objj_method(sel_getUid("node"), function $TNStropheJID__node(self, _cmd)
-{
-return self._node;
-}
-,["CPString"]), new objj_method(sel_getUid("setNode:"), function $TNStropheJID__setNode_(self, _cmd, newValue)
-{
-self._node = newValue;
-}
-,["void","CPString"]), new objj_method(sel_getUid("resource"), function $TNStropheJID__resource(self, _cmd)
-{
-return self._resource;
-}
-,["CPString"]), new objj_method(sel_getUid("setResource:"), function $TNStropheJID__setResource_(self, _cmd, newValue)
-{
-self._resource = newValue;
-}
-,["void","CPString"]), new objj_method(sel_getUid("initWithNode:domain:resource:"), function $TNStropheJID__initWithNode_domain_resource_(self, _cmd, aNode, aDomain, aResource)
-{
-    if (self = objj_msgSendSuper({ receiver:self, super_class:objj_getClass("TNStropheJID").super_class }, "init"))
-    {
-        objj_msgSend(self, "setNode:", aNode);
-        objj_msgSend(self, "setDomain:", aDomain);
-        objj_msgSend(self, "setResource:", aResource);
-        self._isServer = (!aDomain && !aResource);
-        if ((self._node && self._node.indexOf(" ") != -1) || (self._domain && self._domain.indexOf(" ") != -1) || (self._resource && self._resource.indexOf(" ") != -1))
-            objj_msgSend(CPException, "raise:reason:", TNStropheJIDExceptionJID, "Given information are not a valid JID.");
-    }
-    return self;
-}
-,["TNStropheJID","CPString","CPString","CPString"]), new objj_method(sel_getUid("initWithNode:domain:"), function $TNStropheJID__initWithNode_domain_(self, _cmd, aNode, aDomain)
-{
-    return objj_msgSend(self, "initWithNode:domain:resource:", aNode, aDomain, nil);
-}
-,["TNStropheJID","CPString","CPString"]), new objj_method(sel_getUid("initWithString:"), function $TNStropheJID__initWithString_(self, _cmd, aStringJID)
-{
-    if (!aStringJID)
-        return;
-    var node = aStringJID.split("@")[0],
-        domain,
-        resource;
-    if (aStringJID.indexOf("@") != -1)
-    {
-        domain = aStringJID.split("@")[1].split("/")[0],
-        resource = aStringJID.split("/")[1];
-    }
-    if (!node)
-        objj_msgSend(CPException, "raise:reason:", TNStropheJIDExceptionJID, aStringJID + " is not a valid JID");
-    return objj_msgSend(self, "initWithNode:domain:resource:", node, domain, resource);
-}
-,["TNStropheJID","CPString"]), new objj_method(sel_getUid("bare"), function $TNStropheJID__bare(self, _cmd)
-{
-    if (self._domain)
-        return self._node + "@" + self._domain;
-    else
-        return self._node;
-}
-,["CPString"]), new objj_method(sel_getUid("setBare:"), function $TNStropheJID__setBare_(self, _cmd, aBareJID)
-{
-    var node = aBareJID.split("@")[0],
-        domain = aBareJID.split("@")[1].split("/")[0];
-    if (!node || !domain)
-        objj_msgSend(CPException, "raise:reason:", TNStropheJIDExceptionJID, aBareJID + " is not a valid JID");
-    objj_msgSend(self, "setNode:", node);
-    objj_msgSend(self, "setDomain:", domain);
-}
-,["void","CPString"]), new objj_method(sel_getUid("full"), function $TNStropheJID__full(self, _cmd)
-{
-    if (self._resource)
-        return objj_msgSend(self, "bare") + "/" + self._resource;
-    else
-        return objj_msgSend(self, "bare");
-}
-,["CPString"]), new objj_method(sel_getUid("setFull:"), function $TNStropheJID__setFull_(self, _cmd, aFullJID)
-{
-    objj_msgSend(self, "setBare:", aFullJID);
-    var resource = aFullJID.split("/")[1];
-    if (!resource)
-        objj_msgSend(CPException, "raise:reason:", TNStropheJIDExceptionJID, aFullJID + " is not a valid JID");
-    objj_msgSend(self, "setResource:", resource)
-}
-,["void","CPString"]), new objj_method(sel_getUid("description"), function $TNStropheJID__description(self, _cmd)
-{
-    return objj_msgSend(self, "stringValue");
-}
-,["CPString"]), new objj_method(sel_getUid("stringValue"), function $TNStropheJID__stringValue(self, _cmd)
-{
-    return objj_msgSend(self, "full");
-}
-,["CPString"]), new objj_method(sel_getUid("uppercaseString"), function $TNStropheJID__uppercaseString(self, _cmd)
-{
-    return objj_msgSend(objj_msgSend(self, "stringValue"), "uppercaseString");
-}
-,["CPString"]), new objj_method(sel_getUid("lowercaseString"), function $TNStropheJID__lowercaseString(self, _cmd)
-{
-    return objj_msgSend(objj_msgSend(self, "stringValue"), "lowercaseString");
-}
-,["CPString"]), new objj_method(sel_getUid("equals:"), function $TNStropheJID__equals_(self, _cmd, anotherJID)
-{
-    return objj_msgSend(self, "fullEquals:", anotherJID);
-}
-,["BOOL","TNStropheJID"]), new objj_method(sel_getUid("fullEquals:"), function $TNStropheJID__fullEquals_(self, _cmd, anotherJID)
-{
-    return (objj_msgSend(self, "bareEquals:", anotherJID) && (objj_msgSend(objj_msgSend(anotherJID, "resource"), "uppercaseString") === objj_msgSend(objj_msgSend(self, "resource"), "uppercaseString")))
-}
-,["BOOL","TNStropheJID"]), new objj_method(sel_getUid("bareEquals:"), function $TNStropheJID__bareEquals_(self, _cmd, anotherJID)
-{
-    return ((objj_msgSend(objj_msgSend(anotherJID, "node"), "uppercaseString") === objj_msgSend(objj_msgSend(self, "node"), "uppercaseString")) && (objj_msgSend(objj_msgSend(anotherJID, "domain"), "uppercaseString") === objj_msgSend(objj_msgSend(self, "domain"), "uppercaseString")));
-}
-,["BOOL","TNStropheJID"]), new objj_method(sel_getUid("compare:"), function $TNStropheJID__compare_(self, _cmd, anotherJID)
-{
-    var stringRepA = objj_msgSend(self, "stringValue"),
-        stringRepB = objj_msgSend(anotherJID, "stringValue");
-    return objj_msgSend(stringRepA, "compare:", stringRepB);
-}
-,["CPComparisonResult","TNStropheJID"])]);
-class_addMethods(meta_class, [new objj_method(sel_getUid("initialize"), function $TNStropheJID__initialize(self, _cmd)
-{
-    objj_msgSend(self, "exposeBinding:", "domain");
-    objj_msgSend(self, "exposeBinding:", "node");
-    objj_msgSend(self, "exposeBinding:", "resource");
-}
-,["void"]), new objj_method(sel_getUid("stropheJIDWithNode:domain:resource:"), function $TNStropheJID__stropheJIDWithNode_domain_resource_(self, _cmd, aNode, aDomain, aResource)
-{
-    return objj_msgSend(objj_msgSend(TNStropheJID, "alloc"), "initWithNode:domain:resource:", aNode, aDomain, aResource);
-}
-,["TNStropheJID","CPString","CPString","CPString"]), new objj_method(sel_getUid("stropheJIDWithNode:domain:"), function $TNStropheJID__stropheJIDWithNode_domain_(self, _cmd, aNode, aDomain)
-{
-    return objj_msgSend(objj_msgSend(TNStropheJID, "alloc"), "initWithNode:domain:", aNode, aDomain);
-}
-,["TNStropheJID","CPString","CPString"]), new objj_method(sel_getUid("stropheJIDWithString:"), function $TNStropheJID__stropheJIDWithString_(self, _cmd, aStringJID)
-{
-    return objj_msgSend(objj_msgSend(TNStropheJID, "alloc"), "initWithString:", aStringJID);
-}
-,["TNStropheJID","CPString"])]);
-}
-{
-var the_class = objj_getClass("TNStropheJID")
-if(!the_class) throw new SyntaxError("*** Could not find definition for class \"TNStropheJID\"");
-var meta_class = the_class.isa;
-class_addMethods(the_class, [new objj_method(sel_getUid("initWithCoder:"), function $TNStropheJID__initWithCoder_(self, _cmd, aCoder)
-{
-    if (self = objj_msgSendSuper({ receiver:self, super_class:objj_getClass("TNStropheJID").super_class }, "init"))
-    {
-        self._node = objj_msgSend(aCoder, "decodeObjectForKey:", "_node");
-        self._domain = objj_msgSend(aCoder, "decodeObjectForKey:", "_domain");
-        self._resource = objj_msgSend(aCoder, "decodeObjectForKey:", "_resource");
-    }
-    return self;
-}
-,["id","CPCoder"]), new objj_method(sel_getUid("encodeWithCoder:"), function $TNStropheJID__encodeWithCoder_(self, _cmd, aCoder)
-{
-    objj_msgSend(aCoder, "encodeObject:forKey:", self._node, "_node");
-    if (self._domain)
-        objj_msgSend(aCoder, "encodeObject:forKey:", self._domain, "_domain");
-    if (self._resource)
-        objj_msgSend(aCoder, "encodeObject:forKey:", self._resource, "_resource");
-}
-,["void","CPCoder"])]);
-}p;19;StropheCappuccino.jt;1674;@STATIC;1.0;i;22;MUC/TNStropheMUCRoom.ji;25;Resources/Strophe/sha1.jsi;28;Resources/Strophe/strophe.jsi;10;TNPubSub.ji;17;TNStropheClient.ji;21;TNStropheConnection.ji;18;TNStropheContact.ji;16;TNStropheGroup.ji;19;TNStropheIMClient.ji;14;TNStropheJID.ji;25;TNStrophePrivateStorage.ji;17;TNStropheRoster.ji;31;TNStropheServerAdministration.ji;17;TNStropheStanza.ji;16;TNStropheVCard.jt;1284;objj_executeFile("MUC/TNStropheMUCRoom.j", YES);
-objj_executeFile("Resources/Strophe/sha1.js", YES);
-objj_executeFile("Resources/Strophe/strophe.js", YES);
-objj_executeFile("TNPubSub.j", YES);
-objj_executeFile("TNStropheClient.j", YES);
-objj_executeFile("TNStropheConnection.j", YES);
-objj_executeFile("TNStropheContact.j", YES);
-objj_executeFile("TNStropheGroup.j", YES);
-objj_executeFile("TNStropheIMClient.j", YES);
-objj_executeFile("TNStropheJID.j", YES);
-objj_executeFile("TNStrophePrivateStorage.j", YES);
-objj_executeFile("TNStropheRoster.j", YES);
-objj_executeFile("TNStropheServerAdministration.j", YES);
-objj_executeFile("TNStropheStanza.j", YES);
-objj_executeFile("TNStropheVCard.j", YES);
-objj_msgSend(TNStropheClient, "addNamespaceWithName:value:", "CAPS", "http://jabber.org/protocol/caps");
-objj_msgSend(TNStropheClient, "addNamespaceWithName:value:", "DELAY", "urn:xmpp:delay");
-objj_msgSend(TNStropheClient, "addNamespaceWithName:value:", "X_DATA", "jabber:x:data");
-objj_msgSend(TNStropheClient, "addNamespaceWithName:value:", "PING", "urn:xmpp:ping");
-objj_msgSend(TNStropheClient, "addNamespaceWithName:value:", "PRIVATE_STORAGE", "jabber:iq:private");
-objj_msgSend(TNStropheClient, "addNamespaceWithName:value:", "COMMAND", "http://jabber.org/protocol/commands");p;31;TNStropheServerAdministration.jt;17997;@STATIC;1.0;I;23;Foundation/Foundation.ji;28;Resources/Strophe/strophe.jsi;25;Resources/Strophe/sha1.jsi;21;TNStropheConnection.ji;14;TNStropheJID.jt;17841;objj_executeFile("Foundation/Foundation.j", NO);
+}p;31;TNStropheServerAdministration.jt;17873;@STATIC;1.0;I;23;Foundation/Foundation.ji;28;Resources/Strophe/strophe.jsi;25;Resources/Strophe/sha1.jsi;21;TNStropheConnection.ji;14;TNStropheJID.jt;17717;objj_executeFile("Foundation/Foundation.j", NO);
 objj_executeFile("Resources/Strophe/strophe.js", YES);
 objj_executeFile("Resources/Strophe/sha1.js", YES);
 objj_executeFile("TNStropheConnection.j", YES);
@@ -3478,18 +2814,16 @@ TNStropheServerAdministrationSendAnnouncementNotification = "TNStropheServerAdmi
 TNStropheServerAdministrationSetUserEnabledNotification = "TNStropheServerAdministrationSetUserEnabledNotification";
 TNStropheServerAdministrationUnregisterUserNotification = "TNStropheServerAdministrationUnregisterUserNotification";
 {var the_class = objj_allocateClassPair(CPObject, "TNStropheServerAdministration"),
-meta_class = the_class.isa;class_addIvars(the_class, [new objj_ivar("_connection"), new objj_ivar("_server"), new objj_ivar("_delegate")]);//#pragma mark -
-//#pragma mark Initialization
+meta_class = the_class.isa;class_addIvars(the_class, [new objj_ivar("_connection"), new objj_ivar("_server"), new objj_ivar("_delegate")]);
+       
+       
 
-//#pragma mark -
-//#pragma mark Utilities
-
-//#pragma mark -
-//#pragma mark Announcement
+       
+       
 
 
-//#pragma mark -
-//#pragma mark Users
+       
+       
 
 
 
@@ -3757,7 +3091,645 @@ class_addMethods(the_class, [new objj_method(sel_getUid("registredUsers"), funct
         objj_msgSend(objj_msgSend(CPNotificationCenter, "defaultCenter"), "postNotificationName:object:userInfo:", TNStropheServerAdministrationGetRegisteredUserNotification, self, users);
 }
 ,["void","TNStropheStanza"])]);
-}p;22;MUC/TNStropheMUCRoom.jt;9804;@STATIC;1.0;I;23;Foundation/Foundation.ji;24;../TNStropheConnection.ji;17;../TNStropheJID.ji;20;../TNStropheStanza.ji;19;../TNStropheUtils.ji;20;TNStropheMUCRoster.jt;9632;objj_executeFile("Foundation/Foundation.j", NO);
+}p;17;TNStropheStanza.jt;10689;@STATIC;1.0;I;23;Foundation/Foundation.ji;28;Resources/Strophe/strophe.jsi;25;Resources/Strophe/sha1.jsi;14;TNStropheJID.ji;11;TNXMLNode.jt;10543;objj_executeFile("Foundation/Foundation.j", NO);
+objj_executeFile("Resources/Strophe/strophe.js", YES);
+objj_executeFile("Resources/Strophe/sha1.js", YES);
+objj_executeFile("TNStropheJID.j", YES);
+objj_executeFile("TNXMLNode.j", YES);
+{var the_class = objj_allocateClassPair(TNXMLNode, "TNStropheStanza"),
+meta_class = the_class.isa;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+       
+       
+
+       
+       
+
+
+
+
+
+
+
+
+
+
+
+
+objj_registerClassPair(the_class);
+class_addMethods(the_class, [new objj_method(sel_getUid("initWithName:to:attributes:bare:"), function $TNStropheStanza__initWithName_to_attributes_bare_(self, _cmd, aName, aJID, someAttributes, sendToBareJID)
+{
+    if (aJID && !someAttributes)
+        someAttributes = {};
+    if (someAttributes)
+    {
+        if (someAttributes.isa)
+            objj_msgSend(someAttributes, "setValue:forKey:", ((sendToBareJID) ? objj_msgSend(aJID, "bare") : aJID), "to");
+        else
+            someAttributes.to = ((sendToBareJID) ? objj_msgSend(aJID, "bare") : objj_msgSend(aJID, "full"));
+    }
+    return objj_msgSendSuper({ receiver:self, super_class:objj_getClass("TNStropheStanza").super_class }, "initWithName:andAttributes:", aName, someAttributes);
+}
+,["TNStropheStanza","CPString","TNStropheJID","CPDictionary","BOOL"]), new objj_method(sel_getUid("from"), function $TNStropheStanza__from(self, _cmd)
+{
+    while (objj_msgSend(self, "up"));
+    return objj_msgSend(TNStropheJID, "stropheJIDWithString:", objj_msgSend(self, "valueForAttribute:", "from"));
+}
+,["CPString"]), new objj_method(sel_getUid("setFrom:"), function $TNStropheStanza__setFrom_(self, _cmd, aFrom)
+{
+    if (objj_msgSend(aFrom, "isKindOfClass:", CPString))
+        aFrom = objj_msgSend(TNStropheJID, "stropheJIDWithString:", aFrom);
+    while (objj_msgSend(self, "up"));
+    objj_msgSend(self, "setValue:forAttribute:", objj_msgSend(aFrom, "full"), "from");
+}
+,["void","id"]), new objj_method(sel_getUid("fromBare"), function $TNStropheStanza__fromBare(self, _cmd)
+{
+    return objj_msgSend(objj_msgSend(self, "from"), "bare");
+}
+,["CPString"]), new objj_method(sel_getUid("fromUser"), function $TNStropheStanza__fromUser(self, _cmd)
+{
+    return objj_msgSend(objj_msgSend(self, "from"), "node");
+}
+,["CPString"]), new objj_method(sel_getUid("fromDomain"), function $TNStropheStanza__fromDomain(self, _cmd)
+{
+    return objj_msgSend(objj_msgSend(self, "from"), "domain");
+}
+,["CPString"]), new objj_method(sel_getUid("fromResource"), function $TNStropheStanza__fromResource(self, _cmd)
+{
+    return objj_msgSend(objj_msgSend(self, "from"), "resource");
+}
+,["CPString"]), new objj_method(sel_getUid("to"), function $TNStropheStanza__to(self, _cmd)
+{
+    while (objj_msgSend(self, "up"));
+    return objj_msgSend(TNStropheJID, "stropheJIDWithString:", objj_msgSend(self, "valueForAttribute:", "to"));
+}
+,["CPString"]), new objj_method(sel_getUid("setTo:"), function $TNStropheStanza__setTo_(self, _cmd, aTo)
+{
+    if (objj_msgSend(aTo, "isKindOfClass:", CPString))
+        aTo = objj_msgSend(TNStropheJID, "stropheJIDWithString:", aTo);
+    while (objj_msgSend(self, "up"));
+    objj_msgSend(self, "setValue:forAttribute:", objj_msgSend(aTo, "full"), "to");
+}
+,["void","id"]), new objj_method(sel_getUid("type"), function $TNStropheStanza__type(self, _cmd)
+{
+    return objj_msgSend(self, "valueForAttribute:", "type");
+}
+,["CPString"]), new objj_method(sel_getUid("setType:"), function $TNStropheStanza__setType_(self, _cmd, aType)
+{
+    objj_msgSend(self, "setValue:forAttribute:", aType, "type");
+}
+,["void","CPString"]), new objj_method(sel_getUid("ID"), function $TNStropheStanza__ID(self, _cmd)
+{
+    return objj_msgSend(self, "valueForAttribute:", "id");
+}
+,["CPString"]), new objj_method(sel_getUid("setID:"), function $TNStropheStanza__setID_(self, _cmd, anID)
+{
+    while (objj_msgSend(self, "up"));
+    objj_msgSend(self, "setValue:forAttribute:", anID, "id");
+}
+,["void","CPString"]), new objj_method(sel_getUid("delayTime"), function $TNStropheStanza__delayTime(self, _cmd)
+{
+    if (objj_msgSend(self, "containsChildrenWithName:", "delay") && objj_msgSend(objj_msgSend(self, "firstChildWithName:", "delay"), "namespace") == Strophe.NS.DELAY)
+    {
+        var messageDelay = objj_msgSend(objj_msgSend(self, "firstChildWithName:", "delay"), "valueForAttribute:", "stamp"),
+            match = messageDelay.match(new RegExp(/(\d{4}-\d{2}-\d{2})T(\d{2}:\d{2}:\d{2})Z/));
+        if (!match || match.length != 3)
+            objj_msgSend(CPException, "raise:reason:", CPInvalidArgumentException, "delayTime: the string must be of YYYY-MM-DDTHH:MM:SSZ format");
+        return objj_msgSend(objj_msgSend(CPDate, "alloc"), "initWithString:", (match[1] + " " + match[2] + " +0000"));
+    }
+    return objj_msgSend(CPDate, "dateWithTimeIntervalSinceNow:", 0);
+}
+,["CPDate"])]);
+class_addMethods(meta_class, [new objj_method(sel_getUid("stanzaWithStanza:"), function $TNStropheStanza__stanzaWithStanza_(self, _cmd, aStanza)
+{
+    return objj_msgSend(objj_msgSend(TNStropheStanza, "alloc"), "initWithNode:", aStanza);
+}
+,["TNStropheStanza","id"]), new objj_method(sel_getUid("stanzaWithName:andAttributes:"), function $TNStropheStanza__stanzaWithName_andAttributes_(self, _cmd, aName, attributes)
+{
+    return objj_msgSend(objj_msgSend(TNStropheStanza, "alloc"), "initWithName:andAttributes:", aName, attributes);
+}
+,["TNStropheStanza","CPString","CPDictionary"]), new objj_method(sel_getUid("stanzaWithName:to:attributes:"), function $TNStropheStanza__stanzaWithName_to_attributes_(self, _cmd, aName, aJID, attributes)
+{
+    return objj_msgSend(objj_msgSend(TNStropheStanza, "alloc"), "initWithName:to:attributes:bare:", aName, aJID, attributes, NO);
+}
+,["TNStropheStanza","CPString","TNStropheJID","CPDictionary"]), new objj_method(sel_getUid("stanzaWithName:to:attributes:bare:"), function $TNStropheStanza__stanzaWithName_to_attributes_bare_(self, _cmd, aName, aJID, attributes, sendToBareJID)
+{
+    return objj_msgSend(objj_msgSend(TNStropheStanza, "alloc"), "initWithName:to:attributes:bare:", aName, aJID, attributes, sendToBareJID);
+}
+,["TNStropheStanza","CPString","TNStropheJID","CPDictionary","BOOL"]), new objj_method(sel_getUid("iqWithAttributes:"), function $TNStropheStanza__iqWithAttributes_(self, _cmd, attributes)
+{
+    return objj_msgSend(TNStropheStanza, "stanzaWithName:andAttributes:", "iq", attributes);
+}
+,["TNStropheStanza","CPDictionary"]), new objj_method(sel_getUid("iq"), function $TNStropheStanza__iq(self, _cmd)
+{
+    return objj_msgSend(TNStropheStanza, "iqWithAttributes:", nil);
+}
+,["TNStropheStanza"]), new objj_method(sel_getUid("iqTo:"), function $TNStropheStanza__iqTo_(self, _cmd, aJID)
+{
+    return objj_msgSend(TNStropheStanza, "iqTo:withAttributes:", aJID, nil);
+}
+,["TNStropheStanza","TNStropheJID"]), new objj_method(sel_getUid("iqWithType:"), function $TNStropheStanza__iqWithType_(self, _cmd, aType)
+{
+    return objj_msgSend(TNStropheStanza, "iqWithAttributes:", {"type": aType});
+}
+,["TNStropheStanza","CPString"]), new objj_method(sel_getUid("iqTo:withType:"), function $TNStropheStanza__iqTo_withType_(self, _cmd, aJID, aType)
+{
+    return objj_msgSend(TNStropheStanza, "iqTo:withAttributes:", aJID, {"type": aType});
+}
+,["TNStropheStanza","TNStropheJID","CPString"]), new objj_method(sel_getUid("iqTo:withAttributes:"), function $TNStropheStanza__iqTo_withAttributes_(self, _cmd, aJID, attributes)
+{
+    return objj_msgSend(TNStropheStanza, "stanzaWithName:to:attributes:bare:", "iq", aJID, attributes, NO);
+}
+,["TNStropheStanza","TNStropheJID","CPDictionary"]), new objj_method(sel_getUid("iqTo:withAttributes:bare:"), function $TNStropheStanza__iqTo_withAttributes_bare_(self, _cmd, aJID, attributes, sendToBareJID)
+{
+    return objj_msgSend(TNStropheStanza, "stanzaWithName:to:attributes:bare:", "iq", aJID, attributes, sendToBareJID);
+}
+,["TNStropheStanza","TNStropheJID","CPDictionary","BOOL"]), new objj_method(sel_getUid("presenceWithAttributes:"), function $TNStropheStanza__presenceWithAttributes_(self, _cmd, attributes)
+{
+    return objj_msgSend(TNStropheStanza, "stanzaWithName:andAttributes:", "presence", attributes);
+}
+,["TNStropheStanza","CPDictionary"]), new objj_method(sel_getUid("presence"), function $TNStropheStanza__presence(self, _cmd)
+{
+    return objj_msgSend(TNStropheStanza, "presenceWithAttributes:", nil);
+}
+,["TNStropheStanza"]), new objj_method(sel_getUid("presenceTo:"), function $TNStropheStanza__presenceTo_(self, _cmd, aJID)
+{
+    return objj_msgSend(TNStropheStanza, "presenceTo:withAttributes:", aJID, nil);
+}
+,["TNStropheStanza","TNStropheJID"]), new objj_method(sel_getUid("presenceTo:withAttributes:"), function $TNStropheStanza__presenceTo_withAttributes_(self, _cmd, aJID, attributes)
+{
+    return objj_msgSend(TNStropheStanza, "stanzaWithName:to:attributes:bare:", "presence", aJID, attributes, NO);
+}
+,["TNStropheStanza","TNStropheJID","CPDictionary"]), new objj_method(sel_getUid("presenceTo:withAttributes:bare:"), function $TNStropheStanza__presenceTo_withAttributes_bare_(self, _cmd, aJID, attributes, sendToBareJID)
+{
+    return objj_msgSend(TNStropheStanza, "stanzaWithName:to:attributes:bare:", "presence", aJID, attributes, sendToBareJID);
+}
+,["TNStropheStanza","TNStropheJID","CPDictionary","BOOL"]), new objj_method(sel_getUid("messageWithAttributes:"), function $TNStropheStanza__messageWithAttributes_(self, _cmd, attributes)
+{
+    return objj_msgSend(TNStropheStanza, "stanzaWithName:andAttributes:", "message", attributes);
+}
+,["TNStropheStanza","CPDictionary"]), new objj_method(sel_getUid("message"), function $TNStropheStanza__message(self, _cmd)
+{
+    return objj_msgSend(TNStropheStanza, "messageWithAttributes:", nil);
+}
+,["TNStropheStanza"]), new objj_method(sel_getUid("messageTo:"), function $TNStropheStanza__messageTo_(self, _cmd, aJID)
+{
+    return objj_msgSend(TNStropheStanza, "messageTo:withAttributes:", aJID, nil);
+}
+,["TNStropheStanza","TNStropheJID"]), new objj_method(sel_getUid("messageTo:withAttributes:"), function $TNStropheStanza__messageTo_withAttributes_(self, _cmd, aJID, attributes)
+{
+    return objj_msgSend(TNStropheStanza, "stanzaWithName:to:attributes:", "message", aJID, attributes);
+}
+,["TNStropheStanza","TNStropheJID","CPDictionary"]), new objj_method(sel_getUid("messageTo:withAttributes:bare:"), function $TNStropheStanza__messageTo_withAttributes_bare_(self, _cmd, aJID, attributes, sendToBareJID)
+{
+    return objj_msgSend(TNStropheStanza, "stanzaWithName:to:attributes:bare:", "message", aJID, attributes, sendToBareJID);
+}
+,["TNStropheStanza","TNStropheJID","CPDictionary","BOOL"])]);
+}p;16;TNStropheUtils.jt;516;@STATIC;1.0;t;498;TNStropheStripHTMLCharCode = function(str)
+{
+    str = str.replace(/&amp;/g, '&');
+    str = str.replace(/&nbsp;/g, ' ');
+    str = str.replace(/&quote;/g, '\"');
+    str = str.replace(/&apos;/g, '\'');
+    str = str.replace(/&lt;/g, '<');
+    str = str.replace(/&gt;/g, '>');
+    str = str.replace(/&agrave;/g, 'à');
+    str = str.replace(/&ccedil;/g, 'ç');
+    str = str.replace(/&egrave;/g, 'è');
+    str = str.replace(/&eacute;/g, 'é');
+    str = str.replace(/&ecirc;/g, 'ê');
+    return str;
+}p;16;TNStropheVCard.jt;9671;@STATIC;1.0;I;23;Foundation/Foundation.jI;16;AppKit/CPImage.ji;11;TNXMLNode.jt;9587;objj_executeFile("Foundation/Foundation.j", NO);
+objj_executeFile("AppKit/CPImage.j", NO);
+objj_executeFile("TNXMLNode.j", YES);
+{var the_class = objj_allocateClassPair(CPObject, "TNStropheVCard"),
+meta_class = the_class.isa;class_addIvars(the_class, [new objj_ivar("_fullName"), new objj_ivar("_organizationName"), new objj_ivar("_organizationUnit"), new objj_ivar("_userID"), new objj_ivar("_locality"), new objj_ivar("_categories"), new objj_ivar("_type"), new objj_ivar("_role"), new objj_ivar("_title"), new objj_ivar("_photo")]);
+objj_registerClassPair(the_class);
+class_addMethods(the_class, [new objj_method(sel_getUid("fullName"), function $TNStropheVCard__fullName(self, _cmd)
+{
+return self._fullName;
+}
+,["CPString"]), new objj_method(sel_getUid("setFullName:"), function $TNStropheVCard__setFullName_(self, _cmd, newValue)
+{
+self._fullName = newValue;
+}
+,["void","CPString"]), new objj_method(sel_getUid("organizationName"), function $TNStropheVCard__organizationName(self, _cmd)
+{
+return self._organizationName;
+}
+,["CPString"]), new objj_method(sel_getUid("setOrganizationName:"), function $TNStropheVCard__setOrganizationName_(self, _cmd, newValue)
+{
+self._organizationName = newValue;
+}
+,["void","CPString"]), new objj_method(sel_getUid("organizationUnit"), function $TNStropheVCard__organizationUnit(self, _cmd)
+{
+return self._organizationUnit;
+}
+,["CPString"]), new objj_method(sel_getUid("setOrganizationUnit:"), function $TNStropheVCard__setOrganizationUnit_(self, _cmd, newValue)
+{
+self._organizationUnit = newValue;
+}
+,["void","CPString"]), new objj_method(sel_getUid("userID"), function $TNStropheVCard__userID(self, _cmd)
+{
+return self._userID;
+}
+,["CPString"]), new objj_method(sel_getUid("setUserID:"), function $TNStropheVCard__setUserID_(self, _cmd, newValue)
+{
+self._userID = newValue;
+}
+,["void","CPString"]), new objj_method(sel_getUid("locality"), function $TNStropheVCard__locality(self, _cmd)
+{
+return self._locality;
+}
+,["CPString"]), new objj_method(sel_getUid("setLocality:"), function $TNStropheVCard__setLocality_(self, _cmd, newValue)
+{
+self._locality = newValue;
+}
+,["void","CPString"]), new objj_method(sel_getUid("categories"), function $TNStropheVCard__categories(self, _cmd)
+{
+return self._categories;
+}
+,["CPString"]), new objj_method(sel_getUid("setCategories:"), function $TNStropheVCard__setCategories_(self, _cmd, newValue)
+{
+self._categories = newValue;
+}
+,["void","CPString"]), new objj_method(sel_getUid("type"), function $TNStropheVCard__type(self, _cmd)
+{
+return self._type;
+}
+,["CPString"]), new objj_method(sel_getUid("setType:"), function $TNStropheVCard__setType_(self, _cmd, newValue)
+{
+self._type = newValue;
+}
+,["void","CPString"]), new objj_method(sel_getUid("role"), function $TNStropheVCard__role(self, _cmd)
+{
+return self._role;
+}
+,["CPString"]), new objj_method(sel_getUid("setRole:"), function $TNStropheVCard__setRole_(self, _cmd, newValue)
+{
+self._role = newValue;
+}
+,["void","CPString"]), new objj_method(sel_getUid("title"), function $TNStropheVCard__title(self, _cmd)
+{
+return self._title;
+}
+,["CPString"]), new objj_method(sel_getUid("setTitle:"), function $TNStropheVCard__setTitle_(self, _cmd, newValue)
+{
+self._title = newValue;
+}
+,["void","CPString"]), new objj_method(sel_getUid("photo"), function $TNStropheVCard__photo(self, _cmd)
+{
+return self._photo;
+}
+,["CPImage"]), new objj_method(sel_getUid("setPhoto:"), function $TNStropheVCard__setPhoto_(self, _cmd, newValue)
+{
+self._photo = newValue;
+}
+,["void","CPImage"]), new objj_method(sel_getUid("initWithXMLNode:"), function $TNStropheVCard__initWithXMLNode_(self, _cmd, aNode)
+{
+    if (self = objj_msgSendSuper({ receiver:self, super_class:objj_getClass("TNStropheVCard").super_class }, "init"))
+    {
+        self._fullName = objj_msgSend(objj_msgSend(aNode, "firstChildWithName:", "FN"), "text");
+        self._organizationName = objj_msgSend(objj_msgSend(aNode, "firstChildWithName:", "ORGNAME"), "text");
+        self._organizationUnit = objj_msgSend(objj_msgSend(aNode, "firstChildWithName:", "ORGUNIT"), "text");
+        self._userID = objj_msgSend(objj_msgSend(aNode, "firstChildWithName:", "USERID"), "text");
+        self._locality = objj_msgSend(objj_msgSend(aNode, "firstChildWithName:", "LOCALITY"), "text");
+        self._categories = objj_msgSend(objj_msgSend(aNode, "firstChildWithName:", "CATEGORIES"), "text");
+        self._type = objj_msgSend(objj_msgSend(aNode, "firstChildWithName:", "TYPE"), "text");
+        self._role = objj_msgSend(objj_msgSend(aNode, "firstChildWithName:", "ROLE"), "text");
+        self._title = objj_msgSend(objj_msgSend(aNode, "firstChildWithName:", "TITLE"), "text");
+        var photoNode;
+        if (photoNode = objj_msgSend(aNode, "firstChildWithName:", "PHOTO"))
+        {
+            var data = objj_msgSend(objj_msgSend(photoNode, "firstChildWithName:", "BINVAL"), "text");
+            self._photo = objj_msgSend(objj_msgSend(CPImage, "alloc"), "initWithData:", objj_msgSend(CPData, "dataWithBase64:", data));
+        }
+    }
+    return self;
+}
+,["void","TNXMLNode"]), new objj_method(sel_getUid("XMLNode"), function $TNStropheVCard__XMLNode(self, _cmd)
+{
+    var node = objj_msgSend(TNXMLNode, "nodeWithName:andAttributes:", "vCard", {"xmlns": "vcard-temp"});
+    if (self._fullName)
+    {
+        objj_msgSend(node, "addChildWithName:", "FN");
+        objj_msgSend(node, "addTextNode:", self._fullName);
+        objj_msgSend(node, "up");
+    }
+    if (self._title)
+    {
+        objj_msgSend(node, "addChildWithName:", "TITLE");
+        objj_msgSend(node, "addTextNode:", self._title);
+        objj_msgSend(node, "up");
+    }
+    if (self._organizationName)
+    {
+        objj_msgSend(node, "addChildWithName:", "ORGNAME");
+        objj_msgSend(node, "addTextNode:", self._organizationName);
+        objj_msgSend(node, "up");
+    }
+    if (self._organizationUnit)
+    {
+        objj_msgSend(node, "addChildWithName:", "ORGUNIT");
+        objj_msgSend(node, "addTextNode:", self._organizationUnit);
+        objj_msgSend(node, "up");
+    }
+    if (self._userID)
+    {
+        objj_msgSend(node, "addChildWithName:", "USERID");
+        objj_msgSend(node, "addTextNode:", self._userID);
+        objj_msgSend(node, "up");
+    }
+    if (self._locality)
+    {
+        objj_msgSend(node, "addChildWithName:", "LOCALITY");
+        objj_msgSend(node, "addTextNode:", self._locality);
+        objj_msgSend(node, "up");
+    }
+    if (self._categories)
+    {
+        objj_msgSend(node, "addChildWithName:", "CATEGORIES");
+        objj_msgSend(node, "addTextNode:", self._categories);
+        objj_msgSend(node, "up");
+    }
+    if (self._type)
+    {
+        objj_msgSend(node, "addChildWithName:", "TYPE");
+        objj_msgSend(node, "addTextNode:", self._type);
+        objj_msgSend(node, "up");
+    }
+    if (self._role)
+    {
+        objj_msgSend(node, "addChildWithName:", "ROLE");
+        objj_msgSend(node, "addTextNode:", self._role);
+        objj_msgSend(node, "up");
+    }
+    if (self._photo)
+    {
+        objj_msgSend(node, "addChildWithName:", "PHOTO");
+        objj_msgSend(node, "addChildWithName:", "BINVAL");
+        objj_msgSend(node, "addTextNode:", objj_msgSend(objj_msgSend(self._photo, "data"), "base64"));
+        objj_msgSend(node, "up");
+        objj_msgSend(node, "up");
+    }
+    return node;
+}
+,["TNXMLNode"])]);
+}
+{
+var the_class = objj_getClass("TNStropheVCard")
+if(!the_class) throw new SyntaxError("*** Could not find definition for class \"TNStropheVCard\"");
+var meta_class = the_class.isa;
+class_addMethods(the_class, [new objj_method(sel_getUid("initWithCoder:"), function $TNStropheVCard__initWithCoder_(self, _cmd, aCoder)
+{
+    if (self = objj_msgSendSuper({ receiver:self, super_class:objj_getClass("TNStropheVCard").super_class }, "init"))
+    {
+         self._fullName = objj_msgSend(aCoder, "decodeObjectForKey:", "_fullName");
+         self._organizationName = objj_msgSend(aCoder, "decodeObjectForKey:", "_organizationName");
+         self._organizationUnit = objj_msgSend(aCoder, "decodeObjectForKey:", "_organizationUnit");
+         self._userID = objj_msgSend(aCoder, "decodeObjectForKey:", "_userID");
+         self._locality = objj_msgSend(aCoder, "decodeObjectForKey:", "_locality");
+         self._categories = objj_msgSend(aCoder, "decodeObjectForKey:", "_categories");
+         self._type = objj_msgSend(aCoder, "decodeObjectForKey:", "_type");
+         self._role = objj_msgSend(aCoder, "decodeObjectForKey:", "_role");
+         self._title = objj_msgSend(aCoder, "decodeObjectForKey:", "_title");
+         self._photo = objj_msgSend(aCoder, "decodeObjectForKey:", "_photo");
+    }
+    return self;
+}
+,["id","CPCoder"]), new objj_method(sel_getUid("encodeWithCoder:"), function $TNStropheVCard__encodeWithCoder_(self, _cmd, aCoder)
+{
+    objj_msgSend(aCoder, "encodeObject:forKey:", self._fullName, "_fullName");
+    objj_msgSend(aCoder, "encodeObject:forKey:", self._organizationName, "_organizationName");
+    objj_msgSend(aCoder, "encodeObject:forKey:", self._organizationUnit, "_organizationUnit");
+    objj_msgSend(aCoder, "encodeObject:forKey:", self._userID, "_userID");
+    objj_msgSend(aCoder, "encodeObject:forKey:", self._locality, "_locality");
+    objj_msgSend(aCoder, "encodeObject:forKey:", self._categories, "_categories");
+    objj_msgSend(aCoder, "encodeObject:forKey:", self._type, "_type");
+    objj_msgSend(aCoder, "encodeObject:forKey:", self._role, "_role");
+    objj_msgSend(aCoder, "encodeObject:forKey:", self._title, "_title");
+    objj_msgSend(aCoder, "encodeObject:forKey:", self._photo, "_photo");
+}
+,["void","CPCoder"])]);
+}p;11;TNXMLNode.jt;7565;@STATIC;1.0;I;23;Foundation/Foundation.ji;28;Resources/Strophe/strophe.jsi;25;Resources/Strophe/sha1.jsi;16;TNStropheUtils.jt;7434;objj_executeFile("Foundation/Foundation.j", NO);
+objj_executeFile("Resources/Strophe/strophe.js", YES);
+objj_executeFile("Resources/Strophe/sha1.js", YES);
+objj_executeFile("TNStropheUtils.j", YES);
+{var the_class = objj_allocateClassPair(CPObject, "TNXMLNode"),
+meta_class = the_class.isa;class_addIvars(the_class, [new objj_ivar("_xmlNode")]);
+
+
+       
+       
+
+
+       
+       
+
+
+
+
+
+
+
+
+       
+       
+
+
+
+
+
+       
+       
+
+
+
+
+
+
+objj_registerClassPair(the_class);
+class_addMethods(the_class, [new objj_method(sel_getUid("xmlNode"), function $TNXMLNode__xmlNode(self, _cmd)
+{
+return self._xmlNode;
+}
+,["XMLElement"]), new objj_method(sel_getUid("initWithNode:"), function $TNXMLNode__initWithNode_(self, _cmd, aNode)
+{
+    if (self = objj_msgSendSuper({ receiver:self, super_class:objj_getClass("TNXMLNode").super_class }, "init"))
+    {
+        if ((aNode.c) && (aNode.c) != undefined)
+        {
+            self._xmlNode = aNode;
+        }
+        else
+        {
+            self._xmlNode = new Strophe.Builder('msg');
+            self._xmlNode.nodeTree = aNode;
+            self._xmlNode.node = aNode;
+        }
+    }
+    return self;
+}
+,["TNXMLNode","id"]), new objj_method(sel_getUid("initWithName:andAttributes:"), function $TNXMLNode__initWithName_andAttributes_(self, _cmd, aName, attributes)
+{
+    if (self = objj_msgSendSuper({ receiver:self, super_class:objj_getClass("TNXMLNode").super_class }, "init"))
+    {
+        self._xmlNode = new Strophe.Builder(aName, attributes);
+    }
+    return self;
+}
+,["TNXMLNode","CPString","CPDictionary"]), new objj_method(sel_getUid("copy"), function $TNXMLNode__copy(self, _cmd)
+{
+    return objj_msgSend(TNXMLNode, "nodeWithXMLNode:", Strophe.copyElement(objj_msgSend(self, "tree")));
+}
+,["TNXMLNode"]), new objj_method(sel_getUid("addNode:"), function $TNXMLNode__addNode_(self, _cmd, aNode)
+{
+    if (!aNode)
+        return;
+    self._xmlNode.cnode(objj_msgSend(aNode, "tree"));
+}
+,["void","TNXMLNode"]), new objj_method(sel_getUid("addTextNode:"), function $TNXMLNode__addTextNode_(self, _cmd, aText)
+{
+    self._xmlNode = self._xmlNode.t(aText);
+}
+,["void","CPString"]), new objj_method(sel_getUid("text"), function $TNXMLNode__text(self, _cmd)
+{
+    return TNStropheStripHTMLCharCode(Strophe.getText(objj_msgSend(self, "tree")));
+}
+,["CPString"]), new objj_method(sel_getUid("tree"), function $TNXMLNode__tree(self, _cmd)
+{
+    return self._xmlNode.tree();
+}
+,["id"]), new objj_method(sel_getUid("up"), function $TNXMLNode__up(self, _cmd)
+{
+    if (self._xmlNode.node && self._xmlNode.node.parentNode)
+    {
+        self._xmlNode.up();
+        return YES;
+    }
+    return NO;
+}
+,["BOOL"]), new objj_method(sel_getUid("stringValue"), function $TNXMLNode__stringValue(self, _cmd)
+{
+    return Strophe.serialize(self._xmlNode);
+}
+,["CPString"]), new objj_method(sel_getUid("description"), function $TNXMLNode__description(self, _cmd)
+{
+    return objj_msgSend(self, "stringValue");
+}
+,["CPString"]), new objj_method(sel_getUid("valueForAttribute:"), function $TNXMLNode__valueForAttribute_(self, _cmd, anAttribute)
+{
+    return objj_msgSend(self, "tree").getAttribute(anAttribute);
+}
+,["CPString","CPString"]), new objj_method(sel_getUid("setValue:forAttribute:"), function $TNXMLNode__setValue_forAttribute_(self, _cmd, aValue, anAttribute)
+{
+    var attr = {};
+    attr[anAttribute] = aValue;
+    self._xmlNode.attrs(attr);
+}
+,["void","CPString","CPString"]), new objj_method(sel_getUid("name"), function $TNXMLNode__name(self, _cmd)
+{
+    return objj_msgSend(self, "tree").tagName;
+}
+,["CPString"]), new objj_method(sel_getUid("namespace"), function $TNXMLNode__namespace(self, _cmd)
+{
+    return objj_msgSend(self, "valueForAttribute:", "xmlns");
+}
+,["CPString"]), new objj_method(sel_getUid("setNamespace:"), function $TNXMLNode__setNamespace_(self, _cmd, aNamespace)
+{
+    objj_msgSend(self, "setValue:forAttribute:", aNamespace, "xmlns");
+}
+,["void","CPString"]), new objj_method(sel_getUid("addChildWithName:andAttributes:"), function $TNXMLNode__addChildWithName_andAttributes_(self, _cmd, aTagName, attributes)
+{
+    self._xmlNode = self._xmlNode.c(aTagName, attributes);
+}
+,["void","CPString","CPDictionary"]), new objj_method(sel_getUid("addChildWithName:"), function $TNXMLNode__addChildWithName_(self, _cmd, aTagName)
+{
+    objj_msgSend(self, "addChildWithName:andAttributes:", aTagName, {});
+}
+,["void","CPString"]), new objj_method(sel_getUid("childrenWithName:"), function $TNXMLNode__childrenWithName_(self, _cmd, aName)
+{
+    var nodes = objj_msgSend(CPArray, "array"),
+        elements = objj_msgSend(self, "tree").getElementsByTagName(aName);
+    for (var i = 0; i < elements.length; i++)
+        objj_msgSend(nodes, "addObject:", objj_msgSend(TNXMLNode, "nodeWithXMLNode:", elements[i]))
+    return nodes;
+}
+,["CPArray","CPString"]), new objj_method(sel_getUid("ownChildrenWithName:"), function $TNXMLNode__ownChildrenWithName_(self, _cmd, aName)
+{
+    var nodes = objj_msgSend(CPArray, "array"),
+        elements = objj_msgSend(self, "tree").childNodes;
+    for (var i = 0; i < elements.length; i++)
+        if ((aName === nil) || (aName && elements [i].tagName == aName))
+            objj_msgSend(nodes, "addObject:", objj_msgSend(TNXMLNode, "nodeWithXMLNode:", elements[i]))
+    return nodes;
+}
+,["CPArray","CPString"]), new objj_method(sel_getUid("firstChildWithName:"), function $TNXMLNode__firstChildWithName_(self, _cmd, aName)
+{
+    var elements = objj_msgSend(self, "tree").getElementsByTagName(aName);
+    if (elements && (elements.length > 0))
+        return objj_msgSend(TNXMLNode, "nodeWithXMLNode:", elements[0]);
+    else
+        return;
+}
+,["TNXMLNode","CPString"]), new objj_method(sel_getUid("children"), function $TNXMLNode__children(self, _cmd)
+{
+    return objj_msgSend(self, "ownChildrenWithName:", nil);
+}
+,["CPArray"]), new objj_method(sel_getUid("containsChildrenWithName:"), function $TNXMLNode__containsChildrenWithName_(self, _cmd, aName)
+{
+    return objj_msgSend(self, "firstChildWithName:", aName) ? YES : NO;
+}
+,["BOOL","CPString"])]);
+class_addMethods(meta_class, [new objj_method(sel_getUid("nodeWithXMLNode:"), function $TNXMLNode__nodeWithXMLNode_(self, _cmd, aNode)
+{
+    return objj_msgSend(objj_msgSend(TNXMLNode, "alloc"), "initWithNode:", aNode);
+}
+,["TNXMLNode","id"]), new objj_method(sel_getUid("nodeWithName:"), function $TNXMLNode__nodeWithName_(self, _cmd, aName)
+{
+    return objj_msgSend(objj_msgSend(TNXMLNode, "alloc"), "initWithName:andAttributes:", aName, nil);
+}
+,["TNXMLNode","CPString"]), new objj_method(sel_getUid("nodeWithName:andAttributes:"), function $TNXMLNode__nodeWithName_andAttributes_(self, _cmd, aName, someAttributes)
+{
+    return objj_msgSend(objj_msgSend(TNXMLNode, "alloc"), "initWithName:andAttributes:", aName, someAttributes);
+}
+,["TNXMLNode","CPString","CPDictionary"])]);
+}
+{
+var the_class = objj_getClass("TNXMLNode")
+if(!the_class) throw new SyntaxError("*** Could not find definition for class \"TNXMLNode\"");
+var meta_class = the_class.isa;
+class_addMethods(the_class, [new objj_method(sel_getUid("initWithCoder:"), function $TNXMLNode__initWithCoder_(self, _cmd, aCoder)
+{
+    if (self = objj_msgSendSuper({ receiver:self, super_class:objj_getClass("TNXMLNode").super_class }, "init"))
+    {
+    }
+    return self;
+}
+,["id","CPCoder"]), new objj_method(sel_getUid("encodeWithCoder:"), function $TNXMLNode__encodeWithCoder_(self, _cmd, aCoder)
+{
+}
+,["void","CPCoder"])]);
+}p;22;MUC/TNStropheMUCRoom.jt;9706;@STATIC;1.0;I;23;Foundation/Foundation.ji;24;../TNStropheConnection.ji;17;../TNStropheJID.ji;20;../TNStropheStanza.ji;19;../TNStropheUtils.ji;20;TNStropheMUCRoster.jt;9534;objj_executeFile("Foundation/Foundation.j", NO);
 objj_executeFile("../TNStropheConnection.j", YES);
 objj_executeFile("../TNStropheJID.j", YES);
 objj_executeFile("../TNStropheStanza.j", YES);
@@ -3769,17 +3741,15 @@ TNStropheMUCPrivateMessageWasReceivedNotification = "TNStropheMUCPrivateMessageW
 TNStropheMUCRosterWasUpdatedNotification = "TNStropheMUCRosterWasUpdatedNotification";
 TNStropheMUCSubjectWasUpdatedNotification = "TNStropheMUCSubjectWasUpdatedNotification";
 {var the_class = objj_allocateClassPair(CPObject, "TNStropheMUCRoom"),
-meta_class = the_class.isa;class_addIvars(the_class, [new objj_ivar("_messages"), new objj_ivar("_subject"), new objj_ivar("_delegate"), new objj_ivar("_roomJID"), new objj_ivar("_roster"), new objj_ivar("_handlerIDs"), new objj_ivar("_connection")]);//#pragma mark -
-//#pragma mark Initialization
+meta_class = the_class.isa;class_addIvars(the_class, [new objj_ivar("_messages"), new objj_ivar("_subject"), new objj_ivar("_delegate"), new objj_ivar("_roomJID"), new objj_ivar("_roster"), new objj_ivar("_handlerIDs"), new objj_ivar("_connection")]);
 
-
-//#pragma mark -
-//#pragma mark Membership
+       
+       
 
 
 
-//#pragma mark -
-//#pragma mark Content
+       
+       
 
 
 
@@ -3925,24 +3895,22 @@ class_addMethods(meta_class, [new objj_method(sel_getUid("joinRoom:onService:usi
     return objj_msgSend(objj_msgSend(TNStropheMUCRoom, "alloc"), "initWithRoom:onService:usingConnection:withNick:", aRoom, aService, aConnection, aNick);
 }
 ,["TNStropheMUCRoom","CPString","CPString","TNStropheConnection","CPString"])]);
-}p;24;MUC/TNStropheMUCRoster.jt;8006;@STATIC;1.0;I;23;Foundation/Foundation.ji;24;../TNStropheRosterBase.ji;19;../TNStropheGroup.jt;7906;objj_executeFile("Foundation/Foundation.j", NO);
+}p;24;MUC/TNStropheMUCRoster.jt;7879;@STATIC;1.0;I;23;Foundation/Foundation.ji;24;../TNStropheRosterBase.ji;19;../TNStropheGroup.jt;7779;objj_executeFile("Foundation/Foundation.j", NO);
 objj_executeFile("../TNStropheRosterBase.j", YES);
 objj_executeFile("../TNStropheGroup.j", YES);
 //@class TNStropheMUCRoom
 TNStropheMUCContactJoinedNotification = "TNStropheMUCContactJoinedNotification";
 TNStropheMUCContactLeftNotification = "TNStropheMUCContactLeftNotification";
 {var the_class = objj_allocateClassPair(TNStropheRosterBase, "TNStropheMUCRoster"),
-meta_class = the_class.isa;class_addIvars(the_class, [new objj_ivar("_admins"), new objj_ivar("_moderators"), new objj_ivar("_owners"), new objj_ivar("_participants"), new objj_ivar("_visitors"), new objj_ivar("_room")]);//#pragma mark -
-//#pragma mark Class methods
+meta_class = the_class.isa;class_addIvars(the_class, [new objj_ivar("_admins"), new objj_ivar("_moderators"), new objj_ivar("_owners"), new objj_ivar("_participants"), new objj_ivar("_visitors"), new objj_ivar("_room")]);
+       
+       
 
-//#pragma mark -
-//#pragma mark Initialization
+       
+       
 
-//#pragma mark -
-//#pragma mark Presence
-
-//#pragma mark -
-//#pragma mark Contacts
+       
+       
 
 
 objj_registerClassPair(the_class);
@@ -4079,7 +4047,7 @@ class_addMethods(meta_class, [new objj_method(sel_getUid("rosterWithConnection:f
     return objj_msgSend(objj_msgSend(TNStropheMUCRoster, "alloc"), "initWithConnection:forRoom:", aConnection, aRoom);
 }
 ,["TNStropheMUCRoster","TNStropheConnection","TNStropheMUCRoom"])]);
-}p;27;PubSub/TNPubSubController.jt;15519;@STATIC;1.0;I;23;Foundation/Foundation.ji;31;../Resources/Strophe/strophe.jsi;28;../Resources/Strophe/sha1.jsi;24;../TNStropheConnection.ji;14;TNPubSubNode.jt;15354;objj_executeFile("Foundation/Foundation.j", NO);
+}p;27;PubSub/TNPubSubController.jt;15338;@STATIC;1.0;I;23;Foundation/Foundation.ji;31;../Resources/Strophe/strophe.jsi;28;../Resources/Strophe/sha1.jsi;24;../TNStropheConnection.ji;14;TNPubSubNode.jt;15173;objj_executeFile("Foundation/Foundation.j", NO);
 objj_executeFile("../Resources/Strophe/strophe.js", YES);
 objj_executeFile("../Resources/Strophe/sha1.js", YES);
 objj_executeFile("../TNStropheConnection.j", YES);
@@ -4089,27 +4057,25 @@ TNStrophePubSubBatchUnsubscribeCompleteNotification = "TNStrophePubSubBatchUnsub
 TNStrophePubSubNoOldSubscriptionsLeftNotification = "TNStrophePubSubNoOldSubscriptionsLeft";
 TNStrophePubSubSubscriptionsRetrievedNotification = "TNStrophePubSubSubscriptionsReceivedNotification";
 {var the_class = objj_allocateClassPair(CPObject, "TNPubSubController"),
-meta_class = the_class.isa;class_addIvars(the_class, [new objj_ivar("_nodes"), new objj_ivar("_servers"), new objj_ivar("_delegate"), new objj_ivar("_subscriptionBatches"), new objj_ivar("_unsubscriptionBatches"), new objj_ivar("_connection"), new objj_ivar("_numberOfPromptedServers")]);//#pragma mark -
-//#pragma mark Class methods
+meta_class = the_class.isa;class_addIvars(the_class, [new objj_ivar("_nodes"), new objj_ivar("_servers"), new objj_ivar("_delegate"), new objj_ivar("_subscriptionBatches"), new objj_ivar("_unsubscriptionBatches"), new objj_ivar("_connection"), new objj_ivar("_numberOfPromptedServers")]);
 
+       
+       
 
-//#pragma mark -
-//#pragma mark Initialization
-
-//#pragma mark -
-//#pragma mark Notification handlers
-
-
-
-
-//#pragma mark -
-//#pragma mark Utilities
+       
+       
 
 
 
 
-//#pragma mark -
-//#pragma mark Subscription Management
+       
+       
+
+
+
+
+       
+       
 
 
 
@@ -4342,7 +4308,7 @@ class_addMethods(meta_class, [new objj_method(sel_getUid("pubSubControllerWithCo
     return objj_msgSend(objj_msgSend(TNPubSubController, "alloc"), "initWithConnection:pubSubServer:", aConnection, nil);
 }
 ,["TNPubSubNode","TNStropheConnection"])]);
-}p;21;PubSub/TNPubSubNode.jt;36998;@STATIC;1.0;I;23;Foundation/Foundation.jI;33;Foundation/CPNotificationCenter.ji;31;../Resources/Strophe/strophe.jsi;28;../Resources/Strophe/sha1.jsi;24;../TNStropheConnection.ji;20;../TNStropheStanza.jt;36789;objj_executeFile("Foundation/Foundation.j", NO);
+}p;21;PubSub/TNPubSubNode.jt;36745;@STATIC;1.0;I;23;Foundation/Foundation.jI;33;Foundation/CPNotificationCenter.ji;31;../Resources/Strophe/strophe.jsi;28;../Resources/Strophe/sha1.jsi;24;../TNStropheConnection.ji;20;../TNStropheStanza.jt;36536;objj_executeFile("Foundation/Foundation.j", NO);
 objj_executeFile("Foundation/CPNotificationCenter.j", NO);
 objj_executeFile("../Resources/Strophe/strophe.js", YES);
 objj_executeFile("../Resources/Strophe/sha1.js", YES);
@@ -4391,17 +4357,15 @@ TNStrophePubSubNodeRetrievedNotification = "TNStrophePubSubNodeRetrievedNotifica
 TNStrophePubSubNodeSubscribedNotification = "TNStrophePubSubNodeSubscribedNotification";
 TNStrophePubSubNodeUnsubscribedNotification = "TNStrophePubSubNodeUnsubscribedNotification";
 {var the_class = objj_allocateClassPair(CPObject, "TNPubSubNode"),
-meta_class = the_class.isa;class_addIvars(the_class, [new objj_ivar("_content"), new objj_ivar("_subscriptionIDs"), new objj_ivar("_affiliations"), new objj_ivar("_nodeName"), new objj_ivar("_delegate"), new objj_ivar("_pubSubServer"), new objj_ivar("_eventSelectorID"), new objj_ivar("_connection")]);//#pragma mark -
-//#pragma mark Class methods
-
-//#pragma mark -
-//#pragma mark Initialization
+meta_class = the_class.isa;class_addIvars(the_class, [new objj_ivar("_content"), new objj_ivar("_subscriptionIDs"), new objj_ivar("_affiliations"), new objj_ivar("_nodeName"), new objj_ivar("_delegate"), new objj_ivar("_pubSubServer"), new objj_ivar("_eventSelectorID"), new objj_ivar("_connection")]);
+       
+       
 
 
 
 
-//#pragma mark -
-//#pragma mark Node Management
+       
+       
 
 
 
@@ -4410,8 +4374,8 @@ meta_class = the_class.isa;class_addIvars(the_class, [new objj_ivar("_content"),
 
 
 
-//#pragma mark -
-//#pragma mark Item management
+       
+       
 
 
 
@@ -4420,8 +4384,8 @@ meta_class = the_class.isa;class_addIvars(the_class, [new objj_ivar("_content"),
 
 
 
-//#pragma mark -
-//#pragma mark Subscription Management
+       
+       
 
 
 
@@ -4432,14 +4396,14 @@ meta_class = the_class.isa;class_addIvars(the_class, [new objj_ivar("_content"),
 
 
 
-//#pragma mark -
-//#pragma mark Affiliation Management
+       
+       
 
 
 
 
-//#pragma mark -
-//#pragma mark Event Management
+       
+       
 
 
 objj_registerClassPair(the_class);
