@@ -1,0 +1,42 @@
+body{
+	margin:0;
+	padding:0;
+	background:url(../img/fon.png) repeat;
+	color:#666666;
+	font-size:18px;
+	font-family:Garamond;
+}
+html,body {
+	height: 100%; 
+}
+.wrap{
+	width:950px;
+	height:576px;
+	background:url(../img/main.png) no-repeat;
+	margin:0 auto; 
+	position:relative;
+}
+.content{
+	padding-top:195px;
+	padding-left:80px;
+	width:640px;
+	
+}
+.content li{
+	list-style-type: none;
+	font-style:italic;
+}
+.content a,.footer a {
+	font-style:italic;
+	color:#58849b;
+}
+.content a:hover,.footer a:hover{
+	color:#2e89b8;
+}
+.footer{
+	height:20px;
+	text-align:right;
+	width:890px;
+	margin:0 auto;	
+	font-size:14px;
+}
